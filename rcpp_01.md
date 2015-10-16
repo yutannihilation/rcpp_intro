@@ -28,34 +28,40 @@ Rcpp 0.11.1
 ```
 $HOME/.R/Makevars
 CC=/opt/local/bin/gcc-mp-4.7
-CXX=/opt/local/bin/g++-mp-4.7 CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:/opt/local/include LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/local/lib CXXFLAGS= -g0 -O3 -Wall MAKE=make -j4
+CXX=/opt/local/bin/g++-mp-4.7
+CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:/opt/local/include
+LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/local/lib
+CXXFLAGS= -g0 -O3 -Wall MAKE=make -j4
 ```
 
 
 #Rcpp のインストール
 
 Rで
+
+```r
 install.packages("Rcpp")
 library(Rcpp)
-
+```
 
 #Rcpp コードを書く
 
 
 RStudio で 
+
 File > New File > C++ File
 
-例：ギブス・サンプラー
+**例：ギブス・サンプラー**
+
 http://gallery.rcpp.org/articles/gibbs-sampler/
+
 任意の分布関数からサンプリングされた乱数を生成するアルゴリズム。初期値からマルコフ連鎖で乱数の系列を生成する。この例では2次元で、ｘ軸方向にはガンマ分布、ｙ軸方向には正規分布に従う乱数を生成している。
 
-```cpp:gibbs.cpp
-
+```cpp
 #include <Rcpp.h>
 using namespace Rcpp;
 
 // [[Rcpp::export]]
-
 NumericMatrix gibbsCpp(int N, int thin) {
 
 NumericMatrix mat(N, 2);
