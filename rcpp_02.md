@@ -21,12 +21,19 @@ http://dirk.eddelbuettel.com/code/rcpp/html/
 正確には、Rcppで基本データ型として定義されているのは String, Date, Datetime のみで、その他の型ついてはC++の基本型を利用する。
 
 #データ構造
-Rcppの基本データ型のそれぞれについて
-◯◯Vector、◯◯Matrix
-NumericVector、NumericMatrixなど
-文字列については、StringVector、CharacterVector のどちらでも良い。
 
-ベクターを要素として格納できる
+Rcppの基本データ型のそれぞれについて
+
+```◯◯Vector``` ```◯◯Matrix```
+
+
+数値型なら、```NumericVector```、```NumericMatrix```など、文字列については、```StringVector```、```CharacterVector```のどちらでも良い。
+
+
+
+
+**ベクターを要素として格納できる**
+
 Dataframe、List
 
 #ベクターの作成と要素へのアクセス
