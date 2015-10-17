@@ -60,48 +60,50 @@ http://gallery.rcpp.org/articles/gibbs-sampler/
 
 任意の分布関数からサンプリングされた乱数を生成するアルゴリズム。初期値からマルコフ連鎖で乱数の系列を生成する。この例では2次元で、ｘ軸方向にはガンマ分布、ｙ軸方向には正規分布に従う乱数を生成している。
 
+２重の for ループの中で乱数を生成し、結果を行列に格納している。
+
 ```cpp
 #include <Rcpp.h>
 using namespace Rcpp;
 
 // [[Rcpp::export]]
 NumericMatrix gibbsCpp(int N, int thin) {
-
-NumericMatrix mat(N, 2);
-double x = 0, y = 0;
-
-for(int i = 0; i < N; i++) {
-for(int j = 0; j < thin; j++) {
-x = R::rgamma(3.0, 1.0 / (y * y + 4));
-y = R::rnorm(1.0 / (x + 1), 1.0 / sqrt(2 * x + 2));
-}
-mat(i, 0) = x;
-mat(i, 1) = y;
-}
-
-return(mat);
+  
+  NumericMatrix mat(N, 2);
+  double x = 0, y = 0;
+  
+  for(int i = 0; i < N; i++) {
+    for(int j = 0; j < thin; j++) {
+      x = R::rgamma(3.0, 1.0 / (y * y + 4));
+      y = R::rnorm(1.0 / (x + 1), 1.0 / sqrt(2 * x + 2));
+    }
+    mat(i, 0) = x;
+    mat(i, 1) = y;
+  }
+  
+  return(mat);
 }
 ```
 
-[create an anchor](#anchors-in-markdown)
+
 
 Rバージョン
 
 ```r
 gibbsR <- function(N,thin){
-
-mat<-matrix(0,nrow=N,ncol=2)
-x <- 0
-y <- 0
-
-for(i in 1:N){
-for(j in 1:thin){
-x <- rgamma(1, 3, 1/(y*y+4))
-y <- rnorm(1, 1/(x+1), 1/sqrt(2*x+2))
-}
-mat[i,] <- c(x,y)
-}
-return(mat)
+  
+  mat<-matrix(0,nrow=N,ncol=2)
+  x <- 0
+  y <- 0
+  
+  for(i in 1:N){
+    for(j in 1:thin){
+      x <- rgamma(1, 3, 1/(y*y+4))
+      y <- rnorm(1, 1/(x+1), 1/sqrt(2*x+2))
+    }
+    mat[i,] <- c(x,y)
+  }
+  return(mat)
 }
 ```
 
@@ -146,74 +148,7 @@ test replications elapsed relative
 ```
 
 
-#C++11 への対応
 
-R3.1.0 から CRAN は C++11 の機能を使ったパッケージも許容するようになった（参考）。なので自作バッケージでC++11を使ってもCRANにアップロードできる。
-
-###C++11を有効にする。
-
-Rコンソールで
-
-```r
-Sys.setenv("PKG_CXXFLAGS"="-std=c++11")
-```
-
-あるいは、C++コード中で
-
-```cpp
-// [[Rcpp::plugins("cpp11")]]
-```
-
-Windows の Rtools の gcc のバージョンがやや古いので（-std=c++11）は駄目かもしれない。その場合は下を使う。
-
-```
-Sys.setenv("PKG_CXXFLAGS"="-std=c++0x")
-
-```
-
-###C++11を使ったのコード例
-
-例：乱数生成器
-
-```cpp
-#include <Rcpp.h>
-#include <random>
-
-using namespace Rcpp;
-
-// [[Rcpp::export]]
-NumericVector cxx11Normals(int n) {
-
-std::mt19937 engine(42);
-std::normal_distribution<> normal(0.0, 1.0);
-
-NumericVector V(n);
-for ( int i = 0; i < n; i++ ) {
-V[i] = normal(engine);
-};
-
-return V;
-}
-```
-
-
-例：ラムダ式
-
-```cpp
-using namespace Rcpp;
-
-// Enable C++11 via this plugin (Rcpp 0.10.3 or later)
-// [[Rcpp::plugins("cpp11")]]
-// [[Rcpp::export]]
-
-std::vector<double> transformEx(const std::vector<double>& x) {
-std::vector<double> y(x.size());
-std::transform(x.begin(), x.end(), y.begin(), [](double x) { return x*x; } );
-return y;
-}
-```
-
-もちろん auto やイニシャライザリストなども使える。
 
 
 #Boost への対応
