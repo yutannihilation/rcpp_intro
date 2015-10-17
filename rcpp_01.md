@@ -28,7 +28,7 @@ sudo apt-get install r-base-dev texlive-full
 
 # Header1
 # Header2
-
+## foo
 
 
 
@@ -364,5 +364,13 @@ http://cran.r-project.org/web/packages/Rcpp/index.html
 
 このページにもRcpp の主要な使い方が簡単に紹介されている。
 High performance functions with Rcpp in Advanced R programming
+
+[foo](.#foo)
+
+[foo](#foo)
+
+
+
+[Heading](Page#heading) 
 
 [Link-name2](#Header2)
