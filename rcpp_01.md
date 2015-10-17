@@ -26,7 +26,8 @@ sudo apt-get install r-base-dev texlive-full
 [アンカー](#test-header)
 
 
-
+# Header1
+# Header2
 
 
 
@@ -91,7 +92,7 @@ return(mat);
 }
 ```
 
-#test header
+[create an anchor](#anchors-in-markdown)
 
 Rバージョン
 
@@ -268,6 +269,7 @@ Macports でインストールした Boost なら
 Sys.setenv("PKG_CXXFLAGS"="-std=c++11 -I/opt/local/include -L/opt/local/lib/")
 ```
 
+
 ####<a name="random">例：乱数生成器
 
 ```
@@ -362,3 +364,5 @@ http://cran.r-project.org/web/packages/Rcpp/index.html
 
 このページにもRcpp の主要な使い方が簡単に紹介されている。
 High performance functions with Rcpp in Advanced R programming
+
+[Link-name2](#Header2)
