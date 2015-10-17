@@ -17,6 +17,7 @@ http://dirk.eddelbuettel.com/code/rcpp/html/
 |Date|Date|-|
 |POSIXct|Datetime|-|
  
+# hoge
 
 正確には、Rcppで基本データ型として定義されているのは String, Date, Datetime のみで、その他の型ついてはC++の基本型を利用する。
 
