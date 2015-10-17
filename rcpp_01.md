@@ -23,7 +23,7 @@ sudo apt-get install r-base-dev texlive-full
 * Rtools 3.1
 * Rcpp 0.11.1
 
-[乱数](#random)
+[アンカー](#test-header)
 
 
 
@@ -44,6 +44,8 @@ MAKE=make -j4
 ```
 
 
+
+
 #Rcpp のインストール 
 
 Rで
@@ -53,7 +55,7 @@ install.packages("Rcpp")
 library(Rcpp)
 ```
 
-#Rcpp コードを書く
+#Rcppコードを書く
 
 
 RStudio で 
@@ -88,6 +90,8 @@ mat(i, 1) = y;
 return(mat);
 }
 ```
+
+#test header
 
 Rバージョン
 
