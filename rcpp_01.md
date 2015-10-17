@@ -371,6 +371,5 @@ High performance functions with Rcpp in Advanced R programming
 
 
 
-[Heading](rcpp_02.html#hoge) 
+[hoge](rcpp_02.html#hoge) 
 
-[Link-name2](#Header2)
