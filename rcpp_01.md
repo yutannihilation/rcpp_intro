@@ -369,7 +369,7 @@ High performance functions with Rcpp in Advanced R programming
 
 [foo](#foo)
 
-[ヘッダー1](#header1)
+[ヘッダー1](#Header1)
 
 
 [hoge](rcpp_02.html#hoge) 
