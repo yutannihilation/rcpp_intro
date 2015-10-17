@@ -23,15 +23,6 @@ sudo apt-get install r-base-dev texlive-full
 * Rtools 3.1
 * Rcpp 0.11.1
 
-
-
-
-# Header1
-# Header2
-## foo
-
-
-
 必要に応じて（自分でインストールした gcc を使いたい場合など）、以下のファイルで環境変数を設定する。
 
 ```
@@ -365,12 +356,4 @@ http://cran.r-project.org/web/packages/Rcpp/index.html
 このページにもRcpp の主要な使い方が簡単に紹介されている。
 High performance functions with Rcpp in Advanced R programming
 
-[foo](.#foo)
-
-[foo](#foo)
-
-[ヘッダー1](#Header1)
-
-
-[hoge](rcpp_02.html#hoge) 
 
