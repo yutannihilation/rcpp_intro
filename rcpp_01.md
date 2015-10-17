@@ -23,7 +23,7 @@ sudo apt-get install r-base-dev texlive-full
 * Rtools 3.1
 * Rcpp 0.11.1
 
-[アンカー](#test-header)
+
 
 
 # Header1
@@ -369,6 +369,7 @@ High performance functions with Rcpp in Advanced R programming
 
 [foo](#foo)
 
+[ヘッダー1](#header1)
 
 
 [hoge](rcpp_02.html#hoge) 
