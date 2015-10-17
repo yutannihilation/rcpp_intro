@@ -264,7 +264,7 @@ Macports でインストールした Boost なら
 Sys.setenv("PKG_CXXFLAGS"="-std=c++11 -I/opt/local/include -L/opt/local/lib/")
 ```
 
-####例：乱数生成器<a name="random">
+####<a name="random">例：乱数生成器
 
 ```
 #include <boost/random.hpp>
