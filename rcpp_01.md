@@ -44,7 +44,7 @@ MAKE=make -j4
 ```
 
 
-#Rcpp のインストール
+#Rcpp のインストール 
 
 Rで
 
@@ -264,7 +264,7 @@ Macports でインストールした Boost なら
 Sys.setenv("PKG_CXXFLAGS"="-std=c++11 -I/opt/local/include -L/opt/local/lib/")
 ```
 
-####例：乱数生成器
+####例：乱数生成器<a name="random">
 
 ```
 #include <boost/random.hpp>
