@@ -23,7 +23,7 @@ sudo apt-get install r-base-dev texlive-full
 * Rtools 3.1
 * Rcpp 0.11.1
 
-
+[乱数](#random)
 
 
 
