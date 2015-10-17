@@ -1,2 +1,1 @@
-# Rcpp 入門しちゃう？
-
+# Introduction to Rcpp
