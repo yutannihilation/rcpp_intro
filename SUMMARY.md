@@ -1,11 +1,9 @@
 # Summary
 
-* [Introduction](README.md)
-* [Rcpp入門](rcpp_01.md)
-* [Rcppの使い方](rcpp_02.md)
+* [Rcppとは](README.md)
 * [インストール](install.md)
-* [基本的な使い方](how_to_use.md)
-* データ型
+* [基本的な使い方](basic_usage.md)
+* 基本データ型
 * データ構造
    * Vector
    * DataFrame
