@@ -1,7 +1,5 @@
 # 基本的な使い方
 
-テストだよ
-
 
 ## Rcppコードを書く
 
@@ -10,14 +8,37 @@ RStudio で
 
 File > New File > C++ File
 
-**例：ギブス・サンプラー**
+
+
+###例：ギブス・サンプラー**
 
 http://gallery.rcpp.org/articles/gibbs-sampler/
 
-任意の分布関数からサンプリングされた乱数を生成するアルゴリズム。初期値からマルコフ連鎖で乱数の系列を生成する。この例では2次元で、ｘ軸方向にはガンマ分布、ｙ軸方向には正規分布に従う乱数を生成している。
-
 ２重の for ループの中で乱数を生成し、結果を行列に格納している。
 
+
+**Rバージョン**
+
+```r
+gibbsR <- function(N,thin){
+  
+  mat<-matrix(0,nrow=N,ncol=2)
+  x <- 0
+  y <- 0
+  
+  for(i in 1:N){
+    for(j in 1:thin){
+      x <- rgamma(1, 3, 1/(y*y+4))
+      y <- rnorm(1, 1/(x+1), 1/sqrt(2*x+2))
+    }
+    mat[i,] <- c(x,y)
+  }
+  return(mat)
+}
+```
+
+
+**Rcppバージョン**
 ```cpp
 #include <Rcpp.h>
 using namespace Rcpp;
@@ -43,35 +64,17 @@ NumericMatrix gibbsCpp(int N, int thin) {
 
 
 
-Rバージョン
-
-```r
-gibbsR <- function(N,thin){
-  
-  mat<-matrix(0,nrow=N,ncol=2)
-  x <- 0
-  y <- 0
-  
-  for(i in 1:N){
-    for(j in 1:thin){
-      x <- rgamma(1, 3, 1/(y*y+4))
-      y <- rnorm(1, 1/(x+1), 1/sqrt(2*x+2))
-    }
-    mat[i,] <- c(x,y)
-  }
-  return(mat)
-}
-```
 
 
 **コンパイル & 実行**
 
 ```r
-Rcpp::sourceCpp('gibbs.cpp')
+library(Rcpp)
+sourceCpp('gibbs.cpp')
 gibbsCpp(100, 10)
 ```
 
-結果
+**結果**
 
 ```
 > res <- gibbsCpp(10000, 10)
@@ -87,7 +90,8 @@ gibbsCpp(100, 10)
 
 
 **R との比較**
-Rcpp の方が56倍早い
+
+R より Rcpp の方が56倍早い
 
 ```
 > library(rbenchmark)
