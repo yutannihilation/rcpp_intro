@@ -568,7 +568,7 @@ f(_["x"] = "a", _["value"] = 1);
 
 #欠損値
 
-
+NA (Not Available)
 
 NA_INTEGER,
 NA_REAL
@@ -603,8 +603,7 @@ str(scalar_missings())
 NA_LOGICAL を bool 型に代入した時だけ、挙動が異なる。
 
 Integer
-NA_INTEGER は int型 に代入えすると、int 型の最小値の値を取る。Rcpp ではこのオブジェクトを R に返すとき NA に変換する。
-C++ 中では数値として扱われるので注意が必要。
+NA_INTEGER を int型 に代入すると、int 型の最小値の値を取る。Rcpp はこのオブジェクトを R に返すとき NA に変換する。しかし、C++ 中では数値として扱われるので注意が必要。
 
 Double
 C++ には NAN があるので 非数値は扱える、R の NaN に変換される。
@@ -659,6 +658,13 @@ LogicalVector is_naC2(NumericVector x) {
   return is_na(x);
 }
 ```
+
+
+#無限の値
+
+
+
+
 
 
 #イテレーター
