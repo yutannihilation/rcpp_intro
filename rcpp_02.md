@@ -566,7 +566,15 @@ f("a", 1);
 f(_["x"] = "a", _["value"] = 1);
 ```
 
-#欠損値
+#非数値 NaN
+
+R_NaN
+
+R_PosInf
+R_NegInf
+
+
+#欠損値 NA
 
 NA (Not Available)
 
