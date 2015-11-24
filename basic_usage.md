@@ -3,6 +3,8 @@
 
 ## Rcppコードを書く
 
+RcppのコーディングではRStudio
+
 
 RStudio で 
 
