@@ -39,7 +39,10 @@ gibbsR <- function(N,thin){
 
 
 **Rcppバージョン**
+
+
 ```cpp
+//gibbs.cpp
 #include <Rcpp.h>
 using namespace Rcpp;
 
@@ -74,34 +77,22 @@ sourceCpp('gibbs.cpp')
 gibbsCpp(100, 10)
 ```
 
-**結果**
-
-```
-> res <- gibbsCpp(10000, 10)
-> res
-[,1]        [,2]
-[1,] 1.02738116  0.15099930
-[2,] 0.30689307  0.50309278
-[3,] 0.75111310  0.60572071
-[4,] 0.55268966  0.17286207
-[5,] 0.32656780  0.53070935
-...
-```
 
 
 **R との比較**
 
-R より Rcpp の方が56倍早い
+R より Rcpp の方が56倍高速
 
 ```
-> library(rbenchmark)
-> n <- 2000
-> thn <- 200
-> benchmark(gibbsR(n, thn),
-+           gibbsCpp(n, thn),
-+           columns=c("test", "replications", "elapsed", "relative"),
-+           order="relative",
-+           replications=10)
+library(rbenchmark)
+n <- 2000
+thn <- 200
+benchmark(gibbsR(n, thn),
+           gibbsCpp(n, thn),
+           columns=c("test", "replications", "elapsed", "relative"),
+           order="relative",
+           replications=10)
+
 test replications elapsed relative
 2 gibbsCpp(n, thn)           10   1.454    1.000
 1   gibbsR(n, thn)           10  81.427   56.002
