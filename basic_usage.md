@@ -85,7 +85,7 @@ gibbsCpp(100, 10)
 
 RバージョンとRcppバージョンの関数の実行速度を比較してみると、 Rcpp の方が56倍高速に実行されている。
 
-```{r}
+```r
 library(rbenchmark)
 n <- 2000
 thn <- 200
