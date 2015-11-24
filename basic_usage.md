@@ -5,7 +5,6 @@
 
 RcppのコーディングではRStudio
 
-
 RStudio で 
 
 File > New File > C++ File
