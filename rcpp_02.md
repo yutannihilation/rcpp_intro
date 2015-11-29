@@ -6,21 +6,7 @@ http://dirk.eddelbuettel.com/code/rcpp/html/
 
 
 
-#データ構造
 
-Rcppの基本データ型のそれぞれについて
-
-```◯◯Vector``` ```◯◯Matrix```
-
-
-数値型なら、```NumericVector```、```NumericMatrix```など、文字列については、```StringVector```、```CharacterVector```のどちらでも良い。
-
-
-
-
-**ベクターを要素として格納できる**
-
-Dataframe、List
 
 #ベクターの作成と要素へのアクセス
 
