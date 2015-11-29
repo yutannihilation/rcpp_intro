@@ -21,22 +21,28 @@ R、Rcpp、C++で利用できる基本的なデータ型の概念的な対応は
 そのため、`Numeric x;` というような変数 x を宣言することはできないが、　`Date d` という変数は宣言することができる。
 
 
-#データ構造
+# データ構造
 
-Rcppの基本データ型のそれぞれについて
+## ベクター
 
-```◯◯Vector``` ```◯◯Matrix```
+Rcppの基本データ型のそれぞれについてベクター型と行列型が定義されている。
+
+```
+◯◯Vector
+◯◯Matrix
+```
+
+数値型なら、`NumericVector`、`NumericMatrix`など、文字列については、`CharacterVector`、`StringVector`のどちらの書き方も許される。
 
 
-数値型なら、```NumericVector```、```NumericMatrix```など、文字列については、```StringVector```、```CharacterVector```のどちらの書き方でも良い。
 
 
+## データフレーム、リスト
 
-
-**ベクターを要素として格納できる**
-
-Dataframe、List
-
+```
+Dataframe
+List
+```
 
 
 
