@@ -3,7 +3,7 @@
 * [Rcppとは](README.md)
 * [インストール](install.md)
 * [基本的な使い方](basic_usage.md)
-* 基本データ型
+* [基本データ型](data_type.md)
 * データ構造
    * Vector
    * DataFrame
