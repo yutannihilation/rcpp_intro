@@ -5,20 +5,6 @@ DocumentはC++がわかる人向け
 http://dirk.eddelbuettel.com/code/rcpp/html/
 
 
-#基本データ型
-
-|R|Rcpp|C++|
-|:---:|:---:|:---:|
-|logical|Logical|bool|
-|integer|Integer|int|
-|numeric|Numeric|double|
-|complex|Complex|complex|
-|character|String|string|
-|Date|Date|-|
-|POSIXct|Datetime|-|
- 
-
-正確には、Rcppで基本データ型として定義されているのは String, Date, Datetime のみで、その他の型ついてはC++の基本型を利用する。
 
 #データ構造
 
