@@ -14,4 +14,9 @@ R、Rcpp、C++で利用できる基本的なデータ型の対応は以下のよ
 |POSIXct|Datetime|-|
  
 
-正確には、Rcppで基本データ型として定義されているのは String, Date, Datetime のみで、その他の型ついてはC++の基本型を利用する。
+
+
+正確には、Rcppで基本データ型として定義されているのは String, Date, Datetime のみで、その他の型ついては
+
+
+C++の基本型を利用する。
