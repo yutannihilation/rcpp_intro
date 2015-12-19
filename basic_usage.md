@@ -15,7 +15,23 @@ RStudio で
 
 File > New File > C++ File
 
+下の例では、ベクターvの総和を計算する関数 sum_rcpp を定義している。このコードを sum.cpp という名前で保存する。
 
+```
+#include <Rcpp.h>
+using namespace Rcpp;
+
+// [[Rcpp::export]]
+double sum_rcpp(NumericVector v){
+    double sum(0);
+    for(int i=0; i<v.length(); ++i){
+        sum += v[i];
+    }
+    return(sum);
+}
+```
+
+##コンパイル
 
 
 
