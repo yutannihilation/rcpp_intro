@@ -5,6 +5,7 @@
 * [基本的な使い方](basic_usage.md)
 * [基本データ型](data_types.md)
 * [ベクター](vector.md)
+* [行列](matrix.md)
 * [データ構造](data_structure.md)
    * Vector
    * DataFrame
