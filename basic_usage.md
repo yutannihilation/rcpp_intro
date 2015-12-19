@@ -22,16 +22,42 @@ File > New File > C++ File
 using namespace Rcpp;
 
 // [[Rcpp::export]]
-NumericVector sum_rcpp(NumericVector v){
-    double sum(0);
+double sum_rcpp(NumericVector v){
+    double sum = 0;
     for(int i=0; i<v.length(); ++i){
         sum += v[i];
     }
-    return(as(sum));
+    return(sum);
 }
 ```
 
 ##コンパイル
+
+sourceCpp()関数がRcppコードのコンパイルと作成された関数のRへのロードをしてくれる。
+
+```
+library(Rcpp)
+sourceCpp('sum.cpp')
+```
+
+
+##Rのコードの中でRcppコードを記述する
+
+Rcppのコードをファイルに保存せずに、Rのコードの中で記述することもできる。その場合には、RcppのコードをRの文字列オブジェクトとして保存する。cppFunction()関数を使ってコンパイルする。
+
+```
+code <- 
+"double sum_rcpp(NumericVector v){
+double sum = 0;
+for(int i=0; i<v.length(); ++i){
+  sum += v[i];
+}
+return(sum);
+}"
+
+Rcpp::cppFunction(code)
+```
+
 
 
 
