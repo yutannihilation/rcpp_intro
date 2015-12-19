@@ -8,7 +8,7 @@
 * [ベクター](vector.md)
 * [行列](matrix.md)
 * [データフレーム](dataframe.md)
-* リスト
+* [リスト](list.md)
 * [C++11 を利用する](c++11)
 * [Boost を利用する](boost)
 * [参考資料](references.md)
