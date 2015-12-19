@@ -7,7 +7,7 @@
 * [関数](function.md)
 * [ベクター](vector.md)
 * [行列](matrix.md)
-* [データフレーム]
+* [[データフレーム]](dataframe.md)
 * [リスト]
 * [C++11 を利用する](c++11)
 * [Boost を利用する](boost)
