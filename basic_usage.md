@@ -33,7 +33,7 @@ double sum_rcpp(NumericVector v){
 
 ##コンパイル
 
-sourceCpp()関数がRcppコードのコンパイルと作成された関数のRへのロードをしてくれる。
+`sourceCpp()` 関数がRcppコードのコンパイルとRへのロードをしてくれる。
 
 ```
 library(Rcpp)
@@ -43,7 +43,7 @@ sourceCpp('sum.cpp')
 
 ##Rのコードの中でRcppコードを記述する
 
-Rcppのコードをファイルに保存せずに、Rのコードの中で記述することもできる。その場合には、RcppのコードをRの文字列オブジェクトとして保存する。cppFunction()関数を使ってコンパイルする。
+Rcppのコードをファイルに保存せずに、Rのコードの中で記述することもできる。その場合には、RcppのコードをRの文字列オブジェクトとして保存する。`cppFunction()`関数を使ってコンパイルする。
 
 ```
 code <- 
