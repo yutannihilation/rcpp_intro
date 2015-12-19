@@ -1,5 +1,7 @@
 # 基本的な使い方
 
+Rcppで関数を
+
 1. Rcppのコードを書く
 2. コンパイル
 3. 実行する
@@ -9,7 +11,7 @@
 
 ## Rcppコードを書く
 
-RcppのコーディングではRStudioを是非利用しよう。
+Rcppのコードの編集ではRStudioを是非利用しよう。
 
 Rstudioのエティターは、Rcppのコードのシンタックスハイライトはもちろん、コード補完やコード記述の間違いの指摘などをしてくれる。
 
@@ -162,7 +164,7 @@ benchmark( gibbsR(n, thn),
            order="relative",
            replications=10)
 ```
-実行
+実行結果
 ```
 test  replications elapsed relative
    2     gibbsCpp(n, thn)           10   1.454    1.000
