@@ -22,12 +22,12 @@ File > New File > C++ File
 using namespace Rcpp;
 
 // [[Rcpp::export]]
-double sum_rcpp(NumericVector v){
+NumericVector sum_rcpp(NumericVector v){
     double sum(0);
     for(int i=0; i<v.length(); ++i){
         sum += v[i];
     }
-    return(sum);
+    return(as(sum));
 }
 ```
 
