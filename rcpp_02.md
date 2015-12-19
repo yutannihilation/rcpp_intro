@@ -8,31 +8,6 @@ http://dirk.eddelbuettel.com/code/rcpp/html/
 
 
 
-#ベクターの作成と要素へのアクセス
-
-###作成
-
-```
-NumericVector v(10);//0が10個並んだベクター
-NumericVector v = NumericVector::create(1,1,1);//1が3個並んだベクター
-NumericVector v = NumericVector::create(Named("名前1") = 1 , _["名前2"]=2); //要素に名前をつける場合
-NumericVector v = {1,1,1}; //1が3個、イニシャライザリストを使った例（C++11）
-```
-
-###要素へのアクセス
-
-```
-v[0] //要素番号でアクセス（最初の要素番号は0）
-v["名前"] //要素の名前でアクセス
-v[L]//論理値ベクターでアクセス
-```
-
-```
-double sum=0;
-for(int i=0; i<v.length(); ++i){
-    sum += v[i];
-}
-```
 
 #Matrix の作成と要素へのアクセス
 
