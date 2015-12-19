@@ -9,15 +9,17 @@
 
 ## Rcppコードを書く
 
-RcppのコーディングではRStudio
+RcppのコーディングではRStudioを是非利用しよう。
 
-RStudio で 
+Rstudioのエティターは、Rcppのコードのシンタックスハイライトはもちろん、コード補完やコード記述の間違いの指摘などをしてくれる。
+
+Rcppのファイルを作成するには、RStudioのメニューから下のように選択する。 
 
 File > New File > C++ File
 
 下の例では、ベクターvの総和を計算する関数 sum_rcpp を定義している。このコードを sum.cpp という名前で保存する。
 
-```
+```cpp
 #include <Rcpp.h>
 using namespace Rcpp;
 
@@ -40,12 +42,21 @@ library(Rcpp)
 sourceCpp('sum.cpp')
 ```
 
+##実行結果
+```r
+> sum(1:10) #R
+[1] 55
+> sum_rcpp(1:10) #Rcpp
+[1] 55
+```
 
 ##Rのコードの中でRcppコードを記述する
 
-Rcppのコードをファイルに保存せずに、Rのコードの中で記述することもできる。その場合には、RcppのコードをRの文字列オブジェクトとして保存する。`cppFunction()`関数を使ってコンパイルする。
+Rcppのコードをファイルに保存せずに、Rのコードの中で記述することもできる。
 
-```
+RcppのコードをRの文字列オブジェクトに保存し、`cppFunction()`関数を使ってコンパイルする。この場合には　`#include<Rcpp.h>`と`using namespase Rcpp`の記述を省略できる。
+
+```r
 code <- 
 "double sum_rcpp(NumericVector v){
 double sum = 0;
@@ -55,28 +66,22 @@ for(int i=0; i<v.length(); ++i){
 return(sum);
 }"
 
-Rcpp::cppFunction(code)
+Rcpp::cppFunction(code) //コンパイル
+sum_rcpp(1:10)          //実行
 ```
 
 
 
 
+##パフォーマンス比較
 
+RとRcppで記述した関数の実行速度を比較してみる。
 
-
-
-
-
-
-
-
-
-
-###例：ギブス・サンプラー**
+**例：ギブス・サンプラー**
 
 http://gallery.rcpp.org/articles/gibbs-sampler/
 
-２重の for ループの中で乱数を生成し、結果を行列に格納している。
+この例では、２重の for ループの中で乱数を生成し、結果を行列に格納している。
 
 
 **Rバージョン**
@@ -145,6 +150,8 @@ gibbsCpp(100, 10)
 
 RバージョンとRcppバージョンの関数の実行速度を比較してみる。その結果、Rcpp の方が56倍高速に実行されている。
 
+この例のように、Rcppはベクターや行列の各要素への逐次アクセスするような場合に効果が大きい。
+
 ```r
 library(rbenchmark)
 n <- 2000
@@ -155,7 +162,7 @@ benchmark( gibbsR(n, thn),
            order="relative",
            replications=10)
 ```
-
+実行
 ```
 test  replications elapsed relative
    2     gibbsCpp(n, thn)           10   1.454    1.000
