@@ -9,8 +9,7 @@
 * [行列](matrix.md)
 * [データフレーム](dataframe.md)
 * [リスト](list.md)
-* 属性値
-* 
+* [属性値](attributes.md)
 * [C++11 を利用する](c++11)
 * [Boost を利用する](boost)
 * [参考資料](references.md)
