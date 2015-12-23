@@ -84,16 +84,7 @@ NumericMatrix rngCpp(const int N) {
 
 
 
-#C++のソースにRのコードを埋め込む
 
-C++ コード内に、/*** R で始まるコメント内に Rのコードを書くと、sourceCpp()した時に、それが実行される。・
-
-```cpp
-/*** R
-# Call the ﬁbonacci function deﬁned in C++
-ﬁbonacci(10)
-*/
-```
 
 
 
