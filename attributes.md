@@ -22,3 +22,25 @@ List L;
 L.attr(“names”)//要素名
 ```
 
+#C++ から R オブジェクトの属性にアクセスする
+
+.attr()
+.names()
+
+```
+#include <Rcpp.h>
+using namespace Rcpp;
+
+// [[Rcpp::export]]
+NumericVector attribs() {
+  NumericVector out = NumericVector::create(1, 2, 3);
+
+  out.names() = CharacterVector::create("a", "b", "c");
+  out.attr("my-attr") = "my-value";
+  out.attr("class") = "my-class";
+
+  return out;
+}
+```
+
+S4 オブジェクトに対しては .slot() が .attr() と似たような働きをする。
