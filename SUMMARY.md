@@ -16,7 +16,7 @@
 * [NA NaN Inf](na_nan_inf.md)
 * [イテレーター](iterator.md)
 * [アルゴリズム](STL.md)
-* [C++11 を利用する](c++11)
-* [Boost を利用する](boost)
+* C++11 を利用する
+* Boost を利用する
 * [参考資料](references.md)
 
