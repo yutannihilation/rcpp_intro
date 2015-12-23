@@ -21,6 +21,6 @@
 * [インライン](inline.md)
 * as と wrap
 * Date
-* Rcppオブジェクトに代入する際の注意点
+* [Rcppオブジェクトに代入する際の注意点](assignment.md)
 * [参考資料](references.md)
 
