@@ -95,20 +95,7 @@ C++ コード内に、/*** R で始まるコメント内に Rのコードを書�
 */
 ```
 
-#関数名を変える
 
-Rで使う時の関数名を変えることができる。
-
-```
-// [[Rcpp::export(".convolveCpp")]]
-NumericVector convolveCpp(NumericVector a, NumericVector b)
-```
-
-#Rにエキスポートする関数の制約
-
-Rcpp::export する関数は、グローバルな名前空間にある必要がある。
-返り値の型は void または Rcpp::wrap と適合すること、引数の型は Rcpp::as と適合すること
-返り値と引数の型の指定の際には、名前空間を明示的に指定すること、つまり、vector ではなく std::vector とする。Rcpp のクラスは Rcpp:: と指定する必要はない。
 
 #乱数生成器の注意
 
