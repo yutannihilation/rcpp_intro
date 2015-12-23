@@ -11,7 +11,6 @@
 * [リスト](list.md)
 * [属性値](attributes.md)
 * [四則演算](calculation.md)
-* 論理ベクター
 * [C++11 を利用する](c++11)
 * [Boost を利用する](boost)
 * [参考資料](references.md)
