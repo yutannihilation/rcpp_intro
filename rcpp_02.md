@@ -96,14 +96,6 @@ C++ コード内に、/*** R で始まるコメント内に Rのコードを書�
 ```
 
 
-
-#乱数生成器の注意
-
-C や C++ から R の乱数生成器を利用する際には注意がいる。GetRNGstate と PutRNGstate を適切に呼び出さないといけない。
-
-Rcpp ではそれを RNGScope クラスにより解決している。しかし、// [[Rcpp::export]] でエキスポートされ、sourceCpp で読み込まれた関数の場合は、それが自動的に行われるので、ソースコードに記述する必要はない。RNGScope はカウンターを使って実装されているので、仮に RNGScope を記述しても問題はない。
-
-
 #依存パッケージ
 
 依存するパッケージを記述できる
@@ -121,24 +113,6 @@ Rcpp ではそれを RNGScope クラスにより解決している。しかし�
 sourceCpp() は指定された依存パッケージに自動的にリンクする。
 
 
-#インラインで C++ を記述
-
-R コード中で C++ を記述する方法はいくつかある。一つは文字列オブジェクトしてsourceCpp()に渡す。もう一つは、cppFunction と evalCpp を使う。
-
-```r
-cppFunction('
-int fibonacci(const int x) {
-    if (x < 2)
-    return x;
-    else
-    return (fibonacci(x - 1)) + fibonacci(x - 2);
-}
-')
-```
-
-```r
-evalCpp('std::numeric_limits<double>::max()')
-```
 
 
 依存パッケージも cppFunction か evalCpp で指定できる。
