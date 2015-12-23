@@ -72,12 +72,7 @@ NumericMatrix rngCpp(const int N) {
 
 
 
-###List の生成
-length, values はベクター
 
-```
-List::create(_["lengths"] = lengths, _["values"] = values)
-```
 
 #Function
 
