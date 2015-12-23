@@ -16,7 +16,7 @@ R、Rcpp、C++で利用できる基本的なデータ型の対応関係を「概
 |時間|POSIXct|Datetime|-|
  
 
-なぜわざわざ「概念的」という言葉を強調したかというと、正確には、Rcppでは `Logical`, `Integer`, `Numeric`, `Complex` については、それらのスカラー値の型は用意されておらず、ベクター型や行列型（`NumericVector`, `NumericMatrix` など）のみが定義されている。その一方で、 `Character`, `Date`, `Datetime`についてはスカラー値の基本型が定義されている。なので、`Numeric x;` というような変数 x を宣言することはできないが、　`Date d;` という変数 d は宣言することができる。
+なぜわざわざ「概念的」という言葉を強調したかというと、正確には、Rcppでは `Logical`, `Integer`, `Numeric`, `Complex` については、スカラー値の型は用意されておらず、ベクター型や行列型（`NumericVector`, `NumericMatrix` など）のみが定義されているからです。その一方で、 `Character`, `Date`, `Datetime`についてはスカラー値の型が定義されています。そのため、例えば`Numeric x;` というような変数 x を宣言することはできないですが、　`Date d;` という変数 d は宣言できます。
 
 
 # データ構造
@@ -30,7 +30,7 @@ Rcppの基本データ型のそれぞれについてベクター型と行列型�
 ◯◯Matrix
 ```
 
-数値型なら、`NumericVector`、`NumericMatrix`など、文字列については、`CharacterVector`、`StringVector`のどちらの書き方も許される。
+例えば、`NumericVector`、`NumericMatrix`など。なお、文字列ベクターについては、`CharacterVector`、`StringVector`のどちらの書き方も許されます。
 
 
 
@@ -41,9 +41,9 @@ Rcppの基本データ型のそれぞれについてベクター型と行列型�
 Dataframe
 List
 ```
-Dataframe は同じ長さのベクターを要素として格納する。
+`Dataframe` は同じ長さのベクターを要素として格納する。テーブル形式のデータ構造。
 
-リストは、どのような型でも要素に持つことができる。
+`List`は、どのような型でも（DataframeやListを含む）要素に持つことができます、ベクターの長さにも制約はありません。
 
 
 
