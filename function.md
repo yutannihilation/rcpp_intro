@@ -15,19 +15,10 @@ using namespace Rcpp;
 }
 ```
 
-* `#include<Rcpp.h>`：Rcppで定義されたデータ型や関数を利用するために必要なヘッダファイルをインクルードする
-* `// [[Rcpp::export]]`：この直下に記述された関数がRで利用できるようになる。
-* `using namespace Rcpp` Rcpp：この文は必須ではないが、これを記述すると、Rcppの変数や関数名に`Rcpp::`を付ける必要がなくなる。
-* `返値型 関数名(引数型 引数){}`：C++では関数の返値や引数の型を指定する必要がある。
-* `return(返値)`：関数の返値は `return()` により明示的に指定する必要がある
+* `#include<Rcpp.h>`：Rcppで定義されたデータ型や関数を利用するために必要なヘッダファイルをインクルードします。
+* `// [[Rcpp::export]]`：この直下に記述された関数がRで利用できるようになります。
+* `using namespace Rcpp` Rcpp：この文は必須ではないが、これを記述すると、Rcppの変数や関数名に`Rcpp::`を付ける必要がなくなります。
+* `返値型 関数名(引数型 引数){}`：C++では関数の返値や引数の型を指定する必要があります。
+* `return(返値)`：関数の返値は `return()` により明示的に指定する必要があります。
 
 
-
-###関数名を変える
-
-Rで使う時の関数名を変えることができる。
-
-```
-// [[Rcpp::export(".convolveCpp")]]
-NumericVector convolveCpp(NumericVector a, NumericVector b)
-```
