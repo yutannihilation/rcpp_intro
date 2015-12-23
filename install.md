@@ -6,7 +6,7 @@
 
 **Windows** では [Rtools](https://cran.r-project.org/bin/windows/Rtools/index.html) をインストールします。→C:\\Rtools 以下にgccなどがインストールされる。
 
-**Mac** なら Xcode をインストール
+**Mac** なら Xcode command line tools をインストール。ターミナルで次のコマンドを打つ `xcode-select --install`
 
 **Linux** なら
 sudo apt-get install r-base-dev texlive-full
