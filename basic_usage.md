@@ -72,6 +72,25 @@ Rcpp::cppFunction(code) //コンパイル
 sum_rcpp(1:10)          //実行
 ```
 
+#インラインで C++ を記述
+
+R コード中で C++ を記述する方法はいくつかある。一つは文字列オブジェクトしてsourceCpp()に渡す。もう一つは、cppFunction と evalCpp を使う。
+
+```r
+cppFunction('
+int fibonacci(const int x) {
+    if (x < 2)
+    return x;
+    else
+    return (fibonacci(x - 1)) + fibonacci(x - 2);
+}
+')
+```
+
+```r
+evalCpp('std::numeric_limits<double>::max()')
+```
+
 
 
 
