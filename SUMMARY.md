@@ -20,5 +20,6 @@
 * [Boost を利用する](boost.md)
 * [インライン](inline.md)
 * as と wrap
+* Date
 * [参考資料](references.md)
 
