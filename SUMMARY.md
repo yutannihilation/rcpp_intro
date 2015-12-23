@@ -18,6 +18,6 @@
 * [アルゴリズム](STL.md)
 * [C++11 を利用する](c++11.md)
 * [Boost を利用する](boost.md)
-* [Rコードの中でRcppを記述する](inline.md)
+* [インライン](inline.md)
 * [参考資料](references.md)
 
