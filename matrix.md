@@ -5,7 +5,9 @@
 ###作成
 
 ```
-NumericMatrix m(2, 3);   2行3列、値は0の行列
+NumericMatrix m(2, 3);  // 2行3列、値は0の行列
+NumericMatrix m1(m);    // m の
+
 ```
 
 ###要素へのアクセス
