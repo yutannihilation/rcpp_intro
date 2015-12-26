@@ -22,39 +22,7 @@ NumericVector v = clone(L[0]);
 ```
 
 
-## Listを引数として受け取る関数の例
 
-
-
-ここでは lm() の返値を引数として受け取る Rcpp 関数の例を示す。lm() の返値はS3オブジェクトだがその正体はリストである。
-
-**このコードは Advanced R のコピペなので要対応**
-
-```cpp
-#include <Rcpp.h>
-using namespace Rcpp;
-
-// [[Rcpp::export]]
-double mpe(List mod) {
-  if (!mod.inherits("lm")) stop("Input must be a linear model");
-
-  NumericVector resid  = mod["residuals"];
-  NumericVector fitted = mod["fitted.values"];
-
-  int n = resid.size();
-  double err = 0;
-  for(int i = 0; i < n; ++i) {
-    err += resid[i] / (fitted[i] + resid[i]);
-  }
-  return err / n;
-}
-```
-
-```
-mod <- lm(mpg ~ wt, data = mtcars)
-mpe(mod)
-#> [1] -0.0154
-```
 
 
 ###List を返す関数の例
