@@ -13,10 +13,11 @@ NumericVector res = x + y ;
 NumericVector res = x - y ;
 NumericVector res = x * y ;
 NumericVector res = x / y ;
+
 // one vector, one single value
-NumericVector res = x + 2.0 ;
+NumericVector res = x   + 2.0 ;
 NumericVector res = 2.0 - x;
-NumericVector res = y * 2.0 ;
+NumericVector res = y   * 2.0 ;
 NumericVector res = 2.0 / y;
 // two expressions
 NumericVector res = x * y + y / 2.0 ;
@@ -34,9 +35,9 @@ NumericVector res = -x ;
 
 #論理ベクター
 
-数値ベクトル同士の値の比較により、論理ベクトルを生成するのも、Rと同様
+数値ベクトル同士の値の比較により、論理ベクトルを生成するのも、Rと同様である。比較の結果生成した論理ベクターを使って、ベクターの要素にアクセスすることもできる。
 
-```
+```cpp
 // two integer vectors of the same size
 NumericVector x ;
 NumericVector y ;
@@ -63,5 +64,7 @@ LogicalVector res = ! ( x < y );
 ```
 
 
-論理値ベクターを使って、ベクターの要素にアクセスできる。
+論理値ベクターを使って、ベクターの要素にアクセスする。
+```R
 x[x < 2]
+```
