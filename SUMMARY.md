@@ -20,6 +20,7 @@
 * [C++11 を利用する](c++11.md)
 * [Boost を利用する](boost.md)
 * [インライン](inline.md)
+* 確率分布
 * as と wrap
 * Date
 * [Rcppオブジェクトに代入する際の注意点](assignment.md)
