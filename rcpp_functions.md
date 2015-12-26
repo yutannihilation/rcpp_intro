@@ -1,12 +1,19 @@
 #Rcpp が提供する R ライクな関数
 
+ベクターがNAを含まないことを保証できるなら、以下のようにすると計算が早くなる
+noNA(x) ;
+
+mean(x);
+
+
+
 Rcpp
 
 ベクター関係
 
 ```
 head(), tail(), rep_each(), rep_len(), rep(), rev()
-seq_along(), seq_len(), cumsum(), diff(), pmin(), and pmax()
+seq_along(), seq_len(), seq(), cumsum(), diff(), pmin(), and pmax()
 ```
 
 数学関数
@@ -43,19 +50,26 @@ duplicated(), unique()
 確率分布
 d/q/p/r 全てのRの提供する確率分布
 
-ベクターがNAを含まないことを保証できるなら、以下のようにすると計算が早くなる
-noNA(x) 
+
+
+
+###seq
+
+
+###seq_along
+
+IntegerVector x = IntegerVector::create( 0, 1, NA_INTEGER, 3 ) ;
+seq_along( x ) // 1:length(x)
 
 ###seq_len
 
 NumericVector x(10);
 x = seq_len(10); //1:10
 
-###seq_along
 
 
-IntegerVector x = IntegerVector::create( 0, 1, NA_INTEGER, 3 ) ;
-seq_along( x ) // 1:length(x)
+
+
 
 
 ###rep_len
