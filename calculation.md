@@ -25,7 +25,7 @@ NumericVector res = x * ( y - 2.0 ) ;
 NumericVector res = x / ( y * y ) ;
 ```
 
--演算子で符号を反転
+-演算子で符号を反転する
 
 ```
 // negate x
