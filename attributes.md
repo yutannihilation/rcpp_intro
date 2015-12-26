@@ -39,8 +39,6 @@ L.attr(“names”)//要素名
 
 
 
-
-
 http://gallery.rcpp.org/articles/setting-object-attributes/
 ```cpp
 #include <Rcpp.h>
