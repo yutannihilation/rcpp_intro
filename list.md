@@ -28,7 +28,7 @@ NumericVector v = clone(L[0]);
 
 ここでは lm() の返値を引数として受け取る Rcpp 関数の例を示す。lm() の返値はS3オブジェクトだがその正体はリストである。
 
-このコードは Advanced R のコピペなので
+**このコードは Advanced R のコピペなので要対応**
 
 ```cpp
 #include <Rcpp.h>
