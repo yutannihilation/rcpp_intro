@@ -24,7 +24,7 @@ round(), signif(), sin(), sinh(), sqrt(), tan(), tanh(), tetragamma(), trigamma(
 要約統計量
 
 ```
-mean(), min(), max(), sum(), sd() and (for vectors) var()
+mean(), min(), max(), sum(), sd(), var()
 ```
 
 
