@@ -5,7 +5,7 @@ Rcpp
 ベクター関係
 
 ```
-head, tail, rep_each(), rep_len(), rep(), rev()
+head(), tail(), rep_each(), rep_len(), rep(), rev()
 seq_along(), seq_len(), cumsum(), diff(), pmin(), and pmax()
 ```
 
