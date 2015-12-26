@@ -1,6 +1,8 @@
 #リスト
-##リストの作成
-データフレームと基本的に同じ
+
+リストの作成と要素へのアクセスの方法は、基本的にデータフレームの場合と同じです。
+
+##作成
 
 ```
 List L = List::create(v1, v2); //ベクター v1, v2 からリスト L を作成
@@ -10,26 +12,25 @@ List L = List::create(Named("名前1") = v1 , _["名前2"]=v2); //要素に名�
 ##要素へのアクセス
 
 ```
-NumericVector v = L[0]; //dfの0列目をベクター v に代入
+NumericVector v = L[0]; //リスト L の0番目の要素をベクター v に代入
 //この場合、v には L[0] の値がコピーされるのではなく、L[0]への参照となる
 v = v*2; //こうすると L[0] の値が2倍になる
 
-NumericVector v = clone(L[0]); //値をコピーしたい場合は clone() を使う
+//値をコピーしたい場合は clone() を使う
+NumericVector v = clone(L[0]); 
 
 ```
 
 
-#List と DataFrame
+## Listを引数として受け取る関数の例
 
-これらは引数として使う事が多い。
-R の lm() の返り値はリストでその要素はS3オブジェクト
-ここでは R の lm() の返り値を受け取る C++ 関数の例を示す。
 
-List クラスの メンバ関数 .inherits() と stop で lm のオブジェクトかどうかチェックしている。
-mod["要素名"] で リストの各要素にアクセス
-as<型名>() で Rcpp クラスに変換
 
-```
+ここでは lm() の返値を引数として受け取る Rcpp 関数の例を示す。lm() の返値はS3オブジェクトだがその正体はリストである。
+
+このコードは Advanced R のコピペなので
+
+```cpp
 #include <Rcpp.h>
 using namespace Rcpp;
 
@@ -37,8 +38,8 @@ using namespace Rcpp;
 double mpe(List mod) {
   if (!mod.inherits("lm")) stop("Input must be a linear model");
 
-  NumericVector resid = as<NumericVector>(mod["residuals"]);
-  NumericVector fitted = as<NumericVector>(mod["fitted.values"]);
+  NumericVector resid  = mod["residuals"];
+  NumericVector fitted = mod["fitted.values"];
 
   int n = resid.size();
   double err = 0;
