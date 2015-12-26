@@ -2,6 +2,97 @@
 
 
 
+ベクター関係
+
+```
+diff()
+head()
+tail()
+
+rep()
+rep_each()
+rep_len()
+
+rev()
+
+seq()
+seq_along()
+seq_len()
+
+cumsum()
+diff()
+pmin()
+pmax()
+na_omit()
+setdiff
+
+```
+文字列
+collapse
+
+
+数学関数
+
+
+```
+pow()
+sign()
+
+abs(), acos(), asin(), atan(), beta(), ceil(), ceiling(), choose(),cos(), cosh(), 
+digamma(), exp(), expm1(), factorial(), floor(), gamma(), lbeta(),lchoose(),
+lfactorial(), lgamma(), log(), log10(), log1p(), pentagamma(), psigamma(),
+round(), signif(), sin(), sinh(), sqrt(), tan(), tanh(), tetragamma(), trigamma(),trunc().
+```
+論理
+
+all
+any
+ifelse
+is_finite
+is_infinite
+is_na
+is_nan
+
+
+?
+clamp
+
+Apply関数
+lapply
+sapply
+mapply
+
+
+要約統計量
+
+```
+mean(), min(), max(), sum(), sd(), var()
+cummax()
+cummin()
+cumprod()
+cumsum()
+range()
+
+```
+
+
+
+値の検索
+
+```
+match(), self_match(), which_max(), which_min()
+```
+
+
+重複の値
+
+```
+duplicated(), unique()
+```
+
+
+確率分布
+d/q/p/r 全てのRの提供する確率分布
 
 
 
