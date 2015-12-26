@@ -8,7 +8,7 @@
 NumericVector x ;
 NumericVector y ;
 
-// expressions involving two vectors
+// element-wise calculations involving two vectors
 NumericVector res = x + y ;
 NumericVector res = x - y ;
 NumericVector res = x * y ;
@@ -19,6 +19,7 @@ NumericVector res = x   + 2.0 ;
 NumericVector res = 2.0 - x;
 NumericVector res = y   * 2.0 ;
 NumericVector res = 2.0 / y;
+
 // two expressions
 NumericVector res = x * y + y / 2.0 ;
 NumericVector res = x * ( y - 2.0 ) ;
