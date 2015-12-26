@@ -1,54 +1,6 @@
 #Rcpp が提供する R ライクな関数
 
-ベクターがNAを含まないことを保証できるなら、以下のようにすると計算が早くなる
-noNA(x) ;
 
-mean(x);
-
-
-
-Rcpp
-
-ベクター関係
-
-```
-head(), tail(), rep_each(), rep_len(), rep(), rev()
-seq_along(), seq_len(), seq(), cumsum(), diff(), pmin(), and pmax()
-```
-
-数学関数
-
-```
-abs(), acos(), asin(), atan(), beta(), ceil(), ceiling(), choose(),cos(), cosh(), 
-digamma(), exp(), expm1(), factorial(), floor(), gamma(), lbeta(),lchoose(),
-lfactorial(), lgamma(), log(), log10(), log1p(), pentagamma(), psigamma(),
-round(), signif(), sin(), sinh(), sqrt(), tan(), tanh(), tetragamma(), trigamma(),trunc().
-```
-
-
-要約統計量
-
-```
-mean(), min(), max(), sum(), sd(), var()
-```
-
-
-値の検索
-
-```
-match(), self_match(), which_max(), which_min()
-```
-
-
-重複の値
-
-```
-duplicated(), unique()
-```
-
-
-確率分布
-d/q/p/r 全てのRの提供する確率分布
 
 
 
