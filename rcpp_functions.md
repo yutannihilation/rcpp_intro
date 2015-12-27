@@ -5,31 +5,26 @@
 ベクター関係
 
 ```
-diff()
 head()
 tail()
-
+rev()
 rep()
 rep_each()
 rep_len()
-
-rev()
-
 seq()
 seq_along()
 seq_len()
-
-cumsum()
 diff()
+setdiff()
 pmin()
 pmax()
 na_omit()
-setdiff
-
 ```
 文字列
-collapse
 
+```
+collapse()
+```
 
 数学関数
 
@@ -37,9 +32,18 @@ collapse
 ```
 pow()
 sign()
-
-abs(), acos(), asin(), atan(), beta(), ceil(), ceiling(), choose(),cos(), cosh(), 
-digamma(), exp(), expm1(), factorial(), floor(), gamma(), lbeta(),lchoose(),
+abs()
+acos()
+asin()
+atan()
+beta()
+ceil()
+ceiling()
+choose()
+cos()
+cosh(), 
+digamma()
+exp(), expm1(), factorial(), floor(), gamma(), lbeta(),lchoose(),
 lfactorial(), lgamma(), log(), log10(), log1p(), pentagamma(), psigamma(),
 round(), signif(), sin(), sinh(), sqrt(), tan(), tanh(), tetragamma(), trigamma(),trunc().
 ```
@@ -72,7 +76,7 @@ cummin()
 cumprod()
 cumsum()
 range()
-
+table()
 ```
 
 
@@ -87,7 +91,8 @@ match(), self_match(), which_max(), which_min()
 重複の値
 
 ```
-duplicated(), unique()
+duplicated(), unique(), sort_unique, 
+
 ```
 
 
