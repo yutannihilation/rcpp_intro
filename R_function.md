@@ -7,18 +7,23 @@ Rcpp内でRの関数を利用するには３つの方法がある、Function、E
 
 Functionクラスを使うと、R の関数を引数として渡して、Rcpp内で呼び出すことができる。
 
-rnorm()を受け取る関数を作成する。
+例：rnorm(n, mean, sd)を受け取る関数を作成する。
 
-```
+```cpp
 // [[Rcpp::export]]
 NumericVector my_fun(Function f){
-
-    
+    NumericVector res = f(5, 10, 2); //位置に基づき引数に値を
+    return(ret);
 
 }
 
 ```
 
+```r
+#Rcpp関数に rnorm を渡す
+my_fun(rnorm)
+
+```
 
 
 Rcpp内でRの関数の引数に値を与える場合には、引数の位置と名前に基づいて判断される。
@@ -33,7 +38,7 @@ f("a", 1);
 引数の名前で指定するときは`Named("引数名")`または`_["引数名"]`を利用する。
 
 ```
-f(_["x"] = "a", _["value"] = 1);
+f(Named("arg1") = "a", _["arg2"] = 1);
 ```
 
 
