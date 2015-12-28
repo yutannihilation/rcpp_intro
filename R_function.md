@@ -8,6 +8,7 @@ Rcpp内でRの関数を利用するには３つの方法がある、Function、E
 Functionクラスを使うと、R の関数を引数として渡して、Rcpp内で呼び出すことができる。Rcpp内でRの関数の引数の値を指定する場は、引数の位置と名前に基づいて判断される。
 
 引数の名前を指定する際には `Named()`または `_[]`を使用する。
+`Named("引数名", "値")` でも　`Named("引数名")=値`のどちらでも良い。
 
 
 例：rnorm(n, mean, sd)を受け取る関数 my_
@@ -18,9 +19,7 @@ Functionクラスを使うと、R の関数を引数として渡して、Rcpp内
 NumericVector my_fun(Function f){
     //rnorm(n=5, mean=10, sd=2)
     //位置と名前で引数を指定する
-    NumericVector res = 
-        f(5, Named("sd")=2, _["mean"]=10);
-    return(ret);
+    return f(5, Named("sd")=2, _["mean"]=10);
 }
 
 ```
@@ -50,4 +49,26 @@ List lapply1(List input, Function f) {
   return out;
 }
 ```
+
+
+##Environment
+
+Environmentクラスを利用するとパッケージ等の環境からオブジェクト（変数や関数）を取り出すことができる。
+
+```
+Environment stats("package:stats"); //statsパッケージを読み込む
+Function rnorm = stats["rnorm"]; //statsの環境から関数を取り出す
+return f(5, Named("sd", 2), _["mean"]=10);
+```
+
+
+##Language
+
+`Language` クラスは R の `call()` と同様にRの関数を呼び出す事ができる。
+
+```
+Language("rnorm", )
+```
+
+
 
