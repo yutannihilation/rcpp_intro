@@ -52,27 +52,21 @@ sd()
 var()
 cumsum()
 cumprod()
-
 floor()
 ceil()
 ceiling()
 round()
 trunc()
-
 diff()
-
 sign()
 abs()
 pow()
 sqrt()
-
 exp()
 expm1()
-
 log()
 log10()
 log1p()
-
 sin()
 sinh()
 cos()
@@ -82,7 +76,6 @@ tanh()
 acos()
 asin()
 atan()
-
 gamma()
 lgamma()
 digamma()
@@ -90,39 +83,27 @@ trigamma()
 tetragamma()
 pentagamma()
 psigamma()
-
 factorial()
 lfactorial()
-
 choose()
 lchoose()
-
 beta()
 lbeta()
-
-
-
 ```
+
 論理
 
-all
-any
-ifelse
-is_finite
-is_infinite
-is_na
-is_nan
-
-
-?
-
-
-Apply関数
 ```
-lapply
-sapply
-mapply
+all()
+any()
+ifelse()
+is_finite()
+is_infinite()
+is_na()
+is_nan()
 ```
+
+
 値の検索
 
 ```
@@ -141,6 +122,13 @@ duplicated()
 unique()
 sort_unique()
 
+```
+
+Apply関数
+```
+lapply()
+sapply()
+mapply()
 ```
 
 
@@ -179,18 +167,6 @@ bool res = is_false( any( x < y ) )
 bool res = is_na( any( x < y ) )
 
 
-###NA
-
-// [[Rcpp::export]]
-IntegerVector timesTwo() {
-  IntegerVector y = {1,NA_INTEGER,3}; //C++11 イニシャライザリスト
-  //IntegerVector::create( 1, NA_INTEGER, 3 ) ; //通常版
-    //y[1] C++ では変な値が入っているので注意
-   return 2*y;
-}
-
-> timesTwo()
-[1]  2 NA  6
 
 
 ###pmin, pmax
