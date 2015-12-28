@@ -21,6 +21,24 @@ seq_len()
 ```
 collapse()
 ```
+値の検索
+
+```
+match()
+self_match()
+which_max()
+which_min()
+na_omit()
+```
+
+
+重複の値
+
+```
+duplicated()
+unique()
+sort_unique()
+```
 
 集合
 
@@ -30,6 +48,7 @@ setequal()
 intersect()
 union_()
 ```
+
 値の範囲
 
 ```
@@ -102,28 +121,6 @@ is_infinite()
 is_na()
 is_nan()
 ```
-
-
-値の検索
-
-```
-match()
-self_match()
-which_max()
-which_min()
-na_omit()
-```
-
-
-重複の値
-
-```
-duplicated()
-unique()
-sort_unique()
-
-```
-
 Apply関数
 ```
 lapply()
