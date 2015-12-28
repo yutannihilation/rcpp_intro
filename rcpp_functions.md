@@ -14,11 +14,7 @@ rep_len()
 seq()
 seq_along()
 seq_len()
-diff()
-setdiff()
-pmin()
-pmax()
-na_omit()
+
 ```
 文字列
 
@@ -26,26 +22,86 @@ na_omit()
 collapse()
 ```
 
-数学関数
-
+集合
 
 ```
-pow()
+setdiff()
+setequal()
+intersect()
+union_()
+```
+値の範囲
+
+```
+min()
+max()
+cummax()
+cummin()
+pmin()
+pmax()
+range()
+clamp()
+```
+
+数学
+
+```
+sum()
+mean()
+sd()
+var()
+cumsum()
+cumprod()
+
+floor()
+ceil()
+ceiling()
+round()
+trunc()
+
+diff()
+
 sign()
 abs()
+pow()
+sqrt()
+
+exp()
+expm1()
+
+log()
+log10()
+log1p()
+
+sin()
+sinh()
+cos()
+cosh()
+tan()
+tanh()
 acos()
 asin()
 atan()
-beta()
-ceil()
-ceiling()
-choose()
-cos()
-cosh(), 
+
+gamma()
+lgamma()
 digamma()
-exp(), expm1(), factorial(), floor(), gamma(), lbeta(),lchoose(),
-lfactorial(), lgamma(), log(), log10(), log1p(), pentagamma(), psigamma(),
-round(), signif(), sin(), sinh(), sqrt(), tan(), tanh(), tetragamma(), trigamma(),trunc().
+trigamma()
+tetragamma()
+pentagamma()
+psigamma()
+
+factorial()
+lfactorial()
+
+choose()
+lchoose()
+
+beta()
+lbeta()
+
+
+
 ```
 論理
 
@@ -59,39 +115,31 @@ is_nan
 
 
 ?
-clamp
+
 
 Apply関数
+```
 lapply
 sapply
 mapply
-
-
-要約統計量
-
 ```
-mean(), min(), max(), sum(), sd(), var()
-cummax()
-cummin()
-cumprod()
-cumsum()
-range()
-table()
-```
-
-
-
 値の検索
 
 ```
-match(), self_match(), which_max(), which_min()
+match()
+self_match()
+which_max()
+which_min()
+na_omit()
 ```
 
 
 重複の値
 
 ```
-duplicated(), unique(), sort_unique, 
+duplicated()
+unique()
+sort_unique()
 
 ```
 
