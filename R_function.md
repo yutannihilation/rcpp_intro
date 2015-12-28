@@ -5,16 +5,22 @@ Rcpp内でRの関数を利用するには３つの方法がある、Function、E
 
 ##Function
 
-Functionクラスを使うと、R の関数を引数として渡して、Rcpp内で呼び出すことができる。
+Functionクラスを使うと、R の関数を引数として渡して、Rcpp内で呼び出すことができる。Rcpp内でRの関数の引数の値を指定する場は、引数の位置と名前に基づいて判断される。
 
-例：rnorm(n, mean, sd)を受け取る関数を作成する。
+引数の名前を指定する際には `Named()`または `_[]`を使用する。
+
+
+例：rnorm(n, mean, sd)を受け取る関数 my_
+
 
 ```cpp
 // [[Rcpp::export]]
 NumericVector my_fun(Function f){
-    NumericVector res = f(5, 10, 2); //位置に基づき引数に値を
+    //rnorm(n=5, mean=10, sd=2)
+    //位置と名前で引数を指定する
+    NumericVector res = 
+        f(5, Named("sd")=2, _["mean"]=10);
     return(ret);
-
 }
 
 ```
@@ -24,23 +30,7 @@ NumericVector my_fun(Function f){
 my_fun(rnorm)
 
 ```
-
-
-Rcpp内でRの関数の引数に値を与える場合には、引数の位置と名前に基づいて判断される。
-
-引数を位置で指定するとき
-
-```
-f("a", 1);
-
-```
-
-引数の名前で指定するときは`Named("引数名")`または`_["引数名"]`を利用する。
-
-```
-f(Named("arg1") = "a", _["arg2"] = 1);
-```
-
+上の例では、Rcppに渡されたRの関数の返り値はNumericVectorで固定れていたが、例えば、Rのlapplyのように、引数として渡される関数の返値の型が決まっていない場合もある。そのような場合にはどんな型でも代入できる RObject か List に関数の返値を代入するようにする。
 
 **例：lapply を Rcpp で実装**
 
@@ -60,4 +50,4 @@ List lapply1(List input, Function f) {
   return out;
 }
 ```
-lapplyのように、Rcpp関数に引数として渡されるRの関数の返値の型が不定である場合には、どんな型でも代入できる、RObject か List に返値を代入するようにする。
+
