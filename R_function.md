@@ -67,7 +67,8 @@ return f(5, Named("sd", 2), _["mean"]=10);
 `Language` クラスは R の `call()` と同様にRの関数を呼び出す事ができる。
 
 ```
-Language("rnorm", )
+Language call("rnorm", 5, Named("sd", ), Named("mean", 10));
+call.eval();
 ```
 
 
