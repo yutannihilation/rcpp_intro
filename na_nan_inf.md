@@ -19,6 +19,11 @@ NA_STRING
 NA_LOGICAL
 
 
+
+
+
+
+
 ```
 #include <Rcpp.h>
 using namespace Rcpp;
@@ -101,6 +106,20 @@ LogicalVector is_naC2(NumericVector x) {
   return is_na(x);
 }
 ```
+
+```
+// [[Rcpp::export]]
+IntegerVector timesTwo() {
+  IntegerVector y = {1,NA_INTEGER,3}; //C++11 イニシャライザリスト
+  //IntegerVector::create( 1, NA_INTEGER, 3 ) ; //通常版
+    //y[1] C++ では変な値が入っているので注意
+   return 2*y;
+}
+```
+
+> timesTwo()
+[1]  2 NA  6
+
 
 
 #無限の値
