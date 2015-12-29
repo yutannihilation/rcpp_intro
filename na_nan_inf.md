@@ -23,7 +23,7 @@ R_NegInf
 
 `NA_REAL` `NA_INTEGER` `NA_STRING` `NA_LOGICAL` を対応するベクターに代入すると R では NA として扱われる。
 
-`R_NaN` `R_PosInf` `R_NegInf` は `NumericVector` に代入された時には、`NA` `Inf` `-Inf` として
+`R_NaN` `R_PosInf` `R_NegInf` は `NumericVector` に代入された時には、`NA` `Inf` `-Inf` として扱われるが、それ以外のベクターに代入した場合には挙動が異なるので注意する。
 
 
 ```
