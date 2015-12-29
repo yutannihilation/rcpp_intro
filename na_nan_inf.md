@@ -60,37 +60,48 @@ List rcpp_na() {
 
 実行結果
 ```
-> rcpp_na()
-[[1]]
-[1] NA NA NA
-
-[[2]]
-[1]  NA NaN Inf
-
-[[3]]
-[1] NA "NaN" "Inf"
-
-[[4]]
-[1] NA NA NA
+> str(rcpp_na())
+List of 4
+ $ : int [1:3] NA NA NA
+ $ : num [1:3] NA NaN Inf
+ $ : chr [1:3] NA "NaN" "Inf"
+ $ : logi [1:3] NA NA NA
 ```
 
-###スカラー型に代入した
+###内部表現
 
+C++には元々 `inf` `-inf` `nan` が用意されているので、`R_PosInf` `R_NegInf` `R_NaN` はそのまま扱える。一方、`NA_INTEGER` `NA_LOGICAL` には `int` の最小値がセットされているので、計算の際には注意する。
+
+
+内部表現
 ```
-#include <Rcpp.h>
-using namespace Rcpp;
-
 // [[Rcpp::export]]
-List scalar_missings() {
+void rcpp_na_raw(){
+  Rcout << R_PosInf   << endl; //inf
+  Rcout << R_NegInf   << endl; //-inf
+  Rcout << R_NaN      << endl; //nan
+  Rcout << NA_INTEGER << endl; //-2147483648
+  Rcout << NA_REAL    << endl; //nan
+  Rcout << NA_STRING  << endl; //0x10200dc98
+  Rcout << NA_LOGICAL << endl; //-2147483648
+}
+```
+
+スカラー型に代入した場合の挙動
+
+```
+// [[Rcpp::export]]
+List scalar() {
   int    int_s = NA_INTEGER;
   String chr_s = NA_STRING;
   bool   lgl_s = NA_LOGICAL;
   double num_s = NA_REAL;
   
-  Rcout << int_s << endl;
-  Rcout << chr_s << endl;
-  Rcout << lgl_s << endl;
-  Rcout << num_s << endl;
+  
+  Rcout << int_s << endl; // -2147483648
+  Rcout << chr_s << endl; // 0x107c24088
+  Rcout << lgl_s << endl; // 1
+  Rcout << num_s << endl; // nan
   
 
   return List::create(int_s, chr_s, lgl_s, num_s);
@@ -105,6 +116,11 @@ str(scalar_missings())
 #>  $ : logi TRUE
 #>  $ : num NA
 ```
+
+`NA_INTEGER` はC++内部では `int` の最小値がセットされている。RcppはこのオブジェクトをRに返すときに `NA` に変換する。
+
+
+
 
 NA_LOGICAL を bool 型に代入した時だけ、挙動が異なる。
 
