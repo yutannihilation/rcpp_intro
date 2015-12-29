@@ -29,7 +29,7 @@ is_na()
 is_nan()
 ```
 
-###ベクター型に代入する際の注意点
+###ベクター型に代入する
 
 
 `NA_REAL` `NA_INTEGER` `NA_STRING` `NA_LOGICAL` を対応するベクターに代入すると R では NA として扱われる。
