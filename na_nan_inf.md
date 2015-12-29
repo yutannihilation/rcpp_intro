@@ -20,6 +20,7 @@ R_PosInf
 R_NegInf
 ```
 
+###ベクター型に代入する際の注意点
 
 `NA_REAL` `NA_INTEGER` `NA_STRING` `NA_LOGICAL` を対応するベクターに代入すると R では NA として扱われる。
 
@@ -73,8 +74,7 @@ List rcpp_na() {
 [1] NA NA NA
 ```
 
-
-
+###スカラー型に代入した
 
 ```
 #include <Rcpp.h>
@@ -82,10 +82,16 @@ using namespace Rcpp;
 
 // [[Rcpp::export]]
 List scalar_missings() {
-  int int_s = NA_INTEGER;
+  int    int_s = NA_INTEGER;
   String chr_s = NA_STRING;
-  bool lgl_s = NA_LOGICAL;
+  bool   lgl_s = NA_LOGICAL;
   double num_s = NA_REAL;
+  
+  Rcout << int_s << endl;
+  Rcout << chr_s << endl;
+  Rcout << lgl_s << endl;
+  Rcout << num_s << endl;
+  
 
   return List::create(int_s, chr_s, lgl_s, num_s);
 }
@@ -113,6 +119,7 @@ NAN == 1; //false、全ての論理比較は false
 NAN == NAN; //false
 
 //下には注意が必要
+```
 NAN && TRUE; //true
 NAN || FALSE; //true
 
@@ -173,7 +180,18 @@ IntegerVector timesTwo() {
 [1]  2 NA  6
 
 
+###内部表現
 
-#無限の値
-
+```
+// [[Rcpp::export]]
+void na(){
+  Rcout << R_PosInf   << endl; //inf
+  Rcout << R_NegInf   << endl; //-inf
+  Rcout << R_NaN      << endl; //nan
+  Rcout << NA_INTEGER << endl; //-2147483648
+  Rcout << NA_REAL    << endl; //nan
+  Rcout << NA_STRING  << endl; //0x10200dc98
+  Rcout << NA_LOGICAL << endl; //-2147483648
+}
+```
 
