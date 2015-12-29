@@ -1,6 +1,6 @@
 # RcppからRの関数を利用する
 
-Rcpp内でRの関数を利用するには３つの方法がある、Function、Environment、Language
+Rcpp内でRの関数を利用するには、`Function`、`Environment`、`Language` 、を用いる３つの方法がある。
 
 
 ##Function
