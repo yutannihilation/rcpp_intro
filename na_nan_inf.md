@@ -74,9 +74,9 @@ List of 4
 
 ###内部表現
 
-C++の double には元々 `inf` `-inf` `nan` が用意されているので、`R_PosInf` `R_NegInf` `R_NaN` はそのまま扱える。
+C++の double には元々 `inf` `-inf` `nan` が用意されているので、`R_PosInf` `R_NegInf` `R_NaN` を `double` に代入するとそのまま扱える。
 
-一方、`NA_INTEGER` `NA_LOGICAL` には `int` の最小値がセットされているので、計算の際には注意する。
+一方、C++ の int には `inf` や `nan` は 定義されていないので、`NA_INTEGER` `NA_LOGICAL` には `int` の最小値がセットされているので、計算の際には注意する。
 
 例えば、R では`NA + 1` は `NA` だが、Rcpp で `NA_INTEGER + 1` は `int` の最小値ではなくなるので、`NA` として扱われない
 
