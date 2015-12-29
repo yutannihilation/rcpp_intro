@@ -1,8 +1,6 @@
 #Rcpp が提供する R ライクな関数
 
-
-
-ベクター関係
+**ベクター関係**
 
 ```
 head()
@@ -16,12 +14,12 @@ seq_along()
 seq_len()
 
 ```
-文字列
+**文字列**
 
 ```
 collapse()
 ```
-値の検索
+**値の検索**
 
 ```
 match()
@@ -32,7 +30,7 @@ na_omit()
 ```
 
 
-重複の値
+**重複の値**
 
 ```
 duplicated()
@@ -40,7 +38,7 @@ unique()
 sort_unique()
 ```
 
-集合
+**集合**
 
 ```
 setdiff()
@@ -49,7 +47,7 @@ intersect()
 union_()
 ```
 
-値の範囲
+**最大値・最小値**
 
 ```
 min()
@@ -62,7 +60,7 @@ range()
 clamp()
 ```
 
-数学
+**数学**
 
 ```
 sum()
@@ -110,7 +108,7 @@ beta()
 lbeta()
 ```
 
-論理
+**論理**
 
 ```
 all()
@@ -123,7 +121,7 @@ is_nan()
 is_true()
 is_false()
 ```
-Apply関数
+**Apply関数**
 ```
 lapply()
 sapply()
@@ -131,8 +129,11 @@ mapply()
 ```
 
 
-確率分布
+**確率分布**
+
 d/q/p/r 全てのRの提供する確率分布
+
+[確率分布の章を参照](prob_distributions.md)
 
 
 
