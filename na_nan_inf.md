@@ -197,25 +197,14 @@ LogicalVector is_naC(NumericVector x) {
 }
 ```
 
-あるいは suger の `is_na()` を使うと、ベクターのすべての要素を判定して論理ベクターを返す
 
-```
-#include <Rcpp.h>
-using namespace Rcpp;
-
-// [[Rcpp::export]]
-LogicalVector larger_than_two(NumericVector x) {
-  return is_na(x);
-}
-```
+suger の `is_na()` を使うと、ベクターのすべての要素を判定した結果を論理ベクターとして返す。
 
 ```
 // [[Rcpp::export]]
-IntegerVector timesTwo() {
-  IntegerVector y = {1,NA_INTEGER,3}; //C++11 イニシャライザリスト
-  //IntegerVector::create( 1, NA_INTEGER, 3 ) ; //通常版
-    //y[1] C++ では変な値が入っているので注意
-   return 2*y;
+IntegerVector filter_na() {
+   IntegerVector v = IntegerVector::create( 1, NA_INTEGER, 3 ) ;
+   return v[!is_na(v)];
 }
 ```
 
