@@ -182,15 +182,10 @@ NAN +1; //NAN
 ベクターの１つの要素がNA かどうか調べたいときは、ベクターのメソッド `is_na()` を使う。`NumeircVector::is_na()` 
 
 ```
-#include <Rcpp.h>
-using namespace Rcpp;
-
 // [[Rcpp::export]]
-LogicalVector is_naC(NumericVector x) {
-  int n = x.size();
-  LogicalVector out(n);
-
-  for (int i = 0; i < n; ++i) {
+LogicalVector rcpp_is_naC(NumericVector x) {
+  LogicalVector out(x.size());
+  for (int i = 0; i < x.size(); ++i) {
     out[i] = NumericVector::is_na(x[i]);
   }
   return out;
@@ -207,9 +202,11 @@ IntegerVector filter_na() {
    return v[!is_na(v)];
 }
 ```
-
-> timesTwo()
-[1]  2 NA  6
+実行結果
+```
+> filter_na()
+[1] 1 3
+```
 
 
 
