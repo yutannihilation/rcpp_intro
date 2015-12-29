@@ -32,7 +32,7 @@ List rcpp_na() {
   IntegerVector   v_int = NA_INTEGER;
   NumericVector   v_num = NA_REAL;
   CharacterVector v_chr = NA_STRING;
-  LOgicalVector   v_lgl = NA_LOGICAL;
+  LogicalVector   v_lgl = NA_LOGICAL;
   
 
   return List::create(v_int, v_num, v_chr, v_lgl);
