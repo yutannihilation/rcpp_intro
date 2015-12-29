@@ -20,6 +20,9 @@ pnorm (double x, double mu, double sigma, int lt, int lg)
 //lt = 1 は左から確率を累積、lt = 0 は右から確率を累積
 ```
 
+
+分布乱数
+
 ```
 NumericVector rnorm( int n, double mean, double sd)
 NumericVector rnorm( int n, double mean /*, double sd [=1.0] */ )
