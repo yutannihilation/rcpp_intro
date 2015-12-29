@@ -120,6 +120,8 @@ is_finite()
 is_infinite()
 is_na()
 is_nan()
+is_true()
+is_false()
 ```
 Apply関数
 ```
