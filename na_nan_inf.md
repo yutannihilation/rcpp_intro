@@ -179,7 +179,7 @@ NAN +1; //NAN
 ```
 
 
-ベクタの要素がNA かどうか調べたいときは、ベクターのメソッド ::is_na() を使う。
+ベクターの１つの要素がNA かどうか調べたいときは、ベクターのメソッド `is_na()` を使う。`NumeircVector::is_na()` 
 
 ```
 #include <Rcpp.h>
@@ -197,14 +197,14 @@ LogicalVector is_naC(NumericVector x) {
 }
 ```
 
-あるいは suger の is_na() を使うと、論理ベクターを返す
+あるいは suger の `is_na()` を使うと、ベクターのすべての要素を判定して論理ベクターを返す
 
 ```
 #include <Rcpp.h>
 using namespace Rcpp;
 
 // [[Rcpp::export]]
-LogicalVector is_naC2(NumericVector x) {
+LogicalVector larger_than_two(NumericVector x) {
   return is_na(x);
 }
 ```
