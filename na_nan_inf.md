@@ -91,16 +91,21 @@ List of 4
 
 スカラー型に代入した場合の挙動
 
+`int` には
+
+
+
 ```
 // [[Rcpp::export]]
 List rcpp_na_scalar() {
-  int    int_na     = NA_INTEGER; //-2147483648
-  int    int_nan    = R_NaN;      //-2147483648
-  int    int_inf    = R_PosInf;   //-2147483648
-  
+
   double double_na  = NA_REAL;    //nan
   double double_nan = R_NaN;      //nan
   double double_inf = R_PosInf;   //inf
+  
+  int    int_na     = NA_INTEGER; //-2147483648
+  int    int_nan    = R_NaN;      //-2147483648
+  int    int_inf    = R_PosInf;   //-2147483648
   
   String chr_na     = NA_STRING;  //"NA"
   String chr_nan    = R_NaN;      //"NaN"
@@ -111,13 +116,13 @@ List rcpp_na_scalar() {
   bool   bool_inf   = R_PosInf;   //true
   
   return(List::create(
-      Named("int_na" , int_na),
-      Named("int_nan", int_nan),
-      Named("int_inf", int_inf),
-      
       Named("double_na" , double_na),
       Named("double_nan", double_nan),
       Named("double_inf", double_inf),
+      
+      Named("int_na" , int_na),
+      Named("int_nan", int_nan),
+      Named("int_inf", int_inf),
       
       Named("String_na" , chr_na),
       Named("String_nan", chr_nan),
