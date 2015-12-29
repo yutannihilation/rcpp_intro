@@ -22,9 +22,16 @@ R_NegInf
 
 ###ベクター型に代入する際の注意点
 
+
 `NA_REAL` `NA_INTEGER` `NA_STRING` `NA_LOGICAL` を対応するベクターに代入すると R では NA として扱われる。
 
-`R_NaN` `R_PosInf` `R_NegInf` は `NumericVector` に代入された時には、`NA` `Inf` `-Inf` として扱われるが、それ以外のベクターに代入した場合には挙動が異なるので注意する。
+
+`R_NaN` `R_PosInf` `R_NegInf` は実数に対してのみ定義されている。そのため、
+
+
+`NumericVector` に代入された時には、`NaN` `Inf` `-Inf` として扱われるが、`IntegerVector` に代入した場合には `NA` として扱われる。
+
+
 
 
 ```
@@ -70,7 +77,11 @@ List of 4
 
 ###内部表現
 
-C++には元々 `inf` `-inf` `nan` が用意されているので、`R_PosInf` `R_NegInf` `R_NaN` はそのまま扱える。一方、`NA_INTEGER` `NA_LOGICAL` には `int` の最小値がセットされているので、計算の際には注意する。
+C++の double には元々 `inf` `-inf` `nan` が用意されているので、`R_PosInf` `R_NegInf` `R_NaN` はそのまま扱える。
+
+一方、`NA_INTEGER` `NA_LOGICAL` には `int` の最小値がセットされているので、計算の際には注意する。
+
+例えば、R では`NA + 1` は `NA` だが、Rcpp で `NA_INTEGER + 1` は `int` の最小値ではなくなるので、`NA` として扱われない
 
 
 内部表現
@@ -105,9 +116,10 @@ List rcpp_na_scalar() {
 str(scalar_missings())
 #> List of 4
 #>  $ : int NA
+#>  $ : num NA
 #>  $ : chr NA
 #>  $ : logi TRUE
-#>  $ : num NA
+
 ```
 
 `NA_INTEGER` はC++内部では `int` の最小値がセットされている。RcppはこのオブジェクトをRに返すときに `NA` に変換する。
