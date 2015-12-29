@@ -152,7 +152,7 @@ List of 12
 
 C++ の `double` には元々 `nan` `inf` が定義されているので、Rcpp の `R_NaN` `R_PosInf` をそのまま扱うことができる。
 
-`int` には `nan` `inf` が定義されていない、そのため `int` に `R_NaN` `R_PosInf` を代入すると `NA` になる。また、Rcppでは `int` の最小値を`NA`として扱う、`int` の最小値をRに返すときに`NA`に変換される。
+`int` には `nan` `inf` が定義されていない、そのため `int` に `R_NaN` `R_PosInf` を代入すると `NA` になる。また、Rcppでは `int` の最小値を`NA`として扱う、`int` の最小値をRに返すときに`NA`に変換される。しかし、C++の中では数値として扱われるので注意すること。
 
 Rcppの `String` は `NA_STRING` `R_NaN` `R_PosInf` を適切に扱うことができる。
 
@@ -161,58 +161,22 @@ C++の `bool` 型に`NA_LOGICAL` を代入すると `NA` にならず `TRUE` に
 
 
 
+## 値の比較
 
-C++の `double` には元々 `inf` `-inf` `nan` が定義されており、
+C++におけるNaNの挙動
 
-`R_PosInf` `R_NegInf` `R_NaN` `NA_REAL` は、そのまま扱える。
-
-一方、`NA_INTEGER` `NA_LOGICAL` には `int` の最小値がセットされており、それがRに返されるときに `NA` に変換される。
-
-
-
-例えば、R では`NA + 1` は `NA` だが、Rcpp で `NA_INTEGER + 1` は `int` の最小値ではなくなるので、`NA` として扱われない
-
-
-
-
-
-
-
-
-
-
-
-
-
-`NA_INTEGER` はC++内部では `int` の最小値がセットされている。RcppはこのオブジェクトをRに返すときに `NA` に変換する。
-
-
-
-
-NA_LOGICAL を bool 型に代入した時だけ、挙動が異なる。
-
-
-
-Integer
-NA_INTEGER を int型 に代入すると、int 型の最小値の値を取る。Rcpp はこのオブジェクトを R に返すとき NA に変換する。しかし、C++ 中では数値として扱われるので注意が必要。
-
-
-
-Double
-C++ には NAN があるので 非数値は扱える、R の NaN に変換される。
-
-C++ 
-NAN == 1; //false、全ての論理比較は false
+```cpp
+NAN == 1;   //false、NANとの全ての論理比較は false
 NAN == NAN; //false
 
-//下には注意が必要
-```
-NAN && TRUE; //true
+//NAN と bool のAND, OR 演算は
+
+NAN && TRUE;  //true
 NAN || FALSE; //true
 
 //NAN に数値演算すると NAN になる
 NAN +1; //NAN
-
+```
 
 
 ベクタの要素がNA かどうか調べたいときは、ベクターのメソッド ::is_na() を使う。
