@@ -83,6 +83,9 @@ List of 4
 
 
 
+
+
+
 ###スカラー型に代入した場合の挙動
 
 
@@ -91,23 +94,58 @@ List of 4
 ```
 // [[Rcpp::export]]
 List rcpp_na_scalar() {
-  int    int_s = NA_INTEGER;
-  double num_s = NA_REAL;
-  String chr_s = NA_STRING;
-  bool   lgl_s = NA_LOGICAL;
+  int    int_na     = NA_INTEGER; //-2147483648
+  int    int_nan    = R_NaN;      //-2147483648
+  int    int_inf    = R_PosInf;   //-2147483648
   
-  return List::create(int_s, int_s+1, chr_s, lgl_s, num_s);
+  double double_na  = NA_REAL;    //nan
+  double double_nan = R_NaN;      //nan
+  double double_inf = R_PosInf;   //inf
+  
+  String chr_na     = NA_STRING;  //"NA"
+  String chr_nan    = R_NaN;      //"NaN"
+  String chr_inf    = R_PosInf;   //"Inf"
+  
+  bool   bool_na    = NA_LOGICAL; //true
+  bool   bool_nan   = R_NaN;      //true
+  bool   bool_inf   = R_PosInf;   //true
+  
+  return(List::create(
+      Named("int_na" , int_na),
+      Named("int_nan", int_nan),
+      Named("int_inf", int_inf),
+      
+      Named("double_na" , double_na),
+      Named("double_nan", double_nan),
+      Named("double_inf", double_inf),
+      
+      Named("String_na" , chr_na),
+      Named("String_nan", chr_nan),
+      Named("String_inf", chr_inf),
+      
+      Named("bool_na" , bool_na),
+      Named("bool_nan", bool_nan),
+      Named("bool_inf", bool_inf)
+  ));
 }
+
 ```
 
 ```
-str(scalar_missings())
-#> List of 4
-#>  $ : int NA
-#>  $ : num NA
-#>  $ : chr NA
-#>  $ : logi TRUE
-
+> str(rcpp_na_scalar())
+List of 12
+ $ int_na    : int NA
+ $ int_nan   : int NA
+ $ int_inf   : int NA
+ $ double_na : num NA
+ $ double_nan: num NaN
+ $ double_inf: num Inf
+ $ String_na : chr NA
+ $ String_nan: chr "NaN"
+ $ String_inf: chr "Inf"
+ $ bool_na   : logi TRUE
+ $ bool_nan  : logi TRUE
+ $ bool_inf  : logi TRUE
 ```
 
 `NA_LOGICAL` を C++の `bool` 型に代入した際だけ `NA` にならず `TRUE` になっている。これは、`bool`に `0` 以外の値を代入すると `true` になるが、Rcpp 内部では `NA_LOGICAL` には `int` の最小値がセットされているため。
