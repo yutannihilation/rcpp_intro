@@ -22,19 +22,26 @@ R_NegInf
 
 
 
-
 ```
 #include <Rcpp.h>
 using namespace Rcpp;
 
 // [[Rcpp::export]]
 List rcpp_na() {
-  IntegerVector   v_int = NA_INTEGER;
-  NumericVector   v_num = NA_REAL;
-  CharacterVector v_chr = NA_STRING;
-  LogicalVector   v_lgl = NA_LOGICAL;
+  IntegerVector   v_int(3);
+  NumericVector   v_num(1);
+  CharacterVector v_chr(1);
+  LogicalVector   v_lgl(1);
   
-
+  v_int[0] = NA_INTEGER;
+  
+  v_int[1] = R_NaN;
+  v_int[2] = R_PosInf;
+  
+  v_num[0] = NA_REAL;
+  v_chr[0] = NA_STRING;
+  v_lgl[0] = NA_LOGICAL;
+  
   return List::create(v_int, v_num, v_chr, v_lgl);
 }
 ```
