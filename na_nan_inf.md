@@ -20,6 +20,9 @@ R_PosInf
 R_NegInf
 ```
 
+
+
+
 ###ベクター型に代入する際の注意点
 
 
@@ -72,19 +75,8 @@ List of 4
  $ : logi [1:3] NA NA NA
 ```
 
+
 ###内部表現
-
- | |  |
- | R_PosInf| |
- | | |
-
-C++の double には元々 `inf` `-inf` `nan` が用意されているので、`R_PosInf` `R_NegInf` `R_NaN` を `double` に代入するとそのまま扱える。
-
-一方、`NA_INTEGER` `NA_LOGICAL` には `int` の最小値がセットされており、それがRに返されるときにNAに変換される。しかし、
-
-C++ の int には `inf` や `nan` は 定義されていないので、ので、計算の際には注意する。
-
-例えば、R では`NA + 1` は `NA` だが、Rcpp で `NA_INTEGER + 1` は `int` の最小値ではなくなるので、`NA` として扱われない
 
 
 内部表現
@@ -94,12 +86,24 @@ void rcpp_na_raw(){
   Rcout << R_PosInf   << endl; //inf
   Rcout << R_NegInf   << endl; //-inf
   Rcout << R_NaN      << endl; //nan
-  Rcout << NA_INTEGER << endl; //-2147483648
   Rcout << NA_REAL    << endl; //nan
-  Rcout << NA_STRING  << endl; //0x10200dc98
+  Rcout << NA_INTEGER << endl; //-2147483648
   Rcout << NA_LOGICAL << endl; //-2147483648
+  Rcout << NA_STRING  << endl; //0x10200dc98
 }
 ```
+
+C++の `double` には元々 `inf` `-inf` `nan` が定義されており、
+
+`R_PosInf` `R_NegInf` `R_NaN` `NA_REAL` は、そのまま扱える。
+
+一方、`NA_INTEGER` `NA_LOGICAL` には `int` の最小値がセットされており、それがRに返されるときに `NA` に変換される。
+
+
+
+例えば、R では`NA + 1` は `NA` だが、Rcpp で `NA_INTEGER + 1` は `int` の最小値ではなくなるので、`NA` として扱われない
+
+
 
 スカラー型に代入した場合の挙動
 
