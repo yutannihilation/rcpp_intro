@@ -20,8 +20,14 @@ R_PosInf
 R_NegInf
 ```
 
-これらの値を条件式で用いる場合には
+これらの値を条件式で用いる場合には以下の関数を用いる。
 
+```
+is_finite()
+is_infinite()
+is_na()
+is_nan()
+```
 
 ###ベクター型に代入する際の注意点
 
@@ -76,7 +82,37 @@ List of 4
 ```
 
 
-###内部表現
+
+###スカラー型に代入した場合の挙動
+
+
+スカラー型に代入した場合の挙動
+
+```
+// [[Rcpp::export]]
+List rcpp_na_scalar() {
+  int    int_s = NA_INTEGER;
+  double num_s = NA_REAL;
+  String chr_s = NA_STRING;
+  bool   lgl_s = NA_LOGICAL;
+  
+  return List::create(int_s, int_s+1, chr_s, lgl_s, num_s);
+}
+```
+
+```
+str(scalar_missings())
+#> List of 4
+#>  $ : int NA
+#>  $ : num NA
+#>  $ : chr NA
+#>  $ : logi TRUE
+
+```
+
+`NA_LOGICAL` を C++の `bool` 型に代入した際だけ `NA` にならず `TRUE` になっている。これは、`bool`に `0` 以外の値を代入すると `true` になるが、Rcpp 内部では `NA_LOGICAL` には `int` の最小値がセットされているため。
+
+
 
 
 内部表現
@@ -105,29 +141,15 @@ C++の `double` には元々 `inf` `-inf` `nan` が定義されており、
 
 
 
-スカラー型に代入した場合の挙動
 
-```
-// [[Rcpp::export]]
-List rcpp_na_scalar() {
-  int    int_s = NA_INTEGER;
-  double num_s = NA_REAL;
-  String chr_s = NA_STRING;
-  bool   lgl_s = NA_LOGICAL;
-  
-  return List::create(int_s, int_s+1, chr_s, lgl_s, num_s);
-}
-```
 
-```
-str(scalar_missings())
-#> List of 4
-#>  $ : int NA
-#>  $ : num NA
-#>  $ : chr NA
-#>  $ : logi TRUE
 
-```
+
+
+
+
+
+
 
 `NA_INTEGER` はC++内部では `int` の最小値がセットされている。RcppはこのオブジェクトをRに返すときに `NA` に変換する。
 
@@ -136,8 +158,12 @@ str(scalar_missings())
 
 NA_LOGICAL を bool 型に代入した時だけ、挙動が異なる。
 
+
+
 Integer
 NA_INTEGER を int型 に代入すると、int 型の最小値の値を取る。Rcpp はこのオブジェクトを R に返すとき NA に変換する。しかし、C++ 中では数値として扱われるので注意が必要。
+
+
 
 Double
 C++ には NAN があるので 非数値は扱える、R の NaN に変換される。
@@ -154,15 +180,7 @@ NAN || FALSE; //true
 //NAN に数値演算すると NAN になる
 NAN +1; //NAN
 
-String クラスは文字列スカラーを扱うために Rcpp が用意したクラスなので NA の扱いは心得ている。
 
-R の論理型は TRUE, FALSE, NA の値を取る、NA をC++の bool 型に変換すると true になってしまうので注意が必要。
-
-ベクターに値としてNA を入れたい場合は、ベクターの型に合わせて NA_INTEGER,
-NA_REAL
-NA_STRING
-NA_LOGICAL
-を使う。
 
 ベクタの要素がNA かどうか調べたいときは、ベクターのメソッド ::is_na() を使う。
 
@@ -208,18 +226,5 @@ IntegerVector timesTwo() {
 [1]  2 NA  6
 
 
-###内部表現
 
-```
-// [[Rcpp::export]]
-void na(){
-  Rcout << R_PosInf   << endl; //inf
-  Rcout << R_NegInf   << endl; //-inf
-  Rcout << R_NaN      << endl; //nan
-  Rcout << NA_INTEGER << endl; //-2147483648
-  Rcout << NA_REAL    << endl; //nan
-  Rcout << NA_STRING  << endl; //0x10200dc98
-  Rcout << NA_LOGICAL << endl; //-2147483648
-}
-```
 
