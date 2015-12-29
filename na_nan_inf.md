@@ -91,17 +91,11 @@ void rcpp_na_raw(){
 
 ```
 // [[Rcpp::export]]
-List scalar() {
+List rcpp_na_scalar() {
   int    int_s = NA_INTEGER;
   String chr_s = NA_STRING;
   bool   lgl_s = NA_LOGICAL;
   double num_s = NA_REAL;
-  
-  
-  Rcout << int_s << endl; // -2147483648
-  Rcout << chr_s << endl; // 0x107c24088
-  Rcout << lgl_s << endl; // 1
-  Rcout << num_s << endl; // nan
   
 
   return List::create(int_s, chr_s, lgl_s, num_s);
