@@ -93,11 +93,9 @@ void rcpp_na_raw(){
 // [[Rcpp::export]]
 List rcpp_na_scalar() {
   int    int_s = NA_INTEGER;
+  double num_s = NA_REAL;
   String chr_s = NA_STRING;
   bool   lgl_s = NA_LOGICAL;
-  double num_s = NA_REAL;
-  
-  
   
   return List::create(int_s, int_s+1, chr_s, lgl_s, num_s);
 }
