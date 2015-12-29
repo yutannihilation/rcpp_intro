@@ -181,7 +181,7 @@ NAN +1; //NAN
 
 ベクターの１つの要素がNA かどうか調べたいときは、ベクターのメソッド `is_na()` を使う。`NumeircVector::is_na()` 
 
-```
+```cpp
 // [[Rcpp::export]]
 LogicalVector rcpp_is_naC(NumericVector x) {
   LogicalVector out(x.size());
@@ -195,7 +195,7 @@ LogicalVector rcpp_is_naC(NumericVector x) {
 
 suger の `is_na()` を使うと、ベクターのすべての要素を判定した結果を論理ベクターとして返す。
 
-```
+```cpp
 // [[Rcpp::export]]
 IntegerVector filter_na() {
    IntegerVector v = IntegerVector::create( 1, NA_INTEGER, 3 ) ;
