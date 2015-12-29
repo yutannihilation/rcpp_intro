@@ -166,15 +166,15 @@ C++の `bool` 型に`NA_LOGICAL` を代入すると `NA` にならず `TRUE` に
 C++におけるNaNの挙動
 
 ```cpp
-NAN == 1;   //false、NANとの全ての論理比較は false
+//NANとの全ての論理比較は false
+NAN == 1;   //false
 NAN == NAN; //false
 
-//NAN と bool のAND, OR 演算は
-
+//NAN と bool のAND, OR 演算はTRUEになる
 NAN && TRUE;  //true
 NAN || FALSE; //true
 
-//NAN に数値演算すると NAN になる
+//NAN と数値の演算は NAN になる
 NAN +1; //NAN
 ```
 
