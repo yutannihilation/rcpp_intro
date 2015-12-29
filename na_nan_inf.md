@@ -26,10 +26,7 @@ R_NegInf
 `NA_REAL` `NA_INTEGER` `NA_STRING` `NA_LOGICAL` を対応するベクターに代入すると R では NA として扱われる。
 
 
-`R_NaN` `R_PosInf` `R_NegInf` は実数に対してのみ定義されている。そのため、
-
-
-`NumericVector` に代入された時には、`NaN` `Inf` `-Inf` として扱われるが、`IntegerVector` に代入した場合には `NA` として扱われる。
+`R_NaN` `R_PosInf` `R_NegInf` は実数に対してのみ定義されている。そのため、`NumericVector` に代入された時には、`NaN` `Inf` `-Inf` として扱われるが、`IntegerVector` に代入した場合には `NA` として扱われる。
 
 
 
@@ -45,21 +42,21 @@ List rcpp_na() {
   CharacterVector v_chr(3);
   LogicalVector   v_lgl(3);
   
-  v_int[0] = NA_INTEGER;
-  v_int[1] = R_NaN;
-  v_int[2] = R_PosInf;
+  v_int[0] = NA_INTEGER; //NA
+  v_int[1] = R_NaN;      //NA
+  v_int[2] = R_PosInf;   //NA
   
-  v_num[0] = NA_REAL;
-  v_num[1] = R_NaN;
-  v_num[2] = R_PosInf;
+  v_num[0] = NA_REAL;    //NA
+  v_num[1] = R_NaN;      //NaN
+  v_num[2] = R_PosInf;   //Inf
   
-  v_chr[0] = NA_STRING;
-  v_chr[1] = R_NaN;
-  v_chr[2] = R_PosInf;
+  v_chr[0] = NA_STRING;  //NA
+  v_chr[1] = R_NaN;      //"NaN"
+  v_chr[2] = R_PosInf;   //"Inf"
   
-  v_lgl[0] = NA_LOGICAL;
-  v_lgl[1] = R_NaN;
-  v_lgl[2] = R_PosInf;
+  v_lgl[0] = NA_LOGICAL; //NA
+  v_lgl[1] = R_NaN;      //NA
+  v_lgl[2] = R_PosInf;   //NA
   
   return List::create(v_int, v_num, v_chr, v_lgl);
 }
