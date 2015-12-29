@@ -1,24 +1,43 @@
 # NA NaN Inf
 
 
-#非数値 NaN
-
-R_NaN
-
-R_PosInf
-R_NegInf
-
-
-#欠損値 NA
-
-NA (Not Available)
-
-NA_INTEGER,
+### NA
+```
+NA_INTEGER
 NA_REAL
 NA_STRING
 NA_LOGICAL
+```
+
+### NaN
+```
+R_NaN
+```
+### Inf
+
+```
+R_PosInf
+R_NegInf
+```
 
 
+
+
+```
+#include <Rcpp.h>
+using namespace Rcpp;
+
+// [[Rcpp::export]]
+List rcpp_na() {
+  IntegerVector   v_int = NA_INTEGER;
+  NumericVector   v_num = NA_REAL;
+  CharacterVector v_chr = NA_STRING;
+  LOgicalVector   v_lgl = NA_LOGICAL;
+  
+
+  return List::create(v_int, v_num, v_chr, v_lgl);
+}
+```
 
 
 
