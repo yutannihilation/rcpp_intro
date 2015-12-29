@@ -23,7 +23,7 @@ R_NegInf
 
 `NA_REAL` `NA_INTEGER` `NA_STRING` `NA_LOGICAL` を対応するベクターに代入すると R では NA として扱われる。
 
-`R_NaN` `R_PosInf` `R_NegInf` は `NumericVector` に代入された時には、``
+`R_NaN` `R_PosInf` `R_NegInf` は `NumericVector` に代入された時には、`NA` `Inf` `-Inf` として
 
 
 ```
@@ -67,10 +67,10 @@ List rcpp_na() {
 [1]  NA NaN Inf
 
 [[3]]
-[1] NA
+[1] NA "NaN" "Inf"
 
 [[4]]
-[1] NA
+[1] NA NA NA
 ```
 
 
