@@ -97,8 +97,9 @@ List rcpp_na_scalar() {
   bool   lgl_s = NA_LOGICAL;
   double num_s = NA_REAL;
   
-
-  return List::create(int_s, chr_s, lgl_s, num_s);
+  
+  
+  return List::create(int_s, int_s+1, chr_s, lgl_s, num_s);
 }
 ```
 
