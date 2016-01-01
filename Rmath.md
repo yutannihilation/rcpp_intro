@@ -177,10 +177,13 @@ double expm1(double x); /* = exp(x)-1 {care for small x} */
 double log1p(double x); /* = log(1+x) {care for small x} */ 
 
 int imax2(int x, int y)		
-int imin2(int x, int y)		
+int imin2(int x, int y)	
+
 double fmax2(double x, double y)	
 double fmin2(double x, double y)	
+
 double sign(double x)		
+
 double fprec(double x, double dg)	
 double fround(double x, double dg)	
 double fsign(double x, double y)	
