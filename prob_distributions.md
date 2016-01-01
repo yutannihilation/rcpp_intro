@@ -34,22 +34,27 @@ NumericVector Rcpp::rXXX(           int n, double p0);
 double R::dXXX(double x, double p0, double p1, int lg);
 ```
 
+## d/p/q/r関数
+
+以下ではRcppが提供するd/p/q/r関数の形式を模式的に示す。返値は省略しているが `NumericVector` と考えて差し支えない。
+
 
 **beta**
 
 ```
-Rcpp::dbeta(NumericVector x, double a, double b, bool log = false);
-Rcpp::pbeta(NumericVector q, double p, double q, bool lower = true, bool log = false);
-Rcpp::qbeta(NumericVector p, double p, double q, bool lower = true, bool log = false);
-Rcpp::rbeta( int n, double a, double b);
+NumericVector Rcpp::dbeta(NumericVector x, double a, double b, bool log = false);
+NumericVector Rcpp::pbeta(NumericVector q, double p, double q, bool lower = true, bool log = false);
+NumericVector Rcpp::qbeta(NumericVector p, double p, double q, bool lower = true, bool log = false);
+NumericVector Rcpp::rbeta( int n, double a, double b);
 ```
-Rmath
-double dbeta(double x, double a, double b, int lg)         
-double pbeta(double x, double p, double q, int lt, int lg) 
-double qbeta(double a, double p, double q, int lt, int lg) 
-double rbeta(double a, double b) 
 
-R
+```
+double R::dbeta(double x, double a, double b, int lg)         
+double R::pbeta(double x, double p, double q, int lt, int lg) 
+double R::qbeta(double a, double p, double q, int lt, int lg) 
+double R::rbeta(double a, double b) 
+```
+
 dbeta(x, shape1, shape2, ncp = 0, log = FALSE)
 pbeta(q, shape1, shape2, ncp = 0, lower.tail = TRUE, log.p = FALSE)
 qbeta(p, shape1, shape2, ncp = 0, lower.tail = TRUE, log.p = FALSE)
