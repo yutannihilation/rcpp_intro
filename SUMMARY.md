@@ -18,8 +18,8 @@
 * [NA NaN Inf](na_nan_inf.md)
 * [イテレーター](iterator.md)
 * [アルゴリズム](STL.md)
-* [C++11 を利用する](c++11.md)
-* [Boost を利用する](boost.md)
+* [C++11](c++11.md)
+* [Boost](boost.md)
 * [インライン](inline.md)
 * as と wrap
 * Date
