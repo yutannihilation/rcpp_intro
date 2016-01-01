@@ -368,13 +368,19 @@ double rpois(double mu)
 ```
 
 ###t
-
+```
+NumericVector dt(NumericVector x, double n, bool log = false)
+NumericVector pt(NumericVector x, double n, bool lower = true, bool log = false)
+NumericVector qt(NumericVector p, double n, bool lower = true, bool log = false)
 NumericVector rt( int n, double df )
+```
 
+```
 double dt(double x, double n, int lg)			
 double pt(double x, double n, int lt, int lg)		
 double qt(double p, double n, int lt, int lg)		
 double rt(double n)		
+```
 
 ###unif
 
