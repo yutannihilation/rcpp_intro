@@ -85,12 +85,11 @@ double R::rbinom(double n, double p)
 ###cauchy
 
 ```
-NumericVector Rcpp::dcauchy(NumericVector x, double lc, double sl, bool log = false)
-NumericVector Rcpp::pcauchy(NumericVector x, double lc, double sl, bool lower = true, bool log = false)
-NumericVector Rcpp::qcauchy(NumericVector p, double lc, double sl, bool lower = true, bool log = false)
-NumericVector rcauchy( int n, double location, double scale )
-NumericVector rcauchy( int n, double location /* , double scale [=1.0] */ )
-NumericVector rcauchy( int n /*, double location [=0.0] , double scale [=1.0] */ )
+
+NumericVector dcauchy(NumericVector x, double lc = 0.0, double sl = 1.0, bool log = false)
+NumericVector pcauchy(NumericVector x, double lc = 0.0, double sl = 1.0, bool lower = true, bool log = false)
+NumericVector qcauchy(NumericVector p, double lc = 0.0, double sl = 1.0, bool lower = true, bool log = false)
+NumericVector rcauchy( int n, double location = 0.0, double scale = 1.0)
 ```
 
 ```
