@@ -41,14 +41,14 @@ double R::dXXX(double x, double p0, double p1, int lg);
 
 **beta**
 
-```
+```cpp
 NumericVector Rcpp::dbeta(NumericVector x, double a, double b, bool log = false);
 NumericVector Rcpp::pbeta(NumericVector q, double p, double q, bool lower = true, bool log = false);
 NumericVector Rcpp::qbeta(NumericVector p, double p, double q, bool lower = true, bool log = false);
 NumericVector Rcpp::rbeta( int n, double a, double b);
 ```
 
-```
+```cpp
 double R::dbeta(double x, double a, double b, int lg)         
 double R::pbeta(double x, double p, double q, int lt, int lg) 
 double R::qbeta(double a, double p, double q, int lt, int lg) 
