@@ -36,7 +36,7 @@ double R::dXXX(double x, double p0, double p1, int lg);
 
 ## d/p/q/r関数
 
-以下ではRcppが提供するd/p/q/r関数の形式を模式的に示す。返値は省略しているが `NumericVector` と考えて差し支えない。
+以下ではRcppが提供するd/p/q/r関数の形式を模式的に示す。
 
 
 **beta**
