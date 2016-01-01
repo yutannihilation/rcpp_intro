@@ -28,7 +28,7 @@ NumericVector Rcpp::rXXX(           int n, double p0);
 
 ###R::とRcpp::
 
-一般的に `Rcpp::` 名前空間で定義されている d/p/q/r の第１引数はベクトル化されている。同じ名前の関数が `R::`名前空間の中で定義されているが、こちらはベクトル化されていないので、注意すること。 (Rmath.h)
+一般的に `Rcpp::` 名前空間で定義されている d/p/q/r の第１引数はベクトル化されている。同じ名前の関数が `R::`名前空間の中で定義されているが、こちらはベクトル化されていないので、注意すること。 (Rmath)
 
 ```
 double R::dXXX(double x, double p0, double p1, int lg);
@@ -98,29 +98,28 @@ double qcauchy(double p, double lc, double sl, int lt, int lg)
 double rcauchy(double lc, double sl)
 ```
 
-
 ###chisq
 
-###exp.h
-###f.h
-###gamma.h
-###geom.h
-###hyper.h
-###lnorm.h
-###logis.h
-###nbeta.h
-###nbinom_mu.h
-###nbinom.h
-###nchisq.h
-###nf.h
-###norm.h
-###nt.h
-###pois.h
+###exp
+###f
+###gamma
+###geom
+###hyper
+###lnorm
+###logis
+###nbeta
+###nbinom_mu
+###nbinom
+###nchisq
+###nf
+###norm
+###nt
+###pois
 
 
-###t.h
-###unif.h
-###weibull.h
+###t
+###unif
+###weibull
 
 
 分布乱数
