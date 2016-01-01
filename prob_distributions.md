@@ -109,13 +109,15 @@ double R::rcauchy(double lc, double sl)
 
 ###chisq
 
+NumericVector rchisq( int n, double df )
+
 ```
 double dchisq(double x, double df, int lg)          
 double pchisq(double x, double df, int lt, int lg)  
 double qchisq(double p, double df, int lt, int lg)  
 double rchisq(double df)    
 ```
-NumericVector rchisq( int n, double df )
+
 
 
 ###exp
@@ -246,6 +248,12 @@ double pnf(double x, double df1, double df2, double ncp, int lt, int lg)
 double qnf(double p, double df1, double df2, double ncp, int lt, int lg)
 
 ###norm
+
+
+NumericVector rnorm( int n, double mean, double sd)
+NumericVector rnorm( int n, double mean /*, double sd [=1.0] */ )
+NumericVector rnorm( int n /*, double mean [=0.0], double sd [=1.0] */ )
+
 ```
 double dnorm(double x, double mu, double sigma, int lg)
 double pnorm(double x, double mu, double sigma, int lt, int lg)
@@ -253,9 +261,7 @@ double qnorm(double p, double mu, double sigma, int lt, int lg)
 double rnorm(double mu, double sigma)
 ```
 
-NumericVector rnorm( int n, double mean, double sd)
-NumericVector rnorm( int n, double mean /*, double sd [=1.0] */ )
-NumericVector rnorm( int n /*, double mean [=0.0], double sd [=1.0] */ )
+
 
 
 ###nt
