@@ -299,9 +299,6 @@ double rweibull(double sh, double sl)
 
 
 NumericVector rwilcox( int n, double mm, double nn )
-
-
-
 NumericVector rsignrank( int n, double nn )
 
 
