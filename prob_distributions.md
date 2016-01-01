@@ -323,7 +323,6 @@ NumericVector dnorm(NumericVector x, double mu = 0.0, double sigma = 1.0, bool l
 NumericVector pnorm(NumericVector x, double mu = 0.0, double sigma = 1.0, bool lower = true, bool log = false)
 NumericVector qnorm(NumericVector p, double mu = 0.0, double sigma = 1.0, bool lower = true, bool log = false)
 NumericVector rnorm( int n, double mean 0.0, double sd = 1.0)
-
 ```
 
 ```
@@ -383,12 +382,10 @@ double rt(double n)
 ###unif
 
 ```
-NumericVector dunif(NumericVector x, double a, double b, bool log = false)
-NumericVector punif(NumericVector x, double a, double b, bool lower = true, bool log = false)
-NumericVector qunif(NumericVector p, double a, double b, bool lower = true, bool log = false)
-NumericVector runif( int n, double min, double max )
-NumericVector runif( int n, double min /*, double max = 1.0 */ )
-NumericVector runif( int n /*, double min = 0.0, double max = 1.0 */ )
+NumericVector dunif(NumericVector x, double a = 0.0, double b = 1.0, bool log = false)
+NumericVector punif(NumericVector x, double a = 0.0, double b = 1.0, bool lower = true, bool log = false)
+NumericVector qunif(NumericVector p, double a = 0.0, double b = 1.0, bool lower = true, bool log = false)
+NumericVector runif( int n, double min = 0.0, double max = 1.0)
 ```
 
 ```
