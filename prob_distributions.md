@@ -20,7 +20,7 @@ Rcpp::rXXX( int n, double p0);
 
 ###R版との違い
 
-`Rcpp::`名前空間で定義されている関数は、基本的にRの関数と同じ機能を持っているが、違いもある。具体的には、Rでは分布パラメータ引数（下で p0で示されている）のデフォルト値が自動的に与えられる場合でも、Rcppではユーザーが明示的に与えなければならない。
+`Rcpp::`名前空間で定義されている関数は、基本的にRの関数と同じ機能を持っているが、違いもある。具体的には、Rでは分布パラメータ引数（上で p0で示されている）のデフォルト値が自動的に与えられる場合でも、Rcppでは与えられていないのでユーザーが明示的に与えなければならない。
 
 
 
@@ -28,22 +28,19 @@ Rcpp::rXXX( int n, double p0);
 
 一般的に `Rcpp::` 名前空間で定義されている d/p/q/r の第１引数はベクトル化されている。同じ名前の関数が `R::`名前空間の中で定義されているが、こちらはベクトル化されていないので、注意すること。 (Rmath.h)
 
+```
 double R::dXXX(double x, double p0, double p1, int lg);
+```
 
 
+**beta**
 
-
-
-##beta
-
-Rcpp::dbeta();
-Rcpp::dbeta();
-Rcpp::dbeta();
-
+```
+Rcpp::dbeta(NumericVector x, double p0, double p1, bool log = false);
+Rcpp::pbeta(NumericVector x, double p0, double p1, bool log = false);
+Rcpp::qbeta(NumericVector x, double p0, double p1, bool log = false);
 Rcpp::rbeta( int n, double a, double b);
-
-
-
+```
 
 
 
