@@ -275,15 +275,19 @@ double rnbinom_mu(double sz, double mu)
 ```
 
 ###nbinom
-
+```
+NumericVector dnbinom(NumericVector x, double sz, double pb, bool log = false)
+NumericVector pnbinom(NumericVector x, double sz, double pb, bool lower = true, bool log = false)
+NumericVector qnbinom(NumericVector p, double sz, double pb, bool lower = true, bool log = false)
 NumericVector rnbinom( int n, double siz, double prob )
 NumericVector rnbinom_mu( int n, double siz, double mu )
-
+```
+```
 double dnbinom(double x, double sz, double pb, int lg)		
 double pnbinom(double x, double sz, double pb, int lt, int lg)	
 double qnbinom(double p, double sz, double pb, int lt, int lg)	
 double rnbinom(double sz, double pb)
-
+```
 ###nchisq
 NumericVector rnchisq( int n, double df, double lambda )
 NumericVector rnchisq( int n, double df /*, double lambda = 0.0 */ )
