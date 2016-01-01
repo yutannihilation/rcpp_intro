@@ -398,6 +398,8 @@ double dunif(double x, double a, double b, int lg)
 double punif(double x, double a, double b, int lt, int lg)
 double qunif(double p, double a, double b, int lt, int lg)
 double runif(double a, double b)
+
+
 ```
 ###weibull
 
