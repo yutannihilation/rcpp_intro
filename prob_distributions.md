@@ -399,11 +399,10 @@ double runif(double a, double b)
 ###weibull
 
 ```
-NumericVector dweibull(NumericVector x, double sh, double sl, int lg)		
-NumericVector pweibull(NumericVector x, double sh, double sl, int lt, int lg)	
-NumericVector qweibull(NumericVector p, double sh, double sl, int lt, int lg)	
-NumericVector rweibull( int n, double shape, double scale )
-NumericVector rweibull( int n, double shape /* scale = 1 */ )
+NumericVector dweibull(NumericVector x, double sh, double sl = 1.0, int lg)		
+NumericVector pweibull(NumericVector x, double sh, double sl = 1.0, int lt, int lg)	
+NumericVector qweibull(NumericVector p, double sh, double sl = 1.0, int lt, int lg)	
+NumericVector rweibull( int n, double shape, double scale  = 1.0)
 ```
 
 ```
