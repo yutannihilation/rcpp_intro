@@ -20,10 +20,10 @@ d/p/q/r関数の基本構造
 
 ここでは分布パラメータ p0 の数は0から3まである。
 
-Rcpp::dXXX( NumericVector x, double p0, bool log = false);
-Rcpp::pXXX( NumericVector x, double p0, bool lower = true, bool log = false);
-Rcpp::qXXX( NumericVector x, double p0, bool lower = true, bool log = false);
-Rcpp::rXXX( int n, double p0);
+Rcpp::dXXX(NumericVector x, double p0, bool log = false);
+Rcpp::pXXX(NumericVector x, double p0, bool lower = true, bool log = false);
+Rcpp::qXXX(NumericVector x, double p0, bool lower = true, bool log = false);
+Rcpp::rXXX(int n, double p0);
 
 
 NumeriVector
