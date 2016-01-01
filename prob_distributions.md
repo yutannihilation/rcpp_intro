@@ -245,16 +245,16 @@ double rlogis(double lc, double sl)
 
 ###nbeta
 ```cpp
-NumericVector Rcpp::dnbeta(double x, double a, double b, double ncp, , bool log = false);
-NumericVector Rcpp::pnbeta(double x, double a, double b, double ncp,  bool lower = true, bool log = false);
-NumericVector Rcpp::qnbeta(double p, double a, double b, double ncp, bool lower = true, bool log = false);
-//NumericVector Rcpp::rnbeta( int n, double a, double b, double np) //not defined
+NumericVector dnbeta(double x, double a, double b, double ncp, , bool log = false);
+NumericVector pnbeta(double x, double a, double b, double ncp,  bool lower = true, bool log = false);
+NumericVector qnbeta(double p, double a, double b, double ncp, bool lower = true, bool log = false);
+//NumericVector rnbeta( int n, double a, double b, double np) //not defined
 ```
 ```cpp
-double R::dnbeta(double x, double a, double b, double ncp, int lg)		
-double R::pnbeta(double x, double a, double b, double ncp, int lt, int lg)	
-double R::qnbeta(double p, double a, double b, double ncp, int lt, int lg)	
-double R::rnbeta(double a, double b, double np)
+double dnbeta(double x, double a, double b, double ncp, int lg)		
+double pnbeta(double x, double a, double b, double ncp, int lt, int lg)	
+double qnbeta(double p, double a, double b, double ncp, int lt, int lg)	
+double rnbeta(double a, double b, double np)
 ```
 
 
