@@ -99,6 +99,30 @@ double rcauchy(double lc, double sl)
 ```
 
 
+###chisq
+
+###exp.h
+###f.h
+###gamma.h
+###geom.h
+###hyper.h
+###lnorm.h
+###logis.h
+###nbeta.h
+###nbinom_mu.h
+###nbinom.h
+###nchisq.h
+###nf.h
+###norm.h
+###nt.h
+###pois.h
+
+
+###t.h
+###unif.h
+###weibull.h
+
+
 分布乱数
 
 ```
