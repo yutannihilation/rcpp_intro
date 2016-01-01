@@ -211,10 +211,14 @@ double rhyper(double r, double b, double n)
 
 ```
 ###lnorm
-
+```
+NumericVector dlnorm(NumericVector x, double ml, double sl, bool log = false)
+NumericVector plnorm(NumericVector x, double ml, double sl, bool lower = true, bool log = false)
+NumericVector qlnorm(NumericVector p, double ml, double sl, bool lower = true, bool log = false)
 NumericVector rlnorm( int n, double meanlog, double sdlog )
 NumericVector rlnorm( int n, double meanlog /*, double sdlog = 1.0 */)
 NumericVector rlnorm( int n /*, double meanlog [=0.], double sdlog = 1.0 */)
+```
 
 ```
 double dlnorm(double x, double ml, double sl, int lg)	 
