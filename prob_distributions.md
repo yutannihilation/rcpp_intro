@@ -433,3 +433,10 @@ double pweibull(double x, double sh, double sl, int lt, int lg)
 double qweibull(double p, double sh, double sl, int lt, int lg)	
 double rweibull(double sh, double sl)
 ```
+
+
+
+
+NumericVector rsignrank( int n, double nn )
+NumericVector rwilcox( int n, double mm, double nn )
+
