@@ -10,7 +10,7 @@ Rcpp は R にある主要な全ての d/p/q/r 関数を提供する。
 
 ###Rcpp::d/p/q/r関数の基本構造
 
-```
+```cpp
 NumericVector Rcpp::dXXX( NumericVector x, double p0, bool log = false)
 NumericVector Rcpp::pXXX( NumericVector q, double p0, bool lower = true, bool log = false)
 NumericVector Rcpp::qXXX( NumericVector p, double p0, bool lower = true, bool log = false)
@@ -321,7 +321,8 @@ double rnchisq(double df, double lb)
 
 ###nf
 Rcpp::
-```
+
+```cpp
 NumericVector dnf(NumericVector x, double df1, double df2, double ncp, bool log = false)
 NumericVector pnf(NumericVector x, double df1, double df2, double ncp, bool lower = true, bool log = false)
 NumericVector qnf(NumericVector p, double df1, double df2, double ncp, bool lower = true, bool log = false)
