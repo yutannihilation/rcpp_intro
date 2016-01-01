@@ -196,7 +196,12 @@ double rgeom(double p)
 ```
 
 ###hyper
+```
+NumericVector dhyper(NumericVector x, double r, double b, double n, bool log = false)
+NumericVector phyper(NumericVector x, double r, double b, double n, bool lower = true, bool log = false)
+NumericVector qhyper(NumericVector p, double r, double b, double n, bool lower = true, bool log = false)
 NumericVector rhyper( int n, double nn1, double nn2, double kk )
+```
 
 ```
 double dhyper(double x, double r, double b, double n, int lg)		
