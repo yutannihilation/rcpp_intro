@@ -85,7 +85,7 @@ double fsign(double x, double y)
 double ftrunc(double x)		
 ```
 
-下は [d/p/q/r 関数]()
+下は [d/p/q/r 関数](dpqr_functions.md) のページにも記述した
 ```
 double dnorm(double x, double mu, double sigma, int lg)              
 double pnorm(double x, double mu, double sigma, int lt, int lg)      
