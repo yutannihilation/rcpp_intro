@@ -11,12 +11,14 @@ Rcpp は R にある主要な全ての d/p/q/r 関数を提供する。
 ###Rcpp::d/p/q/r関数の基本構造
 
 ```
-Rcpp::dXXX( NumericVector x, double p0, bool log = false);
-Rcpp::pXXX( NumericVector x, double p0, bool lower = true, bool log = false);
-Rcpp::qXXX( NumericVector x, double p0, bool lower = true, bool log = false);
-Rcpp::rXXX( int n, double p0);
+NumericVector Rcpp::dXXX( NumericVector x, double p0, bool log = false);
+NumericVector Rcpp::pXXX( NumericVector q, double p0, bool lower = true, bool log = false);
+NumericVector Rcpp::qXXX( NumericVector p, double p0, bool lower = true, bool log = false);
+NumericVector Rcpp::rXXX(           int n, double p0);
 ```
 上では関数の返値を省略しているが、（正確には異なるが） NumericVector だと思っていても問題はない。
+
+上では、d/p/q/r関数の基本構造を概念的に表したものなので、Rcppのソースコードには
 
 ###R版との違い
 
@@ -36,14 +38,22 @@ double R::dXXX(double x, double p0, double p1, int lg);
 **beta**
 
 ```
-Rcpp::dbeta(NumericVector x, double p0, double p1, bool log = false);
-Rcpp::pbeta(NumericVector x, double p0, double p1, bool log = false);
-Rcpp::qbeta(NumericVector x, double p0, double p1, bool log = false);
+Rcpp::dbeta(NumericVector x, double a, double b, bool log = false);
+Rcpp::pbeta(NumericVector q, double p, double q, bool lower = true, bool log = false);
+Rcpp::qbeta(NumericVector p, double p, double q, bool lower = true, bool log = false);
 Rcpp::rbeta( int n, double a, double b);
 ```
+Rmath
+double dbeta(double x, double a, double b, int lg)         
+double pbeta(double x, double p, double q, int lt, int lg) 
+double qbeta(double a, double p, double q, int lt, int lg) 
+double rbeta(double a, double b) 
 
-
-
+R
+dbeta(x, shape1, shape2, ncp = 0, log = FALSE)
+pbeta(q, shape1, shape2, ncp = 0, lower.tail = TRUE, log.p = FALSE)
+qbeta(p, shape1, shape2, ncp = 0, lower.tail = TRUE, log.p = FALSE)
+rbeta(n, shape1, shape2, ncp = 0)
 
 
 分布乱数
