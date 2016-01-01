@@ -50,3 +50,43 @@ m(_,1) = 2*m(_,1) //上の例と同義
 NumericVector v = m( 0, _ ); 
 v = v*2; //こちらは v の値を2倍にするが m には影響しない
 ```
+
+
+
+
+#メソッド
+R_xlen_t size()
+R_xlen_t nrow()
+R_xlen_t ncol()
+
+iterator begin()
+iterator end()
+
+int ncol()
+int nrow()
+int cols() //ncol
+int rows() //nrow
+
+Row row( int i )
+Column column( int i )
+
+void fill_diag( const U& u)
+
+対角行列を作成
+static Matrix diag( int size, const U& diag_value )
+
+アクセス
+m[int i]
+m(int i, int j)
+m.at(int i, int j)
+m(1, _)
+m(_, 1)
+m(const Range& row_range, const Range& col_range)
+m(const Range& row_range, _)
+m(_, const Range& col_range)
+m(_,_)
+
+m.rownames("名前")
+m.colnames(SEXP x)
+
+transpose(m)
