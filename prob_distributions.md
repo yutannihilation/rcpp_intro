@@ -322,9 +322,8 @@ double qnf(double p, double df1, double df2, double ncp, int lt, int lg)
 NumericVector dnorm(NumericVector x, double mu = 0.0, double sigma = 1.0, bool log = false)
 NumericVector pnorm(NumericVector x, double mu = 0.0, double sigma = 1.0, bool lower = true, bool log = false)
 NumericVector qnorm(NumericVector p, double mu = 0.0, double sigma = 1.0, bool lower = true, bool log = false)
-NumericVector rnorm( int n, double mean, double sd)
-NumericVector rnorm( int n, double mean /*, double sd [=1.0] */ )
-NumericVector rnorm( int n /*, double mean [=0.0], double sd [=1.0] */ )
+NumericVector rnorm( int n, double mean 0.0, double sd = 1.0)
+
 ```
 
 ```
