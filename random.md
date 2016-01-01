@@ -5,6 +5,8 @@ NumericVector rwilcox( int n, double mm, double nn )
 NumericVector rsignrank( int n, double nn )
 ```
 
+下は [d/p/q/r 関数](dpqr_functions.md) のページにも記述した
+
 ```cpp
 NumericVector rnorm( int n, double mean, double sd)
 NumericVector rnorm( int n, double mean /*, double sd [=1.0] */ )
