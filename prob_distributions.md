@@ -180,7 +180,13 @@ double rgamma(double a, double scl)
 ```
 
 ###geom
+
+```
+NumericVector dgeom(NumericVector x, double p, bool log = false)
+NumericVector pgeom(NumericVector x, double p, bool lower = true, bool log = false)
+NumericVector qgeom(NumericVector p, double pb, bool lower = true, bool log = false)
 NumericVector rgeom( int n, double p )
+```
 
 ```
 double dgeom(double x, double p, int lg)		
