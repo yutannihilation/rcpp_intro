@@ -32,7 +32,7 @@ NumericVector Rcpp::rXXX(           int n, double p0)
 
 `R::` 名前空間で定義されている d/p/q/r 関数の基本構造
 
-```
+```cpp
 double R::dXXX(double x, double p0, int lg)			
 double R::pXXX(double x, double p0, int lt, int lg)		
 double R::qXXX(double p, double p0, int lt, int lg)		
@@ -427,20 +427,4 @@ double dweibull(double x, double sh, double sl, int lg)
 double pweibull(double x, double sh, double sl, int lt, int lg)	
 double qweibull(double p, double sh, double sl, int lt, int lg)	
 double rweibull(double sh, double sl)
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ```
