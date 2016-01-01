@@ -99,10 +99,10 @@ NumericVector rcauchy( int n, double location = 0.0, double scale = 1.0)
 ```
 R::
 ```cpp
-double R::dcauchy(double x, double lc, double sl, int lg)		
-double R::pcauchy(double x, double lc, double sl, int lt, int lg)	
-double R::qcauchy(double p, double lc, double sl, int lt, int lg)	
-double R::rcauchy(double lc, double sl)
+double dcauchy(double x, double lc, double sl, int lg)		
+double pcauchy(double x, double lc, double sl, int lt, int lg)	
+double qcauchy(double p, double lc, double sl, int lt, int lg)	
+double rcauchy(double lc, double sl)
 ```
 
 
@@ -271,7 +271,7 @@ double rnbeta(double a, double b, double np)
 
 ###nbinom_mu
 Rcpp::
-```cppcpp
+```cpp
 NumericVector dnbinom_mu(NumericVector x, double sz, double mu, bool log = false)
 NumericVector pnbinom_mu(NumericVector x, double sz, double mu, bool lower = true, bool log = false)
 NumericVector qnbinom_mu(NumericVector x, double sz, double mu, bool lower = true, bool log = false)
