@@ -55,7 +55,6 @@ NumericVector Rcpp::qbeta(NumericVector p, double p, double q, bool lower = true
 NumericVector Rcpp::rbeta( int n, double a, double b);
 ```
 
-
 ```cpp
 double R::dbeta(double x, double a, double b, int lg)         
 double R::pbeta(double x, double p, double q, int lt, int lg) 
@@ -87,8 +86,8 @@ double R::rbinom(double n, double p)
 
 ```
 NumericVector Rcpp::dcauchy(NumericVector x, double lc, double sl, bool log = false)
-NumericVector Rcpp::pcauchy(NumericVector x, double lc, double sl, bool log = false)
-NumericVector Rcpp::qcauchy(NumericVector p, double lc, double sl, bool log = false)
+NumericVector Rcpp::pcauchy(NumericVector x, double lc, double sl, bool lower = true, bool log = false)
+NumericVector Rcpp::qcauchy(NumericVector p, double lc, double sl, bool lower = true, bool log = false)
 NumericVector rcauchy( int n, double location, double scale )
 NumericVector rcauchy( int n, double location /* , double scale [=1.0] */ )
 NumericVector rcauchy( int n /*, double location [=0.0] , double scale [=1.0] */ )
@@ -104,12 +103,15 @@ double R::rcauchy(double lc, double sl)
 
 
 
-
-
-
 ###chisq
 
-NumericVector rchisq( int n, double df )
+```
+NumericVector dchisq(NumericVector x, double df, bool log = false)
+NumericVector pchisq(NumericVector x, double df, bool lower = true, bool log = false)
+NumericVector qchisq(NumericVector p, double df, bool lower = true, bool log = false)
+NumericVector rchisq(int n, double df)    
+```
+
 
 ```
 double dchisq(double x, double df, int lg)          
