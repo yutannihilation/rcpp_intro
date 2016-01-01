@@ -8,24 +8,28 @@ Rcpp は R にある主要な全ての d/p/q/r 関数を提供する。
 * r(n): random generation
 
 
-###R::とRcpp::
-
-一般的に `Rcpp::` 名前空間で定義されている d/p/q/r の第１引数はベクトル化されている。同じ名前の関数が `R::`名前空間の中で定義されているが、こちらはベクトル化されていないので、注意すること。 
-
 ###R版との違い
 
 `Rcpp::`名前空間で定義されている関数は、基本的にRの関数と同じ機能を持っているが、違いもある。具体的には、Rでは分布パラメータ引数（p0, p1, ...）のデフォルト値が自動的に与えられる場合でも、Rcppではユーザーが明示的に与えなければならない。
 
-d/p/q/r関数の基本構造
+Rcpp::d/p/q/r関数の基本構造
 
-ここでは分布パラメータ p0 の数は0から3まである。
-
+```
 Rcpp::dXXX( NumericVector x, double p0, bool log = false);
 Rcpp::pXXX( NumericVector x, double p0, bool lower = true, bool log = false);
 Rcpp::qXXX( NumericVector x, double p0, bool lower = true, bool log = false);
 Rcpp::rXXX( int n, double p0);
+```
+上では関数の返値を省略しているが、基本的に NumericVector だと思っていれも
 
-R::
+
+
+###R::とRcpp::
+
+一般的に `Rcpp::` 名前空間で定義されている d/p/q/r の第１引数はベクトル化されている。同じ名前の関数が `R::`名前空間の中で定義されているが、こちらはベクトル化されていないので、注意すること。 (Rmath.h)
+
+double R::dXXX(double x, double p0, double p1, int lg);
+
 
 
 
