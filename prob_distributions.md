@@ -25,16 +25,19 @@ Rcpp::pXXX( NumericVector x, double p0, bool lower = true, bool log = false);
 Rcpp::qXXX( NumericVector x, double p0, bool lower = true, bool log = false);
 Rcpp::rXXX( int n, double p0);
 
+R::
 
-NumeriVector
 
-
-NumericVector Rcpp::rbeta( int n, double a, double b);
 
 
 ##beta
 
-Rcpp::dbeta
+Rcpp::dbeta();
+Rcpp::dbeta();
+Rcpp::dbeta();
+
+Rcpp::rbeta( int n, double a, double b);
+
 
 
 
