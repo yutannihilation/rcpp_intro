@@ -403,13 +403,20 @@ double runif(double a, double b)
 ```
 ###weibull
 
+```
+NumericVector dweibull(NumericVector x, double sh, double sl, int lg)		
+NumericVector pweibull(NumericVector x, double sh, double sl, int lt, int lg)	
+NumericVector qweibull(NumericVector p, double sh, double sl, int lt, int lg)	
 NumericVector rweibull( int n, double shape, double scale )
 NumericVector rweibull( int n, double shape /* scale = 1 */ )
+```
 
+```
 double dweibull(double x, double sh, double sl, int lg)		
 double pweibull(double x, double sh, double sl, int lt, int lg)	
 double qweibull(double p, double sh, double sl, int lt, int lg)	
 double rweibull(double sh, double sl)
+```
 
 分布乱数
 
