@@ -58,10 +58,10 @@ double R::rbeta(double a, double b)
 ###Noncentral beta
 
 ```
-NumericVector Rcpp::dnbeta(double x, double a, double b, double ncp, int lg)		
-NumericVector Rcpp::pnbeta(double x, double a, double b, double ncp, int lt, int lg)	
-NumericVector Rcpp::qnbeta(double p, double a, double b, double ncp, int lt, int lg)	
-NumericVector Rcpp::rnbeta(double a, double b, double np)
+NumericVector Rcpp::dnbeta(double x, double a, double b, double ncp, , bool log = false);
+NumericVector Rcpp::pnbeta(double x, double a, double b, double ncp,  bool lower = true, bool log = false);
+NumericVector Rcpp::qnbeta(double p, double a, double b, double ncp, bool lower = true, bool log = false);
+NumericVector Rcpp::rnbeta( int n, double a, double b, double np)
 ```
 
 
