@@ -72,7 +72,22 @@ double R::qnbeta(double p, double a, double b, double ncp, int lt, int lg)
 double R::rnbeta(double a, double b, double np)
 ```
 
+###binom
 
+
+```
+NumericVector Rcpp::dbinom(NumericVector x, double n, double p, bool log = false);
+NumericVector Rcpp::pbinom(NumericVector x, double n, double p, bool lower = true, bool log = false);
+NumericVector Rcpp::qbinom(NumericVector p, double n, double m, bool lower = true, bool log = false);
+NumericVector Rcpp::rbinom(int n, double n, double p)
+```
+
+```
+double R::dbinom(double x, double n, double p, int lg)	  	
+double R::pbinom(double x, double n, double p, int lt, int lg)  
+double R::qbinom(double p, double n, double m, int lt, int lg)  
+double R::rbinom(double n, double p)
+```
 
 
 分布乱数
