@@ -62,22 +62,7 @@ double R::qbeta(double a, double p, double q, int lt, int lg)
 double R::rbeta(double a, double b) 
 ```
 
-###Noncentral beta
 
-```cpp
-NumericVector Rcpp::dnbeta(double x, double a, double b, double ncp, , bool log = false);
-NumericVector Rcpp::pnbeta(double x, double a, double b, double ncp,  bool lower = true, bool log = false);
-NumericVector Rcpp::qnbeta(double p, double a, double b, double ncp, bool lower = true, bool log = false);
-//NumericVector Rcpp::rnbeta( int n, double a, double b, double np) //not defined
-```
-
-
-```cpp
-double R::dnbeta(double x, double a, double b, double ncp, int lg)		
-double R::pnbeta(double x, double a, double b, double ncp, int lt, int lg)	
-double R::qnbeta(double p, double a, double b, double ncp, int lt, int lg)	
-double R::rnbeta(double a, double b, double np)
-```
 
 ###binom
 
@@ -160,14 +145,45 @@ double rhyper(double r, double b, double n)
 
 ```
 ###lnorm
+```
+double dlnorm(double x, double ml, double sl, int lg)	 
+double plnorm(double x, double ml, double sl, int lt, int lg) 
+double qlnorm(double p, double ml, double sl, int lt, int lg) 
+double rlnorm(double ml, double sl)    
+```
 
 ###logis
+double dlogis(double x, double lc, double sl, int lg)		
+double plogis(double x, double lc, double sl, int lt, int lg)	
+double qlogis(double p, double lc, double sl, int lt, int lg)	
+double rlogis(double lc, double sl)			
 
 ###nbeta
+```cpp
+NumericVector Rcpp::dnbeta(double x, double a, double b, double ncp, , bool log = false);
+NumericVector Rcpp::pnbeta(double x, double a, double b, double ncp,  bool lower = true, bool log = false);
+NumericVector Rcpp::qnbeta(double p, double a, double b, double ncp, bool lower = true, bool log = false);
+//NumericVector Rcpp::rnbeta( int n, double a, double b, double np) //not defined
+```
+```cpp
+double R::dnbeta(double x, double a, double b, double ncp, int lg)		
+double R::pnbeta(double x, double a, double b, double ncp, int lt, int lg)	
+double R::qnbeta(double p, double a, double b, double ncp, int lt, int lg)	
+double R::rnbeta(double a, double b, double np)
+```
+
+
 
 ###nbinom_mu
-
+double dnbinom_mu(double x, double sz, double mu, int lg)		
+double pnbinom_mu(double x, double sz, double mu, int lt, int lg)	
+double qnbinom_mu(double x, double sz, double mu, int lt, int lg)	
+double rnbinom_mu(double sz, double mu)
 ###nbinom
+double dnbinom(double x, double sz, double pb, int lg)		
+double pnbinom(double x, double sz, double pb, int lt, int lg)	
+double qnbinom(double p, double sz, double pb, int lt, int lg)	
+double rnbinom(double sz, double pb)
 
 ###nchisq
 
@@ -190,7 +206,10 @@ double rnorm(double mu, double sigma)
 
 ###nt
 ###pois
-
+double dpois(double x, double lb, int lg)		
+double ppois(double x, double lb, int lt, int lg)	
+double qpois(double p, double lb, int lt, int lg)	
+double rpois(double mu)	
 
 ###t
 
@@ -202,7 +221,10 @@ double qunif(double p, double a, double b, int lt, int lg)
 double runif(double a, double b)
 ```
 ###weibull
-
+double dweibull(double x, double sh, double sl, int lg)		
+double pweibull(double x, double sh, double sl, int lt, int lg)	
+double qweibull(double p, double sh, double sl, int lt, int lg)	
+double rweibull(double sh, double sl)
 
 分布乱数
 
