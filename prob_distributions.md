@@ -100,6 +100,13 @@ double rcauchy(double lc, double sl)
 
 ###chisq
 
+```
+double dchisq(double x, double df, int lg)          
+double pchisq(double x, double df, int lt, int lg)  
+double qchisq(double p, double df, int lt, int lg)  
+double rchisq(double df)    
+```
+
 ###exp
 
 ###f
@@ -121,6 +128,13 @@ double rcauchy(double lc, double sl)
 ###nbinom
 
 ###nchisq
+
+```
+double dnchisq(double x, double df, double ncp, int lg)          
+double pnchisq(double x, double df, double ncp, int lt, int lg)  
+double qnchisq(double p, double df, double ncp, int lt, int lg)  
+double rnchisq(double df, double lb)   
+```
 
 ###nf
 
