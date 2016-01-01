@@ -210,7 +210,7 @@ double rhyper(double r, double b, double n)
 ```
 ###lnorm
 
-dlnorm(x, meanlog = 0, sdlog = 1, log = FALSE)
+
 
 ```
 NumericVector dlnorm(NumericVector x, double ml = 0.0, double sl = 1.0, bool log = false)
@@ -228,9 +228,9 @@ double rlnorm(double ml, double sl)
 
 ###logis
 ```
-NumericVector dlogis(NumericVector x, double lc, double sl, bool log = false)
-NumericVector plogis(NumericVector x, double lc, double sl, bool lower = true, bool log = false)
-NumericVector qlogis(NumericVector p, double lc, double sl, bool lower = true, bool log = false)
+NumericVector dlogis(NumericVector x, double lc = 0.0, double sl = 1.0, bool log = false)
+NumericVector plogis(NumericVector x, double lc = 0.0, double sl = 1.0, bool lower = true, bool log = false)
+NumericVector qlogis(NumericVector p, double lc = 0.0, double sl = 1.0, bool lower = true, bool log = false)
 NumericVector rlogis( int n, double location, double scale )
 NumericVector rlogis( int n, double location /*, double scale =1.0 */ )
 NumericVector rlogis( int n /*, double location [=0.0], double scale =1.0 */ )
