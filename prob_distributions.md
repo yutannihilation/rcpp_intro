@@ -16,9 +16,9 @@ NumericVector Rcpp::pXXX( NumericVector q, double p0, bool lower = true, bool lo
 NumericVector Rcpp::qXXX( NumericVector p, double p0, bool lower = true, bool log = false);
 NumericVector Rcpp::rXXX(           int n, double p0);
 ```
-上では関数の返値を省略しているが、（正確には異なるが） NumericVector だと思っていても問題はない。
+上は、d/p/q/r関数の基本構造を概念的に表したものなので、Rcppのソースコード中の記述とは正確には異なっている。通常のユーザーにとってはこのような関数が定義されていると考えても差し支えない。
 
-上では、d/p/q/r関数の基本構造を概念的に表したものなので、Rcppのソースコードには
+そもそも `Rcpp::d/p/q/r` 関数はマクロで記述されているので、ソースコード中に明示的に `Rcpp::dbeta()`の定義は書いていない。
 
 ###R版との違い
 
