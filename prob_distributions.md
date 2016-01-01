@@ -228,15 +228,20 @@ double rlnorm(double ml, double sl)
 ```
 
 ###logis
-
+```
+NumericVector dlogis(NumericVector x, double lc, double sl, bool log = false)
+NumericVector plogis(NumericVector x, double lc, double sl, bool lower = true, bool log = false)
+NumericVector qlogis(NumericVector p, double lc, double sl, bool lower = true, bool log = false)
 NumericVector rlogis( int n, double location, double scale )
 NumericVector rlogis( int n, double location /*, double scale =1.0 */ )
 NumericVector rlogis( int n /*, double location [=0.0], double scale =1.0 */ )
-
+```
+```
 double dlogis(double x, double lc, double sl, int lg)		
 double plogis(double x, double lc, double sl, int lt, int lg)	
 double qlogis(double p, double lc, double sl, int lt, int lg)	
 double rlogis(double lc, double sl)			
+```
 
 ###nbeta
 ```cpp
