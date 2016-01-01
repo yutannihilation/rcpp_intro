@@ -61,6 +61,7 @@ double R::rbeta(double a, double b)
 NumericVector Rcpp::dnbeta(double x, double a, double b, double ncp, , bool log = false);
 NumericVector Rcpp::pnbeta(double x, double a, double b, double ncp,  bool lower = true, bool log = false);
 NumericVector Rcpp::qnbeta(double p, double a, double b, double ncp, bool lower = true, bool log = false);
+//NumericVector Rcpp::rnbeta( int n, double a, double b, double np) //not defined
 ```
 
 
