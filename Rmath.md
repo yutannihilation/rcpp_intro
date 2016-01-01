@@ -86,7 +86,8 @@ double ftrunc(double x)
 ```
 
 下は [d/p/q/r 関数](dpqr_functions.md) のページにも記述した
-```
+
+```cpp
 double dnorm(double x, double mu, double sigma, int lg)              
 double pnorm(double x, double mu, double sigma, int lt, int lg)      
 double qnorm(double p, double mu, double sigma, int lt, int lg)      
