@@ -260,10 +260,19 @@ double rnbeta(double a, double b, double np)
 
 
 ###nbinom_mu
+```
+NumericVector dnbinom_mu(NumericVector x, double sz, double mu, bool log = false)
+NumericVector pnbinom_mu(NumericVector x, double sz, double mu, bool lower = true, bool log = false)
+NumericVector qnbinom_mu(NumericVector x, double sz, double mu, bool lower = true, bool log = false)
+NumericVector rnbinom_mu( int n, double siz, double mu )
+```
+
+```
 double dnbinom_mu(double x, double sz, double mu, int lg)		
 double pnbinom_mu(double x, double sz, double mu, int lt, int lg)	
 double qnbinom_mu(double x, double sz, double mu, int lt, int lg)	
 double rnbinom_mu(double sz, double mu)
+```
 
 ###nbinom
 
