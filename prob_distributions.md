@@ -418,13 +418,6 @@ double qweibull(double p, double sh, double sl, int lt, int lg)
 double rweibull(double sh, double sl)
 ```
 
-分布乱数
-
-```
-NumericVector rwilcox( int n, double mm, double nn )
-NumericVector rsignrank( int n, double nn )
-```
-
 
 
 
