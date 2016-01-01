@@ -11,10 +11,10 @@ Rcpp は R にある主要な全ての d/p/q/r 関数を提供する。
 ###Rcpp::d/p/q/r関数の基本構造
 
 ```
-NumericVector Rcpp::dXXX( NumericVector x, double p0, bool log = false);
-NumericVector Rcpp::pXXX( NumericVector q, double p0, bool lower = true, bool log = false);
-NumericVector Rcpp::qXXX( NumericVector p, double p0, bool lower = true, bool log = false);
-NumericVector Rcpp::rXXX(           int n, double p0);
+NumericVector Rcpp::dXXX( NumericVector x, double p0, bool log = false)
+NumericVector Rcpp::pXXX( NumericVector q, double p0, bool lower = true, bool log = false)
+NumericVector Rcpp::qXXX( NumericVector p, double p0, bool lower = true, bool log = false)
+NumericVector Rcpp::rXXX(           int n, double p0)
 ```
 上は、d/p/q/r関数の基本構造を概念的に表したものなので、Rcppのソースコード中の記述とは正確には異なっている。通常のユーザーにとってはこのような関数が定義されていると考えても差し支えはない。
 
@@ -47,14 +47,15 @@ beta, binom, cauchy, chisq, exp, f, gamma, geom, hyper, lnorm, logis, nbeta, nbi
 
 
 ###beta
+Rcpp::
 
 ```cpp
-NumericVector Rcpp::dbeta(NumericVector x, double a, double b, bool log = false);
-NumericVector Rcpp::pbeta(NumericVector q, double p, double q, bool lower = true, bool log = false);
-NumericVector Rcpp::qbeta(NumericVector p, double p, double q, bool lower = true, bool log = false);
+NumericVector Rcpp::dbeta(NumericVector x, double a, double b, bool log = false)
+NumericVector Rcpp::pbeta(NumericVector q, double p, double q, bool lower = true, bool log = false)
+NumericVector Rcpp::qbeta(NumericVector p, double p, double q, bool lower = true, bool log = false)
 NumericVector Rcpp::rbeta( int n, double a, double b);
 ```
-
+R::
 ```cpp
 double R::dbeta(double x, double a, double b, int lg)         
 double R::pbeta(double x, double p, double q, int lt, int lg) 
@@ -66,13 +67,14 @@ double R::rbeta(double a, double b)
 
 ###binom
 
+Rcpp::
 ```cpp
-NumericVector Rcpp::dbinom(NumericVector x, double n, double p, bool log = false);
-NumericVector Rcpp::pbinom(NumericVector x, double n, double p, bool lower = true, bool log = false);
-NumericVector Rcpp::qbinom(NumericVector p, double n, double m, bool lower = true, bool log = false);
+NumericVector Rcpp::dbinom(NumericVector x, double n, double p, bool log = false)
+NumericVector Rcpp::pbinom(NumericVector x, double n, double p, bool lower = true, bool log = false)
+NumericVector Rcpp::qbinom(NumericVector p, double n, double m, bool lower = true, bool log = false)
 NumericVector Rcpp::rbinom( int n, double nin, double pp )
 ```
-
+R::
 ```cpp
 double R::dbinom(double x, double n, double p, int lg)	  	
 double R::pbinom(double x, double n, double p, int lt, int lg)  
@@ -84,14 +86,14 @@ double R::rbinom(double n, double p)
 
 ###cauchy
 
+Rcpp::
 ```
-
 NumericVector dcauchy(NumericVector x, double lc = 0.0, double sl = 1.0, bool log = false)
 NumericVector pcauchy(NumericVector x, double lc = 0.0, double sl = 1.0, bool lower = true, bool log = false)
 NumericVector qcauchy(NumericVector p, double lc = 0.0, double sl = 1.0, bool lower = true, bool log = false)
 NumericVector rcauchy( int n, double location = 0.0, double scale = 1.0)
 ```
-
+R::
 ```
 double R::dcauchy(double x, double lc, double sl, int lg)		
 double R::pcauchy(double x, double lc, double sl, int lt, int lg)	
@@ -103,7 +105,7 @@ double R::rcauchy(double lc, double sl)
 
 
 ###chisq
-
+Rcpp::
 ```
 NumericVector dchisq(NumericVector x, double df, bool log = false)
 NumericVector pchisq(NumericVector x, double df, bool lower = true, bool log = false)
@@ -111,7 +113,7 @@ NumericVector qchisq(NumericVector p, double df, bool lower = true, bool log = f
 NumericVector rchisq(int n, double df)    
 ```
 
-
+R::
 ```
 double dchisq(double x, double df, int lg)          
 double pchisq(double x, double df, int lt, int lg)  
@@ -162,14 +164,14 @@ double rf(double df1, double df2)
 
 ###gamma
 
-
+Rcpp::
 ```
 NumericVector dgamma(NumericVector x, double shp, double scl = 1.0, bool log = false)
 NumericVector pgamma(NumericVector x, double alp, double scl = 1.0, bool lower = true, bool log = false)
 NumericVector qgamma(NumericVector p, double alp, double scl = 1.0, bool lower = true, bool log = false)
 NumericVector rgamma( int n, double a, double scale = 1.0)
 ```
-
+R::
 ```
 double dgamma(double x, double shp, double scl, int lg)	   
 double pgamma(double x, double alp, double scl, int lt, int lg) 
@@ -178,14 +180,14 @@ double rgamma(double a, double scl)
 ```
 
 ###geom
-
+Rcpp::
 ```
 NumericVector dgeom(NumericVector x, double p, bool log = false)
 NumericVector pgeom(NumericVector x, double p, bool lower = true, bool log = false)
 NumericVector qgeom(NumericVector p, double pb, bool lower = true, bool log = false)
 NumericVector rgeom( int n, double p )
 ```
-
+R::
 ```
 double dgeom(double x, double p, int lg)		
 double pgeom(double x, double p, int lt, int lg)	
@@ -194,13 +196,14 @@ double rgeom(double p)
 ```
 
 ###hyper
+Rcpp::
 ```
 NumericVector dhyper(NumericVector x, double r, double b, double n, bool log = false)
 NumericVector phyper(NumericVector x, double r, double b, double n, bool lower = true, bool log = false)
 NumericVector qhyper(NumericVector p, double r, double b, double n, bool lower = true, bool log = false)
 NumericVector rhyper( int n, double nn1, double nn2, double kk )
 ```
-
+R::
 ```
 double dhyper(double x, double r, double b, double n, int lg)		
 double phyper(double x, double r, double b, double n, int lt, int lg)	
@@ -211,14 +214,14 @@ double rhyper(double r, double b, double n)
 ###lnorm
 
 
-
+Rcpp::
 ```
 NumericVector dlnorm(NumericVector x, double ml = 0.0, double sl = 1.0, bool log = false)
 NumericVector plnorm(NumericVector x, double ml = 0.0, double sl = 1.0, bool lower = true, bool log = false)
 NumericVector qlnorm(NumericVector p, double ml = 0.0, double sl = 1.0, bool lower = true, bool log = false)
 NumericVector rlnorm( int n, double meanlog = 0.0, double sdlog = 1.0)
 ```
-
+R::
 ```
 double dlnorm(double x, double ml, double sl, int lg)	 
 double plnorm(double x, double ml, double sl, int lt, int lg) 
@@ -227,6 +230,7 @@ double rlnorm(double ml, double sl)
 ```
 
 ###logis
+Rcpp::
 ```
 NumericVector dlogis(NumericVector x, double lc = 0.0, double sl = 1.0, bool log = false)
 NumericVector plogis(NumericVector x, double lc = 0.0, double sl = 1.0, bool lower = true, bool log = false)
@@ -235,6 +239,7 @@ NumericVector rlogis( int n, double location, double scale )
 NumericVector rlogis( int n, double location /*, double scale =1.0 */ )
 NumericVector rlogis( int n /*, double location [=0.0], double scale =1.0 */ )
 ```
+R::
 ```
 double dlogis(double x, double lc, double sl, int lg)		
 double plogis(double x, double lc, double sl, int lt, int lg)	
@@ -243,12 +248,14 @@ double rlogis(double lc, double sl)
 ```
 
 ###nbeta
+Rcpp::
 ```cpp
 NumericVector dnbeta(double x, double a, double b, double ncp, , bool log = false);
 NumericVector pnbeta(double x, double a, double b, double ncp,  bool lower = true, bool log = false);
 NumericVector qnbeta(double p, double a, double b, double ncp, bool lower = true, bool log = false);
 //NumericVector rnbeta( int n, double a, double b, double np) //not defined
 ```
+R::
 ```cpp
 double dnbeta(double x, double a, double b, double ncp, int lg)		
 double pnbeta(double x, double a, double b, double ncp, int lt, int lg)	
@@ -259,13 +266,14 @@ double rnbeta(double a, double b, double np)
 
 
 ###nbinom_mu
+Rcpp::
 ```
 NumericVector dnbinom_mu(NumericVector x, double sz, double mu, bool log = false)
 NumericVector pnbinom_mu(NumericVector x, double sz, double mu, bool lower = true, bool log = false)
 NumericVector qnbinom_mu(NumericVector x, double sz, double mu, bool lower = true, bool log = false)
 NumericVector rnbinom_mu( int n, double siz, double mu )
 ```
-
+R::
 ```
 double dnbinom_mu(double x, double sz, double mu, int lg)		
 double pnbinom_mu(double x, double sz, double mu, int lt, int lg)	
@@ -274,6 +282,7 @@ double rnbinom_mu(double sz, double mu)
 ```
 
 ###nbinom
+Rcpp::
 ```
 NumericVector dnbinom(NumericVector x, double sz, double pb, bool log = false)
 NumericVector pnbinom(NumericVector x, double sz, double pb, bool lower = true, bool log = false)
@@ -281,6 +290,7 @@ NumericVector qnbinom(NumericVector p, double sz, double pb, bool lower = true, 
 NumericVector rnbinom( int n, double siz, double prob )
 NumericVector rnbinom_mu( int n, double siz, double mu )
 ```
+R::
 ```
 double dnbinom(double x, double sz, double pb, int lg)		
 double pnbinom(double x, double sz, double pb, int lt, int lg)	
@@ -289,6 +299,7 @@ double rnbinom(double sz, double pb)
 ```
 
 ###nchisq
+Rcpp::
 ```
 NumericVector dnchisq(NumericVector x, double df, double ncp, bool log = false)
 NumericVector pnchisq(NumericVector x, double df, double ncp, bool lower = true, bool log = false)
@@ -296,7 +307,7 @@ NumericVector qnchisq(NumericVector p, double df, double ncp, bool lower = true,
 NumericVector rnchisq( int n, double df, double lambda )
 NumericVector rnchisq( int n, double df /*, double lambda = 0.0 */ )
 ```
-
+R::
 ```
 double dnchisq(double x, double df, double ncp, int lg)         
 double pnchisq(double x, double df, double ncp, int lt, int lg) 
@@ -305,11 +316,13 @@ double rnchisq(double df, double lb)
 ```
 
 ###nf
+Rcpp::
 ```
 NumericVector dnf(NumericVector x, double df1, double df2, double ncp, bool log = false)
 NumericVector pnf(NumericVector x, double df1, double df2, double ncp, bool lower = true, bool log = false)
 NumericVector qnf(NumericVector p, double df1, double df2, double ncp, bool lower = true, bool log = false)
 ```
+R::
 ```
 double dnf(double x, double df1, double df2, double ncp, int lg)		
 double pnf(double x, double df1, double df2, double ncp, int lt, int lg)	
@@ -318,13 +331,14 @@ double qnf(double p, double df1, double df2, double ncp, int lt, int lg)
 
 
 ###norm
+Rcpp::
 ```
 NumericVector dnorm(NumericVector x, double mu = 0.0, double sigma = 1.0, bool log = false)
 NumericVector pnorm(NumericVector x, double mu = 0.0, double sigma = 1.0, bool lower = true, bool log = false)
 NumericVector qnorm(NumericVector p, double mu = 0.0, double sigma = 1.0, bool lower = true, bool log = false)
 NumericVector rnorm( int n, double mean 0.0, double sd = 1.0)
 ```
-
+R::
 ```
 double dnorm(double x, double mu, double sigma, int lg)
 double pnorm(double x, double mu, double sigma, int lt, int lg)
@@ -336,13 +350,14 @@ double rnorm(double mu, double sigma)
 
 
 ###nt
+Rcpp::
 
 ```
 NumericVector dnt(NumericVector x, double df, double ncp, int lg)		
 NumericVector pnt(NumericVector x, double df, double ncp, int lt, int lg)	
 NumericVector qnt(NumericVector p, double df, double ncp, int lt, int lg)
 ```
-
+R::
 ```
 double dnt(double x, double df, double ncp, int lg)		
 double pnt(double x, double df, double ncp, int lt, int lg)	
@@ -350,13 +365,14 @@ double qnt(double p, double df, double ncp, int lt, int lg)
 ```
 
 ###pois
+Rcpp::
 ```
 NumericVector dpois(NumericVector x, double lb, bool log = false)
 NumericVector ppois(NumericVector x, double lb, bool lower = true, bool log = false)
 NumericVector qpois(NumericVector p, double lb, bool lower = true, bool log = false)
 NumericVector rpois( int n, double mu )
 ```
-
+R::
 ```
 double dpois(double x, double lb, int lg)		
 double ppois(double x, double lb, int lt, int lg)	
@@ -365,13 +381,14 @@ double rpois(double mu)
 ```
 
 ###t
+Rcpp::
 ```
 NumericVector dt(NumericVector x, double n, bool log = false)
 NumericVector pt(NumericVector x, double n, bool lower = true, bool log = false)
 NumericVector qt(NumericVector p, double n, bool lower = true, bool log = false)
 NumericVector rt( int n, double df )
 ```
-
+R::
 ```
 double dt(double x, double n, int lg)			
 double pt(double x, double n, int lt, int lg)		
@@ -380,31 +397,31 @@ double rt(double n)
 ```
 
 ###unif
-
+Rcpp::
 ```
 NumericVector dunif(NumericVector x, double a = 0.0, double b = 1.0, bool log = false)
 NumericVector punif(NumericVector x, double a = 0.0, double b = 1.0, bool lower = true, bool log = false)
 NumericVector qunif(NumericVector p, double a = 0.0, double b = 1.0, bool lower = true, bool log = false)
 NumericVector runif( int n, double min = 0.0, double max = 1.0)
 ```
-
+R::
 ```
 double dunif(double x, double a, double b, int lg)
 double punif(double x, double a, double b, int lt, int lg)
 double qunif(double p, double a, double b, int lt, int lg)
 double runif(double a, double b)
-
-
 ```
+
+
 ###weibull
-
+Rcpp::
 ```
-NumericVector dweibull(NumericVector x, double sh, double sl = 1.0, int lg)		
+NumericVector dweibull(NumericVector x, double sh, double sl = 1.0, int lg)	
 NumericVector pweibull(NumericVector x, double sh, double sl = 1.0, int lt, int lg)	
 NumericVector qweibull(NumericVector p, double sh, double sl = 1.0, int lt, int lg)	
 NumericVector rweibull( int n, double shape, double scale  = 1.0)
 ```
-
+R::
 ```
 double dweibull(double x, double sh, double sl, int lg)		
 double pweibull(double x, double sh, double sl, int lt, int lg)	
