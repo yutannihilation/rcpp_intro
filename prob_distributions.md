@@ -43,6 +43,8 @@ double R::rXXX(double p0)
 
 以下ではRcppが提供するd/p/q/r関数の形式を模式的に示す。
 
+beta, binom, cauchy, chisq, exp, f, gamma, geom, hyper, lnorm, logis, nbeta, nbinom_mu, nbinom, nchisq, nf, norm, nt, pois, t, unif, weibull
+
 
 ###beta
 
@@ -114,14 +116,49 @@ double rchisq(double df)
 
 ###exp
 
+```
+double dexp(double x, double sl, int lg)		
+double pexp(double x, double sl, int lt, int lg)	
+double qexp(double p, double sl, int lt, int lg)	
+double rexp(double sl)	
+
+```
+
 ###f
+
+```
+double df(double x, double df1, double df2, int lg)		
+double pf(double x, double df1, double df2, int lt, int lg)	
+double qf(double p, double df1, double df2, int lt, int lg)	
+double rf(double df1, double df2)
+```
 
 ###gamma
 
+```
+double dgamma(double x, double shp, double scl, int lg)	   
+double pgamma(double x, double alp, double scl, int lt, int lg) 
+double qgamma(double p, double alp, double scl, int lt, int lg) 
+double rgamma(double a, double scl)  
+```
+
 ###geom
 
-###hyper
+```
+double dgeom(double x, double p, int lg)		
+double pgeom(double x, double p, int lt, int lg)	
+double qgeom(double p, double pb, int lt, int lg)	
+double rgeom(double p)
+```
 
+###hyper
+```
+double dhyper(double x, double r, double b, double n, int lg)		
+double phyper(double x, double r, double b, double n, int lt, int lg)	
+double qhyper(double p, double r, double b, double n, int lt, int lg)	
+double rhyper(double r, double b, double n)					
+
+```
 ###lnorm
 
 ###logis
@@ -135,15 +172,21 @@ double rchisq(double df)
 ###nchisq
 
 ```
-double dnchisq(double x, double df, double ncp, int lg)          
-double pnchisq(double x, double df, double ncp, int lt, int lg)  
-double qnchisq(double p, double df, double ncp, int lt, int lg)  
+double dnchisq(double x, double df, double ncp, int lg)         
+double pnchisq(double x, double df, double ncp, int lt, int lg) 
+double qnchisq(double p, double df, double ncp, int lt, int lg) 
 double rnchisq(double df, double lb)   
 ```
 
 ###nf
 
 ###norm
+```
+double dnorm(double x, double mu, double sigma, int lg)
+double pnorm(double x, double mu, double sigma, int lt, int lg)
+double qnorm(double p, double mu, double sigma, int lt, int lg)
+double rnorm(double mu, double sigma)
+```
 
 ###nt
 ###pois
