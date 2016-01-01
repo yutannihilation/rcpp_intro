@@ -39,7 +39,7 @@ double R::dXXX(double x, double p0, double p1, int lg);
 以下ではRcppが提供するd/p/q/r関数の形式を模式的に示す。
 
 
-**beta**
+###beta
 
 ```cpp
 NumericVector Rcpp::dbeta(NumericVector x, double a, double b, bool log = false);
