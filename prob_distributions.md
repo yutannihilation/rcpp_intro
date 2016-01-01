@@ -327,6 +327,7 @@ NumericVector rnorm( int n, double mean, double sd)
 NumericVector rnorm( int n, double mean /*, double sd [=1.0] */ )
 NumericVector rnorm( int n /*, double mean [=0.0], double sd [=1.0] */ )
 ```
+
 ```
 double dnorm(double x, double mu, double sigma, int lg)
 double pnorm(double x, double mu, double sigma, int lt, int lg)
@@ -338,17 +339,33 @@ double rnorm(double mu, double sigma)
 
 
 ###nt
+
+```
+NumericVector dnt(NumericVector x, double df, double ncp, int lg)		
+NumericVector pnt(NumericVector x, double df, double ncp, int lt, int lg)	
+NumericVector qnt(NumericVector p, double df, double ncp, int lt, int lg)
+```
+
+```
 double dnt(double x, double df, double ncp, int lg)		
 double pnt(double x, double df, double ncp, int lt, int lg)	
 double qnt(double p, double df, double ncp, int lt, int lg)	
+```
 
 ###pois
+```
+NumericVector dpois(NumericVector x, double lb, bool log = false)
+NumericVector ppois(NumericVector x, double lb, bool lower = true, bool log = false)
+NumericVector qpois(NumericVector p, double lb, bool lower = true, bool log = false)
 NumericVector rpois( int n, double mu )
+```
 
+```
 double dpois(double x, double lb, int lg)		
 double ppois(double x, double lb, int lt, int lg)	
 double qpois(double p, double lb, int lt, int lg)	
 double rpois(double mu)	
+```
 
 ###t
 
