@@ -57,7 +57,9 @@ NumericVector Rcpp::pbeta(NumericVector q, double p, double q, bool lower = true
 NumericVector Rcpp::qbeta(NumericVector p, double p, double q, bool lower = true, bool log = false)
 NumericVector Rcpp::rbeta( int n, double a, double b);
 ```
+
 R::
+
 ```cpp
 double R::dbeta(double x, double a, double b, int lg)         
 double R::pbeta(double x, double p, double q, int lt, int lg) 
