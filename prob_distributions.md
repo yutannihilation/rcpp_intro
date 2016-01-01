@@ -101,18 +101,31 @@ double rcauchy(double lc, double sl)
 ###chisq
 
 ###exp
+
 ###f
+
 ###gamma
+
 ###geom
+
 ###hyper
+
 ###lnorm
+
 ###logis
+
 ###nbeta
+
 ###nbinom_mu
+
 ###nbinom
+
 ###nchisq
+
 ###nf
+
 ###norm
+
 ###nt
 ###pois
 
