@@ -124,6 +124,16 @@ double rchisq(double df)
 
 ###exp
 
+Rcpp::
+
+```
+NumericVector dexp(double x, double sl, bool log = false)
+NumericVector pexp(double x, double sl, bool lower = true, bool log = false)
+NumericVector qexp(double p, double sl, bool lower = true, bool log = false)
+
+```
+
+R::
 ```
 double dexp(double x, double sl, int lg)		
 double pexp(double x, double sl, int lt, int lg)	
