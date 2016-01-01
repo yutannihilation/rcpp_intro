@@ -12,12 +12,23 @@ R::
 ```c
 double norm_rand(void) 	
 double unif_rand(void)	
-double exp_rand(void)	
-
-                             
+double exp_rand(void)
 
 void pnorm_both(double x, double *cum, double *ccum, int lt, int lg)
+void rmultinom(int n, double* prob, int k, int* rn)	
 
+double dsignrank(double x, double n, int lg)			
+double psignrank(double x, double n, int lt, int lg)		
+double qsignrank(double x, double n, int lt, int lg)		
+double rsignrank(double n)
+
+double dwilcox(double x, double m, double n, int lg)		
+double pwilcox(double q, double m, double n, int lt, int lg)	
+double qwilcox(double x, double m, double n, int lt, int lg)	
+double rwilcox(double m, double n)
+
+double ptukey(double q, double rr, double cc, double df, int lt, int lg)	
+double qtukey(double p, double rr, double cc, double df, int lt, int lg)
 
 
 double log1pmx(double x)                  
@@ -27,15 +38,6 @@ double lgamma1p(double a)
 double logspace_add(double lx, double ly) 
 double logspace_sub(double lx, double ly) 
 
-void rmultinom(int n, double* prob, int k, int* rn)		
-
-double ptukey(double q, double rr, double cc, double df, int lt, int lg)	
-double qtukey(double p, double rr, double cc, double df, int lt, int lg)	
-
-double dsignrank(double x, double n, int lg)			
-double psignrank(double x, double n, int lt, int lg)		
-double qsignrank(double x, double n, int lt, int lg)		
-double rsignrank(double n)				
 
 double gammafn(double x)			
 double lgammafn(double x)			
@@ -170,8 +172,6 @@ double ppois(double x, double lb, int lt, int lg)
 double qpois(double p, double lb, int lt, int lg)	
 double rpois(double mu)				
 
-				
-
 double dlogis(double x, double lc, double sl, int lg)		
 double plogis(double x, double lc, double sl, int lt, int lg)	
 double qlogis(double p, double lc, double sl, int lt, int lg)	
@@ -194,9 +194,4 @@ double dweibull(double x, double sh, double sl, int lg)
 double pweibull(double x, double sh, double sl, int lt, int lg)	
 double qweibull(double p, double sh, double sl, int lt, int lg)	
 double rweibull(double sh, double sl)
-
-double dwilcox(double x, double m, double n, int lg)		
-double pwilcox(double q, double m, double n, int lt, int lg)	
-double qwilcox(double x, double m, double n, int lt, int lg)	
-double rwilcox(double m, double n)
 ```
