@@ -384,9 +384,14 @@ double rt(double n)
 
 ###unif
 
+```
+NumericVector dunif(NumericVector x, double a, double b, bool log = false)
+NumericVector punif(NumericVector x, double a, double b, bool lower = true, bool log = false)
+NumericVector qunif(NumericVector p, double a, double b, bool lower = true, bool log = false)
 NumericVector runif( int n, double min, double max )
 NumericVector runif( int n, double min /*, double max = 1.0 */ )
 NumericVector runif( int n /*, double min = 0.0, double max = 1.0 */ )
+```
 
 ```
 double dunif(double x, double a, double b, int lg)
