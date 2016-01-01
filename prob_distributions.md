@@ -162,7 +162,6 @@ double rf(double df1, double df2)
 
 ###gamma
 
-gamma(x, shape, rate = 1, scale = 1/rate, log = FALSE)
 
 ```
 NumericVector dgamma(NumericVector x, double shp, double scl = 1.0, bool log = false)
