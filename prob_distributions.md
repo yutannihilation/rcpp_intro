@@ -47,7 +47,10 @@ beta, binom, cauchy, chisq, exp, f, gamma, geom, hyper, lnorm, logis, nbeta, nbi
 
 
 ###beta
+
 Rcpp::
+
+
 ```cpp
 NumericVector Rcpp::dbeta(NumericVector x, double a, double b, bool log = false)
 NumericVector Rcpp::pbeta(NumericVector q, double p, double q, bool lower = true, bool log = false)
