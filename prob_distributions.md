@@ -288,9 +288,16 @@ double pnbinom(double x, double sz, double pb, int lt, int lg)
 double qnbinom(double p, double sz, double pb, int lt, int lg)	
 double rnbinom(double sz, double pb)
 ```
+
 ###nchisq
+```
+NumericVector dnchisq(NumericVector x, double df, double ncp, bool log = false)
+NumericVector pnchisq(NumericVector x, double df, double ncp, bool lower = true, bool log = false)
+NumericVector qnchisq(NumericVector p, double df, double ncp, bool lower = true, bool log = false)
 NumericVector rnchisq( int n, double df, double lambda )
 NumericVector rnchisq( int n, double df /*, double lambda = 0.0 */ )
+```
+
 ```
 double dnchisq(double x, double df, double ncp, int lg)         
 double pnchisq(double x, double df, double ncp, int lt, int lg) 
@@ -299,9 +306,13 @@ double rnchisq(double df, double lb)
 ```
 
 ###nf
+
+
 double dnf(double x, double df1, double df2, double ncp, int lg)		
 double pnf(double x, double df1, double df2, double ncp, int lt, int lg)	
 double qnf(double p, double df1, double df2, double ncp, int lt, int lg)
+
+
 
 ###norm
 
