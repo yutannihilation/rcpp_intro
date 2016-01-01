@@ -6,3 +6,5 @@ Rcout << "message" << endl;
 Rcerr << "hoge" << endl;
 
 print();
+
+Rprintf(format, value)
