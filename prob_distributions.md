@@ -57,15 +57,14 @@ double R::rbeta(double a, double b)
 
 ###Noncentral beta
 
-```
+```cpp
 NumericVector Rcpp::dnbeta(double x, double a, double b, double ncp, , bool log = false);
 NumericVector Rcpp::pnbeta(double x, double a, double b, double ncp,  bool lower = true, bool log = false);
 NumericVector Rcpp::qnbeta(double p, double a, double b, double ncp, bool lower = true, bool log = false);
-NumericVector Rcpp::rnbeta( int n, double a, double b, double np)
 ```
 
 
-```
+```cpp
 double R::dnbeta(double x, double a, double b, double ncp, int lg)		
 double R::pnbeta(double x, double a, double b, double ncp, int lt, int lg)	
 double R::qnbeta(double p, double a, double b, double ncp, int lt, int lg)	
@@ -74,12 +73,6 @@ double R::rnbeta(double a, double b, double np)
 
 
 
-```
-dbeta(x, shape1, shape2, ncp = 0, log = FALSE)
-pbeta(q, shape1, shape2, ncp = 0, lower.tail = TRUE, log.p = FALSE)
-qbeta(p, shape1, shape2, ncp = 0, lower.tail = TRUE, log.p = FALSE)
-rbeta(n, shape1, shape2, ncp = 0)
-```
 
 分布乱数
 
