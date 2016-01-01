@@ -52,19 +52,19 @@ Rcpp::
 
 
 ```cpp
-NumericVector Rcpp::dbeta(NumericVector x, double a, double b, bool log = false)
-NumericVector Rcpp::pbeta(NumericVector q, double p, double q, bool lower = true, bool log = false)
-NumericVector Rcpp::qbeta(NumericVector p, double p, double q, bool lower = true, bool log = false)
-NumericVector Rcpp::rbeta( int n, double a, double b);
+NumericVector dbeta(NumericVector x, double a, double b, bool log = false)
+NumericVector pbeta(NumericVector q, double p, double q, bool lower = true, bool log = false)
+NumericVector qbeta(NumericVector p, double p, double q, bool lower = true, bool log = false)
+NumericVector rbeta( int n, double a, double b);
 ```
 
 R::
 
 ```cpp
-double R::dbeta(double x, double a, double b, int lg)         
-double R::pbeta(double x, double p, double q, int lt, int lg) 
-double R::qbeta(double a, double p, double q, int lt, int lg) 
-double R::rbeta(double a, double b) 
+double dbeta(double x, double a, double b, int lg)         
+double pbeta(double x, double p, double q, int lt, int lg) 
+double qbeta(double a, double p, double q, int lt, int lg) 
+double rbeta(double a, double b) 
 ```
 
 
@@ -73,17 +73,17 @@ double R::rbeta(double a, double b)
 
 Rcpp::
 ```cpp
-NumericVector Rcpp::dbinom(NumericVector x, double n, double p, bool log = false)
-NumericVector Rcpp::pbinom(NumericVector x, double n, double p, bool lower = true, bool log = false)
-NumericVector Rcpp::qbinom(NumericVector p, double n, double m, bool lower = true, bool log = false)
-NumericVector Rcpp::rbinom( int n, double nin, double pp )
+NumericVector dbinom(NumericVector x, double n, double p, bool log = false)
+NumericVector pbinom(NumericVector x, double n, double p, bool lower = true, bool log = false)
+NumericVector qbinom(NumericVector p, double n, double m, bool lower = true, bool log = false)
+NumericVector rbinom( int n, double nin, double pp )
 ```
 R::
 ```cpp
-double R::dbinom(double x, double n, double p, int lg)	  	
-double R::pbinom(double x, double n, double p, int lt, int lg)  
-double R::qbinom(double p, double n, double m, int lt, int lg)  
-double R::rbinom(double n, double p)
+double dbinom(double x, double n, double p, int lg)	  	
+double pbinom(double x, double n, double p, int lt, int lg)  
+double qbinom(double p, double n, double m, int lt, int lg)  
+double rbinom(double n, double p)
 ```
 
 
