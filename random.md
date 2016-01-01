@@ -1,5 +1,10 @@
 # 乱数
 
+```
+NumericVector rwilcox( int n, double mm, double nn )
+NumericVector rsignrank( int n, double nn )
+```
+
 ```cpp
 NumericVector rnorm( int n, double mean, double sd)
 NumericVector rnorm( int n, double mean /*, double sd [=1.0] */ )
@@ -28,14 +33,13 @@ NumericVector rnbinom_mu( int n, double siz, double mu )
 NumericVector rnchisq( int n, double df, double lambda )
 NumericVector rnchisq( int n, double df /*, double lambda = 0.0 */ )
 NumericVector rpois( int n, double mu )
-NumericVector rsignrank( int n, double nn )
 NumericVector rt( int n, double df )
 NumericVector runif( int n, double min, double max )
 NumericVector runif( int n, double min /*, double max = 1.0 */ )
 NumericVector runif( int n /*, double min = 0.0, double max = 1.0 */ )
 NumericVector rweibull( int n, double shape, double scale )
 NumericVector rweibull( int n, double shape /* scale = 1 */ )
-NumericVector rwilcox( int n, double mm, double nn )
+
 
 
 ```
