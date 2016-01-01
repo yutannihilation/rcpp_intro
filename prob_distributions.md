@@ -146,8 +146,14 @@ double rexp(double sl)
 
 
 ###f
-
+```
+NumericVector df(NumericVector x, double df1, double df2, bool log = false)
+NumericVector pf(NumericVector x, double df1, double df2, bool lower = true, bool log = false)
+NumericVector qf(NumericVector p, double df1, double df2, bool lower = true, bool log = false)
 NumericVector rf( int n, double n1, double n2 )
+```
+
+
 
 ```
 double df(double x, double df1, double df2, int lg)		
