@@ -25,7 +25,7 @@
 * Date
 * [Rcppオブジェクトに代入する際の注意点](assignment.md)
 * [参考資料](references.md)
-* [ユーティリティ](utility.md)
+* [コンソール出力](utility.md)
 * [Rmath.h](Rmath.md)
 * [乱数](random.md)
 
