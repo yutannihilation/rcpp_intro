@@ -89,6 +89,15 @@ double R::qbinom(double p, double n, double m, int lt, int lg)
 double R::rbinom(double n, double p)
 ```
 
+###cauchy
+
+```
+double dcauchy(double x, double lc, double sl, int lg)		
+double pcauchy(double x, double lc, double sl, int lt, int lg)	
+double qcauchy(double p, double lc, double sl, int lt, int lg)	
+double rcauchy(double lc, double sl)
+```
+
 
 分布乱数
 
