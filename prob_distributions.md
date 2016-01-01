@@ -130,7 +130,8 @@ Rcpp::
 NumericVector dexp(double x, double sl, bool log = false)
 NumericVector pexp(double x, double sl, bool lower = true, bool log = false)
 NumericVector qexp(double p, double sl, bool lower = true, bool log = false)
-
+NumericVector rexp( int n, double rate )
+NumericVector rexp( int n /* , rate = 1 */ )
 ```
 
 R::
@@ -141,8 +142,7 @@ double qexp(double p, double sl, int lt, int lg)
 double rexp(double sl)	
 
 ```
-NumericVector rexp( int n, double rate )
-NumericVector rexp( int n /* , rate = 1 */ )
+
 
 
 ###f
