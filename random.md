@@ -41,7 +41,4 @@ NumericVector runif( int n, double min /*, double max = 1.0 */ )
 NumericVector runif( int n /*, double min = 0.0, double max = 1.0 */ )
 NumericVector rweibull( int n, double shape, double scale )
 NumericVector rweibull( int n, double shape /* scale = 1 */ )
-
-
-
 ```
