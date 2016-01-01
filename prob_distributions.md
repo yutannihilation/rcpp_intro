@@ -415,14 +415,14 @@ double runif(double a, double b)
 
 ###weibull
 Rcpp::
-```
+```cpp
 NumericVector dweibull(NumericVector x, double sh, double sl = 1.0, int lg)	
 NumericVector pweibull(NumericVector x, double sh, double sl = 1.0, int lt, int lg)	
 NumericVector qweibull(NumericVector p, double sh, double sl = 1.0, int lt, int lg)	
 NumericVector rweibull( int n, double shape, double scale  = 1.0)
 ```
 R::
-```
+```cpp
 double dweibull(double x, double sh, double sl, int lg)		
 double pweibull(double x, double sh, double sl, int lt, int lg)	
 double qweibull(double p, double sh, double sl, int lt, int lg)	
