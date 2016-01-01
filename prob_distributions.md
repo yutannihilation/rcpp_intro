@@ -67,12 +67,11 @@ double R::rbeta(double a, double b)
 
 ###binom
 
-
 ```cpp
 NumericVector Rcpp::dbinom(NumericVector x, double n, double p, bool log = false);
 NumericVector Rcpp::pbinom(NumericVector x, double n, double p, bool lower = true, bool log = false);
 NumericVector Rcpp::qbinom(NumericVector p, double n, double m, bool lower = true, bool log = false);
-NumericVector rbinom( int n, double nin, double pp )
+NumericVector Rcpp::rbinom( int n, double nin, double pp )
 ```
 
 ```cpp
@@ -87,15 +86,25 @@ double R::rbinom(double n, double p)
 ###cauchy
 
 ```
-double dcauchy(double x, double lc, double sl, int lg)		
-double pcauchy(double x, double lc, double sl, int lt, int lg)	
-double qcauchy(double p, double lc, double sl, int lt, int lg)	
-double rcauchy(double lc, double sl)
-```
-
+NumericVector Rcpp::dcauchy(NumericVector x, double lc, double sl, bool log = false)
+NumericVector Rcpp::pcauchy(NumericVector x, double lc, double sl, bool log = false)
+NumericVector Rcpp::qcauchy(NumericVector p, double lc, double sl, bool log = false)
 NumericVector rcauchy( int n, double location, double scale )
 NumericVector rcauchy( int n, double location /* , double scale [=1.0] */ )
 NumericVector rcauchy( int n /*, double location [=0.0] , double scale [=1.0] */ )
+```
+
+```
+double R::dcauchy(double x, double lc, double sl, int lg)		
+double R::pcauchy(double x, double lc, double sl, int lt, int lg)	
+double R::qcauchy(double p, double lc, double sl, int lt, int lg)	
+double R::rcauchy(double lc, double sl)
+```
+
+
+
+
+
 
 
 ###chisq
@@ -296,14 +305,8 @@ double rweibull(double sh, double sl)
 分布乱数
 
 ```
-
-
 NumericVector rwilcox( int n, double mm, double nn )
 NumericVector rsignrank( int n, double nn )
-
-
-
-
 ```
 
 
