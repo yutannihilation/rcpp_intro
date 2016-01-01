@@ -164,8 +164,13 @@ double rf(double df1, double df2)
 
 ###gamma
 
+```
+NumericVector dgamma(NumericVector x, double shp, double scl, bool log = false)
+NumericVector pgamma(NumericVector x, double alp, double scl, bool log = false)
+NumericVector qgamma(NumericVector p, double alp, double scl, bool log = false)
 NumericVector rgamma( int n, double a, double scale )
 NumericVector rgamma( int n, double a /* scale = 1.0 */ )
+```
 
 ```
 double dgamma(double x, double shp, double scl, int lg)	   
