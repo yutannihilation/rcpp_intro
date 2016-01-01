@@ -30,8 +30,13 @@ NumericVector Rcpp::rXXX(           int n, double p0);
 
 一般的に `Rcpp::` 名前空間で定義されている d/p/q/r の第１引数はベクトル化されている。同じ名前の関数が `R::`名前空間の中で定義されているが、こちらはベクトル化されていないので、注意すること。
 
+`R::` 名前空間で定義されている d/p/q/r 関数の基本構造
+
 ```
-double R::dXXX(double x, double p0, double p1, int lg);
+double R::dXXX(double x, double p0, int lg)			
+double R::pXXX(double x, double p0, int lt, int lg)		
+double R::qXXX(double p, double p0, int lt, int lg)		
+double R::rXXX(double p0)
 ```
 
 ## d/p/q/r関数
