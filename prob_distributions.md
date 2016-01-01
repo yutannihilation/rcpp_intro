@@ -306,12 +306,16 @@ double rnchisq(double df, double lb)
 ```
 
 ###nf
-
-
+```
+NumericVector dnf(NumericVector x, double df1, double df2, double ncp, bool log = false)
+NumericVector pnf(NumericVector x, double df1, double df2, double ncp, bool lower = true, bool log = false)
+NumericVector qnf(NumericVector p, double df1, double df2, double ncp, bool lower = true, bool log = false)
+```
+```
 double dnf(double x, double df1, double df2, double ncp, int lg)		
 double pnf(double x, double df1, double df2, double ncp, int lt, int lg)	
 double qnf(double p, double df1, double df2, double ncp, int lt, int lg)
-
+```
 
 
 ###norm
