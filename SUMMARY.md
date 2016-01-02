@@ -4,7 +4,7 @@
 * [インストール](install.md)
 * [基本的な使い方](basic_usage.md)
 * [基本データ型](data_types.md)
-* [関数の定義](function.md)
+* [Rcpp 関数の定義](function.md)
 * [Vector](vector.md)
 * [Matrix](matrix.md)
 * [Dataframe](dataframe.md)
