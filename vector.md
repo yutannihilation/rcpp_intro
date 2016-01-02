@@ -8,6 +8,7 @@
 * `LogicalVector`
 * `DateVector`
 * `DatetimeVector`
+* `RawVector`
 
 
 
