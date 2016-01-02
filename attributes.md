@@ -6,9 +6,18 @@
 
 ```
 x.attr("属性名")
-x.attributeNames() 
-x.hasAttribute()
 ```
+
+オブジェクトが持っている属性の一覧は `.attributeNames()` を用いる。
+
+```
+CharacterVector ch = wrap(x.attributeNames());
+ 
+bool b = x.hasAttribute()
+```
+
+
+
 要素名など使用頻度の高い属性については専用のアクセス関数が用意されている。
 
 ```
@@ -44,9 +53,6 @@ L.attr(“names”)//要素名
 
 http://gallery.rcpp.org/articles/setting-object-attributes/
 ```cpp
-#include <Rcpp.h>
-using namespace Rcpp;
-
 // [[Rcpp::export]]
 NumericVector attribs() {
   NumericVector out = NumericVector::create(1, 2, 3);
