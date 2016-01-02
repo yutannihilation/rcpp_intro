@@ -25,7 +25,7 @@ V.length() //長さ
 ◯◯Matrix M;
 M.ncol() //列数
 M.nrow() //行数
-M.attr(“dimnames”)=List::create(行名ベクタ, 列名ベクタ);　//行名、列名へはリストでアクセスする　
+M.attr(“dimnames”) = List::create(行名ベクタ, 列名ベクタ);　//行名、列名へはリストでアクセスする　
 
 DataFrame DF;
 DF.nrows() //行数
