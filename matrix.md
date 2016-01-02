@@ -89,4 +89,8 @@ m(_,_)
 m.rownames("名前")
 m.colnames(SEXP x)
 
+非メンバー関数
 transpose(m)
+rownames(m)
+colnames(m)
+
