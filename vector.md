@@ -51,10 +51,12 @@ for(int i=0; i<v.length(); ++i){
 
 ```
 NumericVector v1(1,2,3);
-NumericVector v2(v1);
-//NumericVector v2 = v1; と同義
+NumericVector v2 = v1; //単純な代入
 
-v1[0] = 100;
+v1[0] = 100; //v1を変更する
+
+//値の確認
+//v1への変更が、v2にも影響する
 Rcout << v1 << endl; //100 2 3
 Rcout << v2 << endl; //100 2 3
 ```
