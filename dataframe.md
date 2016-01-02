@@ -22,4 +22,8 @@ v = v*2; //そのため、こうすると df[0] の値が2倍になる
 NumericVector v = clone(df[0]); 
 ```
 
+##メソッド
 
+
+
+df.nrows()
