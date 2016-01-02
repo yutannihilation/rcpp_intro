@@ -6,6 +6,9 @@
 IntegerVector
 NumericVector
 CharacterVector (StringVector)
+LogicalVector
+DateVector
+DatetimeVector
 
 
 
