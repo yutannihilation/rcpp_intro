@@ -4,12 +4,12 @@
 
 まずは C++ のコンパイラ（g++）をインストールしましょう。
 
-**Windows** では [Rtools](https://cran.r-project.org/bin/windows/Rtools/index.html) をインストールします。→C:\\Rtools 以下にgccなどがインストールされる。
+**Windows**：[Rtools](https://cran.r-project.org/bin/windows/Rtools/index.html) をインストールします。すると C:\\Rtools 以下にgccなどが配置される。
 
-**Mac** なら Xcode command line tools をインストールします。ターミナルで次のコマンドを打つ `xcode-select --install`
+**Mac**：Xcode command line tools をインストールします。ターミナルで次のコマンドを打つ `xcode-select --install`
 
-**Linux** なら
-sudo apt-get install r-base-dev texlive-full
+**Linux**：例えば
+`sudo apt-get install r-base-dev texlive-full`
 
 
 
