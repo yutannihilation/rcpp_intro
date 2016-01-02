@@ -81,10 +81,9 @@ v.offset(str) //要素名がstrである要素のインデックスint
 v.fill(x)     // v の要素を x（スカラー値） で埋める
 v.sort()      // v をソートしたベクター
 
+v.assign( first_it, last_it) //イテレーター first_it last_itで指定された範囲の値を v に代入する
 
 
-
-Vector& sort()
 
 void assign( InputIterator first, InputIterator last)
 このベクターにfirst, last で指定された値を代入する？
