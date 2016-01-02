@@ -1,9 +1,15 @@
 # ベクトル
 
 下にベクトル
+
+
+IntegerVector
+NumericVector
+CharacterVector (StringVector)
+
+
+
 ###作成
-
-
 ```
 NumericVector v(3); // c(0,0,0)と同義
 NumericVector v = NumericVector::create(1,2,3); //c(1,2,3) 
