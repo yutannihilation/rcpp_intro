@@ -22,7 +22,7 @@
 * [Boost](boost.md)
 * [インライン](inline.md)
 * as と wrap
-* Date
+* [Date](date.md)
 * [Rcppオブジェクトに代入する際の注意点](assignment.md)
 * [参考資料](references.md)
 * [コンソール出力](utility.md)
