@@ -16,14 +16,14 @@ R、Rcpp、C++で利用できる基本的なデータ型の対応関係を「概
 |時間|POSIXct|Datetime|-|
  
 
-なぜわざわざ「概念的」という言葉を強調したかというと、正確には、Rcppでは `Logical`, `Integer`, `Numeric`, `Complex` については、スカラー値の型は用意されておらず、ベクター型や行列型（`NumericVector`, `NumericMatrix` など）のみが定義されているからです。その一方で、 `Character`, `Date`, `Datetime`についてはスカラー値の型が定義されています。そのため、例えば`Numeric x;` というような変数 x を宣言することはできないですが、　`Date d;` という変数 d は宣言できます。
+なぜわざわざ「概念的」という言葉を強調したかというと、正確には、Rcppでは `Logical`, `Integer`, `Numeric`, `Complex` については、スカラー値の型は用意されておらず、ベクター型や行列型（`NumericVector`, `NumericMatrix` など）のみが定義されているからです。その一方で、 `String`, `Date`, `Datetime`についてはスカラー値の型が定義されています。そのため、例えば`Numeric x;` というような変数 x を宣言することはできないですが、 `Date d;` という変数 d は宣言できます。
 
 
 # データ構造
 
-## ベクター
+## Vector
 
-Rcppの基本データ型のそれぞれについてベクター型と行列型が定義されている。
+Rcppの基本データ型のそれぞれについて`Vector`型と`Matrix`型が定義されている。
 
 ```
 ◯◯Vector
