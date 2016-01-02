@@ -8,7 +8,7 @@
 x.attr("属性名")
 ```
 
-オブジェクトが持っている属性の一覧は `.attributeNames()` を用いる。`.attributeNames()` は　`std::vector<std::string>` 型を返すので、`CharacterVector`に変換するためには `wrap()` を用いる必要がある。
+オブジェクトが持っている属性の一覧は `.attributeNames()` を用いる。 `.attributeNames()` は　`std::vector<std::string>` 型を返すので、`CharacterVector`に変換するためには `wrap()` を用いる必要がある。
 
 ```
 CharacterVector ch = wrap(x.attributeNames());
