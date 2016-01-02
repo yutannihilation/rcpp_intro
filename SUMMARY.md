@@ -9,6 +9,8 @@
 * [行列](matrix.md)
 * [データフレーム](dataframe.md)
 * [リスト](list.md)
+* [Date](date.md)
+* Datetime
 * [属性値](attributes.md)
 * [S3 S4 オブジェクト](s3_s4.md)
 * [四則演算と比較演算](calculation.md)
@@ -22,7 +24,7 @@
 * [Boost](boost.md)
 * [インライン](inline.md)
 * as と wrap
-* [Date](date.md)
+
 * [Rcppオブジェクトに代入する際の注意点](assignment.md)
 * [参考資料](references.md)
 * [コンソール出力](utility.md)
