@@ -6,6 +6,8 @@
 
 ```
 x.attr("属性名")
+x.attributeNames() 
+x.hasAttribute()
 ```
 要素名など使用頻度の高い属性については専用のアクセス関数が用意されている。
 
@@ -28,10 +30,11 @@ M.nrow() //行数
 M.attr(“dimnames”) = List::create(行名ベクタ, 列名ベクタ);　//行名、列名へはリストでアクセスする　
 
 DataFrame DF;
-DF.nrows() //行数
-DF.size()    //列数
-DF.attr(“names”)//列名
-DF.attr(“row.names”)//行名
+DF.size()            //列数
+DF.length()          //列数
+DF.nrows()           //行数
+DF.attr(“names”)     //列名
+DF.attr(“row.names”) //行名
 
 List L;
 L.attr(“names”)//要素名
@@ -62,11 +65,11 @@ NumericVector attribs() {
 }
 ```
 
-``
 
 
 
-S4 オブジェクトに対しては .slot() が .attr() と似たような働きをする。
+
+
 
 
 
