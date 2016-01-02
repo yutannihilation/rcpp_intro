@@ -11,7 +11,7 @@
 * [List](list.md)
 * [Date](date.md)
 * [Datetime](datetime.md)
-* String
+* [String](string.md)
 * [属性値](attributes.md)
 * [S3 S4 オブジェクト](s3_s4.md)
 * [四則演算と比較演算](calculation.md)
