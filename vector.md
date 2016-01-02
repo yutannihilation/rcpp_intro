@@ -76,11 +76,10 @@ Rcout << v2 << endl; //1 2 3
 #メソッド
 
 ```
-v.length()
+v.length()    //要素数
 v.offset(str) //要素名がstrである要素のインデックスint
-
-v.fill(x) // v の要素を x（スカラー値） で埋める
-
+v.fill(x)     // v の要素を x（スカラー値） で埋める
+v.sort()      // v をソートしたベクター
 
 
 
