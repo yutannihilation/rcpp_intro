@@ -12,7 +12,7 @@ x.attr("属性名")
 
 ```
 CharacterVector ch = wrap(x.attributeNames());
-bool b = x.hasAttribute()
+bool b = x.hasAttribute();
 ```
 
 
