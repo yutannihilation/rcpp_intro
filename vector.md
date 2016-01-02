@@ -11,8 +11,6 @@
 * `RawVector`
 
 
-
-
 ###作成
 
 ```
@@ -77,18 +75,8 @@ Rcout << v2 << endl; //1 2 3
 
 #メソッド
 
-static stored_type Vector::get_na()
-static bool Vector::is_na()
-static Vector create()
-
-
-R_xlen_tはスカラー
-
-R_xlen_t length()
-R_xlen_t size() //length()と同じ
-R_xlen_t offset(const int& i, const int& j)
-R_xlen_t offset(const R_xlen_t& i)
-R_xlen_t offset(const std::string& name)
+length()
+offset(str) //要素名がstrである要素のインデックス
 
 void fill( const U& u)
 
@@ -145,3 +133,10 @@ SEXP eval()
 
 SEXP eval(SEXP env)
 環境 env でこのベクターを評価する？
+
+
+
+### static メソッド
+static stored_type Vector::get_na()
+static bool Vector::is_na()
+static Vector create()
