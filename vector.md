@@ -1,20 +1,13 @@
 # ベクトル
 
-下にベクトル
-
 
 * `IntegerVector`
 * `NumericVector`
+* `ComplexVector`
 * `CharacterVector` (`StringVector`)
 * `LogicalVector`
 * `DateVector`
 * `DatetimeVector`
-* `ComplexVector`
-
-
-
-
-
 
 
 
