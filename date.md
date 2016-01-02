@@ -16,3 +16,16 @@ Date( 2000, 1, 2); // 2000-01-02 Date(year, mon, day)
 
 ##メソッド
 
+d.getDate()
+d.getDay()
+d.getMonth()
+d.getYear()
+d.getWeekday()
+d.getYearday()
+d.baseYear() //1900
+
+m.is.na()
+
+## 演算子
++,-,<,>,==,<=,>=,!=
+
