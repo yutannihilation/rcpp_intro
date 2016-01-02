@@ -30,4 +30,5 @@
 * [コンソール出力](utility.md)
 * [Rmath.h](Rmath.md)
 * [乱数](random.md)
+* 例外
 
