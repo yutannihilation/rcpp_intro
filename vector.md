@@ -75,21 +75,15 @@ Rcout << v2 << endl; //1 2 3
 
 #メソッド
 
-length()
-offset(str) //要素名がstrである要素のインデックス
+```
+v.length()
+v.offset(str) //要素名がstrである要素のインデックスint
 
-void fill( const U& u)
+v.fill(x) // v の要素を x（スカラー値） で埋める
 
-iterator begin()
-iterator end()
 
-アクセス
-v["名前"]
-v("名前")
-v(int i)
-v.at(int i)
-v(1)
-v(1,1)
+
+
 
 Vector& sort()
 
@@ -108,6 +102,8 @@ void push_back( const T& object, const std::string& name )
 void push_front( const T& object)
 void push_front( const T& object, const std::string& name)
 
+iterator begin()
+iterator end()
 
 iterator insert( iterator position, const T& object)
 iterator insert( int position, const T& object)
@@ -140,3 +136,5 @@ SEXP eval(SEXP env)
 static stored_type Vector::get_na()
 static bool Vector::is_na()
 static Vector create()
+
+```
