@@ -80,25 +80,18 @@ v.length()    //要素数
 v.offset(str) //要素名がstrである要素のインデックスint
 v.fill(x)     // v の要素を x（スカラー値） で埋める
 v.sort()      // v をソートしたベクター
+v.assign( first_it, last_it)
+//イテレーター first_it last_itで指定された範囲の値を v に代入する
 
-v.assign( first_it, last_it) //イテレーター first_it last_itで指定された範囲の値を v に代入する
 
 
+v.push_back(x) // v の末尾に x（スカラー） を追加する
+v.push_back( x, "x" ) // 追加した要素の名前を "x" とする
 
-void assign( InputIterator first, InputIterator last)
-このベクターにfirst, last で指定された値を代入する？
+v.push_front(x) // v の先頭に x（スカラー） を追加する
+v.push_front( x, "x" ) // 追加した要素の名前を "x" とする
 
-Vector import( InputIterator first, InputIterator last)
-first, last で指定された値が代入されたベクターを返す
 
-Vector import_transform( InputIterator first, InputIterator last, F f)
-first, last で指定された値、を 関数 f で変換した値、が代入されたベクターを返す
-
-void push_back( const T& object)
-void push_back( const T& object, const std::string& name )
-
-void push_front( const T& object)
-void push_front( const T& object, const std::string& name)
 
 iterator begin()
 iterator end()
@@ -134,5 +127,12 @@ SEXP eval(SEXP env)
 static stored_type Vector::get_na()
 static bool Vector::is_na()
 static Vector create()
+import(( first_it, last_it)) 
+//イテレーター first_it last_itで指定された範囲の値を v に代入する
+Vector import( InputIterator first, InputIterator last)
+first, last で指定された値が代入されたベクターを返す
+
+Vector import_transform( InputIterator first, InputIterator last, F f)
+first, last で指定された値、を 関数 f で変換した値、が代入されたベクターを返す
 
 ```
