@@ -3,12 +3,19 @@
 下にベクトル
 
 
-IntegerVector
-NumericVector
-CharacterVector (StringVector)
-LogicalVector
-DateVector
-DatetimeVector
+* `IntegerVector`
+* `NumericVector`
+* `CharacterVector` (`StringVector`)
+* `LogicalVector`
+* `DateVector`
+* `DatetimeVector`
+* `ComplexVector`
+
+
+
+
+
+
 
 
 
