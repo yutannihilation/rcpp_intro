@@ -10,7 +10,7 @@
 * [Dataframe](dataframe.md)
 * [List](list.md)
 * [Date](date.md)
-* Datetime
+* [Datetime](datetime.md)
 * String
 * [属性値](attributes.md)
 * [S3 S4 オブジェクト](s3_s4.md)
@@ -25,7 +25,6 @@
 * [Boost](boost.md)
 * [インライン](inline.md)
 * as と wrap
-
 * [Rcppオブジェクトに代入する際の注意点](assignment.md)
 * [参考資料](references.md)
 * [コンソール出力](utility.md)
