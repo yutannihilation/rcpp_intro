@@ -9,11 +9,11 @@
 
 ## Rcppコードを書く
 
-まずは、Rcppのファイルを作成する。RStudioのメニューから下のように選択します。 
+まずは、Rcppのファイルを作成する。RStudioのメニューから下のように選択する。 
 
 **File > New File > C++ File**
 
-下の例では、ベクターvの総和を計算する関数 sum_rcpp を定義しています。このコードを sum.cpp という名前で保存します。
+下の例では、ベクターvの総和を計算する関数 sum_rcpp を定義している。このコードを sum.cpp という名前で保存する。
 
 ```cpp
 #include <Rcpp.h>
@@ -31,7 +31,7 @@ double sum_rcpp(NumericVector v){
 
 ##コンパイル
 
-`sourceCpp()` 関数がRcppコードのコンパイルとRへのロードをしてくれます。
+`sourceCpp()` がソースコードのコンパイルとRへのロードをしてくれます。
 
 ```
 library(Rcpp)
@@ -40,9 +40,9 @@ sourceCpp('sum.cpp')
 
 ##実行結果
 ```r
-> sum(1:10) #R
+> sum(1:10)
 [1] 55
-> sum_rcpp(1:10) #Rcpp
+> sum_rcpp(1:10)
 [1] 55
 ```
 
