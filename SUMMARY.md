@@ -7,7 +7,7 @@
 * [Rcpp 関数の定義](function.md)
 * [Vector](vector.md)
 * [Matrix](matrix.md)
-* [Dataframe](dataframe.md)
+* [DataFrame](dataframe.md)
 * [List](list.md)
 * [Date](date.md)
 * [Datetime](datetime.md)
@@ -31,5 +31,4 @@
 * [Rmath.h](Rmath.md)
 * [乱数](random.md)
 * 例外
-* 
 

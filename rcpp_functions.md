@@ -209,13 +209,15 @@ ifelse(x > y, 1, w);   //(x>y)[i] が真なら、1, 偽なら w[i]
 
 第１引数の各要素に、第２引数で与えた関数を適用した、結果をベクターで返す
 
+```
 //テンプレート関数を渡す場合
 template <typename T>
 T square( const T& x){
     return x * x ;
 }
 sapply( seq_len(10), square<int> ) ;
-
+```
+```
 //関数オブジェクトを与える場合
 template <typename T>
 struct square : std::unary_function<T,T> {
@@ -224,15 +226,30 @@ struct square : std::unary_function<T,T> {
     }
 }
 sapply( seq_len(10), square<int>() ) ;
+```
 
+```
 //std::function と ラムダ式で書く場合
  std::function<int (int)> func_obj = [](int x) { return (x*x);};
  sapply( seq_len(10), func_obj) ;
-
+```
 
 ###lapply
 
 sapplyと似ているが、返り値がlistになっている。
+
+```
+template <typename T>
+T square( const T& x){
+	return x * x ;
+}
+
+// [[Rcpp::export]]
+List apply_square( NumericVector x ){
+	return lapply( x, square<double> ) ;
+}
+```
+
 
 ###sign
 

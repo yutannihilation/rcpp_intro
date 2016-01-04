@@ -1,40 +1,29 @@
-#リスト
+# List
 
-リストの作成と要素へのアクセスの方法は、基本的にデータフレームの場合と同じです。
+`List` の作成と要素へのアクセスの方法は、基本的に `DataFrame` の場合と同じ。`List` はその要素として`Vector`だけではなく`S4`や `DataFrame` や `List` も保持できる。一方、`DataFrame` は、保持できる要素が、互いに長さの等しいベクターだけに制限された、 `List` の特殊な場合である。
+
+[DataFrame](dataframe.md)のページに記載された内容は、`DataFrame` を `List`に置き換えても成立するので、詳細はそちらを参照すること。
+
+
+
+
+
+
 
 ##作成
 
 ```
 List L = List::create(v1, v2); //ベクター v1, v2 からリスト L を作成
-List L = List::create(Named("名前1") = v1 , _["名前2"]=v2); //要素に名前をつける場合
+List L = List::create(Named("名前1") = v1 , _["名前2"] = v2); //要素に名前をつける場合
 ```
 
 ##要素へのアクセス
 
-```
-NumericVector v = L[0]; //リスト L の0番目の要素をベクター v に代入
-//この場合、v には L[0] の値がコピーされるのではなく、L[0]への参照となる
-v = v*2; //こうすると L[0] の値が2倍になる
+`List` の特定の要素にアクセスする場合には、リストの要素を ベクターに代入し、そのベクターを介してアクセスする。
 
-//値をコピーしたい場合は clone() を使う
-NumericVector v = clone(L[0]); 
+`List` の要素は、数値、文字列、により指定できる。
 
 ```
-
-
-
-
-
-###List を返す関数の例
-
-```
-template <typename T>
-T square( const T& x){
-	return x * x ;
-}
-
-// [[Rcpp::export]]
-List foo2( NumericVector x ){
-	return lapply( x, square<double> ) ;
-}
+NumericVector v1 = L[0];
+NumericVector v2 = L["V1"];
 ```

@@ -59,7 +59,7 @@ v1[0] = 100; //v1を変更する
 Rcout << v1 << endl; //100 2 3
 Rcout << v2 << endl; //100 2 3
 ```
-値をコピーしたい場合には `clone()` 関数を使用する。そうすると v1 の値を変更しても、v2 の値は変更されない。
+元のベクターの値をコピーしたい場合には `clone()` 関数を使用する。そうすると v1 の値を変更しても、v2 の値は変更されない。
 
 ```
 NumericVector v1(1,2,3);
@@ -69,70 +69,123 @@ Rcout << v1 << endl; //100 2 3
 Rcout << v2 << endl; //1 2 3
 ```
 
-(C++に詳しい人のために説明すると、Rcppのデータ型は内部にオブジェクトの値そのものではなく、オブジェクトへのポインタを保持している。そのため、`v2=v1` とするとポインターの値がコピーされてしまう）
+(C++に詳しい人のために説明すると、Rcppのデータ型は内部にオブジェクトの値そのものではなく、オブジェクトへのポインタを保持している。そのため、単純に `v2 = v1` で代入するとするとポインターの値がコピーされてしまう）
 
 
 
-#メソッド
+##メソッド
 
-```
-v.length()    //要素数
-v.offset(str) //要素名がstrである要素のインデックスint
-v.fill(x)     // v の要素を x（スカラー値） で埋める
-v.sort()      // v をソートしたベクター
-v.assign( first_it, last_it)
-//イテレーター first_it last_itで指定された範囲の値を v に代入する
+メソッドは `v.length()` のような形式で呼び出す。
 
+####length()
+要素数
 
+####offset(str)
+要素名が str である要素のインデックスint
 
-v.push_back(x) // v の末尾に x（スカラー） を追加する
-v.push_back( x, "x" ) // 追加した要素の名前を "x" とする
-
-v.push_front(x) // v の先頭に x（スカラー） を追加する
-v.push_front( x, "x" ) // 追加した要素の名前を "x" とする
+####fill(x)
+このベクターの要素を x（スカラー値） で埋める
 
 
+####sort()
 
-iterator begin()
-iterator end()
+このベクターをソートしたベクターを返す
 
-iterator insert( iterator position, const T& object)
-iterator insert( int position, const T& object)
+####assign( first_it, last_it)
 
-iterator erase( int position)
-iterator erase( iterator position)
-iterator erase( int first, int last){
-iterator erase( iterator first, iterator last)
+イテレーター first_it, last_it で指定された範囲の値を、このベクター に代入する
 
-void update(SEXP)　?
+####push_back(x)
 
-static void replace_element( iterator it, SEXP names, R_xlen_t index, const U& u)
+このベクター の末尾に x（スカラー） を追加する
 
-bool containsElementNamed( const char* target )
-このベクターが指定された名前の要素を持っているか
+####push_back( x, "x" )
+このベクター の末尾に x（スカラー） を追加する。
+追加した要素の名前を "x" とする。
 
-int findName(const std::string& name)
+####push_front(x)
+
+このベクター の先頭に x（スカラー） を追加する。
+
+
+####push_front( x, "x" )
+
+このベクター の先頭に x（スカラー） を追加する。
+追加した要素の名前を "x" とする。
+
+#### begin()
+
+このベクターの先頭へのイテレータを返す。
+
+#### end()
+
+このベクターの末尾へのイテレータを返す。
+
+#### insert( it, x)
+
+このベクターの it の位置に x を追加し、その要素へのイテレータを返す。
+
+#### erase(i)
+
+このベクターの i番目の要素を削除し、削除後の同じ位置の要素へのイテレータを返す。
+
+####erase(it)
+イテレータ itで指定された要素を削除し、削除後の同じ位置の要素へのイテレータを返す。
+
+####erase(first_i, last_i)
+
+first_i番目 から last_i番目 までの要素を削除し、削除後の同じ位置の要素へのインデックスを返す。
+
+
+#### erase(first_it, last_it)
+
+first_it から last_it で指定される要素を削除し、削除後の同じ位置の要素へのイテレータを返す。
+
+#### update(v1)
+
+このベクターの内容を ベクター v1 と同じにする
+
+#### containsElementNamed(str)
+
+このベクターが str で指定された名前の要素を持っているかどうかを返す
+
+####findName(str)
+
 指定された名前の（最初の）要素のインデックスを返す。見つからなかったら -1
 
+####eval()
+グローバル環境でこのベクターを評価した結果を返す
 
-SEXP eval()
-グローバル環境でこのベクターを評価する？
-
-SEXP eval(SEXP env)
-環境 env でこのベクターを評価する？
-
+####eval(env)
+環境 env でこのベクターを評価した結果を返す
 
 
-### static メソッド
-static stored_type Vector::get_na()
-static bool Vector::is_na()
-static Vector create()
-import(( first_it, last_it)) 
-//イテレーター first_it last_itで指定された範囲の値を v に代入する
-Vector import( InputIterator first, InputIterator last)
-first, last で指定された値が代入されたベクターを返す
 
-Vector import_transform( InputIterator first, InputIterator last, F f)
-first, last で指定された値、を 関数 f で変換した値、が代入されたベクターを返す
+## static メソッド
 
-```
+これらの関数は `NumericVector::create()` のような形式で呼び出す。
+
+####Vector::get_na()
+
+このベクターの型のNA値を取得する
+
+####Vector::is_na(x)
+スカラー値 x がNAであるかどうかを
+
+
+####Vector::create(x1, x2, ...)
+スカラー値 x1, x2, ...  を要素とするベクターを作成する。指定できる引数の数は20個まで
+
+
+####Vector::import( first_it, last_it) 
+イテレーター first_it, last_it で指定された範囲の値が代入されたベクターを返す
+
+
+####Vector::import_transform( first_it, last_it, func)
+first, last で指定された範囲の値を、関数 func で変換した値が代入されたベクターを返す
+
+####replace_element( iterator it, SEXP names, R_xlen_t index, const U& u)
+
+?
+
+

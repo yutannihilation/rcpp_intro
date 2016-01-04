@@ -22,3 +22,4 @@ double sum3(NumericVector x) {
 ```
 
 
+要素の追加や削除後は、元のイテレータは使えなくなる。

@@ -1,12 +1,13 @@
 # Date
 
-Jan 1, 1970
+`Date` はスカラー型で、`DateVector` `DateMatrix` の要素となる、
+
 
 ##作成
 
 ```
 Date d;       //"1970-01-01"
-Date d(1);    //"1970-01-01" + 1day //negative value is also allowed
+Date d(1);    //"1970-01-01" + 1day
 Date d(1.1);  //"1970-01-01" + ceil(1.1)day 
 Date( "2000/01/01", "%Y/%m/%d"); //default format is "%Y-%m-%d"
 Date( 1, 2, 2000); // 2000-01-02 Date(mon, day, year)
@@ -16,16 +17,42 @@ Date( 2000, 1, 2); // 2000-01-02 Date(year, mon, day)
 
 ##メソッド
 
-d.getDate()
-d.getDay()
-d.getMonth()
-d.getYear()
-d.getWeekday()
-d.getYearday()
-d.baseYear() //1900
 
-m.is.na()
+####getDay()
+####getMonth()
+####getYear()
+####getWeekday()
 
-## 演算子
-+,-,<,>,==,<=,>=,!=
+曜日を int で返す。
+1=Sun 2=Mon 3=Tue 4=Wed 5=Thu 6=Sat
+
+####getYearday()
+
+1月1日を 1 とした年間を通した日付の番号
+
+####is.na()
+
+```
+Date d("2016-1-1");
+Rcout << d.getDay() << endl;     //1
+Rcout << d.getMonth() << endl;   //1
+Rcout << d.getYear() << endl;    //2016
+Rcout << d.getWeekday() << endl; //6
+Rcout << d.getYearday() << endl; //1
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
