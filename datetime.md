@@ -10,7 +10,7 @@ Datetime dt("2000-01-01 00:00:00", "%Y-%m-%d %H:%M:%OS")
 
 
 ##メソッド
-
+```
 dt.getFractionalTimestamp()
 
 dt.getMicroSeconds()
@@ -24,3 +24,4 @@ dt.getWeekday()
 dt.getYearday()
 
 dt.is_na()
+```
