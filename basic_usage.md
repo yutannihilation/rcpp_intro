@@ -144,7 +144,7 @@ benchmark( gibbsR(n, thn),
 ```
 test  replications elapsed relative
    2     gibbsCpp(n, thn)           10   1.454    1.000
-   1      gibbsR(n, thn)           10  81.427   56.002
+   1       gibbsR(n, thn)           10  81.427   56.002
 ```
 
 
