@@ -26,35 +26,40 @@ Rcppの基本データ型のそれぞれについて`Vector`型と`Matrix`型が
 
 ### Vector
 
-* `IntegerVector`
-* `NumericVector`
-* `ComplexVector`
-* `CharacterVector` (`StringVector`)
-* `LogicalVector`
-* `DateVector`
-* `DatetimeVector`
+```
+IntegerVector
+NumericVector
+ComplexVector
+CharacterVector (StringVector)
+LogicalVector
+DateVector
+DatetimeVector
+```
 
 ### Matrix
 
-* `IntegerMatrix`
-* `NumericMatrix`
-* `ComplexMatrix`
-* `CharacterMatrix` (`StringMatrix`)
-* `LogicalMatrix`
-* `DateMatrix`
-* `DatetimeMatrix`
+```
+IntegerMatrix
+NumericMatrix
+ComplexMatrix
+CharacterMatrix (StringMatrix)
+LogicalMatrix
+DateMatrix
+DatetimeMatrix
+```
 
 
-
-## データフレーム、リスト
+### DataFrame, List 
 
 ```
-Dataframe
+DataFrame
 List
 ```
-`Dataframe` は同じ長さのベクターを要素として格納する。テーブル形式のデータ構造。
+`Dataframe` は同じ長さのベクターを要素として格納する。
 
-`List`は、どのような型でも（DataframeやListを含む）要素に持つことができます、ベクターの長さにも制約はありません。
+`List`は、どのような型でも（`Dataframe` や `Listを含む`）要素に持つことができます、`Vector` の長さにも制約はありません。
+
+
 
 
 
