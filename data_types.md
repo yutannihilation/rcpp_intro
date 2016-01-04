@@ -25,13 +25,22 @@ R、Rcpp、C++で利用できる基本的なデータ型の対応関係を「概
 
 Rcppの基本データ型のそれぞれについて`Vector`型と`Matrix`型が定義されている。
 
-```
-◯◯Vector
-◯◯Matrix
-```
 
-例えば、`NumericVector`、`NumericMatrix`など。なお、文字列ベクターについては、`CharacterVector`、`StringVector`のどちらの書き方も許されます。
+* `IntegerVector`
+* `NumericVector`
+* `ComplexVector`
+* `CharacterVector` (`StringVector`)
+* `LogicalVector`
+* `DateVector`
+* `DatetimeVector`
 
+* `IntegerMatrix`
+* `NumericMatrix`
+* `ComplexMatrix`
+* `CharacterMatrix` (`StringMatrix`)
+* `LogicalMatrix`
+* `DateMatrix`
+* `DatetimeMatrix`
 
 
 
