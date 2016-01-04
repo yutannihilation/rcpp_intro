@@ -1,14 +1,7 @@
 # ベクトル
 
 
-* `IntegerVector`
-* `NumericVector`
-* `ComplexVector`
-* `CharacterVector` (`StringVector`)
-* `LogicalVector`
-* `DateVector`
-* `DatetimeVector`
-* `RawVector`
+
 
 
 ###作成
