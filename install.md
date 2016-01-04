@@ -2,11 +2,11 @@
 
 #開発ツールのインストール
 
-まずは C++ のコンパイラ（g++）をインストールしましょう。
+まずは C++ のコンパイラ（g++）をインストールする。
 
 **Windows**：[Rtools](https://cran.r-project.org/bin/windows/Rtools/index.html) をインストールします。すると C:\\Rtools 以下にgccなどが配置される。
 
-**Mac**：Xcode command line tools をインストールします。ターミナルで次のコマンドを打つ `xcode-select --install`
+**Mac**：Xcode command line tools をインストールする。ターミナルで次のコマンドを打つ `xcode-select --install`
 
 **Linux**：例えば
 `sudo apt-get install r-base-dev texlive-full`
@@ -30,7 +30,7 @@ MAKE=make -j4
 
 #Rcpp のインストール 
 
-コンパイラがインストールできたら、RでRcppパッケージをインストールします。
+コンパイラがインストールできたら、RでRcppパッケージをインストール。
 
 ```r
 install.packages("Rcpp")
