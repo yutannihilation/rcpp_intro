@@ -17,7 +17,12 @@ R、Rcpp、C++で利用できる基本的なデータ型の対応関係を「概
 |時間|POSIXct|Datetime|-|
  
 
-なぜわざわざ「概念的」という言葉を強調したかというと、正確には、Rcppでは `Logical`, `Integer`, `Numeric`, `Complex` については、スカラー値の型は用意されておらず、ベクター型や行列型（`NumericVector`, `NumericMatrix` など）のみが定義されているからです。その一方で、 `String`, `Date`, `Datetime`についてはスカラー値の型が定義されています。そのため、例えば`Numeric x;` というような変数 x を宣言することはできないですが、 `Date d;` という変数 d は宣言できます。
+なぜわざわざ「概念的」という言葉を強調したかというと、
+
+正確には、Rcppでは `Logical`, `Integer`, `Numeric`, `Complex` については、スカラー値の型は用意されておらず、ベクター型や行列型（`NumericVector`, `NumericMatrix` など）のみが定義されている。そのため、例えば `Numeric x;` というような変数 x を宣言することはできない。
+
+
+一方、 `String`, `Date`, `Datetime` についてはスカラー値の型が定義されているので、`Date d;` という変数 d が宣言できる。
 
 
 # データ構造
