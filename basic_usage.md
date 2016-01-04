@@ -33,7 +33,7 @@ double sum_rcpp(NumericVector v){
 
 `sourceCpp()` がソースコードのコンパイルとRへのロードをしてくれます。
 
-```
+```R
 library(Rcpp)
 sourceCpp('sum.cpp')
 ```
