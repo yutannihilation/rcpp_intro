@@ -21,7 +21,7 @@ R、Rcpp、C++で利用できる基本的なデータ型の対応関係を「概
 
 # データ構造
 
-## Vector
+## Vector, Matrix
 
 Rcppの基本データ型のそれぞれについて`Vector`型と`Matrix`型が定義されている。
 
@@ -35,7 +35,7 @@ Rcppの基本データ型のそれぞれについて`Vector`型と`Matrix`型が
 
 
 
-## データフレーム、リスト
+## DataFrame, List
 
 ```
 Dataframe
