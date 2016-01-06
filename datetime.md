@@ -15,7 +15,7 @@ Datetime では、協定世界時 `1970-01-01 00:00:00 UTC` を基準時とし�
 
 `Datetime dt(10.1)` は世界協定時 `1970-01-01 00:00:00 UTC` の `10.1`秒後の時点を表す。Rでは実行者のタイムゾーンに変換された時刻として表示される。
 
-`Datetime dt( str, fmt)` では、 形式 `fmt` を指定して、文字列 `str` を `Datetime` に変換する。この場合、`str` はユーザーのタイムゾーンの時刻として解釈される。format については Rヘルプの `?strptime` を参照する。
+`Datetime dt( local_time, format)` では、 形式 `fmt` を指定して、文字列 `str` を `Datetime` に変換する。この場合、`str` はユーザーのタイムゾーンの時刻として解釈される。format については Rヘルプの `?strptime` を参照する。
 
 
 
