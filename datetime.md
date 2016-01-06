@@ -56,10 +56,14 @@ Datetime では、協定世界時 `1970-01-01 00:00:00 UTC` を基準時とし�
 
 ##コード例
 
+以下のコードを日本標準時（JST）で実行した結果を示す。
+
+JSTはUTCよりも9時間進んでいる
+
 ```
 // [[Rcpp::export]]
 Datetime rcpp_datetime(){
-  Datetime dt("2011-01-01 00:00:00", "%Y-%m-%d %H:%M:%S");
+  Datetime dt("2000-01-01 00:00:00", "%Y-%m-%d %H:%M:%S");
   
   Rcout << "getYear " << dt.getYear() << endl;
   Rcout << "getMonth " << dt.getMonth() << endl;
@@ -81,7 +85,7 @@ Datetime rcpp_datetime(){
 実行結果
 ```
 > rcpp_datetime()
-getYear 2010
+getYear 1999
 getMonth 12
 getDay 31
 getHours 15
