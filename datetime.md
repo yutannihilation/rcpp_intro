@@ -58,8 +58,6 @@ Datetime では、協定世界時 `1970-01-01 00:00:00 UTC` を基準時とし�
 
 以下のコードを日本標準時（JST）で実行した結果を示す。
 
-JSTはUTCよりも9時間進んでいる
-
 ```
 // [[Rcpp::export]]
 Datetime rcpp_datetime(){
@@ -83,6 +81,9 @@ Datetime rcpp_datetime(){
 ```
 
 実行結果
+
+JST は UTC よりも +9時間進んでいる。
+
 ```
 > rcpp_datetime()
 getYear 1999
@@ -94,8 +95,8 @@ getSeconds 0
 getMicroSeconds 0
 getWeekday 6
 getYearday 365
-getFractionalTimestamp 1.29381e+09
-[1] "2011-01-01 JST" 
+getFractionalTimestamp 9.46652e+08
+[1] "2000-01-01 JST"
 ```
 
 
