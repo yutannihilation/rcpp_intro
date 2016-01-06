@@ -16,7 +16,7 @@
 * [S3 S4 オブジェクト](s3_s4.md)
 * [四則演算と比較演算](calculation.md)
 * [Rcpp が提供する関数](rcpp_functions.md)
-* [d/p/q/r 関数](prob_distributions.md)
+* [d/p/q/r 関数](dpqr_functions.md)
 * [Rcpp から R の関数を利用する](R_function.md)
 * [NA NaN Inf](na_nan_inf.md)
 * [イテレーター](iterator.md)
