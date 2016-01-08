@@ -126,8 +126,12 @@ print(df)
 
 `DataFrame` も `Vector` と同じメソッドを持っている。下に、`DataFrame` 固有のメソッドを示す。
 
+#### length() size()
 
-####df.nrows()
+列数
+
+
+####nrows()
 
 行数
 
