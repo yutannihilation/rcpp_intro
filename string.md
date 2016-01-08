@@ -4,8 +4,10 @@
 
 ##作成
 ```cpp
-
+//""
 String s;
+
+//"X"
 String s("X");
 
 //str の値をコピーする
@@ -17,7 +19,15 @@ String s(char_vec)
 String s(char_vec, "UTF-8") ////encodingも指定する
 ```
 
-V
+##演算
+
+`String` には　`+=` 演算子が定義されている。文字列の後ろに、別の文字列を付加できる。 
+
+```
+String s("A");
+s += "B";
+print(s); //"AB"
+```
 
 ## メソッド
 
