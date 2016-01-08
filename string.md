@@ -4,9 +4,12 @@
 
 ##作成
 ```cpp
+
 String s;
 String s("X");
-String s(str);          //str の値をコピーする
+
+//str の値をコピーする
+String s(str);          
 String s(str, "UTF-8"); //encodingも指定する
 
 //長さ１の文字列ベクター char_vec の値をコピーする
