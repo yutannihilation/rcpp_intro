@@ -24,7 +24,44 @@ NumericVector v1 = df[0];
 NumericVector v2 = df["V1"];
 ```
 
+上の方法で v1, v2 に df を代入すると、v1, v2 は df のカラムの値がコピーされるのではなく、df のカラムへの「参照」となる。そのため、v1, v2 への変更は、df のカラムも変更される。
 
+データフレームのカラムをコピーしたい場合には `clone()` を用いる。
+
+```
+NumericVector v1 = df[0]; // v は dfの0列目への「参照」
+v1 = v1*2;                //df[0] の値が2倍になる
+
+NumericVector v2 = clone(df[0]); //df[0]の値をコピーする
+v2 = v2*2;                       //df[0] の値は変わらない
+```
+
+データフレームを `create()` で新たに作成する際も、`clone()` を使わないと、データフレームのカラムは元のベクターの「参照」となってしまう。
+
+
+```
+// [[Rcpp::export]]
+DataFrame rcpp_df1(){
+  NumericVector v = NumericVector::create(1,2);
+  DataFrame df = DataFrame::create( Named("V1") = v,
+                                    Named("V2") = v,
+                                    Named("V3") = clone(v)
+                                    );
+  // v1 は df[0] への参照となる
+  NumericVector v1 = df[0]; 
+  v1 = v1*2; 
+  return df;
+}
+```
+実行結果
+
+```
+> rcpp_df1()
+  V1 V2 V3
+1  2  2  1
+2  4  4  2
+```
+上の例では、v1は d[0], d[1], v への参照になっているので、v1への変更は d[0], d[1], v にも影響する。　　
 
 
 
