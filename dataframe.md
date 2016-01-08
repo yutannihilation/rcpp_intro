@@ -124,7 +124,11 @@ print(df)
 
 ##メソッド
 
-`DataFrame` も `Vector` と同じメソッドを持っている。下に、`DataFrame` 固有のメソッドを示す。
+`DataFrame` も `Vector` と同じメソッドを持っている。しかし、`Vector` の要素はスカラー値であるのに対して、 `DataFrame` の要素は `Vector` (カラム) なので、
+
+
+
+下に、`DataFrame` 固有のメソッドを示す。
 
 #### length() size()
 
