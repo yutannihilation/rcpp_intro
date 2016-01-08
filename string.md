@@ -1,22 +1,79 @@
 # String
 
-String s; //""
-String s(other_String);
-String s(other_String, "UTF-8");
+`String` は、`CharacterVector`, `CharacterMatrix` の要素となるスカラー型である。
 
-String s(ch) //ch要素数１の文字列ベクター
-String s(ch, "UTF-8") 
+##作成
+```cpp
+String s;
+String s("X");
+String s(str);          //str の値をコピーする
+String s(str, "UTF-8"); //encodingも指定する
+
+//長さ１の文字列ベクター char_vec の値をコピーする
+String s(char_vec) 
+String s(char_vec, "UTF-8") ////encodingも指定する
+```
+
+V
 
 ## メソッド
 
-s.replace_first( olds, news) //sから最初に見つけたoldsをnewsに置換
-s.replace_last( olds, news)  //sから最後に見つけたoldsをnewsに置換
-s.replace_all( olds, news)   //sから全ての見つけたoldsをnewsに置換
-s.push_back(str) //strをsの末尾に追加
-s.push_back(str) //strをsの先頭に追加
-s.set_na() //NAにする
+#### replace_first( str, new_str)
 
-s.get_cstring()
-s.get_encoding()
-s.set_encoding("UTF-8")
+この String オブジェクトの最初に見つけた文字列 str と一致する部分を 文字列 new_str に置き換える。
 
+単に置き換えた文字列を返すだけはなく、このオブジェクトの値を書き換えてしまうことに注意する。（このページの最後のコード例を参照）
+
+#### replace_last( str, new_str) 
+
+この Stringオブジェクトの、最後に見つけた部分文字列 str を 文字列 new_str に置き換える。
+
+#### replace_all( str, new_str) 
+
+この String オブジェクトから文字列 str と一致する部分文字列を全て、文字列 new_str に置き換える。
+
+#### push_back(str)
+
+この String オブジェクトの末尾に文字列 str を追加する。
+
+
+#### push_back(str)
+strをsの先頭に追加
+
+#### set_na()
+NAにする
+
+#### get_cstring()
+
+#### get_encoding()
+
+#### set_encoding("X")
+
+### コード例
+
+```
+// [[Rcpp::export]]
+
+void rcpp_string(){
+
+  String s("abcdabcd");
+  
+  Rcout << s.replace_first("ab", "AB").get_cstring() << endl;
+  Rcout << s.get_cstring() << endl;
+  
+  s="abcdabcd";
+  Rcout << s.replace_last("ab", "AB").get_cstring()  << endl;
+  
+  s="abcdabcd";
+  Rcout << s.replace_all("ab", "AB").get_cstring()  << endl;
+}
+```
+###実行結果
+```
+> rcpp_string()
+ABcdabcd
+ABcdabcd
+abcdaABd
+ABcdABcd
+
+```
