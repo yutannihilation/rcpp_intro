@@ -158,11 +158,12 @@ print(df)
 
 ####push_back(v)
 
-この `DataFrame`  の末尾に `Vector` v を追加する
+この `DataFrame`  の末尾に `Vector` v を追加する。
 
-####push_back( x, "x" )
-このベクター の末尾に x（スカラー） を追加する。
-追加した要素の名前を "x" とする。
+####push_back( v, "col" )
+
+この `DataFrame`  の末尾に `Vector` v を追加する
+追加したカラムの名前を "co" とする。
 
 ####push_front(x)
 
