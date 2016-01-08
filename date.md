@@ -13,6 +13,8 @@ Date( "2000/01/01", "%Y/%m/%d"); //default format is "%Y-%m-%d"
 Date( 1, 2, 2000); // 2000-01-02 Date(mon, day, year)
 Date( 2000, 1, 2); // 2000-01-02 Date(year, mon, day)
 ```
+##演算子
+
 
 ##メソッド
 
