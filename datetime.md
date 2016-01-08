@@ -17,7 +17,7 @@ Datetime では、協定世界時 `1970-01-01 00:00:00 UTC` を基準時とし�
 
 `Datetime dt( str, format)` では、 形式 `fmt` を指定して、文字列 `str` を `Datetime` に変換する。この場合、`str` はユーザーのローカルなタイムゾーンの時刻として解釈される。
 
-(formatの記号は Rヘルプの `?strptime` の内容と一致している？）
+(formatの記号は Rヘルプの `?strptime` の記載内容と一致している？）
 
 
 
