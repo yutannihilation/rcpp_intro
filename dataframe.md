@@ -144,20 +144,21 @@ print(df)
 
 ####fill(v)
 
-このDataFrameの全てのカラムを ベクター v で埋める
+この `DataFrame` の全てのカラムを ベクター v で埋める ???
 
 
 ####sort()
 
-?
+この `DataFrame` をソートしたベクターを返す ???
+
 
 ####assign( first_it, last_it)
 
-イテレーター first_it, last_it で指定された範囲の値を、このベクター に代入する
+イテレーター first_it, last_it で指定された範囲のカラムを、このデータフレームに代入する
 
-####push_back(x)
+####push_back(v)
 
-このベクター の末尾に x（スカラー） を追加する
+この `DataFrame`  の末尾に `Vector` v を追加する
 
 ####push_back( x, "x" )
 このベクター の末尾に x（スカラー） を追加する。
