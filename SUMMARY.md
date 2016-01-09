@@ -7,14 +7,20 @@
 * [Rcpp 関数の定義](function.md)
 * [Vector](vector.md)
 * [Matrix](matrix.md)
+* [四則演算と比較演算](calculation.md)
+
+
 * [DataFrame](dataframe.md)
 * [List](list.md)
+* [S3 S4 オブジェクト](s3_s4.md)
+* 
 * [Date](date.md)
 * [Datetime](datetime.md)
 * [String](string.md)
+* 
 * [属性値](attributes.md)
-* [S3 S4 オブジェクト](s3_s4.md)
-* [四則演算と比較演算](calculation.md)
+* 
+
 * [Rcpp が提供する関数](rcpp_functions.md)
 * [d/p/q/r 関数](dpqr_functions.md)
 * [Rcpp から R の関数を利用する](R_function.md)
