@@ -17,13 +17,15 @@ Date( 2000, 1, 2); // 2000-01-02 Date(year, mon, day)
 
 `+ - < >`
 
-`
+```
 Date d1("2000-01-01");
-Date d1("2000-02-01");
+Date d2("2000-02-01");
 
-Rcout << d1 + 1 << endl;
+Rcout << d1 + 1  << endl;
+Rcout << d2 - d1 << endl;
+Rcout << d2 - d1 << endl;
 
-`
+````
 
 
 
