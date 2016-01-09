@@ -1,6 +1,6 @@
 # Date
 
-`Date` はスカラー型で、`DateVector`, `DateMatrix` の要素となる、
+`Date` はスカラー型で、`DateVector`, `DateMatrix` の要素となる。
 
 
 ##作成
@@ -9,11 +9,21 @@
 Date d;       //"1970-01-01"
 Date d(1);    //"1970-01-01" + 1day
 Date d(1.1);  //"1970-01-01" + ceil(1.1)day 
-Date( "2000/01/01", "%Y/%m/%d"); //default format is "%Y-%m-%d"
+Date( "2000-01-01", "%Y-%m-%d"); //default format is "%Y-%m-%d"
 Date( 1, 2, 2000); // 2000-01-02 Date(mon, day, year)
 Date( 2000, 1, 2); // 2000-01-02 Date(year, mon, day)
 ```
 ##演算子
+
+`+ - < >`
+
+`
+Date d1("2000-01/01");
+
+Rcout << d1 + 1 << endl;
+
+`
+
 
 
 ##メソッド
