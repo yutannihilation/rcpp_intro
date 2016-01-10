@@ -26,7 +26,6 @@ match()
 self_match()
 which_max()
 which_min()
-na_omit()
 ```
 
 
@@ -121,6 +120,14 @@ is_nan()
 is_true()
 is_false()
 ```
+
+**NA**
+
+```
+na_omit()
+```
+
+
 **Apply関数**
 ```
 lapply()
