@@ -18,7 +18,7 @@
 
 * [四則演算と比較演算](calculation.md)
 * [属性値](attributes.md)
-* [Rcppライクな関数](rcpp_functions.md)
+* [Rライクな関数](rcpp_functions.md)
 * [d/p/q/r 関数](dpqr_functions.md)
 * [Rcpp から R の関数を利用する](R_function.md)
 * [NA NaN Inf](na_nan_inf.md)
