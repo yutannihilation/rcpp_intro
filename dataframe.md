@@ -1,12 +1,12 @@
 # DataFrame
 
-##オブジェクト作成
+##オブジェクトの作成
 
-データフレームの作成には `DataFrame::create()` を使用する。また、
-データフレームの作成時にカラム名を指定する場合には、`Named("名前")` または `_["名前"]` を使用する。
+`DataFrame` の作成には `DataFrame::create()` を使用する。また、
+`DataFrame` の作成時にカラム名を指定する場合には、`Named("名前")` または `_["名前"]` を使用する。
 
 ```
-DataFrame df = DataFrame::create(v1, v2); //ベクター v1, v2 からデータフレーム df を作成
+DataFrame df = DataFrame::create(v1, v2); //ベクター v1, v2 から`DataFrame`  df を作成
 DataFrame df = DataFrame::create(Named("名前1") = v1 , _["名前2"]=v2); //列に名前をつける場合
 ```
 
@@ -14,9 +14,9 @@ DataFrame df = DataFrame::create(Named("名前1") = v1 , _["名前2"]=v2); //列
 ##要素へのアクセス
 
 
-データフレームの特定のカラムにアクセスする場合には、カラムを一旦ベクターに代入し、そのベクターを介してアクセスする。
+`DataFrame` の特定のカラムにアクセスする場合には、カラムを一旦ベクターに代入し、そのベクターを介してアクセスする。
 
-データフレームのカラムは、数値、文字列、により指定できる。
+`DataFrame` のカラムは、数値、文字列、により指定できる。
 
 ```
 NumericVector v1 = df[0];
@@ -25,7 +25,7 @@ NumericVector v2 = df["V1"];
 
 上の方法で v1, v2 に df を代入すると、v1, v2 は df のカラムの値がコピーされるのではなく、df のカラムへの「参照」となる。そのため、v1, v2 への変更は、df のカラムも変更される。
 
-データフレームのカラムをコピーしたい場合には `clone()` を用いる。
+`DataFrame` のカラムをコピーしたい場合には `clone()` を用いる。
 
 ```
 NumericVector v1 = df[0]; // v は dfの0列目への「参照」
@@ -35,7 +35,7 @@ NumericVector v2 = clone(df[0]); //df[0]の値をコピーする
 v2 = v2*2;                       //df[0] の値は変わらない
 ```
 
-データフレームを `create()` で新たに作成する際も、`clone()` を使わないと、データフレームのカラムは元のベクターの「参照」となってしまう。
+`DataFrame` を `create()` で新たに作成する際も、`clone()` を使わないと、`DataFrame` のカラムは元のベクターの「参照」となってしまう。
 
 
 ```
@@ -96,7 +96,7 @@ DataFrame rcpp_df1(){
 
 ####assign( first_it, last_it)
 
-イテレーター first_it, last_it で指定された範囲のカラムを、このデータフレームに代入する
+イテレーター first_it, last_it で指定された範囲のカラムを、この`DataFrame` に代入する
 
 ####push_back(v)
 
