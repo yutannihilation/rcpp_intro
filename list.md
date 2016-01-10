@@ -1,6 +1,6 @@
 # List
 
-`List` の作成と要素へのアクセスの方法は、基本的に `DataFrame` の場合と同じ。`List` はその要素として`Vector`だけではなく`S4`や `DataFrame` や `List` も保持できる。一方、`DataFrame` は、保持できる要素が、互いに長さの等しいベクターだけに制限された、 `List` の特殊な場合である。
+`List` の作成と要素へのアクセスの方法は、基本的に `DataFrame` の場合と同じ。`List` はその要素として`Vector`だけではなく`S4`や `DataFrame` や `List` も保持できる。
 
 [DataFrame](dataframe.md)のページに記載された内容は、`DataFrame` を `List`に置き換えても成立するので、詳細はそちらを参照すること。
 
