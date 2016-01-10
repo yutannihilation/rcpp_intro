@@ -93,34 +93,31 @@
 [lchoose()](#lchoose)
 [beta()](#beta)
 [lbeta()](#lbeta)
+
+
 **論理**
 
-```
-all()
-any()
-ifelse()
-is_finite()
-is_infinite()
-is_na()
-is_nan()
-is_true()
-is_false()
-```
+[all()](#all)
+[any()](#any)
+[ifelse()](#ifelse)
+[is_finite()](#is_finite)
+[is_infinite()](#is_infinite)
+[is_na()](#is_na)
+[is_nan()](#is_nan)
+[is_true()](#is_true)
+[is_false()](#is_false)
 
 **NA**
 
-```
-na_omit()
-```
+[na_omit()](#na_omit)
+
 
 
 **Apply関数**
-```
-lapply()
-sapply()
-mapply()
-```
 
+[lapply()](#lapply)
+[sapply()](#sapply)
+[mapply()](#mapply)
 
 **確率分布**
 
@@ -155,7 +152,6 @@ x = seq_len(10); //1:10
 ## 文字列
 
 #### collapse()
-
 
 
 ## 値の検索
@@ -235,6 +231,26 @@ x = seq_len(10); //1:10
 ####beta()
 ####lbeta()
 
+##論理
+
+####all()
+####any()
+####ifelse()
+####is_finite()
+####is_infinite()
+####is_na()
+####is_nan()
+####is_true()
+####is_false()
+
+## NA
+####na_omit()
+
+## apply 関数
+
+####lapply()
+####sapply()
+####mapply()
 
 
 ###pmin, pmax
