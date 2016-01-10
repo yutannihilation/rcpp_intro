@@ -6,10 +6,7 @@
 NumericVector v(3); // c(0,0,0)と同義
 NumericVector v = NumericVector::create(1,2,3); //c(1,2,3) 
 NumericVector v = NumericVector::create(Named("x") = 1 , _["y"] = 2); //c(x=1, y=2) 名前付きベクター
-NumericVector v = {1,2,3}; //c(1,2,3)、C++11イニシャライザリストを使った例
 ```
-
-
 
 ###要素へのアクセス
 
