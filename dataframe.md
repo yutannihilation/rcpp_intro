@@ -12,18 +12,12 @@ DataFrame df = DataFrame::create(v1, v2);
 //列に名前をつける
 DataFrame df = DataFrame::create(Named("V1") = v1 , _["V2"]=v2); 
 ```
+上の方法で `DataFrame` を作成すると、df のカラムには元のベクターの値がコピーされるのではなく、元のベクターへの「参照」となる。ベクターの値をコピーしてデータフレームを作成する場合には `clone()` を使う。
 
+下のコード例では、ベクター v からデータフレーム df を作成してる。
+カラム V1 は v への参照、カラム V2 は clone() により v の値をコピーしている。その後、ベクター v を２倍に刷る操作を行うと、カラム V1 は２倍になり、V2は変化しない。
 
-`DataFrame` を `create()` で新たに作成する際も、`clone()` を使わないと、`DataFrame` のカラムは元のベクターの「参照」となってしまう。
-
-下のコード例では、`df` カラム `V1` は `v` への参照となっているので、
-
-
-
-
-v1は d[0], d[1], v への参照になっている。そのため、v1 を ２倍にするそへの変更は d[0], d[1], v にも影響する。　　
-
-```
+ ```
 // [[Rcpp::export]]
 DataFrame rcpp_df(){
   NumericVector v = NumericVector::create(1,2);
