@@ -5,11 +5,12 @@
 `DataFrame` の作成には `DataFrame::create()` を使用する。また、
 `DataFrame` の作成時にカラム名を指定する場合には、`Named("名前")` または `_["名前"]` を使用する。
 
+
 ```cpp
 //ベクター v1, v2 から`DataFrame`  df を作成
 DataFrame df = DataFrame::create(v1, v2); 
 //列に名前をつける
-DataFrame df = DataFrame::create(Named("名前1") = v1 , _["名前2"]=v2); 
+DataFrame df = DataFrame::create(Named("V1") = v1 , _["V2"]=v2); 
 ```
 
 
