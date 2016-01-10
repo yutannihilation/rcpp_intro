@@ -3,17 +3,20 @@
 * [Rcpp とは](README.md)
 * [インストール](install.md)
 * [基本的な使い方](basic_usage.md)
+
+
 * [基本データ型](data_types.md)
 * [関数の定義](function.md)
 * [Vector](vector.md)
 * [Matrix](matrix.md)
-* [四則演算と比較演算](calculation.md)
 * [DataFrame](dataframe.md)
 * [List](list.md)
 * [S3 S4 オブジェクト](s3_s4.md)
 * [Date](date.md)
 * [Datetime](datetime.md)
 * [String](string.md)
+
+* [四則演算と比較演算](calculation.md)
 * [属性値](attributes.md)
 * 
 
