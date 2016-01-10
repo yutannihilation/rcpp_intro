@@ -140,7 +140,7 @@ mapply()
 
 d/q/p/r 全てのRの提供する確率分布
 
-[確率分布の章を参照](prob_distributions.md)
+[dpqr関数の章を参照](dpqr_functions.md)
 
 
 
