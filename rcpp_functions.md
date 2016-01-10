@@ -33,25 +33,21 @@
 
 **集合**
 
-```
-setdiff()
-setequal()
-intersect()
-union_()
-```
+[setdiff()](#setdiff)
+[setequal()](#setequal)
+[intersect()](#intersect)
+[union_()](#union_)
 
 **最大値・最小値**
 
-```
-min()
-max()
-cummax()
-cummin()
-pmin()
-pmax()
-range()
-clamp()
-```
+[min()](#min)
+[max()](#max)
+[cummax()](#cummax)
+[cummin()](#cummin)
+[pmin()](#pmin)
+[pmax()](#pmax)
+[range()](#range)
+[clamp()](#clamp)
 
 **数学**
 
@@ -180,10 +176,21 @@ x = seq_len(10); //1:10
 ####unique()
 ####sort_unique()
 
+## 集合
+####setdiff()
+####setequal()
+####intersect()
+####union_()
 
-
-
-
+#最大値・最小値
+####min()
+####max()
+####cummax()
+####cummin()
+####pmin()
+####pmax()
+####range()
+####clamp()
 
 
 
