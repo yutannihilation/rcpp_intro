@@ -4,11 +4,9 @@
 
 ##作成
 ```cpp
-//""
-String s;
 
-//"X"
-String s("X");
+String s;      //""
+String s("X"); //"X"
 
 //str の値をコピーする
 String s(str);          
