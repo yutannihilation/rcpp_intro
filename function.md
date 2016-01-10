@@ -11,7 +11,7 @@ using namespace Rcpp;
 
     ...
 
-    return(返値);
+    return 返値;
 }
 ```
 
@@ -19,6 +19,6 @@ using namespace Rcpp;
 * `// [[Rcpp::export]]`：この直下に記述された関数がRで利用できるようになります。
 * `using namespace Rcpp` Rcpp：この文は必須ではないが、これを記述すると、Rcppの変数や関数名に`Rcpp::`を付ける必要がなくなります。
 * `返値型 関数名(引数型 引数){}`：C++では関数の返値や引数の型を指定する必要があります。
-* `return(返値)`：関数の返値は `return()` により明示的に指定する必要があります。
+* `return 返値`：関数の返値は `return` 文 により明示的に指定する必要があります。
 
 
