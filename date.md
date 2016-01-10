@@ -31,11 +31,10 @@ DateVector rcpp_date1(){
   bool b  = d2 > d1;
   date[0] = d1 + 1;
   
-  Rcout << i << endl;
-  Rcout << b << endl;
-  return date;
+  Rcout << i << endl; // 31
+  Rcout << b << endl; // 1
+  return date;        // 2000-01-02
 }
-
 ````
 
 
