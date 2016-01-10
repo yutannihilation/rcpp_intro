@@ -167,12 +167,6 @@ x = seq_len(10); //1:10
 #### collapse()
 
 
-match()
-self_match()
-which_max()
-which_min()
-
-
 
 ## 値の検索
 
