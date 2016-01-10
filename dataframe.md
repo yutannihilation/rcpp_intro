@@ -5,10 +5,45 @@
 `DataFrame` の作成には `DataFrame::create()` を使用する。また、
 `DataFrame` の作成時にカラム名を指定する場合には、`Named("名前")` または `_["名前"]` を使用する。
 
+```cpp
+//ベクター v1, v2 から`DataFrame`  df を作成
+DataFrame df = DataFrame::create(v1, v2); 
+//列に名前をつける
+DataFrame df = DataFrame::create(Named("名前1") = v1 , _["名前2"]=v2); 
 ```
-DataFrame df = DataFrame::create(v1, v2); //ベクター v1, v2 から`DataFrame`  df を作成
-DataFrame df = DataFrame::create(Named("名前1") = v1 , _["名前2"]=v2); //列に名前をつける場合
+
+
+`DataFrame` を `create()` で新たに作成する際も、`clone()` を使わないと、`DataFrame` のカラムは元のベクターの「参照」となってしまう。
+
+下のコード例では、`df` カラム `V1` は `v` への参照となっているので、
+
+
+
+
+v1は d[0], d[1], v への参照になっている。そのため、v1 を ２倍にするそへの変更は d[0], d[1], v にも影響する。　　
+
 ```
+// [[Rcpp::export]]
+DataFrame rcpp_df(){
+  NumericVector v = NumericVector::create(1,2);
+  DataFrame df = DataFrame::create( Named("V1") = v,
+                                    Named("V2") = clone(v)
+                                    );
+  v = v*2;
+  return df;
+}
+```
+実行結果
+
+```
+> rcpp_df()
+  V1 V2
+1  2  1
+2  4  2
+```
+
+
+
 
 
 ##要素へのアクセス
@@ -23,9 +58,11 @@ NumericVector v1 = df[0];
 NumericVector v2 = df["V1"];
 ```
 
-上の方法で v1, v2 に df を代入すると、v1, v2 は df のカラムの値がコピーされるのではなく、df のカラムへの「参照」となる。そのため、v1, v2 への変更は、df のカラムも変更される。
+上の方法で v1, v2 に df を代入すると、v1, v2 は df のカラムの値がコピーされるのではなく、df のカラムへの「参照」となる。そのため、v1, v2 への変更操作を行うとは、df のカラムの内容も変更される。
 
-`DataFrame` のカラムをコピーしたい場合には `clone()` を用いる。
+
+
+`DataFrame` のカラムをコピーして `Vector` を作成たい場合には `clone()` を用いる。
 
 ```
 NumericVector v1 = df[0]; // v は dfの0列目への「参照」
@@ -35,32 +72,7 @@ NumericVector v2 = clone(df[0]); //df[0]の値をコピーする
 v2 = v2*2;                       //df[0] の値は変わらない
 ```
 
-`DataFrame` を `create()` で新たに作成する際も、`clone()` を使わないと、`DataFrame` のカラムは元のベクターの「参照」となってしまう。
 
-
-```
-// [[Rcpp::export]]
-DataFrame rcpp_df1(){
-  NumericVector v = NumericVector::create(1,2);
-  DataFrame df = DataFrame::create( Named("V1") = v,
-                                    Named("V2") = v,
-                                    Named("V3") = clone(v)
-                                    );
-  // v1 は df[0] への参照となる
-  NumericVector v1 = df[0]; 
-  v1 = v1*2; 
-  return df;
-}
-```
-実行結果
-
-```
-> rcpp_df1()
-  V1 V2 V3
-1  2  2  1
-2  4  4  2
-```
-上の例では、v1は d[0], d[1], v への参照になっているので、v1への変更は d[0], d[1], v にも影響する。　　
 
 
 
