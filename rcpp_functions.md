@@ -119,9 +119,12 @@
 [sapply()](#sapply)
 [mapply()](#mapply)
 
+
 **確率分布**
 
-d/q/p/r 全てのRの提供する確率分布
+全てのRの提供する確率分布
+
+d/q/p/r 
 
 [dpqr関数の章を参照](dpqr_functions.md)
 
