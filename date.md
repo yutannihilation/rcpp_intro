@@ -15,15 +15,26 @@ Date( 2000, 1, 2); // 2000-01-02 Date(year, mon, day)
 ```
 ##演算子
 
-`+ - < >`
+`Date` には 
+`+ - < > >= <= == !=`
 
 ```
-Date d1("2000-01-01");
-Date d2("2000-02-01");
-
-Rcout << d1 + 1  << endl;
-Rcout << d2 - d1 << endl;
-Rcout << d2 - d1 << endl;
+// [[Rcpp::export]]
+DateVector rcpp_date1(){
+  
+  Date d1("2000-01-01");
+  Date d2("2000-02-01");
+  
+  DateVector date(1);
+  
+  int  i  = d2 - d1;
+  bool b  = d2 > d1;
+  date[0] = d1 + 1;
+  
+  Rcout << i << endl;
+  Rcout << b << endl;
+  return date;
+}
 
 ````
 
