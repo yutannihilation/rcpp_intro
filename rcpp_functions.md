@@ -27,11 +27,9 @@
 
 **重複の値**
 
-```
-duplicated()
-unique()
-sort_unique()
-```
+[duplicated()](#duplicated)
+[unique()](#unique)
+[sort_unique()](#sort_unique)
 
 **集合**
 
@@ -174,6 +172,20 @@ x = seq_len(10); //1:10
 ####self_match()
 ####which_max()
 ####which_min()
+
+
+## 重複の値
+
+####duplicated()
+####unique()
+####sort_unique()
+
+
+
+
+
+
+
 
 
 
