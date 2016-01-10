@@ -2,20 +2,16 @@
 
 **ベクター関係**
 
-[head()](####head)
+[head()](#head)
+[tail()](#tail)
+[rev()](#rev)
+[rep()](#rep)
+[rep_each()](#rep_each)
+[rep_len()](#rep_len)
+[seq()](#seq)
+[seq_along()](#seq_along)
+[seq_len()](#seq_len)
 
-```
-head()
-tail()
-rev()
-rep()
-rep_each()
-rep_len()
-seq()
-seq_along()
-seq_len()
-
-```
 **文字列**
 
 ```
