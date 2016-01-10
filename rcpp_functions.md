@@ -14,8 +14,10 @@
 
 **文字列**
 
+[collapse()](#collapse)
+
 ```
-collapse()
+
 ```
 **値の検索**
 
