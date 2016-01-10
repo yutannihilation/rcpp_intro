@@ -139,40 +139,30 @@ d/q/p/r 全てのRの提供する確率分布
 
 ###ベクター関係
 
-**head()**
+####head()
+####tail()
+####rev()
+####rep()
+####rep_each()
+####rep_len()
+NumericVector x1 = rep_len(x, n);
+####seq()
+####seq_along()
+####seq_len()
 
-**tail()**
-
-**rev()**
-
-**rep()**
-
-
-**rep_each()**
-
-
-**rep_len()**
-
-**seq()**
-
-**seq_along()**
-
-**seq_len()**
-
-
-
-###seq
-
-
-###seq_along
-
+```
 IntegerVector x = IntegerVector::create( 0, 1, NA_INTEGER, 3 ) ;
 seq_along( x ) // 1:length(x)
 
-###seq_len
-
 NumericVector x(10);
 x = seq_len(10); //1:10
+```
+
+
+##文字列
+
+#### collapse()
+
 
 
 
@@ -182,7 +172,7 @@ x = seq_len(10); //1:10
 
 ###rep_len
 
-NumericVector x1 = rep_len(x, n);
+
 all, any
 
 
