@@ -1,9 +1,8 @@
 # Datetime
 
-##作成
-
 `Datetime` は `DatetimeVector` `DatetimeMatrix` の要素となるスカラー型。
 
+##作成
 
 ```
 Datetime dt;         //"1970-01-01 00:00:00 UTC"
