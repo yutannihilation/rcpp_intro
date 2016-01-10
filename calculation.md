@@ -1,39 +1,30 @@
 #四則演算と比較演算
 
+R と同様に、`+ - * /` 演算子により、ベクター
 
-##ベクトルの四則演算
 
-R と同様に、`+ - * /` 演算子により、同じ長さのベクターの要素同士の四則演算を行うことができる。
+同じ長さのベクターの要素同士の四則演算を行うことができる。
 
 ```
 NumericVector x ;
 NumericVector y ;
 
-// element-wise calculations involving two vectors
 NumericVector res = x + y ;
 NumericVector res = x - y ;
 NumericVector res = x * y ;
 NumericVector res = x / y ;
 
-// one vector, one single value
 NumericVector res = x   + 2.0 ;
 NumericVector res = 2.0 - x;
 NumericVector res = y   * 2.0 ;
 NumericVector res = 2.0 / y;
-
-// two expressions
-NumericVector res = x * y + y / 2.0 ;
-NumericVector res = x * ( y - 2.0 ) ;
-NumericVector res = x / ( y * y ) ;
 ```
 
 `-` 演算子で符号を反転する
 
 ```
-// negate x
 NumericVector res = -x ;
 ```
-
 
 ##比較演算
 
