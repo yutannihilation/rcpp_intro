@@ -7,15 +7,15 @@
 
 
 ```cpp
-//ベクター v1, v2 から`DataFrame`  df を作成
+// Vector v1, v2 から DataFrame df を作成
 DataFrame df = DataFrame::create(v1, v2); 
 //列に名前をつける
 DataFrame df = DataFrame::create(Named("V1") = v1 , _["V2"]=v2); 
 ```
-上の方法で `DataFrame` を作成すると、df のカラムには元のベクターの値がコピーされるのではなく、元のベクターへの「参照」となる。ベクターの値をコピーしてデータフレームを作成する場合には `clone()` を使う。
+上の方法で `DataFrame` を作成すると、df のカラムには元の`Vector` の値がコピーされるのではなく、元の`Vector` への「参照」となる。`Vector` の値をコピーして`DataFrame` を作成する場合には `clone()` を使う。
 
-下のコード例では、ベクター v からデータフレーム df を作成してる。
-カラム V1 は v への参照、カラム V2 は clone() により v の値をコピーしている。その後、ベクター v の変更操作を行うと、カラム V1 は変更されるが、V2は変更されない。
+下のコード例では、`Vector`  v から`DataFrame`  df を作成してる。
+カラム V1 は v への参照、カラム V2 は clone() により v の値をコピーしている。その後、`Vector`  v の変更操作を行うと、カラム V1 は変更されるが、V2は変更されない。
 
  ```
 // [[Rcpp::export]]
@@ -41,7 +41,7 @@ DataFrame rcpp_df(){
 ##要素へのアクセス
 
 
-`DataFrame` の特定のカラムにアクセスする場合には、カラムを一旦ベクターに代入し、そのベクターを介してアクセスする。
+`DataFrame` の特定のカラムにアクセスする場合には、カラムを一旦`Vector` に代入し、その`Vector` を介してアクセスする。
 
 カラムは、数値、文字列、により指定できる。
 
@@ -50,7 +50,7 @@ NumericVector v1 = df[0];
 NumericVector v2 = df["V1"];
 ```
 
-データフレーム作成の時と同様、上の方法で `Vector` に `DataFrame` のカラムを代入すると、`Vector` には カラムの値がコピーされるのではなく、カラムへの「参照」となる。そのため、`Vector` へ変更操作を行うと、df のカラムの内容も変更される。
+`DataFrame` 作成の時と同様、上の方法で `Vector` に `DataFrame` のカラムを代入すると、`Vector` には カラムの値がコピーされるのではなく、カラムへの「参照」となる。そのため、`Vector` へ変更操作を行うと、df のカラムの内容も変更される。
 
 
 
@@ -87,12 +87,12 @@ v2 = v2*2;                       //df[0] の値は変わらない
 
 ####fill(v)
 
-この `DataFrame` の全てのカラムを ベクター v で埋める ???
+この `DataFrame` の全てのカラムを `Vector`  v で埋める ???
 
 
 ####sort()
 
-この `DataFrame` をソートしたベクターを返す ???
+この `DataFrame` をソートした`Vector` を返す ???
 
 
 ####assign( first_it, last_it)
@@ -128,7 +128,7 @@ v2 = v2*2;                       //df[0] の値は変わらない
 
 #### insert( it, v)
 
-この `DataFrame` の、イテレータ it で示された位置に`ベクター` v を追加し、その要素へのイテレータを返す。
+この `DataFrame` の、イテレータ it で示された位置に``Vector` ` v を追加し、その要素へのイテレータを返す。
 
 #### erase(i)
 
