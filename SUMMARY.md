@@ -18,8 +18,6 @@
 
 * [四則演算と比較演算](calculation.md)
 * [属性値](attributes.md)
-* 
-
 * [Rcppライクな関数](rcpp_functions.md)
 * [d/p/q/r 関数](dpqr_functions.md)
 
@@ -28,11 +26,14 @@
 
 
 * [NA NaN Inf](na_nan_inf.md)
+
+* [インライン](inline.md)
+
 * [イテレーター](iterator.md)
 * [アルゴリズム](STL.md)
 * [C++11](c++11.md)
 * [Boost](boost.md)
-* [インライン](inline.md)
+
 * as と wrap
 * [Rcppオブジェクトに代入する際の注意点](assignment.md)
 * [参考資料](references.md)
