@@ -44,7 +44,28 @@ double R::rXXX(double p0)
 
 以下ではRcppが提供するd/p/q/r関数の形式を模式的に示す。
 
-beta, binom, cauchy, chisq, exp, f, gamma, geom, hyper, lnorm, logis, nbeta, nbinom_mu, nbinom, nchisq, nf, norm, nt, pois, t, unif, weibull
+[beta](#beta),
+[binom](#binom),
+[cauchy](#cauchy),
+[chisq](#chisq),
+[exp](#exp),
+[f](#f),
+[gamma](#gamma),
+[geom](#geom),
+[hyper](#hyper),
+[lnorm](#lnorm),
+[logis](#logis),
+[nbeta](#nbeta),
+[nbinom_mu](#nbinom_mu),
+[nbinom](#nbinom),
+[nchisq](#nchisq),
+[nf](#nf),
+[norm](#norm),
+[nt](#nt),
+[pois](#pois),
+[t](#t),
+[unif](#unif),
+[weibull](#weibull)
 
 
 ###beta
