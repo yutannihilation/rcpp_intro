@@ -16,17 +16,13 @@
 
 [collapse()](#collapse)
 
-```
 
-```
 **値の検索**
 
-```
-match()
-self_match()
-which_max()
-which_min()
-```
+[match()](#match)
+[self_match()](#self_match)
+[which_max()](#which_max)
+[which_min()](#which_min)
 
 
 **重複の値**
@@ -171,22 +167,19 @@ x = seq_len(10); //1:10
 #### collapse()
 
 
+match()
+self_match()
+which_max()
+which_min()
 
 
 
+## 値の検索
 
-
-
-###rep_len
-
-
-all, any
-
-
-bool res = is_true( any( x < y ) )
-bool res = is_false( any( x < y ) )
-bool res = is_na( any( x < y ) )
-
+####match()
+####self_match()
+####which_max()
+####which_min()
 
 
 
