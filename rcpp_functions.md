@@ -202,13 +202,7 @@ seq_along(v)
 
 ####seq_len()
 
-```
-IntegerVector x = IntegerVector::create( 0, 1, NA_INTEGER, 3 ) ;
-seq_along( x ) // 1:length(x)
-
-NumericVector x(10);
-x = seq_len(10); //1:10
-```
+seq_len(n)
 
 
 ## 文字列
