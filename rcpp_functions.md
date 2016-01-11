@@ -231,14 +231,14 @@ CharacterVector rcpp_collapse(){
 
 match(v, table)
 
-ベクター v の要素の内
+ベクター v の要素の内、ベクター table の要素と値一致する、要素の位置に、
 
 
 
 ```
 // [[Rcpp::export]]
 IntegerVector rcpp_match(){
-  CharacterVector v     = CharacterVector::create("A","A","B","B","C","D","E");
+  CharacterVector v     = CharacterVector::create("AB","A","B","B","C","D","E");
   CharacterVector table = CharacterVector::create("B","D");
   IntegerVector m = match(v, table);
   return m;
