@@ -184,6 +184,10 @@ x = seq_len(10); //1:10
 ####cummin()
 ####pmin()
 ####pmax()
+
+NumericVector z = pmin(x, y)  //x[i] と y[i] を比較して小さい方を z[i] とする
+NumericVector z = pmax(x, y)  //x[i] と y[i] を比較して大きい方を z[i] とする
+
 ####range()
 ####clamp()
 
@@ -203,6 +207,10 @@ x = seq_len(10); //1:10
 ####trunc()
 ####diff()
 ####sign()
+数値ベクターを受け取り、その各要素の符号に応じて、-1,0,1の値を格納したベクターを返す。
+
+> sign(-3:3)
+[1] -1 -1 -1  0  1  1  1
 ####abs()
 ####pow()
 ####sqrt()
@@ -252,23 +260,20 @@ x = seq_len(10); //1:10
 ## apply 関数
 
 ####lapply()
+sapplyと似ているが、返り値がlistになっている。
+
+```
+template <typename T>
+T square( const T& x){
+	return x * x ;
+}
+
+// [[Rcpp::export]]
+List apply_square( NumericVector x ){
+	return lapply( x, square<double> ) ;
+}
+```
 ####sapply()
-####mapply()
-
-
-###pmin, pmax
-
-
-NumericVector z = pmin(x, y)  //x[i] と y[i] を比較して小さい方を z[i] とする
-NumericVector z = pmax(x, y)  //x[i] と y[i] を比較して大きい方を z[i] とする
-ifelse
-
-x, y, z, w はベクター
-ifelse(x > y, z, w);   //(x>y)[i] が真なら、z[i], 偽なら w[i] 
-ifelse(x > y, 1, w);   //(x>y)[i] が真なら、1, 偽なら w[i] 
-
-
-###sapply
 
 第１引数の各要素に、第２引数で与えた関数を適用した、結果をベクターで返す
 
@@ -295,31 +300,26 @@ sapply( seq_len(10), square<int>() ) ;
 //std::function と ラムダ式で書く場合
  std::function<int (int)> func_obj = [](int x) { return (x*x);};
  sapply( seq_len(10), func_obj) ;
+ 
+####mapply()
+
+
+###pmin, pmax
+
+
+
+ifelse
+
+x, y, z, w はベクター
+ifelse(x > y, z, w);   //(x>y)[i] が真なら、z[i], 偽なら w[i] 
+ifelse(x > y, 1, w);   //(x>y)[i] が真なら、1, 偽なら w[i] 
+
+
 ```
 
-###lapply
-
-sapplyと似ているが、返り値がlistになっている。
-
-```
-template <typename T>
-T square( const T& x){
-	return x * x ;
-}
-
-// [[Rcpp::export]]
-List apply_square( NumericVector x ){
-	return lapply( x, square<double> ) ;
-}
-```
 
 
-###sign
 
-数値ベクターを受け取り、その各要素の符号に応じて、-1,0,1の値を格納したベクターを返す。
-
-> sign(-3:3)
-[1] -1 -1 -1  0  1  1  1
 
 
 ###diff
