@@ -231,9 +231,7 @@ CharacterVector rcpp_collapse(){
 
 match(v, table)
 
-ベクター v の要素の内、ベクター table の要素と値一致する、要素の位置に、
-
-
+ベクター table の要素と値が一致する、ベクター v の要素の位置に table の要素番号を入れたベクター返す。
 
 ```
 // [[Rcpp::export]]
