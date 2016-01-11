@@ -240,10 +240,24 @@ IntegerVector rcpp_match(){
   CharacterVector table = CharacterVector::create("B","D");
   IntegerVector m = match(v, table);
   return m;
-} //NA NA  1  1 NA  2 NA
+}
+//NA NA  1  1 NA  2 NA
 ```
 
 ####self_match()
+
+self_match(v)
+
+```
+// [[Rcpp::export]]
+IntegerVector rcpp_self_match(){
+  CharacterVector v     = CharacterVector::create("A","A","B","B","C","D","E");
+  return self_match(v);
+}
+//1 1 2 2 3 4 5
+```
+
+
 ####which_max()
 ####which_min()
 
