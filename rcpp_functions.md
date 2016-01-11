@@ -166,6 +166,8 @@ rep(x, n)
 
 rep_each(v, times)
 
+R の rep.int(v, times)
+
 ```
 // [[Rcpp::export]]
 NumericVector rcpp_rep_each(){
@@ -178,7 +180,7 @@ NumericVector rcpp_rep_each(){
 
 ####rep_len()
 
-rep_len(x, n);
+rep_len(v, n);
 
 ```
 // [[Rcpp::export]]
@@ -191,7 +193,13 @@ NumericVector rcpp_rep_len(){
 
 
 ####seq()
+
+seq(start, end)
+
 ####seq_along()
+
+seq_along(v)
+
 ####seq_len()
 
 ```
