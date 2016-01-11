@@ -300,6 +300,7 @@ sapply( seq_len(10), square<int>() ) ;
 //std::function と ラムダ式で書く場合
  std::function<int (int)> func_obj = [](int x) { return (x*x);};
  sapply( seq_len(10), func_obj) ;
+ ```
  
 ####mapply()
 
@@ -310,9 +311,7 @@ sapply( seq_len(10), square<int>() ) ;
 
 ifelse
 
-x, y, z, w はベクター
-ifelse(x > y, z, w);   //(x>y)[i] が真なら、z[i], 偽なら w[i] 
-ifelse(x > y, 1, w);   //(x>y)[i] が真なら、1, 偽なら w[i] 
+
 
 
 ```
