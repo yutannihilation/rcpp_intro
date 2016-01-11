@@ -273,8 +273,25 @@ which_max(v)
 ## 重複の値
 
 ####duplicated()
+
+duplicated(v)
+
 ####unique()
+
+unique(v)
+
 ####sort_unique()
+
+```
+// [[Rcpp::export]]
+void rcpp_sort_unique(){
+  CharacterVector v     = CharacterVector::create("B", "A","B","E", "C","A","D");
+  Rcout << unique(v) << endl;      //"E" "C" "B" "D" "A"
+  Rcout << sort_unique(v) << endl; //"A" "B" "C" "D" "E"
+}
+
+
+```
 
 ## 集合
 ####setdiff()
