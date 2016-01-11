@@ -296,7 +296,7 @@ void rcpp_sort_unique(){
 ## 集合
 ####setdiff()
 
-Vector setdiff(Vector v1, Vector v2)
+Vector setdiff( Vector v1, Vector v2)
 
 ####setequal()
 
