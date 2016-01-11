@@ -151,6 +151,9 @@ d/q/p/r
 head(v, n)
 
 ####tail()
+
+tail(v, n)
+
 ####rev()
 ####rep()
 ####rep_each()
