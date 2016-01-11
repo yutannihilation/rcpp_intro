@@ -50,6 +50,7 @@
 [clamp()](#clamp)
 
 **数学**
+
 [sum()](#sum)
 [mean()](#mean)
 [sd()](#sd)
@@ -133,6 +134,9 @@ d/q/p/r
 #ベクター関係
 
 ####head()
+
+head(v, n)
+
 ####tail()
 ####rev()
 ####rep()
