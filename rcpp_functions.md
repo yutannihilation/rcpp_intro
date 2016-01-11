@@ -211,13 +211,15 @@ seq_len(n)
 
 rcpp_collapse(v)
 
+文字列ベクター v の要素を結合した文字列 `String` を返す。
+
 ```
 // [[Rcpp::export]]
 CharacterVector rcpp_collapse(){
   CharacterVector v = CharacterVector::create("A","B","C");
   String s = collapse(v);
   return wrap(s);
-}
+} //"ABC"
 ```
 
 
