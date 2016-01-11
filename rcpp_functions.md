@@ -166,6 +166,16 @@ rep(x, n)
 
 rep_each(v, times)
 
+```
+// [[Rcpp::export]]
+NumericVector rcpp_rep_each(){
+  NumericVector v = NumericVector::create(1,2,3);
+  return rep_each(v, 3);
+}
+
+// 1 1 1 2 2 2 3 3 3
+```
+
 ####rep_len()
 NumericVector x1 = rep_len(x, n);
 ####seq()
