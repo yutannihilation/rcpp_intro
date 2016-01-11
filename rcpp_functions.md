@@ -177,7 +177,8 @@ NumericVector rcpp_rep_each(){
 ```
 
 ####rep_len()
-NumericVector x1 = rep_len(x, n);
+
+rep_len(x, n);
 
 ```
 // [[Rcpp::export]]
