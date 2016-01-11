@@ -228,6 +228,19 @@ CharacterVector rcpp_collapse(){
 ## 値の検索
 
 ####match()
+
+match(v, table)
+
+```
+// [[Rcpp::export]]
+IntegerVector rcpp_match(){
+  CharacterVector v     = CharacterVector::create("A","A","B","B","C","D","E");
+  CharacterVector table = CharacterVector::create("B","D");
+  IntegerVector m = match(v, table);
+  return m;
+} //NA NA  1  1 NA  2 NA
+```
+
 ####self_match()
 ####which_max()
 ####which_min()
