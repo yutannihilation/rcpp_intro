@@ -261,8 +261,14 @@ IntegerVector rcpp_self_match(){
 
 
 ####which_max()
+
+which_max(v)
+
+R の which.max
+
 ####which_min()
 
+which_max(v)
 
 ## 重複の値
 
