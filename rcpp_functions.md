@@ -155,8 +155,17 @@ head(v, n)
 tail(v, n)
 
 ####rev()
+
+rev(v)
+
 ####rep()
+
+rep(x, n)
+
 ####rep_each()
+
+rep_each(v, times)
+
 ####rep_len()
 NumericVector x1 = rep_len(x, n);
 ####seq()
