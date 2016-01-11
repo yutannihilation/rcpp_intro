@@ -209,6 +209,19 @@ seq_len(n)
 
 #### collapse()
 
+rcpp_collapse(v)
+
+```
+// [[Rcpp::export]]
+CharacterVector rcpp_collapse(){
+  CharacterVector v = CharacterVector::create("A","B","C");
+  String s = collapse(v);
+  return wrap(s);
+}
+```
+
+
+
 
 ## 値の検索
 
