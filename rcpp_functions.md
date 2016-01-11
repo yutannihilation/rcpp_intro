@@ -282,6 +282,8 @@ unique(v)
 
 ####sort_unique()
 
+sort_unique(v)
+
 ```
 // [[Rcpp::export]]
 void rcpp_sort_unique(){
