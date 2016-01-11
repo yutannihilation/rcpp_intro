@@ -231,12 +231,16 @@ CharacterVector rcpp_collapse(){
 
 match(v, table)
 
+ベクター v の要素の内
+
+
+
 ```
 // [[Rcpp::export]]
 IntegerVector rcpp_match(){
   CharacterVector v     = CharacterVector::create("A","A","B","B","C","D","E");
   CharacterVector table = CharacterVector::create("B","D");
-  IntegerVector m = match(v, table);
+  LogicalVecto m = match(v, table);
   return m;
 } //NA NA  1  1 NA  2 NA
 ```
