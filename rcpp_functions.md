@@ -178,6 +178,17 @@ NumericVector rcpp_rep_each(){
 
 ####rep_len()
 NumericVector x1 = rep_len(x, n);
+
+```
+// [[Rcpp::export]]
+NumericVector rcpp_rep_len(){
+  NumericVector v = NumericVector::create(1,2,3);
+  return rep_len(v, 10);
+}
+//1 2 3 1 2 3 1 2 3 1
+```
+
+
 ####seq()
 ####seq_along()
 ####seq_len()
