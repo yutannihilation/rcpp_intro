@@ -57,12 +57,16 @@
 [var()](#var)
 [cumsum()](#cumsum)
 [cumprod()](#cumprod)
+
+
 [floor()](#floor)
 [ceil()](#ceil)
 [ceiling()](#ceiling)
 [round()](#round)
 [trunc()](#trunc)
 [diff()](#diff)
+
+
 [sign()](#sign)
 [abs()](#abs)
 [pow()](#pow)
@@ -81,6 +85,7 @@
 [acos()](#acos)
 [asin()](#asin)
 [atan()](#atan)
+
 [gamma()](#gamma)
 [lgamma()](#lgamma)
 [digamma()](#digamma)
@@ -121,6 +126,8 @@
 [mapply()](#mapply)
 
 
+
+
 **確率分布**
 
 全てのRの提供する確率分布
@@ -128,6 +135,12 @@
 d/q/p/r 
 
 [dpqr関数の章を参照](dpqr_functions.md)
+
+**その他**
+
+[table()](#table)
+
+----
 
 
 
@@ -323,7 +336,7 @@ sapply( seq_len(10), square<int>() ) ;
 
 
 
-
+####table()
 
 
 
