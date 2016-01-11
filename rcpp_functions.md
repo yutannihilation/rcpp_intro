@@ -289,8 +289,6 @@ void rcpp_sort_unique(){
   Rcout << unique(v) << endl;      //"E" "C" "B" "D" "A"
   Rcout << sort_unique(v) << endl; //"A" "B" "C" "D" "E"
 }
-
-
 ```
 
 ## 集合
