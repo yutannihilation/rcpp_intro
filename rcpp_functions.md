@@ -158,11 +158,11 @@ Vector tail(Vector v, int n);
 
 ####rev()
 
-rev(v)
+Vector rev(Vector v);
 
 ####rep()
 
-rep(x, n)
+Vector rep(Scalar x,int n);
 
 ####rep_each()
 
