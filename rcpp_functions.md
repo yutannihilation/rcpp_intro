@@ -524,9 +524,9 @@ log10(v)
 
 ####log1p()
 
-log1p(v);
+log1p(v)
 
-log(v+1)
+log(v+1) と
 
 ####sin()
 ####sinh()
