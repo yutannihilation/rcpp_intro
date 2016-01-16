@@ -273,7 +273,7 @@ IntegerVector rcpp_match(){
 
 self_match(v)
 
-match(v, table) の v と table に同じベクターを渡したのと同義
+match(v, table) の v と table に同じベクターを渡したと同義
 
 ```
 // [[Rcpp::export]]
