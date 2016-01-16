@@ -620,6 +620,11 @@ lbeta(v_a, v_b)
 ##論理
 
 ####all()
+
+all(LogicalVector v)
+
+論理ベクター v を受け取り、
+
 ####any()
 
 
