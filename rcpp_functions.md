@@ -305,6 +305,7 @@ void rcpp_sort_unique(){
 ```
 
 ## 集合
+
 ####setdiff()
 
 setdiff( v1, v2);
@@ -336,7 +337,7 @@ min(), max() を`CharacterVector` に対して適用することはできない�
 ```
 // [[Rcpp::export]]
 void rcpp_min(){
-  NumericVector   num_v  = NumericVector::create(1.1, 2.2, 3.3);
+  NumericVector   num_v  = NumericVector::create(1, 2, 3, 4, 5);
   CharacterVector char_v = CharacterVector::create("A","B","C","D","E");
   
   NumericVector num_v1(2);
@@ -347,8 +348,8 @@ void rcpp_min(){
   char_v1[0] = min(char_v);
   char_v1[1] = max(char_v);
   
-  Rcout << num_v1 << endl;
-  Rcout << char_v1 << endl;
+  Rcout << num_v1 << endl;  // 1 5
+  Rcout << char_v1 << endl; // "D" "B"
 }
 ```
 
@@ -397,7 +398,7 @@ void rcpp_clamp(){
 ```
 
 
-数学
+##数学
 
 ####sum()
 
