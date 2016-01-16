@@ -273,7 +273,7 @@ IntegerVector rcpp_match(){
 
 self_match(v)
 
-match(v, table) の v と table に同じベクターを渡したと同義
+match(v, table) の v と table に同じベクターを渡した場合と同義
 
 ```
 // [[Rcpp::export]]
@@ -501,7 +501,12 @@ Rの `v^n` と同義’
 
 
 ####sqrt()
+
+sqrt(v)
+
 ####exp()
+
+exp(v)
 
 ####expm1()
 
@@ -510,8 +515,19 @@ expm1(v)
 `exp(v) -1` と同義
 
 ####log()
+
+log(v)
+
 ####log10()
+
+log10(v)
+
 ####log1p()
+
+log1p(v);
+
+log(v+1)
+
 ####sin()
 ####sinh()
 ####cos()
