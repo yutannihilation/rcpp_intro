@@ -314,8 +314,31 @@ Vector intersect(Vector v1,Vector v2);
 Vector union_(Vector v1,Vector v2);
 
 #最大値・最小値
+
 ####min()
 ####max()
+
+min(), max() を`CharacterVector` に対して適用することはできない。
+
+```
+// [[Rcpp::export]]
+void rcpp_min(){
+  NumericVector   num_v  = NumericVector::create(1.1, 2.2, 3.3);
+  CharacterVector char_v = CharacterVector::create("A","B","C","D","E");
+  
+  NumericVector num_v1(2);
+  num_v1[0] = min(num_v);
+  num_v1[1] = max(num_v);
+  
+  CharacterVector char_v1(2);
+  char_v1[0] = min(char_v);
+  char_v1[1] = max(char_v);
+  
+  Rcout << num_v1 << endl;
+  Rcout << char_v1 << endl;
+}
+```
+
 ####cummax()
 ####cummin()
 ####pmin()
