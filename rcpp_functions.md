@@ -150,19 +150,19 @@ d/q/p/r
 
 ####head()
 
-Vector head(Vector v, int n);
+head(v, n)
 
 ####tail()
 
-Vector tail(Vector v, int n);
+tail(v, n)
 
 ####rev()
 
-Vector rev(Vector v);
+rev(v)
 
 ####rep()
 
-Vector rep(Scalar x,int n);
+rep(x, n)
 
 ####rep_each()
 
@@ -279,7 +279,7 @@ duplicated(v)
 
 ####unique()
 
-Vector unique(v)
+Vector unique(Vectv)
 
 ####sort_unique()
 
