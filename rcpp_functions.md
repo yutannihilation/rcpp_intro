@@ -444,7 +444,29 @@ round(v, digits)
 
 ####trunc()
 
-trunc()
+trunc(v)
+
+```
+// [[Rcpp::export]]
+  void rcpp_round(){
+    NumericVector   v  = rnorm(10, 0, 10);
+    Rcout <<"v "<< v << endl;
+    Rcout << "ceil(v) "<< NumericVector(ceil(v)) << endl;
+    Rcout << "floor(v) "<< NumericVector(floor(v)) << endl;
+    Rcout << "round(v, 0) "<< NumericVector(round(v, 0)) << endl;
+    Rcout << "round(v, 1) "<< NumericVector(round(v, 1)) << endl;
+    Rcout << "trunc(v) "<< NumericVector(trunc(v)) << endl;
+  }
+```
+```
+> rcpp_round()
+v -1.5216 -2.47017 9.47903 12.0625 14.7051 -7.40828 15.5769 -8.93159 -3.68999 -8.25377
+ceil(v) -1 -2 10 13 15 -7 16 -8 -3 -8
+floor(v) -2 -3 9 12 14 -8 15 -9 -4 -9
+round(v, 0) -2 -2 9 12 15 -7 16 -9 -4 -8
+round(v, 1) -1.5 -2.5 9.5 12.1 14.7 -7.4 15.6 -8.9 -3.7 -8.3
+trunc(v) -1 -2 9 12 14 -7 15 -8 -3 -8
+```
 
 
 ####diff()
