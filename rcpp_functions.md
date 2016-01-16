@@ -416,12 +416,36 @@ sd(v)
 var(v)
 
 ####cumsum()
+
+cumsum(v)
+
 ####cumprod()
+
+cumprod(v)
+
 ####floor()
+
+flood(v)
+
 ####ceil()
+
+ceil(v)
+
+ceiling() と同義
+
 ####ceiling()
+
+ceiling(v)
+
 ####round()
+
+round(v, digits)
+
 ####trunc()
+
+trunc()
+
+
 ####diff()
 与えた数値ベクターの隣り合う要素の差を格納したベクターを返す。
 
