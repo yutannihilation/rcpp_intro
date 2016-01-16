@@ -602,17 +602,20 @@ lfactorial(v)
 
 ####choose()
 
-choose(v1, v2)
+choose(v_n, v_k)
 
 ####lchoose()
 
-lchoose(v1, v2)
+lchoose(v_n, v_k)
 
 ####beta()
 
-beta(a, b)
+beta(v_a, v_b)
 
 ####lbeta()
+
+lbeta(v_a, v_b)
+
 
 ##論理
 
