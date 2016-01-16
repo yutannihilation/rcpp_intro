@@ -150,11 +150,11 @@ d/q/p/r
 
 ####head()
 
-head(v, n)
+Vector head(Vector v, int n)
 
 ####tail()
 
-tail(v, n)
+Vector tail(Vector v, int n)
 
 ####rev()
 
@@ -279,7 +279,7 @@ duplicated(v)
 
 ####unique()
 
-unique(v)
+Vector unique(v)
 
 ####sort_unique()
 
