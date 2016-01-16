@@ -382,7 +382,7 @@ Rcout << res << endl; // 1 5
 
 ####clamp()
 
-clamp(min, v, max)
+`clamp(min, v, max)`
 
 ベクター v の要素に対して、min 未満の値を min に、max 超の値を max に置き換えたベクターを返す。
 
