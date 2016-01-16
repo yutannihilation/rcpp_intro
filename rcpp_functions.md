@@ -303,8 +303,12 @@ Vector setdiff(Vector v1,Vector v2)
 
 ####setequal()
 
+bool setequal(Vector v1,Vector v2)
 
 ####intersect()
+
+Vector intersect(Vector v1,Vector v2)
+
 ####union_()
 
 #最大値・最小値
