@@ -624,7 +624,7 @@ lbeta(v_a, v_b)
 
 all(LogicalVector v)
 
-論理ベクター v を受け取り、
+論理ベクター v を受け取り、全ての要素がTRUEの時、TRUEを返す。
 
 ```
 NumericVector v1 = NumericVector::create(1,2,3);
@@ -632,10 +632,10 @@ NumericVector v2 = NumericVector::create(2,1,3);
 
 LogicalVector lv = all( v1 > v2 );
 
-
+// bool 型への変換
 bool b1 = is_true(all( v1 > v2 ));
 bool b2 = all( v1 > v2 ).is_true();
-
+bool b3 = bool(all( v1 > v2 ));
 ```
 
 
