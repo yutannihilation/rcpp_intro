@@ -306,13 +306,13 @@ void rcpp_sort_unique(){
 
 ## 集合
 ####setdiff()
-
+```
 setdiff( v1, v2);
-
+```
 ####setequal()
-
+```
 setequal( v1, v2);
-
+```
 ####intersect()
 ```
 intersect( v1, v2);
