@@ -619,22 +619,34 @@ lbeta(v_a, v_b)
 
 ##論理
 
+
 ####all()
 
 all(LogicalVector v)
 
 論理ベクター v を受け取り、
 
-####any()
+```
+NumericVector v1;
+NumericVector v2;
 
+LogicalVector lv = all( v1 > v2 );
+bool b1 = is_true(all( v1 > v2 ));
+bool b2 = all( v1 > v2 ).is_true();
+
+```
+
+
+####any()
+is_true()
+is_false()
 
 
 ####is_finite()
 ####is_infinite()
 ####is_na()
 ####is_nan()
-####is_true()
-####is_false()
+
 
 ####ifelse()
 
