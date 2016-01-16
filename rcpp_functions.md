@@ -306,31 +306,31 @@ void rcpp_sort_unique(){
 
 ## 集合
 ####setdiff()
-```
+
 setdiff( v1, v2);
-```
+
 ####setequal()
-```
+
 setequal( v1, v2);
-```
+
 ####intersect()
-```
+
 intersect( v1, v2);
-```
+
 ####union_()
-```
+
 union_( v1, v2);
-```
+
 #最大値・最小値
 
 ####min()
-```
+
 min(v)
-```
+
 ####max()
-```
+
 max(v)
-```
+
 min(), max() を`CharacterVector` に対して適用することはできない。
 
 ```
@@ -381,9 +381,9 @@ Rcout << res << endl; // 1 5
 ```
 
 ####clamp()
-```
+
 clamp(min, v, max)
-```
+
 ベクター v の要素に対して、min 未満の値を min に、max 超の値を max に置き換えたベクターを返す。
 
 
