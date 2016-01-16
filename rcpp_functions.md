@@ -207,11 +207,12 @@ NumericVector rcpp_rep_len(){
 
 seq(start, end)
 
-start から end までの連続し整数の数列を返す。
+start から end までの連続した整数の数列を返す。
 
 
 ```
 IntegerVector v = seq(-3,3);
+Rcout << v << endl;
 
 ```
 ####seq_along()
