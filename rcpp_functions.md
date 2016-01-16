@@ -382,6 +382,20 @@ Rcout << res << endl; // 1 5
 
 ####clamp()
 
+clamp(min, v, max)
+
+ベクター v の要素に対して、min 未満の値を min に、max 超の値を max に置き換えたベクターを返す。
+
+
+```
+// [[Rcpp::export]]
+void rcpp_clamp(){
+  NumericVector   v  = NumericVector::create(1,2,3,4,5);
+  NumericVector res = clamp(2, v, 3);
+  Rcout << res << endl;
+}
+```
+
 
 数学
 
@@ -389,6 +403,7 @@ Rcout << res << endl; // 1 5
 ####mean()
 ####sd()
 ####var()
+
 ####cumsum()
 ####cumprod()
 ####floor()
