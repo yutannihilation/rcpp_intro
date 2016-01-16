@@ -589,6 +589,9 @@ tetragamma(v)
 pentagamma(v)
 
 ####psigamma()
+
+psigamma(x, deriv )
+
 ####factorial()
 ####lfactorial()
 ####choose()
