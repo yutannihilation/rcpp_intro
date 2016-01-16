@@ -265,7 +265,7 @@ IntegerVector rcpp_self_match(){
 
 which_max(v)
 
-R の which.max
+R の which.max()と同義
 
 ####which_min()
 
@@ -285,6 +285,8 @@ unique(v)
 
 sort_unique(v)
 
+unique()の結果をソートしたベクターを返す。
+
 ```
 // [[Rcpp::export]]
 void rcpp_sort_unique(){
@@ -297,7 +299,7 @@ void rcpp_sort_unique(){
 ## 集合
 ####setdiff()
 
-Vector setdiff( Vector v1, Vector v2)
+Vector setdiff(Vector v1,Vector v2)
 
 ####setequal()
 
