@@ -400,9 +400,20 @@ void rcpp_clamp(){
 数学
 
 ####sum()
+
+sum(v)
+
 ####mean()
+
+mean(v)
+
 ####sd()
+
+sd(v)
+
 ####var()
+
+var(v)
 
 ####cumsum()
 ####cumprod()
