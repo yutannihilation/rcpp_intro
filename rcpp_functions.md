@@ -627,10 +627,12 @@ all(LogicalVector v)
 論理ベクター v を受け取り、
 
 ```
-NumericVector v1;
-NumericVector v2;
+NumericVector v1 = NumericVector::create(1,2,3);
+NumericVector v2 = NumericVector::create(2,1,3);
 
 LogicalVector lv = all( v1 > v2 );
+
+
 bool b1 = is_true(all( v1 > v2 ));
 bool b2 = all( v1 > v2 ).is_true();
 
