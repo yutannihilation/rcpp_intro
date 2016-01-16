@@ -622,17 +622,21 @@ lbeta(v_a, v_b)
 
 ####all()
 
-all(LogicalVector v)
+all(v)
 
 論理ベクター v を受け取り、全ての要素がTRUEの時、TRUEを返す。
 
 ####any()
 
+any(v)
+
+
 ```cpp
 NumericVector v1 = NumericVector::create(1,2,3);
 NumericVector v2 = NumericVector::create(2,1,3);
 
-LogicalVector lv = all( v1 > v2 );
+LogicalVector lv1 = all( v1 > v2 ); //FALSE
+LogicalVector lv2 = any( v1 > v2 ); //TRUE
 ```
 
 `all()`, `any()` の結果をbool型に変換する場合には、`is_true()` `is_false()`を使う。
