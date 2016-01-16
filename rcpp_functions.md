@@ -279,7 +279,7 @@ duplicated(v)
 
 ####unique()
 
-Vector unique(Vectv)
+unique(v)
 
 ####sort_unique()
 
@@ -299,19 +299,19 @@ void rcpp_sort_unique(){
 ## 集合
 ####setdiff()
 
-Vector setdiff(Vector v1, Vector v2);
+setdiff( v1, v2);
 
 ####setequal()
 
-bool setequal(Vector v1,Vector v2);
+setequal( v1, v2);
 
 ####intersect()
 
-Vector intersect(Vector v1,Vector v2);
+intersect( v1, v2);
 
 ####union_()
 
-Vector union_(Vector v1,Vector v2);
+union_( v1, v2);
 
 #最大値・最小値
 
