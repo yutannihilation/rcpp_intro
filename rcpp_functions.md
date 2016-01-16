@@ -565,11 +565,29 @@ asin(v)
 atan(v)
 
 ####gamma()
+
+gamma(v)
+
 ####lgamma()
+
+lgamma(v)
+
 ####digamma()
+
+digamma(v)
+
 ####trigamma()
+
+trigamma(v)
+
 ####tetragamma()
+
+tetragamma(v)
+
 ####pentagamma()
+
+pentagamma(v)
+
 ####psigamma()
 ####factorial()
 ####lfactorial()
@@ -592,8 +610,6 @@ atan(v)
 
 ## NA
 ####na_omit()
-
-
 
 ## apply 関数
 
