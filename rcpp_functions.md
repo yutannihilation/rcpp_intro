@@ -21,6 +21,7 @@ NumericVector res = mean(noNA(v));
 [seq()](#seq)
 [seq_along()](#seq_along)
 [seq_len()](#seq_len)
+[diff()](#diff)
 
 **文字列**
 
@@ -74,7 +75,7 @@ NumericVector res = mean(noNA(v));
 [ceiling()](#ceiling)
 [round()](#round)
 [trunc()](#trunc)
-[diff()](#diff)
+
 
 
 [sign()](#sign)
@@ -213,6 +214,13 @@ seq_along(v)
 ####seq_len()
 
 seq_len(int n)
+
+####diff()
+
+diff(v)
+
+
+
 
 ## 文字列
 
@@ -468,26 +476,20 @@ round(v, 1) -1.5 -2.5 9.5 12.1 14.7 -7.4 15.6 -8.9 -3.7 -8.3
 trunc(v) -1 -2 9 12 14 -7 15 -8 -3 -8
 ```
 
-
-####diff()
-与えた数値ベクターの隣り合う要素の差を格納したベクターを返す。
-
-```
-y = diff(x) // y[i] == x[i+1] - x[i]
-```
-
-```
-> diff(c(1,4,6))
-[1] 3 2
-```
 ####sign()
-数値ベクターを受け取り、その各要素の符号に応じて、-1,0,1の値を格納したベクターを返す。
-```
-> sign(-3:3)
-[1] -1 -1 -1  0  1  1  1
-```
+
+sign(v)
+
 ####abs()
+
+abs(v)
+
 ####pow()
+
+pow(v, n)
+
+ベクター v の各要素を n 乗 
+
 ####sqrt()
 ####exp()
 ####expm1()
