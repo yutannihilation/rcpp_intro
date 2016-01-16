@@ -299,7 +299,7 @@ void rcpp_sort_unique(){
 ## 集合
 ####setdiff()
 
-Vector setdiff(Vector v1,Vector v2);
+Vector setdiff(Vector v1, Vector v2);
 
 ####setequal()
 
@@ -310,6 +310,8 @@ bool setequal(Vector v1,Vector v2);
 Vector intersect(Vector v1,Vector v2);
 
 ####union_()
+
+Vector union_(Vector v1,Vector v2);
 
 #最大値・最小値
 ####min()
