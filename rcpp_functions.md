@@ -209,7 +209,7 @@ seq_len(n)
 
 #### collapse()
 
-rcpp_collapse(v)
+collapse(v)
 
 文字列ベクター v の要素を結合した文字列 `String` を返す。
 
