@@ -354,10 +354,12 @@ cummin(v)
 cummax(v)
 
 ####pmin()
+
+pmin(v1,v2)
+
 ####pmax()
 
-NumericVector z = pmin(x, y)  //x[i] と y[i] を比較して小さい方を z[i] とする
-NumericVector z = pmax(x, y)  //x[i] と y[i] を比較して大きい方を z[i] とする
+pmax(v1,v2)
 
 ####range()
 ####clamp()
