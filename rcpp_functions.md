@@ -350,6 +350,7 @@ void rcpp_min(){
 cummin(v)
 
 ####cummax()
+
 cummax(v)
 
 ####pmin()
