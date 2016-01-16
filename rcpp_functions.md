@@ -642,16 +642,17 @@ is_true()
 is_false()
 
 
-####is_finite()
-####is_infinite()
-####is_na()
-####is_nan()
+
 
 
 ####ifelse()
 
-## NA
+## NA NAN Inf
 ####na_omit()
+####is_finite()
+####is_infinite()
+####is_na()
+####is_nan()
 
 ## apply 関数
 
