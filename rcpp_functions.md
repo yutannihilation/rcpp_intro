@@ -1,5 +1,7 @@
 #R ライクな関数
 
+Rに存在する関数と類似した機能もつRcppの関数の一覧を示す。名前と機能がRの関数と一致しているものについては、説明を省略しているので、Rのヘルプを参照して欲しい。
+
 **ベクター関係**
 
 [head()](#head)
@@ -166,7 +168,7 @@ rep(x, n)
 
 rep_each(v, times)
 
-R の rep.int(v, times)
+R の rep.int(v, times) と同義
 
 ```
 // [[Rcpp::export]]
@@ -202,8 +204,7 @@ seq_along(v)
 
 ####seq_len()
 
-seq_len(n)
-
+seq_len(int n)
 
 ## 文字列
 
