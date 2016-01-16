@@ -621,13 +621,17 @@ lbeta(v_a, v_b)
 
 ####all()
 ####any()
-####ifelse()
+
+
+
 ####is_finite()
 ####is_infinite()
 ####is_na()
 ####is_nan()
 ####is_true()
 ####is_false()
+
+####ifelse()
 
 ## NA
 ####na_omit()
