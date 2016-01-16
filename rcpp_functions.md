@@ -150,11 +150,11 @@ d/q/p/r
 
 ####head()
 
-Vector head(Vector v, int n)
+Vector head(Vector v, int n);
 
 ####tail()
 
-Vector tail(Vector v, int n)
+Vector tail(Vector v, int n);
 
 ####rev()
 
