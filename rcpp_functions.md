@@ -512,7 +512,7 @@ exp(v)
 
 expm1(v)
 
-`exp(v) -1` と同義
+`exp(v) - 1` と同義
 
 ####log()
 
@@ -526,7 +526,7 @@ log10(v)
 
 log1p(v)
 
-log(v+1) と
+log(v+1) と同義
 
 ####sin()
 ####sinh()
