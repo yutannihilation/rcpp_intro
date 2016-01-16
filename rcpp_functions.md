@@ -590,7 +590,7 @@ pentagamma(v)
 
 ####psigamma()
 
-psigamma(x, deriv )
+psigamma(v, deriv)
 
 ####factorial()
 ####lfactorial()
