@@ -207,6 +207,13 @@ NumericVector rcpp_rep_len(){
 
 seq(start, end)
 
+start から end までの連続し整数の数列を返す。
+
+
+```
+IntegerVector v = seq(-3,3);
+
+```
 ####seq_along()
 
 seq_along(v)
@@ -488,11 +495,19 @@ abs(v)
 
 pow(v, n)
 
-ベクター v の各要素を n 乗 
+ベクター v の各要素を n 乗したベクターを返す。
+Rの `v^n` と同義’
+
 
 ####sqrt()
 ####exp()
+
 ####expm1()
+
+expm1(v)
+
+`exp(v) -1` と同義
+
 ####log()
 ####log10()
 ####log1p()
