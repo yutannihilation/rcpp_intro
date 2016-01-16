@@ -593,10 +593,25 @@ pentagamma(v)
 psigamma(v, deriv)
 
 ####factorial()
+
+factrial(v)
+
 ####lfactorial()
+
+lfactorial(v)
+
 ####choose()
+
+choose(v1, v2)
+
 ####lchoose()
+
+lchoose(v1, v2)
+
 ####beta()
+
+beta(a, b)
+
 ####lbeta()
 
 ##論理
