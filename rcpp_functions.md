@@ -316,7 +316,12 @@ Vector union_(Vector v1,Vector v2);
 #最大値・最小値
 
 ####min()
+
+min(v)
+
 ####max()
+
+max(v)
 
 min(), max() を`CharacterVector` に対して適用することはできない。
 
