@@ -651,6 +651,9 @@ bool b3 = bool(all( v1 > v2 ));     //false
 
 ####ifelse()
 
+
+
+
 ## NA NAN Inf
 ####na_omit()
 ####is_finite()
