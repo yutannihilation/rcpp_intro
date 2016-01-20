@@ -686,7 +686,7 @@ na_omit(v)
 // [[Rcpp::export]]
 NumericVector rcpp_na_omit(){
   NumericVector   v1  = NumericVector::create(1,2,NA_REAL,4,5);
-  return na_omit(v1);
+  return na_omit(v1); // 1 2 4 5
 }
 ```
 
