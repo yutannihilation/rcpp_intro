@@ -646,7 +646,7 @@ LogicalVector lv2 = any( v1 > v2 ); //TRUE
 ```cpp
 // bool 型への変換
 bool b1 = is_true(all( v1 > v2 ));  //false
-bool b2 = all( v1 > v2 ).is_true(); //false
+bool b2 = is_false(all( v1 > v2 )); //true
 bool b3 = bool(all( v1 > v2 ));     //false
 ```
 
