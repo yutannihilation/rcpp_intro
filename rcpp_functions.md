@@ -655,7 +655,23 @@ bool b3 = bool(all( v1 > v2 ));     //false
 
 ifelse(cond, x1, x2)
 
-論理ベクター cond を受け取り、TRUEの時には x1, FALSE の時には x2 を返す。x1, x2 はベクターでもスカラーでも良い。
+論理ベクター cond を受け取り、TRUEの時には x1, FALSE の時には x2 を返す。x1, x2 はベクターでもスカラーでも良いが。ベクターの長さは cond と一致している必要がある。
+
+```
+// [[Rcpp::export]]
+void rcpp_ifelse(){
+  NumericVector   v1  = NumericVector::create(1,2,3,4,5);
+  NumericVector   v2  = NumericVector::create(2,1,4,3,5);
+  
+  NumericVector res1 = ifelse(v1 > v2, 0, v1);
+  NumericVector res2 = ifelse(v1 > v2, v1, 0);
+  NumericVector res3 = ifelse(v1 > v2, v1, v2);
+  
+  Rcout << "ifelse(v1 > v2, 0, v1) " << res1 << endl;
+  Rcout << "ifelse(v1 > v2, v1, 0) " << res2 << endl;
+  Rcout << "ifelse(v1 > v2, v1, v2) " << res3 << endl;
+}
+``
 
 
 ## NA NAN Inf
