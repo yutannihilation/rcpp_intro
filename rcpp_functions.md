@@ -653,7 +653,9 @@ bool b3 = bool(all( v1 > v2 ));     //false
 
 ####ifelse()
 
+ifelse(cond, x1, x2)
 
+論理ベクター cond を受け取り、TRUEの時には x1, FALSE の時には x2 を返す。x1, x2 はベクターでもスカラーでも良い。
 
 
 ## NA NAN Inf
