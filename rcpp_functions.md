@@ -657,7 +657,7 @@ ifelse(cond, x1, x2)
 
 論理ベクター cond を受け取り、TRUEの時には x1, FALSE の時には x2 を返す。x1, x2 はベクターでもスカラーでも良いが。ベクターの長さは cond と一致している必要がある。
 
-```
+```cpp
 // [[Rcpp::export]]
 void rcpp_ifelse(){
   NumericVector   v1  = NumericVector::create(1,2,3,4,5);
@@ -671,7 +671,7 @@ void rcpp_ifelse(){
   Rcout << "ifelse(v1 > v2, v1, 0) " << res2 << endl;
   Rcout << "ifelse(v1 > v2, v1, v2) " << res3 << endl;
 }
-``
+```
 
 
 ## NA NAN Inf
