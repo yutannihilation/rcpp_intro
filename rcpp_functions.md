@@ -655,7 +655,7 @@ bool b3 = bool(all( v1 > v2 ));     //false
 
 ifelse(cond, x1, x2)
 
-論理ベクター cond を受け取り、TRUEの時には x1, FALSE の時には x2 を返す。x1, x2 はベクターでもスカラーでも良いが。ベクターの長さは cond と一致している必要がある。
+論理ベクター cond を受け取り、TRUEの時には x1, FALSE の時には x2 を返す。x1, x2 はベクターでもスカラーでも良いが、ベクターの長さは cond と一致している必要がある。
 
 ```cpp
 // [[Rcpp::export]]
