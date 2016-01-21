@@ -726,6 +726,12 @@ sapply(x, fun)
 オブジェクト（Vector, DataFrame, List） x の各要素に対して関数 fun を適用した結果を Vector で返す。
 
 
+####mapply()
+
+mapply(x1, x2, fun)
+mapply(x1, x2, x3, fun)
+
+
 ```
 template <typename T>
 T square( const T& x){
@@ -766,7 +772,7 @@ sapply( seq_len(10), square<int>() ) ;
 
 
  
-####mapply()
+
 
 
 
