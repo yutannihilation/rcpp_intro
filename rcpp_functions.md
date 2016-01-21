@@ -716,8 +716,14 @@ is_nan(v)
 
 lapply(x, fun)
 
-オブジェクト x の各要素対して関数 fun を適用した結果を List で返す。
-x が Vector の場合には各要素、DataFrame の場合には
+オブジェクト（Vector, DataFrame, List） x の各要素に対して関数 fun を適用した結果を List で返す。
+
+
+####sapply()
+
+sapply(x, fun)
+
+オブジェクト（Vector, DataFrame, List） x の各要素に対して関数 fun を適用した結果を Vector で返す。
 
 
 ```
@@ -731,9 +737,6 @@ List apply_square( NumericVector x ){
 	return lapply( x, square<double> ) ;
 }
 ```
-####sapply()
-
-第１引数の各要素に、第２引数で与えた関数を適用した、結果をベクターで返す
 
 ```
 //テンプレート関数を渡す場合
@@ -743,6 +746,7 @@ T square( const T& x){
 }
 sapply( seq_len(10), square<int> ) ;
 ```
+
 ```
 //関数オブジェクトを与える場合
 template <typename T>
@@ -759,6 +763,8 @@ sapply( seq_len(10), square<int>() ) ;
  std::function<int (int)> func_obj = [](int x) { return (x*x);};
  sapply( seq_len(10), func_obj) ;
  ```
+
+
  
 ####mapply()
 
