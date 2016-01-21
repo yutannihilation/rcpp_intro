@@ -726,6 +726,43 @@ sapply(x, fun)
 オブジェクト（Vector, DataFrame, List） x の各要素に対して関数 fun を適用した結果を Vector で返す。
 
 
+apply関数に渡す関数は、様々な方法で作成できる。
+
+```
+
+
+template <typename T>
+T square( const T& x){
+	return x * x ;
+}
+
+// [[Rcpp::export]]
+List apply_square( NumericVector x ){
+	return lapply( x, square<double> ) ;
+}
+```
+
+//テンプレート関数を渡す場合
+template <typename T>
+T square( const T& x){
+    return x * x ;
+}
+sapply( seq_len(10), square<int> ) ;
+
+//関数オブジェクトを与える場合
+template <typename T>
+struct square : std::unary_function<T,T> {
+    T operator()(const T& x){
+        return x * x ;
+    }
+}
+sapply( seq_len(10), square<int>() ) ;
+
+//std::function と ラムダ式で書く場合
+ std::function<int (int)> func_obj = [](int x) { return (x*x);};
+ sapply( seq_len(10), func_obj) ;
+
+
 ####mapply()
 
 ```
@@ -734,7 +771,12 @@ mapply(x1, x2, x3, fun3)
 ```
 オブジェクトx1, x2, x3 の各要素に対して関数 fun を適用した結果を  で返す。
 
-fun2 は2引数（`fun2( x1[i], x2[i] )`）
+fun2 は2つの引数、fun3 は３の引数を受け取る関数
+
+```
+fun2( x1[i], x2[i] )
+fun3( x1[i], x2[i], x3[i])
+```
 
 mapplyの返値の型は、fun の返値の型により異なる。
 
@@ -761,17 +803,7 @@ NumericVector rcpp_mapply(){
 
 
 
-```
-template <typename T>
-T square( const T& x){
-	return x * x ;
-}
 
-// [[Rcpp::export]]
-List apply_square( NumericVector x ){
-	return lapply( x, square<double> ) ;
-}
-```
 
 
 
