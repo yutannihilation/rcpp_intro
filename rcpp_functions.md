@@ -692,14 +692,33 @@ NumericVector rcpp_na_omit(){
 
 
 ####is_finite()
+
+is.finite(v)
+
 ####is_infinite()
+
+is_infinite(v)
+
 ####is_na()
+
+is_na(v)
+
 ####is_nan()
+
+is_nan(v)
+
+
 
 ## apply 関数
 
+
 ####lapply()
-sapplyと似ているが、返り値がlistになっている。
+
+lapply(x, fun)
+
+オブジェクト x の各要素対して関数 fun を適用した結果を List で返す。
+x が Vector の場合には各要素、DataFrame の場合には
+
 
 ```
 template <typename T>
