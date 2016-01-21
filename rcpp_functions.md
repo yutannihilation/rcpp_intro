@@ -738,9 +738,12 @@ mapplyの返値の型は、fun の返値の型により異なる。
 * funの返値がスカラーなら ベクター
 * funの返値が同じ長さのベクターなら、`DataFrame`
 
-|||
-|||
-|||
+| funの返値 | mapplyの返値 |
+| -- | -- |
+| スカラー | ベクター |
+| 同じ長さのベクター | DataFrame |
+| 任意のオブジェクト | Lis |
+
 
 ```
 double add(double x1, double x2){
