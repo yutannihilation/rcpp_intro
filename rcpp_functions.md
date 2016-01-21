@@ -729,10 +729,12 @@ sapply(x, fun)
 ####mapply()
 
 ```
-mapply(x1, x2, fun)
+mapply(x1, x2, fun2)
 mapply(x1, x2, x3, fun3)
 ```
 オブジェクトx1, x2, x3 の各要素に対して関数 fun を適用した結果を  で返す。
+
+fun2 は2引数（`fun2( x1[i], x2[i] )`）
 
 mapplyの返値の型は、fun の返値の型により異なる。
 
