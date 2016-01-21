@@ -732,8 +732,15 @@ sapply(x, fun)
 mapply(x1, x2, fun)
 mapply(x1, x2, x3, fun3)
 ```
-オブジェクトx1, x2, x3 の各要素に対して関数 fun を適用した結果を で返す。
+オブジェクトx1, x2, x3 の各要素に対して関数 fun を適用した結果を  で返す。
 
+mapplyの返値の型は、fun の返値の型により異なる。
+* funの返値がスカラーなら ベクター
+* funの返値が同じ長さのベクターなら、`DataFrame`
+
+|||
+|||
+|||
 
 ```
 double add(double x1, double x2){
