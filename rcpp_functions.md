@@ -729,12 +729,22 @@ sapply(x, fun)
 apply関数に渡す関数は、様々な方法で作成できる。
 
 ```
+//通常の関数
+double square( const double& x){
+	return x * x ;
+}
 
 
+//テンプレート関数
 template <typename T>
 T square( const T& x){
 	return x * x ;
 }
+
+//関数オブジェクト
+
+
+
 
 // [[Rcpp::export]]
 List apply_square( NumericVector x ){
@@ -742,12 +752,7 @@ List apply_square( NumericVector x ){
 }
 ```
 
-//テンプレート関数を渡す場合
-template <typename T>
-T square( const T& x){
-    return x * x ;
-}
-sapply( seq_len(10), square<int> ) ;
+
 
 //関数オブジェクトを与える場合
 template <typename T>
