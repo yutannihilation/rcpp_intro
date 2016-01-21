@@ -733,6 +733,7 @@ mapply(x1, x2, fun)
 mapply(x1, x2, x3, fun)
 ```
 
+
 ```
 z = mapply(x1, x2, fun); は
 ```
