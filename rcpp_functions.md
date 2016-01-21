@@ -713,16 +713,16 @@ is_nan(v)
 
 
 ####lapply()
-
+```
 lapply(x, fun)
-
+```
 オブジェクト（Vector, DataFrame, List） x の各要素に対して関数 fun を適用した結果を List で返す。
 
 
 ####sapply()
-
+```
 sapply(x, fun)
-
+```
 オブジェクト（Vector, DataFrame, List） x の各要素に対して関数 fun を適用した結果を Vector で返す。
 
 
@@ -730,18 +730,23 @@ sapply(x, fun)
 
 ```
 mapply(x1, x2, fun)
-mapply(x1, x2, x3, fun)
+mapply(x1, x2, x3, fun3)
 ```
 
 
-```
-z = mapply(x1, x2, fun); は
-```
 
 ```
-for(int i=0; i< z.length(); ++i){
-  z[i] = fun(x1[i], x2[i]);
+double add(double x1, double x2){
+  return x1 + x2;
 }
+
+// [[Rcpp::export]]
+NumericVector rcpp_mapply(){
+  NumericVector   v1  = NumericVector::create(1,2,3,4,5);
+  NumericVector   v2  = NumericVector::create(2,1,4,3,5);
+  return mapply(v1, v2, add);
+}
+// 3  3  7  7 10
 ```
 
 
