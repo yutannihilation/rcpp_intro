@@ -731,6 +731,16 @@ sapply(x, fun)
 mapply(x1, x2, fun)
 mapply(x1, x2, x3, fun)
 
+z = mapply(x1, x2, fun); は
+
+for(int i=0; i< z.length(); ++i){
+  z[i] = fun(x1[i], x2[i]);
+}
+
+
+z[]
+
+
 
 ```
 template <typename T>
