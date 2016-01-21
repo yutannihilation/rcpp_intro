@@ -732,12 +732,12 @@ sapply(x, fun)
 mapply(x1, x2, fun)
 mapply(x1, x2, x3, fun3)
 ```
-
+オブジェクトx1, x2, x3 の各要素に対して関数 fun を適用した結果を で返す。
 
 
 ```
 double add(double x1, double x2){
-  return x1 + x2;
+  return x1 + x2; 
 }
 
 // [[Rcpp::export]]
@@ -763,31 +763,6 @@ List apply_square( NumericVector x ){
 }
 ```
 
-```
-//テンプレート関数を渡す場合
-template <typename T>
-T square( const T& x){
-    return x * x ;
-}
-sapply( seq_len(10), square<int> ) ;
-```
-
-```
-//関数オブジェクトを与える場合
-template <typename T>
-struct square : std::unary_function<T,T> {
-    T operator()(const T& x){
-        return x * x ;
-    }
-}
-sapply( seq_len(10), square<int>() ) ;
-```
-
-```
-//std::function と ラムダ式で書く場合
- std::function<int (int)> func_obj = [](int x) { return (x*x);};
- sapply( seq_len(10), func_obj) ;
- ```
 
 
  
