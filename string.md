@@ -3,8 +3,8 @@
 `String` は、`CharacterVector`, `CharacterMatrix` の要素となるスカラー型である。
 
 ##作成
-```cpp
 
+```cpp
 String s;      //""
 String s("X"); //"X"
 
