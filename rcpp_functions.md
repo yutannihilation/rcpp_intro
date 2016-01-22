@@ -788,9 +788,6 @@ NumericVector rcpp_sapply4(){
 
 
 
-
-
-
 ####mapply()
 
 ```
