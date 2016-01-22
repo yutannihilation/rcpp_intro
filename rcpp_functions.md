@@ -786,7 +786,7 @@ fun2( x1[i], x2[i] )
 fun3( x1[i], x2[i], x3[i])
 ```
 
-mapplyの返値の型は fun の返値の型により変わる。
+mapply の返値の型は fun の返値の型により変わる。
 
 | funの返値 | mapplyの返値 |
 | -- | -- |
