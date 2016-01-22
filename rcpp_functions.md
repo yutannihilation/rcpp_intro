@@ -146,9 +146,7 @@ NumericVector res = mean(noNA(v));
 
 **確率分布**
 
-全てのRの提供する確率分布
-
-[確率分布の章を参照](dpqr_functions.md)
+全てのRの提供する確率分布。[確率分布の章を参照](dpqr_functions.md)
 
 
 
