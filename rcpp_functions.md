@@ -734,6 +734,14 @@ int square( const int& x){
 	return x * x ;
 }
 
+// [[Rcpp::export]]
+List apply_square( NumericVector x ){
+	return sapply( seq_len(10), square );
+}
+```
+
+```
+
 //関数テンプレート
 template <typename T>
 T square( const T& x){
@@ -742,17 +750,24 @@ T square( const T& x){
 
 sapply( seq_len(10), square<int>() );
 
+```
 
-//関数オブジェクトを与える場合
+```
+//関数オブジェクト
 template <typename T>
 struct square : std::unary_function<T,T> {
     T operator()(const T& x){
         return x * x ;
     }
 }
-sapply( seq_len(10), square<int>() );
 
+// [[Rcpp::export]]
+List apply_square( NumericVector x ){
+	return sapply( seq_len(10), square<int>() );
+}
+```
 
+```
 //std::function と ラムダ式で書く場合
  std::function<int (int)> func_obj = [](int x) { return (x*x);};
  sapply( seq_len(10), func_obj) ;
