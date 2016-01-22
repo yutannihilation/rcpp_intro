@@ -2,10 +2,9 @@
 
 Rに存在する関数と類似した機能もつRcppの関数の一覧を示す。名前と機能がRの関数と一致しているものについては、説明を省略しているので、Rのヘルプを参照して欲しい。
 
-これらの関数に与えるオブジェクトにNAが含まれていないと保証できる場合には、`noNA()`を使ってオブジェクトに印をつけると、Rcpp関数がNAのチェックを行わなくなるので、計算が早くなる。
+これらの関数に与えるオブジェクトに NA が含まれていないと保証できる場合には、`noNA()`を使ってオブジェクトに印をつけると、Rcpp関数がNAのチェックを行わなくなるので、計算が早くなる。
 
 ```
-NumericVector v = NumericVector::create(1,2,3,4,5);
 NumericVector res = mean(noNA(v));
 ```
 
@@ -62,17 +61,14 @@ NumericVector res = mean(noNA(v));
 
 **集計**
 
-
-
-**要約・集計**
-
 [sum()](#sum)
 [mean()](#mean)
 [sd()](#sd)
 [var()](#var)
+[table()](#table)
+
 [cumsum()](#cumsum)
 [cumprod()](#cumprod)
-[table()](#table)
 
 **数学**
 
