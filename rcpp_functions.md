@@ -809,14 +809,19 @@ NumericVector rcpp_mapply(){
 // 3  3  7  7 10
 ```
 
-```
+```cpp
+NumericVector make_vector(double x1, double x2){
+  return NumericVector::create(x1,x2);
+}
+
 // [[Rcpp::export]]
 DataFrame rcpp_mapply2(){
   NumericVector   v1  = NumericVector::create(1,2,3,4,5);
-  NumericVector   v2  = NumericVector::create(2,1,4,3,5);
-  return mapply(v1, v2, fun_vector);
+  NumericVector   v2  = NumericVector::create(6,7,8,9,10);
+  
+  return mapply(v1, v2, make_vector);
 }
-``
+```
 
 
 
