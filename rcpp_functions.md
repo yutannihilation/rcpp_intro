@@ -730,16 +730,18 @@ apply 関数に渡す関数は、通常の関数の他いくつかの方法で�
 
 ```
 //通常の関数
-double square( const double& x){
+int square( const int& x){
 	return x * x ;
 }
 
-
-//テンプレート関数
+//関数テンプレート
 template <typename T>
 T square( const T& x){
 	return x * x ;
 }
+
+sapply( seq_len(10), square<int>() );
+
 
 //関数オブジェクトを与える場合
 template <typename T>
@@ -748,7 +750,7 @@ struct square : std::unary_function<T,T> {
         return x * x ;
     }
 }
-sapply( seq_len(10), square<int>() ) ;
+sapply( seq_len(10), square<int>() );
 
 
 //std::function と ラムダ式で書く場合
