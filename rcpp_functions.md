@@ -735,7 +735,7 @@ int square( const int& x){
 }
 
 // [[Rcpp::export]]
-List apply_square( NumericVector x ){
+NumericVector apply_square( NumericVector x ){
 	return sapply( seq_len(10), square );
 }
 ```
