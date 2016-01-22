@@ -1,6 +1,6 @@
 # Datetime
 
-`Datetime` は `DatetimeVector` `DatetimeMatrix` の要素となるスカラー型。
+`Datetime` は `DatetimeVector` `DatetimeMatrix` の要素となるスカラー型である。
 
 ##作成
 
