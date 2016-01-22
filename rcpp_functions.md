@@ -842,13 +842,9 @@ DataFrame rcpp_mapply2(){
 
 
  
-
-
-
-
-
 ####table()
 
+table(v)
 
 
 
