@@ -822,6 +822,9 @@ DataFrame rcpp_mapply2(){
   NumericVector   v2  = NumericVector::create(6,7,8,9,10);
   return mapply(v1, v2, make_vector);
 }
+//  c.1..6. c.2..7. c.3..8. c.4..9. c.5..10.
+//1       1       2       3       4        5
+//2       6       7       8       9       10
 ```
 
 
