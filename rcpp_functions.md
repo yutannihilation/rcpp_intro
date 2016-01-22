@@ -773,14 +773,15 @@ NumericVector rcpp_sapply3(){
 ```
 
 ```
-//std::function と ラムダ式で書く場合
- std::function<int (int)> func_obj = [](int x) { return (x*x);};
- sapply( seq_len(10), func_obj) ;
-
-
+//std::function と ラムダ式（C++11）
+// [[Rcpp::plugins("cpp11")]]
 // [[Rcpp::export]]
-List apply_square( NumericVector x ){
-	return lapply( x, square<double> ) ;
+NumericVector rcpp_sapply4(){
+  NumericVector   v1  = NumericVector::create(1,2,3,4,5);
+  
+  std::function<double (double)> square = [](double x){return x*x;};
+  return sapply( v1, square );
+  //return sapply( v1, [](double x){return x*x;} );
 }
 ```
 
