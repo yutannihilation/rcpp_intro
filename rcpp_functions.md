@@ -811,6 +811,7 @@ NumericVector rcpp_mapply(){
 ```
 
 ```cpp
+// ベクターを返す関数
 NumericVector make_vector(double x1, double x2){
   return NumericVector::create(x1,x2);
 }
