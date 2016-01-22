@@ -790,12 +790,13 @@ mapplyの返値の型は、fun の返値の型により異なる。
 
 | funの返値 | mapplyの返値 |
 | -- | -- |
-| スカラー | Vector |
+| スカラー | Vector, DataFrame |
 | 同じ長さのベクター | DataFrame |
 | 任意のオブジェクト | List |
 
 
 ```cpp
+// スカラー値を返す関数
 double add(double x1, double x2){
   return x1 + x2; 
 }
