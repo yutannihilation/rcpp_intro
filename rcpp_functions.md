@@ -772,7 +772,7 @@ NumericVector rcpp_sapply3(){
 }
 ```
 
-```
+```cpp
 //std::function と ラムダ式（C++11）
 // [[Rcpp::plugins("cpp11")]]
 // [[Rcpp::export]]
