@@ -728,7 +728,7 @@ sapply(x, fun)
 
 apply 関数に渡す関数は、通常の関数の他いくつかの方法で作成したものが利用できる。
 
-```
+```cpp
 //通常の関数
 int square( const int& x){
 	return x * x ;
@@ -740,30 +740,35 @@ NumericVector apply_square( NumericVector x ){
 }
 ```
 
-```
-
+```cpp
 //関数テンプレート
 template <typename T>
 T square( const T& x){
-	return x * x ;
-}
-
-sapply( seq_len(10), square<int>() );
-
-```
-
-```
-//関数オブジェクト
-template <typename T>
-struct square : std::unary_function<T,T> {
-    T operator()(const T& x){
-        return x * x ;
-    }
+  return x * x ;
 }
 
 // [[Rcpp::export]]
-List apply_square( NumericVector x ){
-	return sapply( seq_len(10), square<int>() );
+IntegerVector rcpp_sapply2(){
+  IntegerVector   v1  = IntegerVector::create(1,2,3,4,5);
+  return sapply( seq_len(5), square<int>);
+}
+```
+
+```cpp
+//関数オブジェクト
+template <typename T>
+struct SQUARE : std::unary_function<T,T> {
+   T operator()(const T& x) const {
+    return x * x ;
+  }
+};
+
+// [[Rcpp::export]]
+NumericVector rcpp_sapply3(){
+  NumericVector   v1  = NumericVector::create(1,2,3,4,5);
+  SQUARE<double> square;
+  return sapply( v1,  square );
+  //return sapply( v1,  SQUARE<double>() );
 }
 ```
 
