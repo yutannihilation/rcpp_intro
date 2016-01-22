@@ -30,7 +30,7 @@ MAKE=make -j4
 
 ## Rcpp のインストール 
 
-コンパイラがインストールできたら、RでRcppパッケージをインストール。
+コンパイラがインストールできたら、R で Rcpp パッケージをインストール。
 
 ```r
 install.packages("Rcpp")
