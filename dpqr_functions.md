@@ -1,11 +1,11 @@
-# d/p/q/r 関数
+# 確率分布
 
-Rcpp は R にある主要な全ての d/p/q/r 関数を提供する。
+Rcpp は R にある主要な全ての確率分布 (d/p/q/r) 関数を提供する。
 
-* d: density function
-* p: cumulative distribution function
-* q: quantile function
-* r: random generation
+* d*: density function
+* p*: cumulative distribution function
+* q*: quantile function
+* r*: random generation
 
 
 ###Rcpp::d/p/q/r関数の基本構造
