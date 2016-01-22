@@ -778,7 +778,6 @@ NumericVector rcpp_sapply3(){
 // [[Rcpp::export]]
 NumericVector rcpp_sapply4(){
   NumericVector   v1  = NumericVector::create(1,2,3,4,5);
-  
   std::function<double (double)> square = [](double x){return x*x;};
   return sapply( v1, square );
   //return sapply( v1, [](double x){return x*x;} );
