@@ -11,7 +11,7 @@ Functionクラスを使うと、R の関数を引数として渡して、Rcpp内
 `Named("引数名", "値")` でも　`Named("引数名")=値`のどちらでも良い。
 
 
-例：rnorm(n, mean, sd)を受け取る関数 my_
+例：my_fun に rnorm()を引数として渡す
 
 
 ```cpp
