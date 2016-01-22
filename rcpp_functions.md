@@ -60,7 +60,11 @@ NumericVector res = mean(noNA(v));
 [range()](#range)
 [clamp()](#clamp)
 
-**数学**
+**集計**
+
+
+
+**要約・集計**
 
 [sum()](#sum)
 [mean()](#mean)
@@ -68,7 +72,9 @@ NumericVector res = mean(noNA(v));
 [var()](#var)
 [cumsum()](#cumsum)
 [cumprod()](#cumprod)
+[table()](#table)
 
+**数学**
 
 [floor()](#floor)
 [ceil()](#ceil)
@@ -76,10 +82,9 @@ NumericVector res = mean(noNA(v));
 [round()](#round)
 [trunc()](#trunc)
 
-
-
 [sign()](#sign)
 [abs()](#abs)
+
 [pow()](#pow)
 [sqrt()](#sqrt)
 [exp()](#exp)
@@ -87,6 +92,7 @@ NumericVector res = mean(noNA(v));
 [log()](#log)
 [log10()](#log10)
 [log1p()](#log1p)
+
 [sin()](#sin)
 [sinh()](#sinh)
 [cos()](#cos)
@@ -104,10 +110,13 @@ NumericVector res = mean(noNA(v));
 [tetragamma()](#tetragamma)
 [pentagamma()](#pentagamma)
 [psigamma()](#psigamma)
+
 [factorial()](#factorial)
 [lfactorial()](#lfactorial)
+
 [choose()](#choose)
 [lchoose()](#lchoose)
+
 [beta()](#beta)
 [lbeta()](#lbeta)
 
@@ -147,9 +156,7 @@ d/q/p/r
 
 [dpqr関数の章を参照](dpqr_functions.md)
 
-**その他**
 
-[table()](#table)
 
 ----
 
@@ -412,9 +419,7 @@ void rcpp_clamp(){
   Rcout << res << endl;
 }
 ```
-
-
-##数学
+##
 
 ####sum()
 
@@ -439,6 +444,14 @@ cumsum(v)
 ####cumprod()
 
 cumprod(v)
+
+####table()
+
+table(v)
+
+##数学
+
+
 
 ####floor()
 
@@ -842,9 +855,7 @@ DataFrame rcpp_mapply2(){
 
 
  
-####table()
 
-table(v)
 
 
 
