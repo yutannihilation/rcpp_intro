@@ -15,6 +15,7 @@
 
 下の例では、ベクター v の総和を計算する関数 rcpp_sum() を定義している。このコードを sum.cpp という名前で保存する。
 
+
 ```cpp
 #include <Rcpp.h>
 using namespace Rcpp;
@@ -31,7 +32,7 @@ double rcpp_sum(NumericVector v){
 
 ##コンパイル
 
-`sourceCpp()` がソースコードのコンパイルとRへのロードをしてくれる。
+`sourceCpp()` がソースコードのコンパイルと R へのロードをしてくれる。
 
 ```R
 library(Rcpp)
@@ -42,7 +43,7 @@ sourceCpp('sum.cpp')
 ```r
 > sum(1:10)
 [1] 55
-> sum_rcpp(1:10)
+> rcpp_sum(1:10)
 [1] 55
 ```
 
