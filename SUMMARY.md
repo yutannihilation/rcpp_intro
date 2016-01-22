@@ -3,8 +3,6 @@
 * [Rcpp とは](README.md)
 * [インストール](install.md)
 * [基本的な使い方](basic_usage.md)
-
-
 * [基本データ型](data_types.md)
 * [関数の定義](function.md)
 * [Vector](vector.md)
@@ -15,14 +13,12 @@
 * [Date](date.md)
 * [Datetime](datetime.md)
 * [String](string.md)
-
 * [四則演算と比較演算](calculation.md)
 * [属性値](attributes.md)
 * [Rライクな関数](rcpp_functions.md)
 * [確率分布](dpqr_functions.md)
 * [Rcpp から R の関数を利用する](R_function.md)
 * [NA NaN Inf](na_nan_inf.md)
-
 * [イテレーター](iterator.md)
 * [アルゴリズム](STL.md)
 * [C++11](c++11.md)
