@@ -135,7 +135,7 @@ NumericVector res = mean(noNA(v));
 
 
 
-**Apply関数**
+**apply関数**
 
 [lapply()](#lapply)
 [sapply()](#sapply)
