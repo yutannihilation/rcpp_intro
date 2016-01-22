@@ -13,7 +13,7 @@
 
 **File > New File > C++ File**
 
-下の例では、ベクターvの総和を計算する関数 sum_rcpp を定義している。このコードを sum.cpp という名前で保存する。
+下の例では、ベクター v の総和を計算する関数 sum_rcpp を定義している。このコードを sum.cpp という名前で保存する。
 
 ```cpp
 #include <Rcpp.h>
