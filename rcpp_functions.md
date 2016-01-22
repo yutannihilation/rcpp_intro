@@ -791,7 +791,7 @@ mapply の返値の型は fun の返値の型により変わる。
 | funの返値 | mapplyの返値 |
 | -- | -- |
 | スカラー | Vector, DataFrame |
-| 同じ長さのベクター | DataFrame, List |
+| 同じ長さのベクター | List, DataFrame |
 | 任意のオブジェクト | List |
 
 
