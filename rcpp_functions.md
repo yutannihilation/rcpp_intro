@@ -723,10 +723,10 @@ lapply(x, fun)
 ```
 sapply(x, fun)
 ```
-オブジェクト（Vector, DataFrame, List） x の各要素に対して関数 fun を適用した結果を Vector で返す。
+オブジェクト x（Vector, DataFrame, List）  の各要素に対して関数 fun を適用した結果を Vector で返す。
 
 
-apply関数に渡す関数は、様々な方法で作成できる。
+apply 関数に渡す関数は、通常の関数の他いくつかの方法で作成したものが利用できる。
 
 ```
 //通常の関数
