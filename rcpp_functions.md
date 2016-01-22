@@ -777,14 +777,8 @@ List apply_square( NumericVector x ){
 mapply(x1, x2, fun2)
 mapply(x1, x2, x3, fun3)
 ```
-オブジェクトx1, x2, x3 の各要素に対して関数 fun を適用した結果を  で返す。
+オブジェクトx1, x2, x3 の各要素に対して関数を適用した結果を  で返す。fun2 は2つの引数、fun3 は３の引数を受け取る関数
 
-fun2 は2つの引数、fun3 は３の引数を受け取る関数
-
-```
-fun2( x1[i], x2[i] )
-fun3( x1[i], x2[i], x3[i])
-```
 
 mapply の返値の型は fun の返値の型により変わる。
 
