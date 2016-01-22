@@ -768,7 +768,7 @@ NumericVector rcpp_sapply3(){
   NumericVector   v1  = NumericVector::create(1,2,3,4,5);
   SQUARE<double> square;
   return sapply( v1,  square );
-  //return sapply( v1,  SQUARE<double>() );
+  //return sapply( v1,  SQUARE<double>() ); //OK
 }
 ```
 
