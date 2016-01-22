@@ -1,6 +1,6 @@
 # 確率分布
 
-Rcpp は R にある主要な全ての確率分布 (ここでは `d/p/q/r` 関数と) 関数を提供する。
+Rcpp は R にある主要な全ての確率分布関数 (ここでは `d/p/q/r` 関数と表記する) を提供する。
 
 * d*: density function
 * p*: cumulative distribution function
