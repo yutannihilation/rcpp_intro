@@ -16,9 +16,9 @@ NumericVector Rcpp::pXXX( NumericVector q, double p0, bool lower = true, bool lo
 NumericVector Rcpp::qXXX( NumericVector p, double p0, bool lower = true, bool log = false)
 NumericVector Rcpp::rXXX(           int n, double p0)
 ```
-上は、d/p/q/r関数の基本構造を概念的に表したものなので、Rcppのソースコード中の記述とは正確には異なっている。通常のユーザーにとってはこのような関数が定義されていると考えても差し支えはない。
+上は、d/p/q/r関数の基本構造を概念的に表したものなので、通常のユーザーにとってはこのような関数が定義されていると考えても差し支えはない。
 
-（`Rcpp::d/p/q/r` 関数はマクロで記述されているので、ソースコード中に明示的には `Rcpp::d/p/q/r` の定義は書いていない。）
+（`Rcpp::d/p/q/r` 関数はマクロで記述されているので、ソースコード中に上のような `Rcpp::d/p/q/r` の定義は書いていない。）
 
 ###R::d/p/q/r関数
 
