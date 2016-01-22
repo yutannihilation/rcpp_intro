@@ -820,7 +820,6 @@ NumericVector make_vector(double x1, double x2){
 DataFrame rcpp_mapply2(){
   NumericVector   v1  = NumericVector::create(1,2,3,4,5);
   NumericVector   v2  = NumericVector::create(6,7,8,9,10);
-  
   return mapply(v1, v2, make_vector);
 }
 ```
