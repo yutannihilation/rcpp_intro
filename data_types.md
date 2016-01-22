@@ -69,4 +69,3 @@ Rcpp においては、`Vector`, `DataFrame`, `List` はどれもある種のベ
 
 
 
-
