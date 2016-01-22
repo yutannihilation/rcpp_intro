@@ -795,7 +795,7 @@ mapplyの返値の型は、fun の返値の型により異なる。
 | 任意のオブジェクト | List |
 
 
-```
+```cpp
 double add(double x1, double x2){
   return x1 + x2; 
 }
