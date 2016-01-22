@@ -2,9 +2,9 @@
 
 #開発ツールのインストール
 
-まずは C++ のコンパイラ（g++）をインストールする。
+まずは C++ のコンパイラをインストールする。
 
-**Windows**：[Rtools](https://cran.r-project.org/bin/windows/Rtools/index.html) をインストールします。すると C:\\Rtools 以下にgccなどが配置される。
+**Windows**：[Rtools](https://cran.r-project.org/bin/windows/Rtools/index.html) をインストールします。C:\\Rtools 以下にgccなどが配置される。
 
 **Mac**：Xcode command line tools をインストールする。ターミナルで次のコマンドを打つ `xcode-select --install`
 
