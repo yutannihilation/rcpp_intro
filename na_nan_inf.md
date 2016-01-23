@@ -95,7 +95,7 @@ IntegerVector rcpp_remove_na() {
 
 実行結果
 ```
-> rcpp_is_na()
+> rcpp_remove_na()
 [1] 1 3
 ```
 
