@@ -126,6 +126,7 @@ int    int_nan    = R_NaN;      //-2147483648
 int    int_inf    = R_PosInf;   //-2147483648
 ```
 
+Rcppの演算子と標準C++の演算子における `NA_INTEGER` の扱い後が
 
 ```cpp
 // [[Rcpp::export]]
@@ -189,65 +190,6 @@ String chr_inf    = R_PosInf;   //"Inf"
 //std::string str_inf    = R_PosInf;
 ```
 
-
-
-```cpp
-// [[Rcpp::export]]
-List rcpp_na_scalar() {
-
-  double double_na  = NA_REAL;    //nan
-  double double_nan = R_NaN;      //nan
-  double double_inf = R_PosInf;   //inf
-  
-  int    int_na     = NA_INTEGER; //-2147483648
-  int    int_nan    = R_NaN;      //-2147483648
-  int    int_inf    = R_PosInf;   //-2147483648
-  
-  String chr_na     = NA_STRING;  //"NA"
-  String chr_nan    = R_NaN;      //"NaN"
-  String chr_inf    = R_PosInf;   //"Inf"
-  
-  bool   bool_na    = NA_LOGICAL; //true
-  bool   bool_nan   = R_NaN;      //true
-  bool   bool_inf   = R_PosInf;   //true
-  
-  return(List::create(
-      Named("double_na" , double_na),
-      Named("double_nan", double_nan),
-      Named("double_inf", double_inf),
-      
-      Named("int_na" , int_na),
-      Named("int_nan", int_nan),
-      Named("int_inf", int_inf),
-      
-      Named("String_na" , chr_na),
-      Named("String_nan", chr_nan),
-      Named("String_inf", chr_inf),
-      
-      Named("bool_na" , bool_na),
-      Named("bool_nan", bool_nan),
-      Named("bool_inf", bool_inf)
-  ));
-}
-
-```
-
-```
-> str(rcpp_na_scalar())
-List of 12
- $ int_na    : int NA
- $ int_nan   : int NA
- $ int_inf   : int NA
- $ double_na : num NA
- $ double_nan: num NaN
- $ double_inf: num Inf
- $ String_na : chr NA
- $ String_nan: chr "NaN"
- $ String_inf: chr "Inf"
- $ bool_na   : logi TRUE
- $ bool_nan  : logi TRUE
- $ bool_inf  : logi TRUE
-```
 
 
 
