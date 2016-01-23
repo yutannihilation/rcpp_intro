@@ -126,7 +126,7 @@ int    int_nan    = R_NaN;      //-2147483648
 int    int_inf    = R_PosInf;   //-2147483648
 ```
 
-Rcppの演算子と標準C++の演算子における `NA_INTEGER` の扱い後が
+Rcppの演算子と標準C++の演算子における `NA_INTEGER` の扱いの
 
 ```cpp
 // [[Rcpp::export]]
