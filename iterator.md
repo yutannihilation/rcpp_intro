@@ -6,9 +6,11 @@
 
 ```cpp
 CharacterVector v = CharacterVector::create("A","B","C","D");
-NumericVector::iterator i;
+CharacterVector::iterator i;
 
 i = v.begin();
+
+
 
 bool 
 
