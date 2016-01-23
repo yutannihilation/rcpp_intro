@@ -117,11 +117,10 @@ LogicalVector rcpp_is_naC(NumericVector x) {
 
 ### Rcpp の NA NaN Inf を扱う際の注意点
 
-標準C++の機能を使って、Rcppの NA NaN Inf を扱う際には注意が必要である。
+Rcppで定義された関数や演算子は、Rcpp の NA NaN Inf を適切に扱ってくれるが、標準C++の関数や演算子は Rcppの NA NaN Inf をの
 
 
-**int**
-`int` には `nan` `inf` が定義されていない、そのため `int` に `NA_INTEGER` `R_NaN` `R_PosInf` を代入すると `int` の最小値 `-2147483648` が設定される。Rcpp で定義された演算では、`int` の最小値を`NA`として扱うが、標準C++ではただの数値として扱われる。
+**int** :  `int` には `nan` `inf` が定義されていない、そのため `int` に `NA_INTEGER` `R_NaN` `R_PosInf` を代入すると `int` の最小値 `-2147483648` が設定される。Rcpp で定義された演算では、`int` の最小値を`NA`として扱うが、標準C++ではただの数値として扱われる。
 
 ```cpp
 // [[Rcpp::export]]
@@ -154,8 +153,7 @@ List rcpp_na3(){
 ```
 
 
-**bool**
-C++の `bool` 型に`NA_LOGICAL` を代入すると `NA` にならず `TRUE` になってしまうので注意する。これは、`bool`に `0` 以外の値を代入すると `true` になるが、Rcpp 内部では `NA_LOGICAL` には `int` の最小値がセットされているため。
+**bool** :  `bool` 型に`NA_LOGICAL` を代入すると `NA` にならず `TRUE` になってしまうので注意する。これは、`bool`に `0` 以外の値を代入すると `true` になるが、Rcpp 内部では `NA_LOGICAL` には `int` の最小値がセットされているため。
 
 
 **double**
