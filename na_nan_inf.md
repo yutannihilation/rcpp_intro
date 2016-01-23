@@ -91,13 +91,9 @@ IntegerVector rcpp_remove_na() {
    IntegerVector v = IntegerVector::create( 1, NA_INTEGER, 3 ) ;
    return v[!is_na(v)];
 }
+//1 3
 ```
 
-実行結果
-```
-> rcpp_remove_na()
-[1] 1 3
-```
 
 
 １つのスカラー値についてが NA  かどうか調べたいときは、ベクターのメソッドの `Vector::is_na()`を使う。（`NumeircVector::is_na()`, `CaracterVector::is_na()` など） 
@@ -105,8 +101,9 @@ IntegerVector rcpp_remove_na() {
 ```cpp
 // [[Rcpp::export]]
 LogicalVector rcpp_is_naC(NumericVector x) {
-  LogicalVector out(x.size());
-  for (int i = 0; i < x.size(); ++i) {
+  int n = x.length();
+  LogicalVector out(n);
+  for (int i = 0; i < n; ++i) {
     out[i] = NumericVector::is_na(x[i]);
   }
   return out;
