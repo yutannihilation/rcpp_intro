@@ -159,7 +159,7 @@ List rcpp_na3(){
 ```
 
 
-**bool** :  `bool` にも `nan` `inf` が定義されていない。`bool` 型に`NA_LOGICAL` `R_NaN` `R_PosInf` を代入した場合には、 `NA` にならず `TRUE` になってしまう。これは、`bool`に `0` 以外の値を代入すると `true` になるためだ。
+**bool** :  `bool` にも `nan` `inf` が定義されていない。また、`bool`に `0` 以外の値を代入すると `true` になるので、`NA_LOGICAL` `R_NaN` `R_PosInf` を代入すると、 `NA` にならず `TRUE` になってしまう。
 
 ```
 bool   bool_na    = NA_LOGICAL; //true
