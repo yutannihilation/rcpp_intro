@@ -31,22 +31,22 @@ NumericVector res = -x ;
 Rと同様に、ベクトル同士の値の比較により、論理ベクトルを生成する。論理ベクターを使って、ベクターの要素にアクセスすることもできる。
 
 ```cpp
-// two integer vectors of the same size
 NumericVector x ;
 NumericVector y ;
-// expressions involving two vectors
+
 LogicalVector res = x < y ;
 LogicalVector res = x > y ;
 LogicalVector res = x <= y ;
 LogicalVector res = x >= y ;
 LogicalVector res = x == y ;
 LogicalVector res = x != y ;
-// one vector, one single value
+
 LogicalVector res = x < 2 ;
 LogicalVector res = 2 > x;
 LogicalVector res = y <= 2 ;
 LogicalVector res = 2 != y;
-// two expressions
+
+
 LogicalVector res = ( x + y ) < ( x*x ) ;
 LogicalVector res = ( x + y ) >= ( x*x ) ;
 LogicalVector res = ( x + y ) == ( x*x ) ;
