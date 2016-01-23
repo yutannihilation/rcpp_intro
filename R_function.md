@@ -29,7 +29,7 @@ NumericVector my_fun(Function f){
 my_fun(rnorm)
 
 ```
-上の例では、Rcppに渡されたRの関数の返り値はNumericVectorであると仮定されている。しかし、引数として、どのような関数が渡されるのか決まっていない場合には、その関数がどんな型を返すのかわからない。そのような場合にはそのような場合にはどんな型でも代入できる RObject か List に関数の返値を代入するようにすると良い（下の例を参照）。
+上の例では、`my_fun` に渡された R の関数の返り値は `NumericVector` であると仮定されている。しかし、どのような返値の関数が引数として渡されるのか決まっていない場合もある。そのような場合には、どんな型でも代入できる RObject か List に関数の返値を代入するようにする（下の例を参照）。
 
 **例：lapply を Rcpp で実装**
 
@@ -38,7 +38,7 @@ my_fun(rnorm)
 using namespace Rcpp;
 
 // [[Rcpp::export]]
-List lapply1(List input, Function f) {
+List rcpp_lapply(List input, Function f) {
   int n = input.size();
   List out(n);
 
