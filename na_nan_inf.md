@@ -99,7 +99,7 @@ IntegerVector rcpp_is_na() {
 ```
 
 
-ベクターの１つの要素（スカラー値）が NA  かどうか調べたいときは、ベクターのメソッドの `is_na()`（`NumeircVector::is_na()`, `CaracterVector::is_na()`） を使う。
+ベクターの１つの要素（スカラー値）が NA  かどうか調べたいときは、ベクターのメソッドの `is_na()`（`NumeircVector::is_na()`, `CaracterVector::is_na()` など） を使う。
 
 ```cpp
 // [[Rcpp::export]]
