@@ -2,6 +2,9 @@
 
 
 ### NA
+
+Rcpp では
+
 ```
 NA_INTEGER
 NA_REAL
