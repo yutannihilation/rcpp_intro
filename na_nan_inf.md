@@ -153,7 +153,9 @@ List rcpp_na3(){
 ```
 
 
-**bool** :  `bool` 型に`NA_LOGICAL` を代入すると `NA` にならず `TRUE` になってしまうので注意する。これは、`bool`に `0` 以外の値を代入すると `true` になるが、Rcpp 内部では `NA_LOGICAL` には `int` の最小値がセットされているため。
+**bool** :  `bool` 型に`R_NaN` `R_PosInf` を代入すると `NA` にならず `TRUE` になってしまう。これは、`bool`に `0` 以外の値を代入すると `true` になるが、Rcpp 内部では `NA_LOGICAL` には `int` の最小値がセットされているため。
+
+
 
 
 **double**
