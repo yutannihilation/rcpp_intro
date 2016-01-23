@@ -3,7 +3,7 @@
 イテレーターとは、ベクターなどの要素にアクセスするためのオブジェクトである。Rcpp のデータ構造は、それぞれ独自のイテレータ型が定義されている。
 
 
-```
+```cpp
 // [[Rcpp::export]]
 double rcpp_sum(NumericVector x) {
   double total = 0;
