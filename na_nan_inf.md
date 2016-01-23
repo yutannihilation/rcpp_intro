@@ -162,7 +162,7 @@ bool   bool_inf   = R_PosInf;   //true
 ```
 
 **double**
-C++ の `double` には元々 `nan` `inf` が定義されているので、Rcpp の `R_NaN` `R_PosInf`を代入すると `nan` `inf` がセットされる。`NA_REAL` は `nan ` に解釈される。
+`double` には元々 `nan` `inf` が定義されているので、Rcpp の `R_NaN` `R_PosInf`を代入すると `nan` `inf` がセットされる。`NA_REAL` は `nan ` に解釈される。
 
 ```
 double double_na  = NA_REAL;    //nan
