@@ -458,8 +458,13 @@ double rweibull(double sh, double sl)
 ```
 
 
-
-
+###rsignrank
+```
 NumericVector rsignrank( int n, double nn )
-NumericVector rwilcox( int n, double mm, double nn )
 
+```
+
+###rsignrank
+```
+NumericVector rwilcox( int n, double mm, double nn )
+```
