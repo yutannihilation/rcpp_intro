@@ -117,6 +117,15 @@ LogicalVector rcpp_is_naC(NumericVector x) {
 
 Rcppで定義された関数や演算子は、Rcpp の NA NaN Inf を適切に扱ってくれるが、標準C++の関数や演算子はその扱い方を必ずしも知らないので、注意が必要である。
 
+**double**
+`double` には元々 `nan` `inf` が定義されているので、Rcpp の `R_NaN` `R_PosInf`を代入すると `nan` `inf` がセットされる。`NA_REAL` は `nan ` に解釈される。
+
+```
+double double_na  = NA_REAL;    //nan
+double double_nan = R_NaN;      //nan
+double double_inf = R_PosInf;   //inf
+```
+
 
 **int** :  `int` には `nan` `inf` が定義されていない、そのため `int` に `NA_INTEGER` `R_NaN` `R_PosInf` を代入すると `int` の最小値 `-2147483648` が設定される。Rcpp で定義された演算では、`int` の最小値を`NA`として扱うが、標準C++ではただの数値として扱われる。
 
@@ -167,14 +176,6 @@ bool   bool_nan   = R_NaN;      //true
 bool   bool_inf   = R_PosInf;   //true
 ```
 
-**double**
-`double` には元々 `nan` `inf` が定義されているので、Rcpp の `R_NaN` `R_PosInf`を代入すると `nan` `inf` がセットされる。`NA_REAL` は `nan ` に解釈される。
-
-```
-double double_na  = NA_REAL;    //nan
-double double_nan = R_NaN;      //nan
-double double_inf = R_PosInf;   //inf
-```
 
 **String**
 `String` は Rcpp で定義された型なので `NA_STRING` `R_NaN` `R_PosInf` を適切に扱うことができる。しかし、`std::string` にはこれらの値は代入できない。
