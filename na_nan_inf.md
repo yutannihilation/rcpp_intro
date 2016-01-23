@@ -115,7 +115,7 @@ LogicalVector rcpp_is_naC(NumericVector x) {
 
 
 
-### Rcpp の NA NaN Inf を スカラー型に代入する場合
+### Rcpp の NA NaN Inf を扱う際の注意点
 
 スカラー型に Rcppの NA NaN Inf 代入した場合の挙動には注意する必要がある。
 
