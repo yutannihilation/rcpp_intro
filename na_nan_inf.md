@@ -122,7 +122,7 @@ LogicalVector rcpp_is_naC(NumericVector x) {
 ###NA NaN Infをスカラー型に代入する場合
 
 
-スカラー型に代入した場合の挙動には注意する必要がある。
+スカラー型にRcppの NA NaN Inf 代入した場合の挙動には注意する必要がある。
 
 **int**
 `int` には `nan` `inf` が定義されていない、そのため `int` に `R_NaN` `R_PosInf` を代入すると `NA` になる。また、Rcppでは `int` の最小値を`NA`として扱う、`int` の最小値をRに返すときに`NA`に変換される。しかし、C++の中では数値として扱われるので注意すること。
@@ -136,8 +136,8 @@ C++の `bool` 型に`NA_LOGICAL` を代入すると `NA` にならず `TRUE` に
 **double**
 C++ の `double` には元々 `nan` `inf` が定義されているので、Rcpp の `R_NaN` `R_PosInf` をそのまま扱うことができる。
 
-
-Rcppの `String` は `NA_STRING` `R_NaN` `R_PosInf` を適切に扱うことができる。
+**String**
+Rcppの `String` は `NA_STRING` `R_NaN` `R_PosInf` を適切に扱うことができる。```std::string``` には代入できない。
 
 
 
