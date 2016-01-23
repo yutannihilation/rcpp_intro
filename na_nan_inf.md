@@ -13,9 +13,13 @@ NA_LOGICAL
 ```
 
 ### NaN
+
+NaN(Not a Number) は NumericVector, double に対して飲み、定義されている。
+
 ```
 R_NaN
 ```
+
 ### Inf
 
 ```
@@ -23,7 +27,7 @@ R_PosInf
 R_NegInf
 ```
 
-コード例
+ベクターにこれらの値を与えた時に、どのように解釈されるのか、下のコード例で示す。
 
 ```cpp
 #include <Rcpp.h>
