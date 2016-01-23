@@ -5,10 +5,16 @@
 
 
 ```cpp
-NumericVector v(4);
+CharacterVector v = CharacterVector::create("A","B","C","D");
 NumericVector::iterator i;
 
 i = v.begin();
+
+bool 
+
+
+
+
 
 ```
 ![](iterator.png)
