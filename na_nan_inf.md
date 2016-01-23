@@ -127,11 +127,10 @@ int    int_inf    = R_PosInf;   //-2147483648
 ```
 
 
-
 ```cpp
 // [[Rcpp::export]]
 List rcpp_na3(){
-  IntegerVector   v1  = IntegerVector::create(1,NA_REAL,3);
+  IntegerVector   v1  = IntegerVector::create(1,NA_INTEGER,3);
   IntegerVector   v2  = IntegerVector::create(1,2,3);
   
   IntegerVector   res1(3);
