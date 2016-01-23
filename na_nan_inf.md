@@ -94,7 +94,7 @@ IntegerVector rcpp_is_na() {
 ```
 実行結果
 ```
-> filter_na()
+> rcpp_is_na()
 [1] 1 3
 ```
 
