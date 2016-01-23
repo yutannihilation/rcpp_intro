@@ -124,7 +124,7 @@ LogicalVector rcpp_is_naC(NumericVector x) {
 **int**
 `int` には `nan` `inf` が定義されていない、そのため `int` に `NA_INTEGER` `R_NaN` `R_PosInf` を代入すると `int` の最小値 `-2147483648` が設定される。
 
-
+Rcpp で定義された演算は
 
 Rcpp 型に代入すると NA として扱われる。
 
