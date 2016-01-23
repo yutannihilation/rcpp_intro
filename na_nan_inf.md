@@ -85,19 +85,32 @@ is_na(v)
 is_nan(v)
 ```
 
-``
+```cpp
+// [[Rcpp::export]]
+IntegerVector rcpp_is_na() {
+   IntegerVector v = IntegerVector::create( 1, NA_INTEGER, 3 ) ;
+   return v[!is_na(v)];
+}
+```
+実行結果
+```
+> filter_na()
+[1] 1 3
+```
 
 
+ベクターの１つの要素がNA かどうか調べたいときは、ベクターのメソッド `is_na()` を使う。`NumeircVector::is_na()` 
 
-###ベクター型に代入する
-
-
-`NA_REAL` `NA_INTEGER` `NA_STRING` `NA_LOGICAL` を対応するベクターに代入すると R では NA として扱われる。
-
-
-`R_NaN` `R_PosInf` `R_NegInf` は実数に対してのみ定義されている。そのため、`NumericVector` に代入された時には、`NaN` `Inf` `-Inf` として扱われるが、`IntegerVector` に代入した場合には `NA` として扱われる。
-
-
+```cpp
+// [[Rcpp::export]]
+LogicalVector rcpp_is_naC(NumericVector x) {
+  LogicalVector out(x.size());
+  for (int i = 0; i < x.size(); ++i) {
+    out[i] = NumericVector::is_na(x[i]);
+  }
+  return out;
+}
+```
 
 
 
@@ -199,34 +212,12 @@ NAN +1; //NAN
 ```
 
 
-ベクターの１つの要素がNA かどうか調べたいときは、ベクターのメソッド `is_na()` を使う。`NumeircVector::is_na()` 
 
-```cpp
-// [[Rcpp::export]]
-LogicalVector rcpp_is_naC(NumericVector x) {
-  LogicalVector out(x.size());
-  for (int i = 0; i < x.size(); ++i) {
-    out[i] = NumericVector::is_na(x[i]);
-  }
-  return out;
-}
-```
 
 
 suger の `is_na()` を使うと、ベクターのすべての要素を判定した結果を論理ベクターとして返す。
 
-```cpp
-// [[Rcpp::export]]
-IntegerVector filter_na() {
-   IntegerVector v = IntegerVector::create( 1, NA_INTEGER, 3 ) ;
-   return v[!is_na(v)];
-}
-```
-実行結果
-```
-> filter_na()
-[1] 1 3
-```
+
 
 
 
