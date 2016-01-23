@@ -171,7 +171,7 @@ double double_inf = R_PosInf;   //inf
 ```
 
 **String**
-Rcppの `String` は `NA_STRING` `R_NaN` `R_PosInf` を適切に扱うことができる。```std::string``` には代入できない。
+`String` は Rcpp で定義された型なので `NA_STRING` `R_NaN` `R_PosInf` を適切に扱うことができる。しかし、`std::string` にはこれらの値は代入できない。
 
 
 
