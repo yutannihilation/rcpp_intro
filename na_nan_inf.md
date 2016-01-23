@@ -76,6 +76,8 @@ List of 4
 
 ##NA NaN Infの判定
 
+ベクターの要素にある、NA NaN Infを検出するには次の関数を使う。
+
 ```
 is_finite()
 is_infinite()
