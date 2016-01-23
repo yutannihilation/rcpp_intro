@@ -18,12 +18,6 @@ List::iterator            lt_i;
 * `--i` iを1つ前の要素を指す状態に更新する
 * `v.end()` は `v` の末尾（最後の要素の１つ後）を指し示すイテレータ
 
-
-
-
-
-
-
 ![](iterator.png)
 
 ```cpp
@@ -39,7 +33,7 @@ void rcpp_iterator(){
 }
 ```
 
-イテレータを使って、`NumericVector`の要素の値
+例；イテレータを使って、`NumericVector`の要素の値の合計値を求める
 
 ```cpp
 // [[Rcpp::export]]
