@@ -3,6 +3,16 @@
 イテレーターとは、ベクターなどの要素にアクセスするためのオブジェクトである。Rcpp のデータ構造は、それぞれ独自のイテレータ型が定義されている。
 
 
+
+```cpp
+NumericVector v(4);
+NumericVector::iterator i;
+
+i = v.begin();
+
+```
+![](iterator.png)
+
 ```cpp
 // [[Rcpp::export]]
 double rcpp_sum(NumericVector x) {
@@ -20,8 +30,6 @@ double rcpp_sum(NumericVector x) {
 ```
 
 
-`push_back()` `erase()`などによる要素の追加や削除後は、
-
-イテレータが保持している値は
+基本的には、`push_back()` `erase()`などによる要素の追加や削除の後には、それまでイテレータが保持していた値は無効になるものと思っているのが安全である。
 
 
