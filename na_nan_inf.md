@@ -84,6 +84,8 @@ is_infinite(v)
 is_na(v)
 is_nan(v)
 ```
+これらはベクター v の要素から NA NaN Inf を 
+
 
 ```cpp
 // [[Rcpp::export]]
