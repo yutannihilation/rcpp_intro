@@ -42,7 +42,7 @@ List rcpp_lapply(List input, Function f) {
   int n = input.size();
   List out(n);
 
-  for(int i = 0; i < n; i++) {
+  for(int i = 0; i < n; ++i) {
     out[i] = f(input[i]);
   }
 
