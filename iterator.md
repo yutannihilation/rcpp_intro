@@ -6,6 +6,7 @@
 NumericVector::iterator   nm_i;
 CharacterVector::iterator ch_i;
 DataFrame::iterator       df_i;
+List::iterator            lt_i;
 ...
 ```
 
