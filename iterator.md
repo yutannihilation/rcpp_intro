@@ -39,6 +39,8 @@ void rcpp_iterator(){
 }
 ```
 
+イテレータを使って、`NumericVector`の要素の値
+
 ```cpp
 // [[Rcpp::export]]
 double rcpp_sum(NumericVector x) {
