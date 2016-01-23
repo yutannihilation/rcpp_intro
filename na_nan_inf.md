@@ -117,7 +117,7 @@ LogicalVector rcpp_is_naC(NumericVector x) {
 
 ### Rcpp の NA NaN Inf を扱う際の注意点
 
-Rcppで定義された関数や演算子は、Rcpp の NA NaN Inf を適切に扱ってくれるが、標準C++の関数や演算子は Rcppの NA NaN Inf をの
+Rcppで定義された関数や演算子は、Rcpp の NA NaN Inf を適切に扱ってくれるが、標準C++の関数や演算子で Rcppの NA NaN Inf を扱う場合には注意が必要である。
 
 
 **int** :  `int` には `nan` `inf` が定義されていない、そのため `int` に `NA_INTEGER` `R_NaN` `R_PosInf` を代入すると `int` の最小値 `-2147483648` が設定される。Rcpp で定義された演算では、`int` の最小値を`NA`として扱うが、標準C++ではただの数値として扱われる。
