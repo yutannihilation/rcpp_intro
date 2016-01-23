@@ -11,7 +11,7 @@ Functionクラスを使うと、R の関数を引数として渡して、Rcpp内
 `Name()`の使い方は、`Named("引数名", "値")` でも　`Named("引数名")=値`のどちらでも良い。
 
 
-例：Rcpp 関数に rnorm(n, mean, sd) を引数として渡す場合
+例：Rcpp 関数に rnorm(n, mean, sd) を引数として渡す
 
 
 ```cpp
