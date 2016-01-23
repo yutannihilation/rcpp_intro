@@ -16,28 +16,23 @@ List::iterator            lt_i;
 
 `i+2`は、iの2つ次の要素を指し示すイテレータとなる
 
-`i++`iは以前の次の要素を指し示す
+`++i`iは以前の次の要素を指し示す
+
+
+![](iterator.png)
 
 ```cpp
-CharacterVector v = CharacterVector::create("A","B","C","D");
-CharacterVector::iterator i;
-
-i = v.begin();
-Rcout << *i     << endl;  //"A"
-Rcout << *(i+1) << endl;  //"B"
-Rcout << ++i    << endl;  //"B"
-Rcout << ++i    << endl;  //"C"
-
-
-
-bool 
-
-
-
-
-
+// [[Rcpp::export]]
+void rcpp_iterator(){
+  CharacterVector v = CharacterVector::create("A","B","C","D");
+  CharacterVector::iterator i;
+  i = v.begin();
+  Rcout << *i     << endl;  //"A"
+  Rcout << *(i+1) << endl;  //"B"
+  Rcout << *(++i) << endl;  //"B"
+  Rcout << *(++i) << endl;  //"C"
+}
 ```
-![](iterator.png)
 
 ```cpp
 // [[Rcpp::export]]
