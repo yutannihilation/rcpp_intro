@@ -56,7 +56,7 @@ DatetimeMatrix
 DataFrame
 List
 ```
-`Dataframe` は同じ長さのベクターを要素として格納する。
+`Dataframe` は、様々な型のベクターを要素として格納する。また、全てのベクターサイズが等しいという制約がある。
 
 `List`は、どのような型でも（`Dataframe` や `Listを含む`）要素に持つことができます、`Vector` の長さにも制約はありません。
 
