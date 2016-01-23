@@ -159,7 +159,7 @@ List rcpp_na3(){
 ```
 
 
-**bool** :  `bool` にも `nan` `inf` が定義されていない。`bool` 型に`NA_LOGICAL` `R_NaN` `R_PosInf` を代入した場合には、 `NA` にならず `TRUE` になってしまう。これは、`bool`に `0` 以外の値を代入すると `true` になるが、Rcpp 内部では `NA_LOGICAL` には `int` の最小値がセットされているため。
+**bool** :  `bool` にも `nan` `inf` が定義されていない。`bool` 型に`NA_LOGICAL` `R_NaN` `R_PosInf` を代入した場合には、 `NA` にならず `TRUE` になってしまう。これは、`bool`に `0` 以外の値を代入すると `true` になるためだ。
 
 ```
 bool   bool_na    = NA_LOGICAL; //true
@@ -189,35 +189,4 @@ String chr_inf    = R_PosInf;   //"Inf"
 //std::string str_nan    = R_NaN;
 //std::string str_inf    = R_PosInf;
 ```
-
-
-
-
-
-
-
-## 値の比較
-
-C++におけるNaNの挙動
-
-```cpp
-//NANとの全ての論理比較は false
-NAN == 1;   //false
-NAN == NAN; //false
-
-//NAN と bool のAND, OR 演算はTRUEになる
-NAN && TRUE;  //true
-NAN || FALSE; //true
-
-//NAN と数値の演算は NAN になる
-NAN +1; //NAN
-```
-
-
-
-
-
-
-
-
 
