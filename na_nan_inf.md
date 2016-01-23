@@ -79,12 +79,12 @@ List of 4
 ベクター v 要素にある、NA NaN Infを検出するには次の関数を使う。
 
 ```
-is_finite(v)
-is_infinite(v)
-is_na(v)
-is_nan(v)
+LogicalVector l1 = is_finite(v);
+LogicalVector l2 = is_infinite(v);
+LogicalVector l3 = is_na(v);
+LogicalVector l4 = is_nan(v);
 ```
-これらはベクター v の要素から NA NaN Inf を 
+これらはベクター v の要素から NA NaN Inf を探し、LogigalVector  
 
 
 ```cpp
