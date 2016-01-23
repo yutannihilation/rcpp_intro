@@ -84,7 +84,7 @@ LogicalVector l2 = is_nan(v);
 LogicalVector l3 = is_infinite(v);
 LogicalVector l4 = is_finite(v);
 ```
-  
+
 ```cpp
 // [[Rcpp::export]]
 IntegerVector rcpp_remove_na() {
