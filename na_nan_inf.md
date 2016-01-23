@@ -134,7 +134,7 @@ C++の `bool` 型に`NA_LOGICAL` を代入すると `NA` にならず `TRUE` に
 
 
 **double**
-C++ の `double` には元々 `nan` `inf` が定義されているので、Rcpp の `R_NaN` `R_PosInf` をそのまま扱うことができる。
+C++ の `double` には元々 `nan` `inf` が定義されているので、Rcpp の `R_NaN` `R_PosInf` をそのまま扱うことができる。`NA_REAL` は `nan ` に解釈される。
 
 **String**
 Rcppの `String` は `NA_STRING` `R_NaN` `R_PosInf` を適切に扱うことができる。```std::string``` には代入できない。
