@@ -115,14 +115,14 @@ LogicalVector rcpp_is_naC(NumericVector x) {
 
 
 
-### NA NaN Infをスカラー型に代入する場合
+### Rcpp の NA NaN Infを スカラー型に代入する場合
 
 
 
 スカラー型に Rcppの NA NaN Inf 代入した場合の挙動には注意する必要がある。
 
 **int**
-`int` には `nan` `inf` が定義されていない、そのため `int` に `R_NaN` `R_PosInf` を代入すると `int` の最小値 `-2147483648` 
+`int` には `nan` `inf` が定義されていない、そのため `int` に `NA_INTEGER` `R_NaN` `R_PosInf` を代入すると `int` の最小値 `-2147483648` 
 
 
 `NA` になる。また、Rcppでは `int` の最小値を`NA`として扱う、`int` の最小値をRに返すときに`NA`に変換される。
