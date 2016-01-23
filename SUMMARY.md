@@ -23,9 +23,7 @@
 * [アルゴリズム](STL.md)
 * [C++11](c++11.md)
 * [Boost](boost.md)
-
-* as と wrap
-
+* [as と wrap](as_wrap.md)
 * [参考資料](references.md)
 * [コンソール出力](utility.md)
 * [Rmath.h](Rmath.md)
