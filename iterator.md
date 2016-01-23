@@ -5,23 +5,28 @@
 ```
 NumericVector::iterator   nm_i;
 CharacterVector::iterator ch_i;
+...
 DataFrame::iterator       df_i;
 List::iterator            lt_i;
-...
 ```
 
 `i = v.begin()` とするとイテレータ i には v の先頭要素を指し示す値がセットされる。
 
-この時、`*i` は、イテレータが指し示す要素の値を表す
+`*i` は、イテレータが指し示す要素の値を表す。
+
+`i+2`は、iの2つ次の要素を指し示すイテレータとなる
+
+`i++`iは以前の次の要素を指し示す
 
 ```cpp
 CharacterVector v = CharacterVector::create("A","B","C","D");
 CharacterVector::iterator i;
 
 i = v.begin();
-Rcout << *i << endl;     //"A"
-Rcout << *(i+1) << endl; //"B"
-Rcout << v[1]   << endl; //"B"
+Rcout << *i     << endl;  //"A"
+Rcout << *(i+1) << endl;  //"B"
+Rcout << ++i    << endl;  //"B"
+Rcout << ++i    << endl;  //"C"
 
 
 
