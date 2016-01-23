@@ -23,25 +23,7 @@ R_PosInf
 R_NegInf
 ```
 
-###値の判定
-
-```
-is_finite()
-is_infinite()
-is_na()
-is_nan()
-```
-
-###ベクター型に代入する
-
-
-`NA_REAL` `NA_INTEGER` `NA_STRING` `NA_LOGICAL` を対応するベクターに代入すると R では NA として扱われる。
-
-
-`R_NaN` `R_PosInf` `R_NegInf` は実数に対してのみ定義されている。そのため、`NumericVector` に代入された時には、`NaN` `Inf` `-Inf` として扱われるが、`IntegerVector` に代入した場合には `NA` として扱われる。
-
-
-
+コード例
 
 ```cpp
 #include <Rcpp.h>
@@ -83,6 +65,35 @@ List of 4
  $ : chr [1:3] NA "NaN" "Inf"
  $ : logi [1:3] NA NA NA
 ```
+
+
+
+
+
+##NA NaN Infの判定
+
+```
+is_finite()
+is_infinite()
+is_na()
+is_nan()
+```
+
+``
+
+
+
+###ベクター型に代入する
+
+
+`NA_REAL` `NA_INTEGER` `NA_STRING` `NA_LOGICAL` を対応するベクターに代入すると R では NA として扱われる。
+
+
+`R_NaN` `R_PosInf` `R_NegInf` は実数に対してのみ定義されている。そのため、`NumericVector` に代入された時には、`NaN` `Inf` `-Inf` として扱われるが、`IntegerVector` に代入した場合には `NA` として扱われる。
+
+
+
+
 
 
 
