@@ -124,8 +124,29 @@ LogicalVector rcpp_is_naC(NumericVector x) {
 **int**
 `int` には `nan` `inf` が定義されていない、そのため `int` に `NA_INTEGER` `R_NaN` `R_PosInf` を代入すると `int` の最小値 `-2147483648` が設定される。Rcpp で定義された演算では、`int` の最小値を`NA`として計算するが、標準C++ではただの数値として計算されるので、注意が必要である。
 
-
-
+```cpp
+// [[Rcpp::export]]
+List rcpp_na3(){
+  IntegerVector   v1  = IntegerVector::create(1,NA_REAL,3);
+  IntegerVector   v2  = IntegerVector::create(1,2,3);
+  
+  IntegerVector   res1(3);
+  IntegerVector   res2(3);
+  
+  // operator+ defined by Rcpp::
+  // Vector + Vector 
+  res1 = v1 + v2;
+  
+  // operator+ defined by std::
+  // int + int
+  for(int i=0; i<v1.length(); ++i){
+    res2[i] = v1[i] + 1;
+  }
+  
+  // Variable "res2" no longer have NA.
+  return List::create(res1, res2);
+}
+```
 
 
 **bool**
