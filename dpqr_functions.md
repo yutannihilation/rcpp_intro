@@ -1,6 +1,6 @@
 # 確率分布
 
-Rcpp は R にある主要な全ての確率分布関数 (ここでは `d/p/q/r` 関数と表記する) を提供する。
+Rcpp は R にある主要な全ての確率分布関数 (ここでは d/p/q/r 関数と表記する) を提供する。
 
 * d*: density function
 * p*: cumulative distribution function
@@ -10,15 +10,19 @@ Rcpp は R にある主要な全ての確率分布関数 (ここでは `d/p/q/r`
 
 ###Rcpp::d/p/q/r 関数の基本構造
 
+下のコードは、d/p/q/r関数の基本構造を概念的に表したものなので、通常のユーザーにとってはこのような関数が定義されていると考えても差し支えはない。
+（実際には、`Rcpp::d/p/q/r` 関数はマクロを使って記述されているので、ソースコード中に `Rcpp::d/p/q/r` の定義はそのまま書かれていない。）
+
+
+
 ```cpp
 NumericVector Rcpp::dXXX( NumericVector x, double p0, bool log = false)
 NumericVector Rcpp::pXXX( NumericVector q, double p0, bool lower = true, bool log = false)
 NumericVector Rcpp::qXXX( NumericVector p, double p0, bool lower = true, bool log = false)
 NumericVector Rcpp::rXXX(           int n, double p0)
 ```
-上は、d/p/q/r関数の基本構造を概念的に表したものなので、通常のユーザーにとってはこのような関数が定義されていると考えても差し支えはない。
 
-（`Rcpp::d/p/q/r` 関数はマクロで記述されているので、ソースコード中に `Rcpp::d/p/q/r` の定義はそのまま書かれていない。）
+
 
 `Rcpp::` 名前空間で定義されている d/p/q/r 関数は、基本的にRの関数と同じ機能を持っているが、違いもある。具体的には、Rcppでは分布パラメータ引数（上の基本構造では p0 で示されている）のデフォルト値が与えられていない。そのためユーザーが値を明示的に与える必要がある。
 
