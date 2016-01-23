@@ -458,7 +458,7 @@ double rweibull(double sh, double sl)
 ```
 
 
-###rsignrank
+###signrank
 
 ```cpp
 NumericVector rsignrank( int n, double nn )
@@ -468,5 +468,5 @@ NumericVector rsignrank( int n, double nn )
 ###rwilcox
 
 ```cpp
-NumericVector rwilcox( int n, double mm, double nn )
+NumericVector wilcox( int n, double mm, double nn )
 ```
