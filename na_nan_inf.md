@@ -3,7 +3,7 @@
 
 ### NA
 
-Rcpp では型ごとに異なるNA値が定義されている。
+型ごとにNA値が定義されている。
 
 ```
 NA_INTEGER
@@ -11,10 +11,24 @@ NA_REAL
 NA_STRING
 NA_LOGICAL
 ```
+各型のメソッド  `get_na()` を使うと、各型に対応したNA値を得ることができる。
+
+```
+IntegerVector::get_na()
+NumericVector::get_na()
+CharacterVector::get_na()
+LogicalVector::get_na()
+ComlexVector::get_na()
+DataFrame::get_na();
+List::get_na();
+```
+
+
+
 
 ### NaN
 
-NaN(Not a Number) は NumericVector, double に対して飲み、定義されている。
+NaN (Not a Number) は NumericVector, double など実数に対してのみ、定義されている。
 
 ```
 R_NaN
