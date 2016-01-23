@@ -5,7 +5,7 @@
 
 ```
 // [[Rcpp::export]]
-double sum3(NumericVector x) {
+double rcpp_sum(NumericVector x) {
   double total = 0;
   for(NumericVector::iterator it = x.begin(); it != x.end(); ++it) {
     total += *it;
@@ -20,4 +20,8 @@ double sum3(NumericVector x) {
 ```
 
 
-要素の追加や削除後は、元のイテレータは使えなくなる。
+`push_back()` `erase()`などによる要素の追加や削除後は、
+
+イテレータが保持している値は
+
+
