@@ -122,7 +122,7 @@ LogicalVector rcpp_is_naC(NumericVector x) {
 スカラー型に Rcppの NA NaN Inf 代入した場合の挙動には注意する必要がある。
 
 **int**
-`int` には `nan` `inf` が定義されていない、そのため `int` に `NA_INTEGER` `R_NaN` `R_PosInf` を代入すると `int` の最小値 `-2147483648` が設定される。Rcpp で定義された演算では、`int` の最小値を`NA`として計算するが、標準C++ではただの数値として計算されるので、注意が必要である。
+`int` には `nan` `inf` が定義されていない、そのため `int` に `NA_INTEGER` `R_NaN` `R_PosInf` を代入すると `int` の最小値 `-2147483648` が設定される。Rcpp で定義された演算では、`int` の最小値を`NA`として扱うが、標準C++ではただの数値として扱われるので、注意が必要である。
 
 ```cpp
 // [[Rcpp::export]]
