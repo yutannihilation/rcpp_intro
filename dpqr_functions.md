@@ -443,6 +443,7 @@ double runif(double a, double b)
 
 ###weibull
 Rcpp::
+
 ```cpp
 NumericVector dweibull(NumericVector x, double sh, double sl = 1.0, int lg)	
 NumericVector pweibull(NumericVector x, double sh, double sl = 1.0, int lt, int lg)	
@@ -461,12 +462,12 @@ double rweibull(double sh, double sl)
 ###signrank
 
 ```cpp
-NumericVector Rcpp::rsignrank( int n, double nn )
+NumericVector Rcpp::rsignrank( int n, double nn );
 
 ```
 
 ###wilcox
 
 ```cpp
-NumericVector Rcpp::rwilcox( int n, double mm, double nn )
+NumericVector Rcpp::rwilcox( int n, double mm, double nn );
 ```
