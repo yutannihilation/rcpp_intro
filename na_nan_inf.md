@@ -122,7 +122,7 @@ LogicalVector rcpp_is_naC(NumericVector x) {
 スカラー型に Rcppの NA NaN Inf 代入した場合の挙動には注意する必要がある。
 
 **int**
-`int` には `nan` `inf` が定義されていない、そのため `int` に `NA_INTEGER` `R_NaN` `R_PosInf` を代入すると `int` の最小値 `-2147483648` が設定される。
+`int` には `nan` `inf` が定義されていない、そのため `int` に `NA_INTEGER` `R_NaN` `R_PosInf` を代入すると `int` の最小値 `-2147483648` が設定される。Rcpp で定義された演算では、`int` の最小値を`NA`として計算するが、標準C++ではただの数値として計算されるので、注意が必要である。
 
 **bool**
 C++の `bool` 型に`NA_LOGICAL` を代入すると `NA` にならず `TRUE` になってしまうので注意する。これは、`bool`に `0` 以外の値を代入すると `true` になるが、Rcpp 内部では `NA_LOGICAL` には `int` の最小値がセットされているため。
@@ -130,6 +130,7 @@ C++の `bool` 型に`NA_LOGICAL` を代入すると `NA` にならず `TRUE` に
 
 **double**
 C++ の `double` には元々 `nan` `inf` が定義されているので、Rcpp の `R_NaN` `R_PosInf`を double 型に代入すると C++ の `nan` `inf` の値がセットされる。`NA_REAL` は `nan ` に解釈される。
+
 
 **String**
 Rcppの `String` は `NA_STRING` `R_NaN` `R_PosInf` を適切に扱うことができる。```std::string``` には代入できない。
