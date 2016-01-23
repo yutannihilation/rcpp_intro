@@ -157,13 +157,18 @@ List rcpp_na3(){
 
 ```
 bool   bool_na    = NA_LOGICAL; //true
-  bool   bool_nan   = R_NaN;      //true
-  bool   bool_inf   = R_PosInf;   //true
+bool   bool_nan   = R_NaN;      //true
+bool   bool_inf   = R_PosInf;   //true
 ```
 
 **double**
-C++ の `double` には元々 `nan` `inf` が定義されているので、Rcpp の `R_NaN` `R_PosInf`を double 型に代入すると C++ の `nan` `inf` の値がセットされる。`NA_REAL` は `nan ` に解釈される。
+C++ の `double` には元々 `nan` `inf` が定義されているので、Rcpp の `R_NaN` `R_PosInf`を代入すると `nan` `inf` がセットされる。`NA_REAL` は `nan ` に解釈される。
 
+```
+double double_na  = NA_REAL;    //nan
+double double_nan = R_NaN;      //nan
+double double_inf = R_PosInf;   //inf
+```
 
 **String**
 Rcppの `String` は `NA_STRING` `R_NaN` `R_PosInf` を適切に扱うことができる。```std::string``` には代入できない。
