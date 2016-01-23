@@ -3,7 +3,7 @@
 
 ### NA
 
-Rcpp では
+Rcpp では型ごとに異なるNA値が定義されている。
 
 ```
 NA_INTEGER
