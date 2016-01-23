@@ -20,7 +20,7 @@
 * [Rcpp から R の関数を利用する](R_function.md)
 * [NA NaN Inf](na_nan_inf.md)
 * [イテレーター](iterator.md)
-* [アルゴリズム](STL.md)
+* [標準C++が提供するアルゴリズム](STL.md)
 * [C++11](c++11.md)
 * [Boost](boost.md)
 * [as と wrap](as_wrap.md)
