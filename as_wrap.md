@@ -9,8 +9,8 @@ Rcpp と 標準C++のデータ構造の変換は　`as()` と `wrap()` を用い
 
 | Rcpp | C++ |
 | -- | -- |
-| Vector | `std::vector< cpp > |
+| `Vector` | `std::vector` `std::list` `std::map`|
+|||
 
-vector<double>
 
 
