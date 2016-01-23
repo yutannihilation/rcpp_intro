@@ -146,6 +146,12 @@ List rcpp_na3(){
   // Variable "res2" no longer have NA.
   return List::create(res1, res2);
 }
+
+// [[1]]
+// [1]  2  NA  4
+// 
+// [[2]]
+// [1]  2  -2147483647  4
 ```
 
 
