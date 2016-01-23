@@ -178,11 +178,10 @@ String chr_na     = NA_STRING;  //"NA"
 String chr_nan    = R_NaN;      //"NaN"
 String chr_inf    = R_PosInf;   //"Inf"
 
+//error
 //std::string str_na     = NA_STRING;
 //std::string str_nan    = R_NaN;
 //std::string str_inf    = R_PosInf;
-
-
 ```
 
 
