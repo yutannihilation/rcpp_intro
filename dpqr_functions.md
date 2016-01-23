@@ -16,7 +16,7 @@ Rcpp は R にある主要な全ての確率分布関数 (ここでは d/p/q/r �
 ```cpp
 //分布パラメータ p0 の数は分布により異なる。
 NumericVector Rcpp::dXXX( NumericVector x, double p0, bool log = false)
-NumericVector Rcpp::pXXX( NumericVector q, double p0, bool lower = true, bool log = false)
+NumericVector Rcpp::pXXX( NumericVector x, double p0, bool lower = true, bool log = false)
 NumericVector Rcpp::qXXX( NumericVector p, double p0, bool lower = true, bool log = false)
 NumericVector Rcpp::rXXX(           int n, double p0)
 ```
