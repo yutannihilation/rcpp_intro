@@ -28,8 +28,6 @@ List::get_na();
 
 ### NaN
 
-NaN (Not a Number) は NumericVector, double など実数に対してのみ、定義されている。
-
 ```
 R_NaN
 ```
