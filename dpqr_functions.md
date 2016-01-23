@@ -17,6 +17,7 @@ Rcpp は R にある主要な全ての確率分布関数 (ここでは d/p/q/r �
 
 
 ```cpp
+//分布パラメータ p0 の数は分布により異なる。
 NumericVector Rcpp::dXXX( NumericVector x, double p0, bool log = false)
 NumericVector Rcpp::pXXX( NumericVector q, double p0, bool lower = true, bool log = false)
 NumericVector Rcpp::qXXX( NumericVector p, double p0, bool lower = true, bool log = false)
@@ -25,7 +26,7 @@ NumericVector Rcpp::rXXX(           int n, double p0)
 
 
 
-`Rcpp::` 名前空間で定義されている d/p/q/r 関数は、基本的にRの関数と同じ機能を持っている。しかし、違いもあり、分布パラメータ引数（上の基本構造では p0 で示されている）のデフォルト値が与えられていないので、ユーザーが値を明示的に与える必要がある。
+`Rcpp::` 名前空間で定義されている d/p/q/r 関数は、基本的にRの関数と同じ機能を持っている。しかし、分布パラメータ引数（上のコードでは `p0` で示されている）のデフォルト値が与えられていないので、ユーザーが値を明示的に与える必要がある。
 
 
 
