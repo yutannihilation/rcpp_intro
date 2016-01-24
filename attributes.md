@@ -1,6 +1,6 @@
 # 属性値
 
-
+Rcppのオブジェクトの属性値へアクセスするには、次のメソッドを用いる。
 
 #### attr( name )
 
@@ -20,7 +20,7 @@ CharacterVector ch = wrap(x.attributeNames());
 ```
 #### hasAttribute( str )
 
-このオブジェクトが 文字列 str で指定した名前の属性を持っているかどうかを。
+このオブジェクトが 文字列 str で指定した名前の属性を持っているかどうかを返す。
 
 ```
 bool b = x.hasAttribute("name");
