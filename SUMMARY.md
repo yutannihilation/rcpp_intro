@@ -21,17 +21,16 @@
 * [R の関数を利用する](R_function.md)
 * [NA NaN Inf](na_nan_inf.md)
 * [イテレーター](iterator.md)
-* RObject
 * [標準 C++ データ構造](as_wrap.md)
 * [標準 C++ アルゴリズム](STL.md)
 * [C++11](c++11.md)
 * [Boost](boost.md)
-* [Rmath.h](Rmath.md)
+* [Rmath](Rmath.md)
 * [参考資料](references.md)
 
-
+* RObject
 * 例外
-* [オブジェクトの扱いに関するややこしい話](troublesome.md)
+
 
 
 
