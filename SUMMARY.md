@@ -18,7 +18,7 @@
 * [属性値](attributes.md)
 * [Rライクな関数](rcpp_functions.md)
 * [確率分布](dpqr_functions.md)
-* [Rcpp から R の関数を利用する](R_function.md)
+* [R の関数を利用する](R_function.md)
 * [NA NaN Inf](na_nan_inf.md)
 * [as と wrap](as_wrap.md)
 * [イテレーター](iterator.md)
