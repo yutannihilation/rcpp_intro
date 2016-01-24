@@ -1,16 +1,18 @@
 # Boost を利用する
-http://gallery.rcpp.org/tags/boost/
 
-Boost のうち、ヘッダー・ファイル・オンリーで使えるものについては、R のパッケージになっているので、R からインストールできる。
+Boost ライブラリには標準 C++ よりもさらに進んだ様々な機能が提供されている。
+Boost ライブラリのうち、ヘッダー・ファイル・オンリーで使えるものについては、R のパッケージ `BH` をインストールすることで Rcpp でも利用できるようになる。
 
 ```
 install.packages("BH")
 ```
 
+コード例：
 
 ```cpp
-// [[Rcpp::depends(BH)]]
 #include <Rcpp.h>
+
+// [[Rcpp::depends(BH)]]
 
 // One include file from Boost
 #include <boost/date_time/gregorian/gregorian_types.hpp>
