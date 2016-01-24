@@ -4,6 +4,7 @@
 * [インストール](install.md)
 * [基本的な使い方](basic_usage.md)
 * [コードの記述](function.md)
+* [コンソールへの出力](utility.md)
 * [データ型](data_types.md)
 * [Vector](vector.md)
 * [Matrix](matrix.md)
@@ -23,7 +24,7 @@
 * RObject
 * [標準 C++ データ構造](as_wrap.md)
 * [標準 C++ アルゴリズム](STL.md)
-* [コンソールへの出力](utility.md)
+
 * [C++11](c++11.md)
 * [Boost](boost.md)
 * [Rmath.h](Rmath.md)
