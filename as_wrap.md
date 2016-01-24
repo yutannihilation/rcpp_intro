@@ -41,7 +41,7 @@ NumericVector rcpp_as_wrap(){
 
 ```cpp
 // [[Rcpp::export]]
-NumericVector rcpp_std_map(){
+NumericVector std_map(){
   std::map<std::string, double> cpp_num_map;
   cpp_num_map["A"] = 1;
   cpp_num_map["B"] = 2;
@@ -54,14 +54,14 @@ NumericVector rcpp_std_map(){
 
 ```cpp
 // [[Rcpp::export]]
-List rcpp_vector_vector(){
+List std_vector_2d_List(){
   using namespace std;
   vector<vector<double>> cpp_vector_2d = {{1,2},{3,4,5}};
   return wrap(cpp_vector_2d);
 }
 
 // [[Rcpp::export]]
-DataFrame rcpp_vector_2d(){
+DataFrame std_vector_2d_DataFrame(){
   using namespace std;
   vector<vector<double>> cpp_vector_2d = {{1,2},{3,4}};
   return wrap(cpp_vector_2d);
