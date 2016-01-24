@@ -27,17 +27,16 @@ rcpp_sum(1:10)
 Rcpp のコードを R の文字列として保存し、`cppFunction()`関数を使ってコンパイルする。この場合には　`#include<Rcpp.h>`と`using namespase Rcpp`の記述を省略できるので、手軽である。
 
 ```r
-code <- 
-"double sum_rcpp(NumericVector v){
-double sum = 0;
-for(int i=0; i<v.length(); ++i){
-  sum += v[i];
-}
-return(sum);
+src<-
+double rcpp_sum(NumericVector v){
+  double sum = 0;
+  for(int i=0; i<v.length(); ++i){
+    sum += v[i];
+  }
+  return(sum);
 }"
-
-Rcpp::cppFunction(code) //コンパイル
-sum_rcpp(1:10)          //実行
+Rcpp::cppFunction(code)
+rcpp_sum(1:10)
 ```
 
 ###evalCpp
