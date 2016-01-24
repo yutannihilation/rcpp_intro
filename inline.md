@@ -46,6 +46,7 @@ rcpp_sum(1:10)
 `evalCpp()` は手軽にRcppの表現を評価
 
 ```r
+# double の最大値を調べる
 evalCpp('std::numeric_limits<double>::max()')
 
 
