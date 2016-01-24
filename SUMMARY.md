@@ -32,5 +32,5 @@
 * 例外
 * [オブジェクトの扱いに関するややこしい話](troublesome.md)
 
-* [インライン](inline.md)
+* [Rのコードを書く](inline.md)
 
