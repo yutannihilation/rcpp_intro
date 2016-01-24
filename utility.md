@@ -1,9 +1,9 @@
 # コンソールへの出力
 
-Rの画面にメッセージや
+`Rprintf()` `Rcout` はRの画面にオブジェクトの値やメッセージを出力する。`Rcerr`はエラー出力際に使う。
 
 ```
+Rprintf(format, value);
 Rcout << "message" << "\n";
 Rcerr << "error message" << "\n";
-Rprintf(format, value);
 ```
