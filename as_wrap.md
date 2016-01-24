@@ -6,7 +6,9 @@ Rcpp と 標準C++のデータ構造の変換は　`as()` と `wrap()` を用い
 * `as()` : Rcpp型 を C++型 に変換する
 * `wrap()` : C++型 を Rcpp型 に変換する
 
-Rcpp_type = wrap(Cpp_type)
+
+
+`Rcpp = wrap(Cpp)` `Cpp  = as(Cpp) `
 
 
 | Rcpp:: | std:: |
@@ -14,7 +16,19 @@ Rcpp_type = wrap(Cpp_type)
 | `Vector` | `array` `deque` `list` `vector` |
 | `List` `DataFrame` | `vector<vector>`|
 
-Rcpp = wrap(Cpp)
+
+
+Rcpp = wrap(Cpp) のみ可能なもの
+
+| Rcpp:: | std:: |
+| -- | -- |
+| Named `Vector` | `map<string,value_type>`|
+
+std::の`array` `deque` `list` `vector`は `Vector` と互いに変換可能。
+
+stdの2次元ベクター
+
+
 
 
 ```cpp
