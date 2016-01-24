@@ -1,46 +1,21 @@
 # Boost を利用する
 
-Boost ライブラリには標準 C++ よりもさらに進んだ様々な機能が提供されている。
+Boost ライブラリには標準 C++ よりもさらに先進的な機能が提供されている。
 Boost ライブラリのうち、ヘッダー・ファイル・オンリーで使えるものについては、R のパッケージ `BH` をインストールすることで Rcpp でも利用できるようになる。
 
 ```
 install.packages("BH")
 ```
 
-コード例：
-
-```cpp
-#include <Rcpp.h>
-
-// [[Rcpp::depends(BH)]]
-
-// One include file from Boost
-#include <boost/date_time/gregorian/gregorian_types.hpp>
-
-using namespace boost::gregorian;
-
-// [[Rcpp::export]]
-Rcpp::Date getIMMDate(int mon, int year) {
-// compute third Wednesday of given month / year
-date d = nth_day_of_the_week_in_month(nth_day_of_the_week_in_month::third,
-Wednesday, mon).get_date(year);
-date::ymd_type ymd = d.year_month_day();
-return Rcpp::wrap(Rcpp::Date(ymd.year, ymd.month, ymd.day));
-}
-```
-IMM date は、毎月の３番目の水曜日のことを指すらしい。Boost には mon 月 の N 週目の M 曜日を返す関数がある。`nth_day_of_the_week_in_month(M, N, mon)`
-
-```r
-getIMMDate(3, 2013)
-```
-
-
-自分でインストールした Boost についても、ヘッダーとライブラリーへのパスを指定すればOK。
-例えば、Macports でインストールした Boost なら
+自分でインストールした Boost についても、ヘッダーとライブラリーへのパスを指定すれば利用できる。
 
 ```
 Sys.setenv("PKG_CXXFLAGS"="-std=c++11 -I/opt/local/include -L/opt/local/lib/")
 ```
+
+
+
+コード例：
 
 
 例：乱数生成器
@@ -107,3 +82,33 @@ test replications elapsed relative
 ```
 
 C++11やBoost のネイティブ乱数生成器が早いが、Rcpp版も健闘している。どれも、ただのR関数よりは早い。
+
+
+```cpp
+#include <Rcpp.h>
+
+// [[Rcpp::depends(BH)]]
+
+// One include file from Boost
+#include <boost/date_time/gregorian/gregorian_types.hpp>
+
+using namespace boost::gregorian;
+
+// [[Rcpp::export]]
+Rcpp::Date getIMMDate(int mon, int year) {
+// compute third Wednesday of given month / year
+date d = nth_day_of_the_week_in_month(nth_day_of_the_week_in_month::third,
+Wednesday, mon).get_date(year);
+date::ymd_type ymd = d.year_month_day();
+return Rcpp::wrap(Rcpp::Date(ymd.year, ymd.month, ymd.day));
+}
+```
+IMM date は、毎月の３番目の水曜日のことを指す。Boost には mon 月 の N 週目の M 曜日を返す関数がある。`nth_day_of_the_week_in_month(M, N, mon)`
+
+```r
+getIMMDate(3, 2013)
+```
+
+
+
+
