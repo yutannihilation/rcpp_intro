@@ -63,6 +63,10 @@ Rcout << v2 << endl; //1 2 3
 
 メソッドは `v.length()` のような形式で呼び出す。
 
+####inherits(str)
+
+このオブジェクトの属性 "class" に文字列 str が含まれているかどうか。
+
 ####length()
 要素数
 
