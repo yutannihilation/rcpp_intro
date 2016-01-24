@@ -21,8 +21,8 @@
 * [NA NaN Inf](na_nan_inf.md)
 * [イテレーター](iterator.md)
 * RObject
-* [標準C++のデータ構造を利用する](as_wrap.md)
-* [標準C++が提供するアルゴリズム](STL.md)
+* [標準 C++ データ構造](as_wrap.md)
+* [標準 C++ アルゴリズム](STL.md)
 * [コンソールへの出力](utility.md)
 * [C++11](c++11.md)
 * [Boost](boost.md)
