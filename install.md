@@ -1,8 +1,8 @@
 # インストール
 
-##開発ツールのインストール
-
 まずは C++ のコンパイラをインストールする。
+
+##開発ツールのインストール
 
 **Windows**：[Rtools](https://cran.r-project.org/bin/windows/Rtools/index.html) をインストールします。C:\\Rtools 以下にgccなどが配置される。
 
