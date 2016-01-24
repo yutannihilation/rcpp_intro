@@ -19,7 +19,8 @@ map<>
 
 | Rcpp:: | std:: |
 | -- | -- |
-| Named `Vector` | `map`|
+| Named `Vector` | `map` `unordered_map`|
+| `Vector` | `set` `unordered_set`|
 
 std::の`array` `deque` `list` `vector`は `Vector` と互いに変換可能。
 
