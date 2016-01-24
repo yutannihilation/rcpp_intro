@@ -2,8 +2,8 @@
 
 コンソールへの出力
 
-Rcout << "message" << endl;
-Rcerr << "hoge" << endl;
+Rcout << "message" << "\n";
+Rcerr << "hoge" << "\n";
 
 print();
 
