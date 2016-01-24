@@ -33,7 +33,7 @@ my_fun(rnorm)
 
 **例：lapply を Rcpp で実装**
 
-```
+```cpp
 #include <Rcpp.h>
 using namespace Rcpp;
 
