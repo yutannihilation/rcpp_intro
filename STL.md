@@ -2,7 +2,7 @@
 
 #C++ STL
 
-STL にはイテレータを扱う様々なアルゴリズムが用意されている。
+標準C++のSTLライブラリでは様々な汎用アルゴリズムが提供されている。
 
 参考：https://cpprefjp.github.io/reference/algorithm.html
 http://www.cplusplus.com/reference/algorithm/
