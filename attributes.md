@@ -18,9 +18,9 @@ L.attr("class") = "my_class";
 ```
 CharacterVector ch = wrap(x.attributeNames());
 ```
-#### hasAttribute( "name" )
+#### hasAttribute( str )
 
-このオブジェクトが "name" という名前の属性を持っているかどうか。
+このオブジェクトが 文字列 str で指定した名前の属性を持っているかどうかを。
 
 ```
 bool b = x.hasAttribute("name");
