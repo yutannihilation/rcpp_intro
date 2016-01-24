@@ -1,27 +1,3 @@
-##C++のソースにRのコードを埋め込む
-
-C++ コード内に、/*** R で始まるコメント内に Rのコードを書くと、sourceCpp()した時に、それが実行される。・
-
-
-
-```cpp
-#include<Rcpp.h>
-using namespace Rcpp;
-
-// [[Rcpp::export]]
-int fibonacci(const int x) {
-    if (x < 2)
-    return x;
-    else
-    return (fibonacci(x - 1)) + fibonacci(x - 2);
-}
-
-/*** R
-# Call the ﬁbonacci function deﬁned in C++
-ﬁbonacci(10)
-*/
-```
-
 
 
 ##Rのコードの中でRcppコードを記述する
@@ -52,9 +28,36 @@ sum_rcpp(1:10)          //実行
 
 ###evalCpp
 
+`evalCpp()` は手軽にRcppの表現を評価
+
 ```r
 evalCpp('std::numeric_limits<double>::max()')
 
 
 
 ```
+
+##C++のソースにRのコードを埋め込む
+
+C++ コード内に、/*** R で始まるコメント内に Rのコードを書くと、sourceCpp()した時に、それが実行される。・
+
+
+
+```cpp
+#include<Rcpp.h>
+using namespace Rcpp;
+
+// [[Rcpp::export]]
+int fibonacci(const int x) {
+    if (x < 2)
+    return x;
+    else
+    return (fibonacci(x - 1)) + fibonacci(x - 2);
+}
+
+/*** R
+# Call the ﬁbonacci function deﬁned in C++
+ﬁbonacci(10)
+*/
+```
+
