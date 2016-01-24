@@ -57,7 +57,7 @@ evalCpp('std::numeric_limits<double>::max()')
 
 逆に Rcppのコード内に R のコードを記述することもできる。
 
-、/*** R で始まるコメント内に Rのコードを書くと、sourceCpp()した時に、それが実行される。・
+Rcpp コード内で `/*** R`で始まるコメントの内に R のコードを書くと、`sourceCpp()` した時に、それが実行される。・
 
 
 
