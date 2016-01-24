@@ -34,6 +34,13 @@ src <-
     sum += v[i];
   }
   return(sum);
+}
+double rcpp_sum2(NumericVector v){
+  double sum = 0;
+  for(int i=0; i<v.length(); ++i){
+    sum += v[i];
+  }
+  return(sum);
 }"
 Rcpp::cppFunction(src)
 rcpp_sum(1:10)
