@@ -65,7 +65,7 @@ Rcout << v2 << endl; //1 2 3
 
 ####inherits(str)
 
-このオブジェクトの属性 "class" に文字列 str が含まれているかどうか。
+このオブジェクトの属性 class に文字列 str が含まれているかどうか。
 
 ####length()
 要素数
