@@ -411,7 +411,8 @@ void rcpp_clamp(){
   Rcout << res << endl;
 }
 ```
-##
+
+##集計
 
 ####sum()
 
