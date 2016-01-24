@@ -66,11 +66,10 @@ NumericVector attribs() {
   NumericVector out = NumericVector::create(1, 2, 3);
 
   //ベクターの要素の名前を設定する
-  out.names() = CharacterVector::create("a", "b", "c");
-  //out.attr("names") と同義
+  out.attr("names") = CharacterVector::create("a", "b", "c");
   
-  //新しい属性 "my-attr" を作成して、その値に"my-value" をセットする。
-  out.attr("my-attr") = "my-value";
+  //新しい属性 "my-attr" を作成して、その値に"new_attribute" をセットする。
+  out.attr("new_attribute") = "my-value";
   
   //このオブジェクト class を "my-class" に設定する
   out.attr("class") = "my-class";
