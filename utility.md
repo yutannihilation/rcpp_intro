@@ -5,6 +5,4 @@
 Rcout << "message" << "\n";
 Rcerr << "hoge" << "\n";
 
-print();
-
-Rprintf(format, value)
+Rprintf(format, value);
