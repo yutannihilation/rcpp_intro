@@ -51,6 +51,7 @@ NumericVector std_map(){
 //Named Vector
 
 ```
+2次元ベクター
 
 ```cpp
 // [[Rcpp::plugins("cpp11")]]
