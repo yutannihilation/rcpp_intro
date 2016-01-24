@@ -14,8 +14,8 @@ DataFrame df = DataFrame::create(Named("V1") = v1 , _["V2"]=v2);
 ```
 上の方法で `DataFrame` を作成すると、df のカラムには元の`Vector` の値がコピーされるのではなく、元の`Vector` への「参照」となる。`Vector` の値をコピーして`DataFrame` を作成する場合には `clone()` を使う。
 
-下のコード例では、`Vector`  v から`DataFrame`  df を作成してる。
-カラム V1 は v への参照、カラム V2 は clone() により v の値をコピーしている。その後、`Vector`  v の変更操作を行うと、カラム V1 は変更されるが、V2は変更されない。
+`clone()` を使った場合と使わなかった場合の違いを見るために、下のコード例を見て欲しい。コード例では、`Vector`  v から`DataFrame`  df を作成してる。その時、
+カラム V1 は v への参照、カラム V2 は clone() により v の値をコピーしている。その後、`Vector`  v に変更操作を行うと、データフレーム df のカラム V1 は変更されているが、V2は変更されない。
 
  ```
 // [[Rcpp::export]]
