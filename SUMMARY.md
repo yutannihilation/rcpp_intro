@@ -22,7 +22,7 @@
 * [as と wrap](as_wrap.md)
 * [イテレーター](iterator.md)
 * [標準C++が提供するアルゴリズム](STL.md)
-* [コンソール出力](utility.md)
+* [コンソールへの出力](utility.md)
 * [C++11](c++11.md)
 * [Boost](boost.md)
 * [Rmath.h](Rmath.md)
