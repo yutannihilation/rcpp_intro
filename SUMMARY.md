@@ -10,7 +10,7 @@
 * [Matrix](matrix.md)
 * [DataFrame](dataframe.md)
 * [List](list.md)
-* [S3 S4 オブジェクト](s3_s4.md)
+* [S3, S4](s3_s4.md)
 * [Date](date.md)
 * [Datetime](datetime.md)
 * [String](string.md)
