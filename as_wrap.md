@@ -15,6 +15,7 @@ Rcpp型に変換できるC++の型はRcpp関数の引数や返値にすること
 | Named `Vector` | `map`, `unordered_map`|-|+|
 | `Vector` | `set`, `unordered_set`|-|+|
 
+標準C++のシーケンスコンテナはRcpp `Vector` と互いに変換可能。
 
 ```cpp
 // [[Rcpp::export]]
@@ -35,7 +36,26 @@ NumericVector rcpp_as_wrap(){
 ```
 
 
+シーケンスコンテナの2次元コンテナ は `DataFrame`や `List` と互いに変換できる。
 
+```cpp
+// [[Rcpp::plugins("cpp11")]]
+
+// [[Rcpp::export]]
+List std_vector_2d_List(){
+  using namespace std;
+  //Initializing with C++11 initializer list
+  vector<deque<double>> cpp_vector_2d = {{1,2},{3,4,5}};
+  return wrap(cpp_vector_2d);
+}
+
+// [[Rcpp::export]]
+DataFrame std_vector_2d_DataFrame(){
+  using namespace std;
+  vector<vector<double>> cpp_vector_2d = {{1,2},{3,4}};
+  return wrap(cpp_vector_2d);
+}
+```
 
 `map<key, value>` は key を名前とした、名前付き Vector に変換される。
 
@@ -51,25 +71,6 @@ NumericVector std_map(){
 //Named Vector
 
 ```
-2次元コンテナ は `DataFrame`や `List` と互いに変換できる。
 
-```cpp
-// [[Rcpp::plugins("cpp11")]]
-
-// [[Rcpp::export]]
-List std_vector_2d_List(){
-  using namespace std;
-  //Initializing with C++11 initializer list
-  vector<vector<double>> cpp_vector_2d = {{1,2},{3,4,5}};
-  return wrap(cpp_vector_2d);
-}
-
-// [[Rcpp::export]]
-DataFrame std_vector_2d_DataFrame(){
-  using namespace std;
-  vector<vector<double>> cpp_vector_2d = {{1,2},{3,4}};
-  return wrap(cpp_vector_2d);
-}
-```
 
 
