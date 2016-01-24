@@ -6,10 +6,8 @@ Rcpp と 標準C++のデータ構造の変換は　`as()` と `wrap()` を用い
 * `as()` : Rcpp型 を C++型 に変換する
 * `wrap()` : C++型 を Rcpp型 に変換する
 
-
-
-`Rcpp = wrap(Cpp)` `Cpp  = as(Cpp) `
-
+stdのシーケンシャルコンテナとVectorは互いに変換可能
+ListやDataFrame は２次元ベクターと変換可能
 
 | Rcpp:: | std:: |
 | -- | -- |
