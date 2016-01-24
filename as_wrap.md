@@ -22,8 +22,7 @@ NumericVector rcpp_as_wrap(){
   using namespace std;
   
   NumericVector   rcpp_vector  = NumericVector::create(1,2,3,4,5);
-  rcpp_vector.names() = CharacterVector::create("A","B","C","D");
-  
+
   //OK
   //array<double, 5> cpp_container = as<array<double,5> >(rcpp_vector);
   //vector<double> cpp_container = as<vector<double> >(rcpp_vector);
