@@ -16,8 +16,32 @@ Rcpp型に変換できるC++の型はRcpp関数の引数や返値にすること
 | `Vector` | `set` `unordered_set`|-|+|
 
 
-
-
+```cpp
+// [[Rcpp::export]]
+NumericVector rcpp_as_wrap(){
+  
+  using namespace std;
+  
+  NumericVector   rcpp_vector  = NumericVector::create(1,2,3,4,5);
+  rcpp_vector.names() = CharacterVector::create("A","B","C","D");
+  
+  //OK
+  //array<double, 5> cpp_container = as<array<double,5> >(rcpp_vector);
+  //vector<double> cpp_container = as<vector<double> >(rcpp_vector);
+  //deque<double> cpp_container = as<deque<double> >(rcpp_vector);
+  list<double> cpp_container = as<list<double> >(rcpp_vector);
+  
+  
+  
+  //error
+  //forward_list<double> cpp_container = as<forward_list<double>>(rcpp_vector);
+  //set<double> cpp_container = as<set<double> >(rcpp_vector);
+  //stack<double> cpp_container = as<stack<double> >(rcpp_vector);
+  //map<string,double> cpp_container = as<map<string,double>>(rcpp_vector);
+  //queue<double> cpp_container = as<queue<double> >(rcpp_vector);
+  return wrap(cpp_container);
+}
+```
 
 
 
