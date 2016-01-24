@@ -24,7 +24,6 @@
 * RObject
 * [標準 C++ データ構造](as_wrap.md)
 * [標準 C++ アルゴリズム](STL.md)
-
 * [C++11](c++11.md)
 * [Boost](boost.md)
 * [Rmath.h](Rmath.md)
