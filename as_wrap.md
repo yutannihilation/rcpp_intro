@@ -10,7 +10,7 @@ Rcpp と 標準C++のデータ構造の変換は　`as()` と `wrap()` を用い
 
 | Rcpp:: | std:: |
 | -- | -- |
-| `Vector` | `array` `vector` `list` `deque`|
+| `Vector` | `array` `deque` `list` `vector` |
 | `List` | `vector<vector>`|
 
 
