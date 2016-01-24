@@ -11,16 +11,17 @@ ListやDataFrame は２次元ベクターと変換可能
 
 | Rcpp:: | std:: |
 | -- | -- |
-| `Vector` | `array` `deque` `list` `vector` |
-| `List` `DataFrame` | `vector<vector>`|
+
 
 
 `map` や `set` は "Rcpp <- Cpp" の方向のみ変換可能
 
 | Rcpp:: | std:: |as|wrap|
 |--| -- | -- | -- | -- |
-| Named `Vector` | `map` `unordered_map`|||
-| `Vector` | `set` `unordered_set`|||
+| `Vector` | `array` `deque` `list` `vector` |+|+|
+| `List` `DataFrame` | `vector<vector>`|+|+|
+| Named `Vector` | `map` `unordered_map`|-|+|
+| `Vector` | `set` `unordered_set`|-|+|
 
 
 
