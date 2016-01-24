@@ -15,9 +15,9 @@ DataFrame df = DataFrame::create(Named("V1") = v1 , _["V2"]=v2);
 上の方法で `DataFrame` を作成すると、df のカラムには元の`Vector` の値がコピーされるのではなく、元の`Vector` への「参照」となる。`Vector` の値をコピーして`DataFrame` を作成する場合には `clone()` を使う。
 
 `clone()` を使った場合と使わなかった場合の違いを見るために、下のコード例を見て欲しい。コード例では、`Vector`  v から`DataFrame`  df を作成してる。その時、
-カラム V1 は v への参照、カラム V2 は clone() により v の値をコピーしている。その後、`Vector`  v に変更操作を行うと、データフレーム df のカラム V1 は変更されているが、V2は影響をうけないことがわかる。
+カラム V1 は v への参照、カラム V2 は `clone()` により v の値をコピーしている。その後、`Vector`  v に変更操作を行うと、データフレーム df のカラム V1 は変更されているが、V2は影響をうけないことがわかる。
 
- ```
+ ```cpp
 // [[Rcpp::export]]
 DataFrame rcpp_df(){
   NumericVector v = NumericVector::create(1,2);
@@ -47,7 +47,7 @@ DataFrame rcpp_df(){
 
 ```
 NumericVector v1 = df[0];
-NumericVector v2 = df["V1"];
+NumericVector v2 = df["V2"];
 ```
 
 `DataFrame` 作成の時と同様、上の方法で `Vector` に `DataFrame` のカラムを代入すると、`Vector` には カラムの値がコピーされるのではなく、カラムへの「参照」となる。そのため、`Vector` へ変更操作を行うと、df のカラムの内容も変更される。
