@@ -1,11 +1,9 @@
 # 標準C++が提供するアルゴリズム
 
-#C++ STL
+標準C++のSTLライブラリでは様々な汎用アルゴリズムが提供されている。その多くではイテレータを使って、アルゴリズムを適用する範囲などを指定する。[イテレータ](iterator.md)
 
-標準C++のSTLライブラリでは様々な汎用アルゴリズムが提供されている。
+参考：https://cpprefjp.github.io/reference/algorithm.html
 
-参考：（日本語）https://cpprefjp.github.io/reference/algorithm.html
-（英語）http://www.cplusplus.com/reference/algorithm/
 
 STLアルゴリズムを使って、R の findInterval と同等の関数を作成した。
 x に数値ベクター、 breaks も数値ベクターでヒストグラムなどで値の範囲を表す区切り。
