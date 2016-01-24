@@ -20,6 +20,7 @@ double rcpp_sum(NumericVector v){
 }"
 
 sourceCpp(code = src)
+rcpp_sum(1:10)
 ```
 
 ###cppFunction
