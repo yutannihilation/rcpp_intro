@@ -10,7 +10,7 @@ Rcpp と 標準C++のデータ構造の変換は　`as()` と `wrap()` を用い
 
 | Rcpp:: | std:: |
 | -- | -- |
-| `Vector` | `vector` `list` `map`|
+| `Vector` | `array` `vector` `list` `deque`|
 | `List` | `vector<vector>`|
 
 
@@ -23,7 +23,9 @@ NumericVector rcpp_std_map(){
   cpp_num_map["B"] = 2;
   cpp_num_map["C"] = 3;
   return wrap(cpp_num_map);
-} //Named Vector
+}
+//Named Vector
+
 ```
 
 
