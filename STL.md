@@ -3,6 +3,8 @@
 #C++ STL
 
 STL にはイテレータを扱う様々なアルゴリズムが用意されている。
+
+参考：https://cpprefjp.github.io/reference/algorithm.html
 http://www.cplusplus.com/reference/algorithm/
 
 STLアルゴリズムを使って、R の findInterval と同等の関数を作成した。
