@@ -31,6 +31,6 @@
 
 * 例外
 * [オブジェクトの扱いに関するややこしい話](troublesome.md)
-* [Rcppオブジェクトに代入する際の注意点](assignment.md)
+
 * [インライン](inline.md)
 
