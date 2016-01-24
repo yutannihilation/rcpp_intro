@@ -11,7 +11,7 @@ Rcpp型に変換できるC++の型はRcpp関数の引数や返値にすること
 | Rcpp:: | std:: |as|wrap|
 |--| -- | -- | -- | -- |
 | `Vector` | `array`, `deque`, `list`, `vector` |+|+|
-| `List`, `DataFrame` | `vector<vector>`|+|+|
+| `List`, `DataFrame` | `vector<vector>`, `list<deque>`, ...|+|+|
 | Named `Vector` | `map`, `unordered_map`|-|+|
 | `Vector` | `set`, `unordered_set`|-|+|
 
@@ -51,7 +51,7 @@ NumericVector std_map(){
 //Named Vector
 
 ```
-2次元ベクター は `DataFrame`や `List` と互いに変換できる。
+2次元コンテナ は `DataFrame`や `List` と互いに変換できる。
 
 ```cpp
 // [[Rcpp::plugins("cpp11")]]
