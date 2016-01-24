@@ -26,6 +26,24 @@ CharacterVector ch = wrap(x.attributeNames());
 bool b = x.hasAttribute("name");
 ```
 
+```cpp
+// [[Rcpp::export]]
+NumericVector attribs() {
+  NumericVector out = NumericVector::create(1, 2, 3);
+
+  //ベクターの要素の名前を設定する
+  out.attr("names") = CharacterVector::create("a", "b", "c");
+  
+  //新しい属性を作成して、その値をセットする。
+  out.attr("new_attribute") = "new_value";
+  
+  //このオブジェクト class を "new_class" に設定する
+  out.attr("class") = "new_class";
+
+  return out;
+}
+```
+
 ##主要な属性値
 
 要素名など使用頻度の高い属性については専用のアクセス関数が用意されている。
@@ -59,24 +77,7 @@ L.attr(“names”)//要素名
 
 
 
-http://gallery.rcpp.org/articles/setting-object-attributes/
-```cpp
-// [[Rcpp::export]]
-NumericVector attribs() {
-  NumericVector out = NumericVector::create(1, 2, 3);
 
-  //ベクターの要素の名前を設定する
-  out.attr("names") = CharacterVector::create("a", "b", "c");
-  
-  //新しい属性 "my-attr" を作成して、その値に"new_attribute" をセットする。
-  out.attr("new_attribute") = "my-value";
-  
-  //このオブジェクト class を "my-class" に設定する
-  out.attr("class") = "my-class";
-
-  return out;
-}
-```
 
 
 
