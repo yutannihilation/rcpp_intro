@@ -52,5 +52,20 @@ NumericVector rcpp_std_map(){
 
 ```
 
+```cpp
+// [[Rcpp::export]]
+List rcpp_vector_vector(){
+  using namespace std;
+  vector<vector<double>> cpp_vector_2d = {{1,2},{3,4,5}};
+  return wrap(cpp_vector_2d);
+}
+
+// [[Rcpp::export]]
+DataFrame rcpp_vector_2d(){
+  using namespace std;
+  vector<vector<double>> cpp_vector_2d = {{1,2},{3,4}};
+  return wrap(cpp_vector_2d);
+}
+```
 
 
