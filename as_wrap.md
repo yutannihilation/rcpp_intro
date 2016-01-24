@@ -15,12 +15,11 @@ ListやDataFrame は２次元ベクターと変換可能
 | `List` `DataFrame` | `vector<vector>`|
 
 
-
-Rcpp = wrap(Cpp) のみ可能なもの
+map<>
 
 | Rcpp:: | std:: |
 | -- | -- |
-| Named `Vector` | `map<string,value_type>`|
+| Named `Vector` | `map`|
 
 std::の`array` `deque` `list` `vector`は `Vector` と互いに変換可能。
 
@@ -28,6 +27,7 @@ stdの2次元ベクター
 
 
 
+map<key, value> は key を名前とした、名前付き Vector に変換することができる。
 
 ```cpp
 // [[Rcpp::export]]
