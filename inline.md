@@ -2,9 +2,7 @@
 
 ## Rcppコードを記述する
 
-Rcppのコードをファイルに保存せずに、Rのコードの中で記述することもできる。
-
- `sourceCpp()` `cppFunction()` `evalCpp()` を使う。
+Rcppのコードをファイルに保存せずに、Rのコードの中で記述することもできる。`sourceCpp()` `cppFunction()` `evalCpp()` を使う。
 
 ###sourceCpp
 
@@ -25,7 +23,7 @@ sourceCpp(code = src)
 ```
 
 ###cppFunction
-RcppのコードをRの文字列オブジェクトに保存し、`cppFunction()`関数を使ってコンパイルする。この場合には　`#include<Rcpp.h>`と`using namespase Rcpp`の記述を省略できる。
+RcppのコードをRの文字列として保存し、`cppFunction()`関数を使ってコンパイルする。この場合には　`#include<Rcpp.h>`と`using namespase Rcpp`の記述を省略できる。
 
 ```r
 code <- 
