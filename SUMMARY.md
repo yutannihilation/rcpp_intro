@@ -1,6 +1,6 @@
 # Summary
 
-* [Rcpp とは](README.md)
+* [はじめに](README.md)
 * [インストール](install.md)
 * [基本的な使い方](basic_usage.md)
 * [基本データ型](data_types.md)
