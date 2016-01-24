@@ -189,8 +189,8 @@ bool   bool_inf   = R_PosInf;   //true
 ```
 
 
-**String**
-`String` は Rcpp で定義された型なので `NA_STRING` `R_NaN` `R_PosInf` を適切に扱うことができる。しかし、`std::string` にはこれらの値は代入できない。
+**string**
+Rcppの `String` は Rcpp で定義された型なので `NA_STRING` `R_NaN` `R_PosInf` を適切に扱うことができる。しかし、`std::string` にはこれらの値は代入できない。
 
 ```
 String chr_na     = NA_STRING;  //"NA"
