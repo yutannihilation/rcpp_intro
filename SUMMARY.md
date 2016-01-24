@@ -26,7 +26,7 @@
 * [C++11](c++11.md)
 * [Boost](boost.md)
 * [Rmath](Rmath.md)
-* [参考資料](references.md)
+
 
 * RObject
 * 例外
