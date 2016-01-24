@@ -17,10 +17,10 @@ ListやDataFrame は２次元ベクターと変換可能
 
 `map` や `set` は "Rcpp <- Cpp" の方向のみ変換可能
 
-|| Rcpp:: | std:: |
-|--| -- | -- |
-|| Named `Vector` | `map` `unordered_map`|
-|| `Vector` | `set` `unordered_set`|
+| Rcpp:: | std:: |as|wrap|
+|--| -- | -- | -- | -- |
+| Named `Vector` | `map` `unordered_map`|
+| `Vector` | `set` `unordered_set`|
 
 
 
