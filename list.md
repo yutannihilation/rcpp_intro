@@ -2,7 +2,7 @@
 
 `List` の作成と要素へのアクセスの方法は、基本的に `DataFrame` の場合と同じ。違いは、`List` はその要素として`Vector`だけではなく`S4`や `DataFrame` や `List` など任意の型を保持できること。
 
-[DataFrame](dataframe.md)のページに記載された内容は、`DataFrame` を `List`に置き換えても成立するので、詳細はそちらを参照すること。
+詳しくは、[DataFrame](dataframe.md)のページに記載された内容は、`DataFrame` を `List`に置き換えても成立するので、詳細はそちらを参照すること。
 
 
 ##作成
