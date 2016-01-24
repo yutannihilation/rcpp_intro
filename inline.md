@@ -23,7 +23,7 @@ sourceCpp(code = src)
 ```
 
 ###cppFunction
-Rcpp のコードを R の文字列として保存し、`cppFunction()`関数を使ってコンパイルする。この場合には　`#include<Rcpp.h>`と`using namespase Rcpp`の記述を省略できる。
+Rcpp のコードを R の文字列として保存し、`cppFunction()`関数を使ってコンパイルする。この場合には　`#include<Rcpp.h>`と`using namespase Rcpp`の記述を省略できるので、手軽である。
 
 ```r
 code <- 
