@@ -5,6 +5,7 @@
 * [基本的な使い方](basic_usage.md)
 * [基本データ型](data_types.md)
 * [関数の定義](function.md)
+* [Rのコードを書く](inline.md)
 * [Vector](vector.md)
 * [Matrix](matrix.md)
 * [DataFrame](dataframe.md)
@@ -32,5 +33,5 @@
 * 例外
 * [オブジェクトの扱いに関するややこしい話](troublesome.md)
 
-* [Rのコードを書く](inline.md)
+
 
