@@ -51,7 +51,7 @@ NumericVector std_map(){
 //Named Vector
 
 ```
-2次元ベクター を `DataFrame`や `List` と互いに変換できる。
+2次元ベクター は `DataFrame`や `List` と互いに変換できる。
 
 ```cpp
 // [[Rcpp::plugins("cpp11")]]
