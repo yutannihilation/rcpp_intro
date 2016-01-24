@@ -6,7 +6,7 @@ Rcpp と 標準C++のデータ構造の変換は　`as()` と `wrap()` を用い
 * `as()` : Rcpp型 を C++型 に変換する
 * `wrap()` : C++型 を Rcpp型 に変換する
 
-stdのシーケンシャルコンテナとVectorは互いに変換可能
+stdのシーケンシャルコンテナと `Vector`は互いに変換可能である。
 ListやDataFrame は２次元ベクターと変換可能
 
 | Rcpp:: | std:: |
@@ -15,20 +15,18 @@ ListやDataFrame は２次元ベクターと変換可能
 | `List` `DataFrame` | `vector<vector>`|
 
 
-map<>
+`map` や `set` は "Rcpp <- Cpp" の方向のみ変換
 
 | Rcpp:: | std:: |
 | -- | -- |
 | Named `Vector` | `map` `unordered_map`|
 | `Vector` | `set` `unordered_set`|
 
-std::の`array` `deque` `list` `vector`は `Vector` と互いに変換可能。
-
-stdの2次元ベクター
 
 
 
-map<key, value> は key を名前とした、名前付き Vector に変換することができる。
+
+`map<key, value>` は key を名前とした、名前付き Vector に変換される。
 
 ```cpp
 // [[Rcpp::export]]
