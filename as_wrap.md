@@ -23,7 +23,7 @@ NumericVector rcpp_std_map(){
   cpp_num_map["B"] = 2;
   cpp_num_map["C"] = 3;
   return wrap(cpp_num_map);
-}
+} //Named Vector
 ```
 
 
