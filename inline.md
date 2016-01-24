@@ -60,7 +60,6 @@ evalCpp('std::numeric_limits<double>::max()')
 Rcpp コード内で `/*** R`で始まるコメントの内に R のコードを書くと、`sourceCpp()` した時に、それが実行される。・
 
 
-
 ```cpp
 #include<Rcpp.h>
 using namespace Rcpp;
