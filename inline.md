@@ -28,7 +28,7 @@ Rcpp のコードを R の文字列として保存し、`cppFunction()`関数を
 
 ```r
 src<-
-double rcpp_sum(NumericVector v){
+"double rcpp_sum(NumericVector v){
   double sum = 0;
   for(int i=0; i<v.length(); ++i){
     sum += v[i];
