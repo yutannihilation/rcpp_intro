@@ -35,7 +35,7 @@ src <-
   }
   return(sum);
 }"
-Rcpp::cppFunction(code)
+Rcpp::cppFunction(src)
 rcpp_sum(1:10)
 ```
 
