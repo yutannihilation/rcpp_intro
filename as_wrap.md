@@ -10,10 +10,10 @@ Rcpp型に変換できるC++の型はRcpp関数の引数や返値にすること
 
 | Rcpp:: | std:: |as|wrap|
 |--| -- | -- | -- | -- |
-| `Vector` | `array` `deque` `list` `vector` |+|+|
-| `List` `DataFrame` | `vector<vector>`|+|+|
-| Named `Vector` | `map` `unordered_map`|-|+|
-| `Vector` | `set` `unordered_set`|-|+|
+| `Vector` | `array`, `deque`, `list`, `vector` |+|+|
+| `List`, `DataFrame` | `vector<vector>`|+|+|
+| Named `Vector` | `map`, `unordered_map`|-|+|
+| `Vector` | `set`, `unordered_set`|-|+|
 
 
 ```cpp
