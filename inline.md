@@ -4,10 +4,25 @@
 
 Rcppのコードをファイルに保存せずに、Rのコードの中で記述することもできる。
 
-一つは文字列オブジェクトして sourceCpp() に渡す。もう一つは、cppFunction と evalCpp を使う。
+ `sourceCpp()` `cppFunction()` `evalCpp()` を使う。
 
 ###sourceCpp
 
+```R
+src<-
+"#include <Rcpp.h>
+using namespace Rcpp;
+// [[Rcpp::export]]
+double sum_rcpp(NumericVector v){
+  double sum = 0;
+  for(int i=0; i<v.length(); ++i){
+    sum += v[i];
+  }
+  return(sum);
+}"
+
+sourceCpp(code = src)
+```
 
 ###cppFunction
 RcppのコードをRの文字列オブジェクトに保存し、`cppFunction()`関数を使ってコンパイルする。この場合には　`#include<Rcpp.h>`と`using namespase Rcpp`の記述を省略できる。
