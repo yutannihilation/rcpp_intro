@@ -8,17 +8,22 @@ Rcpp と 標準C++のデータ構造の変換は　`as()` と `wrap()` を用い
 
 
 
-| Rcpp | C++ |
+| Rcpp:: | std:: |
 | -- | -- |
-| `Vector` | `std::vector` `std::list` `std::map`|
-| `List` | `std::vector< std::vector >`|
+| `Vector` | `vector` `list` `map`|
+| `List` | `vector<vector>`|
 
 
 
-```
-
-
-
+```cpp
+// [[Rcpp::export]]
+NumericVector rcpp_std_map(){
+  std::map<std::string, double> cpp_num_map;
+  cpp_num_map["A"] = 1;
+  cpp_num_map["B"] = 2;
+  cpp_num_map["C"] = 3;
+  return wrap(cpp_num_map);
+}
 ```
 
 
