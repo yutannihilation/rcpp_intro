@@ -53,9 +53,12 @@ NumericVector std_map(){
 ```
 
 ```cpp
+// [[Rcpp::plugins("cpp11")]]
+
 // [[Rcpp::export]]
 List std_vector_2d_List(){
   using namespace std;
+  //initializing with C++11 initializer list
   vector<vector<double>> cpp_vector_2d = {{1,2},{3,4,5}};
   return wrap(cpp_vector_2d);
 }
