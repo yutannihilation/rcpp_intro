@@ -61,7 +61,17 @@ Function rnorm = stats["rnorm"]; //statsの環境から関数を取り出す
 return f(5, Named("sd", 2), _["mean"]=10);
 ```
 
-
+```
+> library(Matrix)
+> m<-matrix(c(0,1,0,2,3,0,4,0), nrow = 4)
+> rcpp_package_function(m)
+4 x 2 sparse Matrix of class "dgCMatrix"
+        
+[1,] . 3
+[2,] 1 .
+[3,] . 4
+[4,] 2 .
+```
 sparseMatrix
 
 
