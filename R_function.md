@@ -74,7 +74,6 @@ rcpp_package_function(m)
 # [3,] . 4
 # [4,] 2 .
 ```
-sparseMatrix
 
 
 
