@@ -1,6 +1,7 @@
 # Summary
 
 * [はじめに](README.md)
+* Rcppの活用ポイント
 * [インストール](install.md)
 * [基本的な使い方](basic_usage.md)
 * [コードの記述](function.md)
@@ -29,6 +30,5 @@
 * [Rmath](Rmath.md)
 * RObject
 * 例外
-* Rcppを用いたパッケージ作成
-* Rcppの活用ポイント
-
+* パッケージ作成
+* 並列化
