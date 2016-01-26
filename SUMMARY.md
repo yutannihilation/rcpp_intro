@@ -32,3 +32,5 @@
 * 例外
 * パッケージ作成
 * 並列化
+* Environment
+* Language
