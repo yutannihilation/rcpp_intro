@@ -53,13 +53,17 @@ List rcpp_lapply(List input, Function f) {
 
 ##Environment
 
-Environmentクラスを利用するとパッケージ等の環境からオブジェクト（変数や関数）を取り出すことができる。
+Environmentクラスを利用するとパッケージ等の環境からオブジェクト（変数や関数）を取り出すことができる。この時、呼び出したい関数のあるパッケージはあらかじめRにロードしておく必要がある。
 
 ```
 Environment stats("package:stats"); //statsパッケージを読み込む
 Function rnorm = stats["rnorm"]; //statsの環境から関数を取り出す
 return f(5, Named("sd", 2), _["mean"]=10);
 ```
+
+
+sparseMatrix
+
 
 
 ##Language
