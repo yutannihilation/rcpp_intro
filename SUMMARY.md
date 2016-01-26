@@ -16,6 +16,7 @@
 * [String](string.md)
 * [四則演算と比較演算](calculation.md)
 * [属性値](attributes.md)
+* factor
 * [Rライクな関数](rcpp_functions.md)
 * [確率分布](dpqr_functions.md)
 * [R の関数を利用する](R_function.md)
