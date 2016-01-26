@@ -29,6 +29,6 @@
 * [Rmath](Rmath.md)
 * RObject
 * 例外
-* パッケージ作成
+* Rcppを用いたパッケージ作成
 * Rcppの活用ポイント
 
