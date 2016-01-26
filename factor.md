@@ -19,3 +19,7 @@ RObject rcpp_factor(){
 [1] A B C
 Levels: A B C
 ```
+
+
+
+http://gallery.rcpp.org/articles/fast-factor-generation/
