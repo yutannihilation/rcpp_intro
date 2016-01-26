@@ -16,6 +16,10 @@ L.attr("class") = "my_class";
 オブジェクトが持っている属性の一覧を返す。返値の型は C++の`vector<string>` なので、`CharacterVector`に変換するためには `wrap()` を用いる必要がある。
 
 ```
+CharacterVector v = wrap(x.attributeNames());
+```
+
+```
 CharacterVector ch = wrap(x.attributeNames());
 ```
 #### hasAttribute( str )
