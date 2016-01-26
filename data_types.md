@@ -10,11 +10,11 @@ R、Rcpp、C++で利用できる基本的なデータ型の対応関係を「概
 |:---:|:---:|:---:|:---:|
 |論理|logical|Logical|bool|
 |整数|integer|Integer|int|
-|数値|numeric|Numeric|double|
+|実数|numeric|Numeric|double|
 |複素数|complex|Complex|complex|
 |文字列|character|Character (String)|string|
 |日付|Date|Date|-|
-|時間|POSIXct|Datetime|-|
+|日時|POSIXct|Datetime|-|
  
 
 なぜわざわざ「概念的」という言葉を強調したかというと、正確には、Rcppでは `Logical`, `Integer`, `Numeric`, `Complex` については、スカラー値の型は用意されておらず、ベクター型や行列型（`NumericVector`, `NumericMatrix` など）のみが定義されている。そのため、例えば `Numeric x;` というような変数 x を宣言することはできない。しかし、 `String`, `Date`, `Datetime` についてはスカラー値の型が定義されているので、例えば `Date d;` という変数 d が宣言できる。
@@ -22,7 +22,7 @@ R、Rcpp、C++で利用できる基本的なデータ型の対応関係を「概
 
 # データ構造
 
-Rcppの基本データ型のそれぞれについて`Vector`型と`Matrix`型が定義されている。以降、このドキュメントでは、Rcpp が提供するベクター型や行列型を総称するために、`Vector` `Matrix` という語を用いる。
+Rcppの基本データ型のそれぞれについてベクター型や行列型が定義されている。以降、このドキュメントでは、Rcpp が提供するベクター型や行列型を総称するために、`Vector` `Matrix` という語を用いる。
 
 
 ### Vector
