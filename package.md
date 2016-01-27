@@ -9,13 +9,20 @@
 
 ##手順
 
-setwd() でパッケージフォルダを作業フォルダとして指定した後に次の関数を実効する。
+パッケージフォルダを作業フォルダとして指定した状態で。`devtools::use_rcpp()`関数を実効する。
 
 ```
-devtools::use_rcpp()
-```
+> devtools::use_rcpp()
 
-* Rcppで書いたソースコードは `src` フォルダの中に配置する
+Adding Rcpp to LinkingTo and Imports
+Creating src/ and src/.gitignore
+Next, include the following roxygen tags somewhere in your package:
+#' @useDynLib MyPackage
+#' @importFrom Rcpp sourceCpp
+```
+これによりパッケージでRcppを利用するための下の設定を行われる。
+
+* `src` フォルダが作成される。Rcppで書いたソースコードは の中に配置する。
 * `DESCRIPTION`ファイルに以下の記述を追加する
 ```
 LinkingTo: Rcpp
@@ -24,8 +31,9 @@ Imports: Rcpp
 * `NAMESPACE`ファイルに以下の記述を追加する
 ```
 useDynLib(mypackage)
-importFrom(Rcpp, sourceCpp
+importFrom(Rcpp, sourceCpp)
 ```
+* Rcpp関数のコンパイルで生じる一時ファイルをgitが無視するように。`.gitignore` ファイルの内容を設定する。
 
 
-devtools::use_rcpp()
+
