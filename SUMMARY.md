@@ -30,7 +30,8 @@
 * [Rmath](Rmath.md)
 * RObject
 * 例外
-* パッケージ作成
+* [パッケージ作成](package.md)
 * 並列化
 * Environment
 * Language
+
