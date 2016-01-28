@@ -13,7 +13,6 @@
 
 ```
 > devtools::use_rcpp()
-
 Adding Rcpp to LinkingTo and Imports
 Creating src/ and src/.gitignore
 Next, include the following roxygen tags somewhere in your package:
@@ -34,6 +33,16 @@ useDynLib(mypackage)
 importFrom(Rcpp, sourceCpp)
 ```
 * Rcpp関数のコンパイルで生じる一時ファイルをgitが無視するように。`.gitignore` ファイルの内容を設定する。
+
+
+`devtools::use_rcpp()`関数を実効した後に
+* パッケージの "Rのソースコード" のどこかに、次の roxygen タグを記述する。
+```
+#' @useDynLib your-package-name
+#' @importFrom Rcpp sourceCpp
+NULL
+```
+
 
 
 
