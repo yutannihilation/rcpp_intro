@@ -28,10 +28,11 @@
 * [C++11](c++11.md)
 * [Boost](boost.md)
 * [Rmath](Rmath.md)
+* [パッケージ作成](package.md)
 * RObject
 * 例外
-* [パッケージ作成](package.md)
-* 並列化
 * Environment
 * Language
+* RcppPalallel
+
 
