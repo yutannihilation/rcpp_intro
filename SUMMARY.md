@@ -33,5 +33,5 @@
 * 例外
 * Environment
 * Language
-* [RcppPalallel](rcpppalallel.md)
+* [RcppParallel](parallel.md)
 
