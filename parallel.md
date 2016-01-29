@@ -28,21 +28,32 @@ Rcppソースに以下を追加
 #include <RcppParallel.h>
 ```
 
-パッケージで利用する場合
+##パッケージで利用する場合
 
-`DESCRIPTION` file:
+
+**DESCRIPTION**
 
 ```
 Imports: RcppParallel
 LinkingTo: RcppParallel
+SystemRequirements: GNU make
 ```
-`NAMESPACE` file:
+N
 
 ```
-import(RcppParallel)
+importFrom(RcppParallel, RcppParallelLibs)
 ```
 
+**src\Makevars**
+```
+PKG_LIBS += $(shell ${R_HOME}/bin/Rscript -e "RcppParallel::RcppParallelLibs()")
+src\Makevars.win
 
+PKG_CXXFLAGS += -DRCPP_PARALLEL_USE_TBB=1
+
+PKG_LIBS += $(shell "${R_HOME}/bin${R_ARCH_BIN}/Rscript.exe" \
+              -e "RcppParallel::RcppParallelLibs()")
+```
 
 例
 
