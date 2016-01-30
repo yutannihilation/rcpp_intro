@@ -42,7 +42,7 @@ parallelReduce(std::size_t begin, std::size_t end,
                         Reducer& reducer, std::size_t grainSize = 1)
 ```
 
-`parallelFor` `parallelReduce` は `begin` から `end`  までの連続した整数をインデックスとしながら worker で定義された処理を並列で実行する。
+`parallelFor` `parallelReduce` は `begin` から `end`  までの連続した整数をインデックスとしながら `worker` で定義された処理を並列で実行する。
 
 `parallelFor` は入力データの各要素と出力データの各要素が１対１で対応するような処理（sqrt() や log()）を並列化する。 
 
@@ -50,6 +50,34 @@ parallelReduce(std::size_t begin, std::size_t end,
 
 
 ## コード例
+
+```
+// [[Rcpp::depends(RcppParallel)]]
+#include <RcppParallel.h>
+using namespace RcppParallel;
+
+struct SquareRoot : public Worker
+{
+   // source matrix
+   const RMatrix<double> input;
+   
+   // destination matrix
+   RMatrix<double> output;
+   
+   // initialize with source and destination
+   SquareRoot(const NumericMatrix input, NumericMatrix output) 
+      : input(input), output(output) {}
+   
+   // take the square root of the range of elements requested
+   void operator()(std::size_t begin, std::size_t end) {
+      std::transform(input.begin() + begin, 
+                     input.begin() + end, 
+                     output.begin() + begin, 
+                     ::sqrt);
+   }
+};
+```
+
 
 
 
