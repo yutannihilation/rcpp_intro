@@ -73,7 +73,7 @@ Rmatrix<double> mp_num(m_num);
 
 ## コード例
 
-`parallelFor` を使って、`Vector` の `sqrt` を計算する
+`parallelFor` を使って、`Vector` の平方根を計算する
 
 
 ```cpp
