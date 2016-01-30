@@ -71,7 +71,7 @@ Rmatrix<double> mp_num(m_num);
 
 
 
-## 例 parallelFor
+## 例：parallelFor()
 
 `parallelFor` を使って、`Matrix` の平方根を計算する。
 http://gallery.rcpp.org/articles/parallel-matrix-transform/
@@ -163,12 +163,7 @@ print(output_data)
 
 ```
 
-parallelReduce Vector  Matrix DataFrame List の begin から end までの各要素に worker で定義された処理を適用する。
-
-
-
-parallelFor で実行する処理
-
+## 例：parallelReduce()
 
 
 ##パッケージで利用する場合
