@@ -50,19 +50,20 @@ for(i in begin:end){
 ```
 
 ```
-do_something(x){
+do_something <- function(x){
  x*x
 }
 
 worker <- function( begin, end){
    input[begin:end]
    for(i in begin:end){
-     output[i] <- do_something(input[i])
+     output[i] <<- do_something(input[i])
    }
    output[begin:end]
+   NULL
 }
 
-input  <- runif(10)
+input  <- seq(10, 100, by = 10)
 output <- rep(NA, 10)
 
 begin <- 1
@@ -75,8 +76,8 @@ worker(i[1], i[3])
 worker(i[4], i[6])
 worker(i[7], i[10])
 
-
-
+print(input)
+print(output)
 
 ```
 
