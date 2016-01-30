@@ -43,9 +43,9 @@ parallelReduce(std::size_t begin, std::size_t end,
 
 `parallelFor``parallelReduce` は `begin` から `end`  までの連続した整数をインデックスとしながら `worker` `reducer` で定義された処理を並列で実行する。
 
-`parallelFor` は入力データの各要素と出力データの各要素が１対１で対応するような処理（sqrt() や log()）を並列化する。 
+**parallelFor** は入力データの各要素と出力データの各要素が１対１で対応するような処理（sqrt() や log()）を並列化する。 
 
-`parallelReduce` は入力データの全要素を１つの値に集約するような処理（sum()やmean()）を並列化する。
+**parallelReduce** は入力データの全要素を１つの値に集約するような処理（sum()やmean()）を並列化する。
 
 
 ### RVector, RMatrix
@@ -137,19 +137,19 @@ SquareRoot <- function( begin, end){
    sqrt_ <- function(x){
       x*x
    }
-   input[begin:end]
+   input_data[begin:end]
    for(i in begin:end){
    #関数の外のoutputを書き換える(<<-)
-     output[i] <<- sqrt_(input[i])
+     output_data[i] <<- sqrt_(input_data[i])
    }
-   output[begin:end]
+   output_data[begin:end]
    invisible(NULL)
 }
 
 
 
-input  <- seq(10, 100, by = 10)
-output <- rep(NA, 10)
+input_data  <- seq(10, 100, by = 10)
+output_data <- rep(NA, 10)
 
 begin <- 1
 end <- 10
@@ -161,8 +161,8 @@ SquareRoot(i[1], i[3])
 SquareRoot(i[4], i[6])
 SquareRoot(i[7], i[10])
 
-print(input)
-print(output)
+print(input_data)
+print(output_data)
 
 ```
 
