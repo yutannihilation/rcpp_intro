@@ -17,7 +17,7 @@ parallel や snow での並列化は **マルチプロセス** の方式であ�
 を全て内部で行ってくれるので、ユーザーが記述するべきコードはシンプルなもので済むようになる。手軽にマルチスレッドの恩恵を享受できる。
 
 
-インストール
+## インストール
 
 ```
 install.packages("RcppParallel")
@@ -29,6 +29,10 @@ Rcppソースに以下を追加
 // [[Rcpp::depends(RcppParallel)]]
 #include <RcppParallel.h>
 ```
+
+RcppParallel では
+
+
 
 ##パッケージで利用する場合
 
@@ -56,6 +60,11 @@ PKG_CXXFLAGS += -DRCPP_PARALLEL_USE_TBB=1
 PKG_LIBS += $(shell "${R_HOME}/bin${R_ARCH_BIN}/Rscript.exe" \
               -e "RcppParallel::RcppParallelLibs()")
 ```
+
+
+
+
+
 
 例
 
