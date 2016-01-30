@@ -115,11 +115,11 @@ NumericMatrix parallelMatrixSqrt(NumericMatrix x) {
   
   // 関数オブジェクトをインスタンス化する
   // このとき入力データ、出力データを渡す
-  SquareRoot squareRoot(x, output);
+  SquareRoot my_sqrt(x, output);
   
   // 入力データの全ての要素に対して関数オブジェクトを適用する
   // parallelFor()の中で output に値がセットされる
-  parallelFor(0, x.length(), squareRoot);
+  parallelFor(0, x.length(), my_sqrt);
   
   // エラー：この記述は誤り parallelFor の返値は void 
   // output = parallelFor(0, x.length(), squareRoot);
@@ -130,32 +130,29 @@ NumericMatrix parallelMatrixSqrt(NumericMatrix x) {
 ```
 
 
-
+上の Rcpp コード例
 
 ```r
+#関数オブジェクト SquareRoot の operator()の定義
 SquareRoot <- function( begin, end){
-   sqrt_ <- function(x){
-      x*x
-   }
-   input_data[begin:end]
-   for(i in begin:end){
-   #関数の外のoutputを書き換える(<<-)
-     output_data[i] <<- sqrt_(input_data[i])
-   }
-   output_data[begin:end]
+   #関数の外の output_data を書き換える
+   output_data[begin:end] <<- sqrt(input_data[begin:end])
    invisible(NULL)
 }
 
-
+#関数オブジェクトをインスタンス化するときに
+#入力データと出力データを初期化される
 input_data  <- seq(10, 100, by = 10)
 output_data <- rep(NA, 10)
 
+# parallelFor()を実行するときに引数として
 begin <- 1
 end <- 10
 
 i <- begin:end
 
-#parallelForでは次の３行は並列で実行される
+# parallelFor は i を幾つかに分割して
+# SquareRoot() を並列で実行する
 SquareRoot(i[1], i[3])
 SquareRoot(i[4], i[6])
 SquareRoot(i[7], i[10])
