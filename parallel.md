@@ -50,9 +50,12 @@ for(i in begin:end){
 ```
 
 ```
+
+
 worker <- function( begin, end){
    input[begin:end]
    for(i in begin:end){
+   #関数の外のoutputを書き換える
      output[i] <<- do_something(input[i])
    }
    output[begin:end]
