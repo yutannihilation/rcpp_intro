@@ -19,13 +19,13 @@ parallel や snow での並列化は **マルチプロセス** の方式であ�
 
 ## インストール
 
-```
+```r
 install.packages("RcppParallel")
 install_github("RcppParallel","RcppCore")
 ```
 
 Rcppソースに以下を追加
-```
+```cpp
 // [[Rcpp::depends(RcppParallel)]]
 #include <RcppParallel.h>
 ```
@@ -34,7 +34,7 @@ Rcppソースに以下を追加
 
 RcppParallel は `parallelFor()` と `parallelReduce()` の２つの関数を提供する。
 
-```
+```cpp
 parallelFor(std::size_t begin, std::size_t end, 
                     Worker& worker, std::size_t grainSize = 1)
 parallelReduce(std::size_t begin, std::size_t end, 
@@ -54,7 +54,7 @@ parallelReduce(std::size_t begin, std::size_t end,
 
 `RcppParallel` では Rcppの `Vector` や　`Matrix` に対してスレッドセーフにアクセスするためのラッパー `RVector` `RMatrix`を提供している。
 
-```
+```cpp
 IntegerVector v_int;
 RVector<int> vp_int(v_int);
 
