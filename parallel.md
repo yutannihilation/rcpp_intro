@@ -147,7 +147,6 @@ SquareRoot <- function( begin, end){
 }
 
 
-
 input_data  <- seq(10, 100, by = 10)
 output_data <- rep(NA, 10)
 
