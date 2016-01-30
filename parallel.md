@@ -50,10 +50,6 @@ for(i in begin:end){
 ```
 
 ```
-do_something <- function(x){
- x*x
-}
-
 worker <- function( begin, end){
    input[begin:end]
    for(i in begin:end){
@@ -61,6 +57,10 @@ worker <- function( begin, end){
    }
    output[begin:end]
    invisible(NULL)
+}
+
+do_something <- function(x){
+ x*x
 }
 
 input  <- seq(10, 100, by = 10)
