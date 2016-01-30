@@ -77,7 +77,6 @@ Rmatrix<double> mp_num(m_num);
 
 
 ```cpp
-
 // [[Rcpp::depends(RcppParallel)]]
 #include <RcppParallel.h>
 using namespace RcppParallel;
