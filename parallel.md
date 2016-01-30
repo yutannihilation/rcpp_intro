@@ -3,7 +3,7 @@
 公式サイト：http://rcppcore.github.io/RcppParallel/
 
 
-RcppParallel Rcpp で並列プログラミングを記述することを支援するパッケージ。バックエンドとして Windows, OS X, Linux では Intel Threaded Building Blocks (TBB) ライブラリ、その他のプラットフォームでは TinyThread ライブラリを用いている。
+RcppParallel は Rcpp で並列プログラミングを可能にするパッケージ。バックエンドとして Windows, OS X, Linux では Intel Threaded Building Blocks (TBB) ライブラリ、その他のプラットフォームでは TinyThread ライブラリを用いている。
 
 ####他のRの並列計算パッケージとの違い
 
@@ -30,6 +30,9 @@ Rcppソースに以下を追加
 #include <RcppParallel.h>
 ```
 
+## RcppParallel
+
+
 RcppParallel は `parallelFor()` と `parallelReduce()` の２つの関数を提供する。
 
 ```
@@ -41,9 +44,9 @@ parallelReduce(std::size_t begin, std::size_t end,
 
 `parallelFor` `parallelReduce` は `begin` から `end`  までの連続した整数をインデックスとしながら worker で定義された処理を並列で実行する。
 
-`parallelFor` は入力データの各要素を出力データの各要素に１対１で対応させる処理に利用する。
+`parallelFor` は入力データの各要素と出力データの各要素が１対１で対応するような処理（sqrt() や log()）を並列化する。 
 
-parallelReduce
+`parallelReduce` は入力データの全要素を１つの値に集約するような処理（sum()やmean()）を並列化する。
 
 
 
