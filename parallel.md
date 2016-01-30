@@ -81,6 +81,7 @@ http://gallery.rcpp.org/articles/parallel-matrix-transform/
 #include <RcppParallel.h>
 using namespace RcppParallel;
 
+// Worker を継承して関数オブジェクト SquareRoot を定義する
 struct SquareRoot : public Worker
 {
   // 入力データを保持する内部変数
