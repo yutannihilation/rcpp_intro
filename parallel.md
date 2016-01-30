@@ -142,21 +142,21 @@ SquareRoot <- function( begin, end){
 
 #関数オブジェクトをインスタンス化するときに
 #入力データと出力データを初期化される
-input_data  <- seq(10, 100, by = 10)
+input_data  <- c(1)
 output_data <- rep(NA, 10)
 
-# parallelFor()を実行するときに引数として
+# parallelFor()を実行するときに引数として指定される
 begin <- 1
 end <- 10
 
-i <- begin:end
-
-# parallelFor は i を幾つかに分割して
+# parallelFor() は i を幾つかに分割して
 # SquareRoot() を並列で実行する
+i <- begin:end
 SquareRoot(i[1], i[3])
 SquareRoot(i[4], i[6])
 SquareRoot(i[7], i[10])
 
+#処理後の値を表示する
 print(input_data)
 print(output_data)
 
