@@ -76,7 +76,8 @@ Rmatrix<double> mp_num(m_num);
 `parallelFor` を使って、`Vector` の `sqrt` を計算する
 
 
-```cpp
+```
+
 // [[Rcpp::depends(RcppParallel)]]
 #include <RcppParallel.h>
 using namespace RcppParallel;
