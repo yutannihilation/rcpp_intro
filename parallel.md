@@ -71,7 +71,7 @@ end <- 10
 
 i <- begin:end
 
-//次の３行は並列で実行される
+#parallelForでは次の３行は並列で実行される
 worker(i[1], i[3])
 worker(i[4], i[6])
 worker(i[7], i[10])
