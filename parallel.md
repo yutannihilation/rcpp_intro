@@ -41,7 +41,7 @@ parallelReduce(std::size_t begin, std::size_t end,
                         Reducer& reducer, std::size_t grainSize = 1)
 ```
 
-`parallelFor``parallelReduce` は `begin` から `end`  までの連続した整数をインデックスとしながら `worker` で定義された処理を並列で実行する。
+`parallelFor``parallelReduce` は `begin` から `end`  までの連続した整数をインデックスとしながら `worker` `reducer` で定義された処理を並列で実行する。
 
 `parallelFor` は入力データの各要素と出力データの各要素が１対１で対応するような処理（sqrt() や log()）を並列化する。 
 
@@ -55,19 +55,32 @@ parallelReduce(std::size_t begin, std::size_t end,
 `RcppParallel` では Rcppの `Vector` や　`Matrix` に対してスレッドセーフにアクセスするためのラッパー `RVector` `RMatrix`を提供している。
 
 ```
-IntegerVecor v;
-RVector<int> vp(v);
+IntegerVector v_int;
+RVector<int> vp_int(v_int);
+
+NumericMatrix m_num;
+Rmatrix<double> mp_num(m_num);
 
 ```
+
+## Worker, Reducer
+
+`parallelFor` `parallelReduce` で処理する内容は関数オブジェクトとして定義する。
+
+`parallelFor`に渡す関数オブジェクトは `Worker` を継承して作成する。同様に、`parallelReduce` に渡す関数オブジェクトは `Reduce` を継承して作成する。
+
 
 
 ## コード例
 
-```
+`parallelFor` を使って、`Vector` の `sqrt` を計算する
+
+```cpp
 // [[Rcpp::depends(RcppParallel)]]
 #include <RcppParallel.h>
 using namespace RcppParallel;
 
+//関数オブジェクトの定義
 struct SquareRoot : public Worker
 {
    // source matrix
@@ -88,6 +101,24 @@ struct SquareRoot : public Worker
                      ::sqrt);
    }
 };
+
+
+
+// [[Rcpp::export]]
+NumericMatrix parallelMatrixSqrt(NumericMatrix x) {
+  
+  // allocate the output matrix
+  NumericMatrix output(x.nrow(), x.ncol());
+  
+  // SquareRoot functor (pass input and output matrixes)
+  SquareRoot squareRoot(x, output);
+  
+  // call parallelFor to do the work
+  parallelFor(0, x.length(), squareRoot);
+  
+  // return the output matrix
+  return output;
+}
 ```
 
 
@@ -95,13 +126,13 @@ struct SquareRoot : public Worker
 
 ```
 worker <- function( begin, end){
-   do_something <- function(x){
+   sqrt_ <- function(x){
       x*x
    }
    input[begin:end]
    for(i in begin:end){
-   #関数の外のoutputを書き換える
-     output[i] <<- do_something(input[i])
+   #関数の外のoutputを書き換える(<<-)
+     output[i] <<- sqrt_(input[i])
    }
    output[begin:end]
    invisible(NULL)
