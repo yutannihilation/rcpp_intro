@@ -60,7 +60,7 @@ worker <- function( begin, end){
      output[i] <<- do_something(input[i])
    }
    output[begin:end]
-   NULL
+   invisible(NULL)
 }
 
 input  <- seq(10, 100, by = 10)
