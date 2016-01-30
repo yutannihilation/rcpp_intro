@@ -30,9 +30,7 @@ Rcppソースに以下を追加
 #include <RcppParallel.h>
 ```
 
-### parallelFor
-### parallelReduce
-
+### parallelFor, parallelReduce
 
 RcppParallel は `parallelFor()` と `parallelReduce()` の２つの関数を提供する。
 
@@ -50,15 +48,15 @@ parallelReduce(std::size_t begin, std::size_t end,
 `parallelReduce` は入力データの全要素を１つの値に集約するような処理（sum()やmean()）を並列化する。
 
 
-### RVector RMatrix
+### RVector, RMatrix
 
 マルチスレッド処理では、入力データや出力データの同じ要素に対して、異なる並列スレッドが同時にアクセスすることを防ぐ "スレッドセーフ" なデータアクセスが必要がある。
 
-`RcppParallel` では Rcppの `Vector` や　`Matrix` に対してスレッドセーフなアクセスするためのラッパー `RVector` `RMatrix`を提供している。
+`RcppParallel` では Rcppの `Vector` や　`Matrix` に対してスレッドセーフにアクセスするためのラッパー `RVector` `RMatrix`を提供している。
 
 ```
-IntegerVecor
-RVector<int> v_int
+IntegerVecor v;
+RVector<int> vp(v);
 
 ```
 
