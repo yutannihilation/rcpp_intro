@@ -39,20 +39,21 @@ parallelReduce(std::size_t begin, std::size_t end,
                         Reducer& reducer, std::size_t grainSize = 1)
 ```
 
-`parallelFor` `parallelReduce` は `begin` から `end`  までの連続した整数を worker で定義された処理を並列で実行する、
+`parallelFor` `parallelReduce` は `begin` から `end`  までの連続した整数をインデックスとしながら worker で定義された処理を並列で実行する。
+
+`parallelFor` は入力データの各要素を出力データの各要素に１対１で対応させる処理に利用する。
+
+parallelReduce
+
+
+
+
 
 ```
-for(i in begin:end){
-
- # worker(), reduce
-
-}
-```
-
-```
-
-
 worker <- function( begin, end){
+   do_something <- function(x){
+      x*x
+   }
    input[begin:end]
    for(i in begin:end){
    #関数の外のoutputを書き換える
@@ -62,9 +63,7 @@ worker <- function( begin, end){
    invisible(NULL)
 }
 
-do_something <- function(x){
- x*x
-}
+
 
 input  <- seq(10, 100, by = 10)
 output <- rep(NA, 10)
