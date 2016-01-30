@@ -50,21 +50,9 @@ for(i in begin:end){
 ```
 
 ```
-input  <- runif(10)
-output <- rep(NA, 10)
-
-begin <- 1
-end <- 10
-
-i <- begin:end
-
-
-
-
-
-res1 <- worker(i[1], i[5])
-res2 <- worker(i[6], i[7])
-
+do_something(x){
+ x*x
+}
 
 worker <- function( begin, end){
    input[begin:end]
@@ -73,6 +61,23 @@ worker <- function( begin, end){
    }
    output[begin:end]
 }
+
+input  <- runif(10)
+output <- rep(NA, 10)
+
+begin <- 1
+end <- 10
+
+i <- begin:end
+
+//次の３行は並列で実行される
+worker(i[1], i[3])
+worker(i[4], i[6])
+worker(i[7], i[10])
+
+
+
+
 ```
 
 parallelReduce Vector  Matrix DataFrame List の begin から end までの各要素に worker で定義された処理を適用する。
