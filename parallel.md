@@ -81,43 +81,49 @@ Rmatrix<double> mp_num(m_num);
 #include <RcppParallel.h>
 using namespace RcppParallel;
 
-//関数オブジェクトの定義
 struct SquareRoot : public Worker
 {
-   // source matrix
-   const RMatrix<double> input;
-   
-   // destination matrix
-   RMatrix<double> output;
-   
-   // initialize with source and destination
-   SquareRoot(const NumericMatrix input, NumericMatrix output) 
-      : input(input), output(output) {}
-   
-   // take the square root of the range of elements requested
-   void operator()(std::size_t begin, std::size_t end) {
-      std::transform(input.begin() + begin, 
-                     input.begin() + end, 
-                     output.begin() + begin, 
-                     ::sqrt);
-   }
+  // 入力データを保持する内部変数
+  const RMatrix<double> input_data;
+  
+  // 出力データを保持する内部変数
+  RMatrix<double> output_data;
+  
+  //関数オブジェクトをインスタンス化するときに
+  //入力データ・出力データを与えて内部変数を初期化する
+  SquareRoot(const NumericMatrix input, NumericMatrix output) 
+    : input_data(input), output_data(output) {}
+  
+  // 関数オブジェクトの処理内容を定義する
+  // parallelFor により、ある１つのスレッドで処理する範囲が
+  // begin, end で与えられる 
+  void operator()(std::size_t begin, std::size_t end) {
+    std::transform(input_data.begin() + begin,
+                   input_data.begin() + end, 
+                   output_data.begin() + begin, 
+                   ::sqrt);
+  }
 };
-
 
 
 // [[Rcpp::export]]
 NumericMatrix parallelMatrixSqrt(NumericMatrix x) {
   
-  // allocate the output matrix
+  // 出力データを保存する Matrix を用意する
   NumericMatrix output(x.nrow(), x.ncol());
   
-  // SquareRoot functor (pass input and output matrixes)
+  // 関数オブジェクトをインスタンス化する
+  // このとき入力データ、出力データを渡す
   SquareRoot squareRoot(x, output);
   
-  // call parallelFor to do the work
+  // 入力データの全ての要素に対して関数オブジェクトを適用する
+  // parallelFor()の中で output に値がセットされる
   parallelFor(0, x.length(), squareRoot);
   
-  // return the output matrix
+  // エラー：この記述は誤り parallelFor の返値は void 
+  // output = parallelFor(0, x.length(), squareRoot);
+  
+  // 結果を出力
   return output;
 }
 ```
@@ -126,7 +132,7 @@ NumericMatrix parallelMatrixSqrt(NumericMatrix x) {
 
 
 ```r
-worker <- function( begin, end){
+SquareRoot <- function( begin, end){
    sqrt_ <- function(x){
       x*x
    }
@@ -150,9 +156,9 @@ end <- 10
 i <- begin:end
 
 #parallelForでは次の３行は並列で実行される
-worker(i[1], i[3])
-worker(i[4], i[6])
-worker(i[7], i[10])
+SquareRoot(i[1], i[3])
+SquareRoot(i[4], i[6])
+SquareRoot(i[7], i[10])
 
 print(input)
 print(output)
