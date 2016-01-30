@@ -71,7 +71,7 @@ Rmatrix<double> mp_num(m_num);
 
 
 
-## コード例
+## 例 parallelFor
 
 `parallelFor` を使って、`Matrix` の平方根を計算する。
 http://gallery.rcpp.org/articles/parallel-matrix-transform/
@@ -117,11 +117,12 @@ NumericMatrix parallelMatrixSqrt(NumericMatrix x) {
   // このとき入力データ、出力データを渡す
   SquareRoot my_sqrt(x, output);
   
+  // parallelFor()を使って、
   // 入力データの全ての要素に対して関数オブジェクトを適用する
-  // parallelFor()の中で output に値がセットされる
+  // この中で output に値がセットされる
   parallelFor(0, x.length(), my_sqrt);
   
-  // エラー：この記述は誤り parallelFor の返値は void 
+  // エラー：この記述は誤り parallelFor() の返値は void
   // output = parallelFor(0, x.length(), squareRoot);
   
   // 結果を出力
