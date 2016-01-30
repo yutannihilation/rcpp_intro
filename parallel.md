@@ -125,7 +125,7 @@ NumericMatrix parallelMatrixSqrt(NumericMatrix x) {
 
 
 
-```
+```r
 worker <- function( begin, end){
    sqrt_ <- function(x){
       x*x
