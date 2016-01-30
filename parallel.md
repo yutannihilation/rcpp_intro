@@ -30,7 +30,8 @@ Rcppソースに以下を追加
 #include <RcppParallel.h>
 ```
 
-## parallelFor parallelReduce
+### parallelFor
+### parallelReduce
 
 
 RcppParallel は `parallelFor()` と `parallelReduce()` の２つの関数を提供する。
