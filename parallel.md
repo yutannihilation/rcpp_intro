@@ -30,7 +30,56 @@ Rcppソースに以下を追加
 #include <RcppParallel.h>
 ```
 
-RcppParallel では
+RcppParallel は `parallelFor()` と `parallelReduce()` の２つの関数を提供する。
+
+```
+parallelFor(std::size_t begin, std::size_t end, 
+                    Worker& worker, std::size_t grainSize = 1)
+parallelReduce(std::size_t begin, std::size_t end, 
+                        Reducer& reducer, std::size_t grainSize = 1)
+```
+
+`parallelFor` `parallelReduce` は `begin` から `end`  までの連続した整数を worker で定義された処理を並列で実行する、
+
+```
+for(i in begin:end){
+
+ # worker(), reduce
+
+}
+```
+
+```
+input  <- runif(10)
+output <- rep(NA, 10)
+
+begin <- 1
+end <- 10
+
+i <- begin:end
+
+
+
+
+
+res1 <- worker(i[1], i[5])
+res2 <- worker(i[6], i[7])
+
+
+worker <- function( begin, end){
+   input[begin:end]
+   for(i in begin:end){
+     output[i] <- do_something(input[i])
+   }
+   output[begin:end]
+}
+```
+
+parallelReduce Vector  Matrix DataFrame List の begin から end までの各要素に worker で定義された処理を適用する。
+
+
+
+parallelFor で実行する処理
 
 
 
