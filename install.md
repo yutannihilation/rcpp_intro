@@ -4,7 +4,7 @@
 
 ##開発ツールのインストール
 
-**Windows**：[Rtools](https://cran.r-project.org/bin/windows/Rtools/index.html) をインストールします。すると、C:\\Rtools 以下にgccなどが配置される。
+**Windows**：[Rtools](https://cran.r-project.org/bin/windows/Rtools/index.html) をインストールする。すると、C:\\Rtools 以下にgccなどが配置される。
 
 **Mac**：Xcode command line tools をインストールする。ターミナルで次のコマンドを打つ `xcode-select --install`
 
@@ -13,11 +13,11 @@
 
 
 
-自分でインストールした gcc や clang を使いたい場合など必要に応じて、ユーザーのホームディレクトリに次のファイルに以下のファイルを作成し、そこに環境変数の設定を記述する。
+自分でインストールした gcc や clang を使いたい場合など、必要に応じて、ユーザーのホームディレクトリに次のファイルに以下のファイルを作成し、そこに環境変数の設定を記述する。
 
 
-* `.R/Makevars` (Linux,Mac)
-* `.R/Makevars.win` (Windows)
+* `.R/Makevars` Linux, Mac
+* `.R/Makevars.win` Windows
 
 ```
 CC=/opt/local/bin/gcc-mp-4.7
