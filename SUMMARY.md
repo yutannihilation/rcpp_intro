@@ -1,7 +1,7 @@
 # Summary
 
 * [はじめに](README.md)
-* Rcppの活用ポイント
+* [Rcppの活用ポイント](Rcpp_merit.md)
 * [インストール](install.md)
 * [基本的な使い方](basic_usage.md)
 * [コードの記述](function.md)
