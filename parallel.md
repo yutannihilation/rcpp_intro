@@ -35,15 +35,17 @@ Rcppソースに以下を追加
 RcppParallel は `parallelFor()` と `parallelReduce()` の２つの関数を提供する。
 
 ```cpp
-parallelFor(std::size_t begin, std::size_t end, 
+void parallelFor(std::size_t begin, std::size_t end, 
                     Worker& worker, std::size_t grainSize = 1)
-parallelReduce(std::size_t begin, std::size_t end, 
+void parallelReduce(std::size_t begin, std::size_t end, 
                         Reducer& reducer, std::size_t grainSize = 1)
 ```
 
-`parallelFor``parallelReduce` は `begin` から `end`  までの連続した整数をインデックスとしながら `worker` `reducer` で定義された処理を並列で実行する。
+`parallelFor``parallelReduce` は `begin` から `end`  までの連続した整数をインデックス(要素番号)としながら `worker` `reducer` で定義された処理を並列で実行する。
 
-**parallelFor** は入力データの各要素と出力データの各要素が１対１で対応するような処理（sqrt() や log()）を並列化する。 
+**parallelFor** は入力データの各要素と出力データの各要素が１対１で対応するような処理（sqrt() や log()）を並列化する。
+
+output[i] <- f(input[i])
 
 **parallelReduce** は入力データの全要素を１つの値に集約するような処理（sum()やmean()）を並列化する。
 
