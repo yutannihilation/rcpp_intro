@@ -34,5 +34,5 @@
 * Environment
 * Language
 * [RcppParallel](parallel.md)
-* リンク
+* [リンク](link.md)
 
