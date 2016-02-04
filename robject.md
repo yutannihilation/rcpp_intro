@@ -31,18 +31,47 @@ bool inherits(str)
 ```
 SlotProxy slot(const std::string &name)
 ```
+
+#### hasSlot()
+
+```
 hasSlot(const std::string &name)
+```
 
+#### attr()
+
+```
 AttributeProxy attr(const std::string &name)
+```
 
+#### attributeNames()
+```
 std::vector<std::string> attributeNames() const
+```
 
+#### hasAttribute()
+```
 bool hasAttribute(const std::string &name)
+```
 
+#### isNULL()
+```
 bool isNULL()
+```
 
+#### sexp_type()
+
+```
 int sexp_type()
+```
 
+#### isObject()
+
+```
 bool isObject() 
+```
+#### isS4()
 
+```
 bool isS4() 
+```
