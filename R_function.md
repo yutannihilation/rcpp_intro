@@ -57,7 +57,7 @@ Environmentクラスを利用するとパッケージ等の環境からオブジ
 
 ```cpp
 // [[Rcpp::export]]
-RObject rcpp_package_function(NumericMatrix m){
+S4 rcpp_package_function(NumericMatrix m){
   Environment env = Environment::namespace_env("Matrix");
   Function Matrix = env["Matrix"];
   return Matrix(m, Named("sparse", true));
