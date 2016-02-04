@@ -22,6 +22,8 @@ R の C言語 API にある `TYPEOF()` はオブジェクトの `SEXPTYPE` を�
 
 ##メンバー関数
 
+RObject が持つメンバー関数は、他のRcppのオブジェクト
+
 #### inherits()
 ```
 bool inherits(str)
