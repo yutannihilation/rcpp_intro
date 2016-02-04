@@ -2,27 +2,35 @@
 
 `RObject` 型は、どんな型のオブジェクトでも代入することができる型である。どのような型が渡されるか、実行時にならないとわからない場合には、`RObject` を用いると良い。
 
-```
-void check_type(RObject)
-{
-
-}
-
-```
-
 `RObject` の便利な使い方として、オブジェクトの型の判別がある。
 
-
-
-R の C言語 API にある `TYPEOF()` はオブジェクトの `SEXPTYPE` を返す。R で定義された全ての[`SEXPTYPE`のリストはRのマニュアル](https://cran.r-project.org/doc/manuals/r-release/R-ints.html#SEXPTYPEs)を参照して欲しい。
-
-
-
+```cpp
+// [[Rcpp::export]]
+RObject check_type(RObject x){
+  switch (x.sexp_type()){
+  case REALSXP:
+    return(wrap("numeric"));
+  case INTSXP:
+    return(wrap("integer"));
+  case LGLSXP:
+    return(wrap("logical"));
+  case STRSXP:
+    return(wrap("character"));
+  case VECSXP:
+    return(wrap("list"));
+  case CPLXSXP:
+    return(wrap("complex"));
+  default:
+    return(CharacterVector("unknown"));
+  } 
+}
+```
+`RObject` のメンバー関数 `sexp_type()` はこのオブジェクトの `SEXPTYPE` を返す。R で定義された全ての[`SEXPTYPE`のリストはRのマニュアル](https://cran.r-project.org/doc/manuals/r-release/R-ints.html#SEXPTYPEs)を参照して欲しい。
 
 
 ##メンバー関数
 
-RObject が持つメンバー関数は、他のRcppのオブジェクト
+`RObject` は `Vector` など Rcpp の他のデータ構造クラスと共通する以下のメンバー関数を持つ。
 
 #### inherits()
 ```
