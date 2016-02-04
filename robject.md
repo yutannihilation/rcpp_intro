@@ -1,9 +1,17 @@
 # RObject
 
-`RObject` 型は、どんな型のオブジェクトでも代入することができる型である。`RObject` は代入されたオブジェクトのメンバ関数にもアクセスできる。どのような型が渡されるか、実行時にならないとわからない場合には、`RObject` を用いる。
+`RObject` 型は、どんな型のオブジェクトでも代入することができる型である。どのような型が渡されるか、実行時にならないとわからない場合には、`RObject` を用いる。
 
 ```
-void my_rcpp(Function)
+void check_type(RObject)
+{
+
+}
 
 ```
 
+TYPEOF
+
+REALSXP
+INTSXP
+VECSXP for lists
