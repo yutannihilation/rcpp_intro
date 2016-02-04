@@ -30,7 +30,7 @@
 * [Rmath](Rmath.md)
 * [パッケージ作成](package.md)
 * [RObject](robject.md)
-* 例外
+* [例外](error.md)
 * Environment
 * Language
 * [RcppParallel](parallel.md)
