@@ -53,7 +53,7 @@ List rcpp_lapply(List input, Function f) {
 
 ##Environment
 
-Environmentクラスを利用するとパッケージ等の環境からオブジェクト（変数や関数）を取り出すことができる。この時、呼び出す関数のあるパッケージはあらかじめRにロードしておく必要がある。
+Environmentクラスを利用するとパッケージ等の環境からオブジェクト（変数や関数）を取り出すことができる。
 
 ```cpp
 // [[Rcpp::export]]
