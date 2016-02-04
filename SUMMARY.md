@@ -31,7 +31,7 @@
 * [パッケージ作成](package.md)
 * [RObject](robject.md)
 * [エラー処理](error.md)
-* その他
+* [その他](miscellaneous.md)
 * Environment
 * Language
 * [RcppParallel](parallel.md)
