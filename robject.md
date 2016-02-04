@@ -17,4 +17,6 @@ void check_type(RObject)
 
 TYPEOF
 
+メンバー関数
 
+bool inherits(const char *clazz)
