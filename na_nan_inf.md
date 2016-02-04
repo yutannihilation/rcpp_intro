@@ -1,5 +1,9 @@
-# NA NaN Inf
+# NA NaN Inf NULL
 
+### NULL
+```
+R_NilValue
+```
 
 ### NA
 
@@ -22,9 +26,6 @@ ComlexVector::get_na()
 DataFrame::get_na();
 List::get_na();
 ```
-
-
-
 
 ### NaN
 
