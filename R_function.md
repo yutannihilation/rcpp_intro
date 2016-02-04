@@ -57,12 +57,14 @@ Environmentクラスを利用するとパッケージ等の環境からオブジ
 
 ```cpp
 // [[Rcpp::export]]
-SEXP rcpp_package_function(NumericMatrix m){
-  Environment env("package:Matrix");
+RObject rcpp_package_function(NumericMatrix m){
+  Environment env = Environment::namespace_env("Matrix");
   Function Matrix = env["Matrix"];
   return Matrix(m, Named("sparse", true));
  }
 ```
+
+
 ```r
 library(Matrix)
 m<-matrix(c(0,1,0,2,3,0,4,0), nrow = 4)
