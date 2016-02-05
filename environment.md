@@ -48,69 +48,51 @@ Environment env(1); //サーチパスの i 番目の環境（i=1はグローバ�
 
 この環境から name で指定された名前のオブジェクトを削除する。成功した場合には true を返す。
 
-```
-void lock(bool bindings = false)
-```
-?lockEnvironment
-bindings also lock the bindings of this environment ?
+#### lock(bindings = false)
 
+この環境をロックする。
 
-```
-void lockBinding(const std::string& name)
-```
-Locks the given binding in the environment.
+binding = true なら、この環境の binding もロックする。
 
-see ?bindingIsLocked
+#### lockBinding(name)
 
-throw no_such_binding if there is no such binding in this environment
+この環境にある name で指定された名前の binding をロックする。
 
+詳細は `?bindingIsLocked` を参照
 
-```
-void unlockBinding(const std::string& name){
-```
+指定された binding が見つからない場合は `"no_such_binding"` を throw する。
 
-* unlocks the given binding
-* see ?bindingIsLocked
-*
-* @throw no_such_binding if there is no such binding in this environment
+#### unlockBinding(name){
 
+この環境から name で指定された名前の binding のロックを解除する。
 
-```
-bool bindingIsLocked(const std::string& name) const{
-```
-* @param name name of a potential binding
-*
-* @return true if the binding is locked in this environment
-* see ?bindingIsLocked
-*
-* @throw no_such_binding if there is no such binding in this environment
+指定された binding が見つからない場合は `"no_such_binding"` を throw する。
 
-```
-bool bindingIsActive(const std::string& name) const {
-```
-* @param name name of a binding
-*
-* @return true if the binding is active in this environment
-* see ?bindingIsActive
-*
-* @throw no_such_binding if there is no such binding in this environment
- 
+#### bindingIsLocked(name)
 
-```
-bool is_user_database() const {
-```
-* Indicates if this is a user defined database.
+この環境にある name で指定された名前の binding がロックされているかどうか。
 
-```
-Environment_Impl parent() const
-```
-* The parent environment of this environment
+指定された binding が見つからない場合は `"no_such_binding"` を throw する。
 
-```
-Environment_Impl new_child(bool hashed) {
-```
-* creates a new environment whose this is the parent
+#### bindingIsActive(name)
 
+この環境にある name で指定された名前の binding がアクティブかどうか。
+
+指定された binding が見つからない場合は `"no_such_binding"` を throw する。
+
+#### is_user_database()
+
+この環境がユーザーが定義したデータベースであるかどうか。
+
+#### parent()
+
+この環境の親環境を返す。
+
+#### new_child(hashed)
+
+この環境を親とした、新しい環境を作成する。
+
+hashed が true なら??
 
 
 ## static メンバ関数
