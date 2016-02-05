@@ -152,9 +152,10 @@ package:Rcpp の名前空間
 
 パッケージ名を指定して、その名前空間を得る。
 
-export されていない関数にもアクセスできる。
-namespace_env()を使う場合には、Rであらかじめパッケージをロードしておく必要がない。
+`namespace_env()`を使うとexport されていないパッケージ関数にもアクセスできる。
+、Rであらかじめパッケージをロードしておく必要がない。
 
+namespace_env()を使う
 
 throw no_such_namespace
 
