@@ -2,7 +2,9 @@
 
 `RObject` 型は、どんな型のオブジェクトでも代入することができる型である。どのような型が渡されるか、実行時にならないとわからない場合には、`RObject` を用いると良い。
 
-`RObject` の便利な使い方として、オブジェクトの型の判別がある。
+`RObject` の便利な使い方の１つとして、オブジェクトの型の判別がある。
+
+`RObject` のメンバー関数 `sexp_type()` はこのオブジェクトの `SEXPTYPE` を返す。R で定義された全ての[`SEXPTYPE`のリストはRのマニュアル](https://cran.r-project.org/doc/manuals/r-release/R-ints.html#SEXPTYPEs)を参照して欲しい。
 
 ```cpp
 // [[Rcpp::export]]
@@ -25,7 +27,7 @@ RObject check_type(RObject x){
   } 
 }
 ```
-`RObject` のメンバー関数 `sexp_type()` はこのオブジェクトの `SEXPTYPE` を返す。R で定義された全ての[`SEXPTYPE`のリストはRのマニュアル](https://cran.r-project.org/doc/manuals/r-release/R-ints.html#SEXPTYPEs)を参照して欲しい。
+
 
 
 ##メンバー関数
