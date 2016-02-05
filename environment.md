@@ -8,21 +8,23 @@
 Environment env();
 Environment env(env1);
 Environment env("package:stats");
-Environment env(1); //サーチパスの i 番目の環境（i=1はglobal env）
+Environment env(1); //サーチパスの i 番目の環境（i=1はグローバル環境）
 ```
 
 
 
 ##メンバ関数
 
-```
-SEXP get(const std::string& name) const
-```
+#### get(name)
 
+この環境空 name で指定された名前のオブジェクトを取得する。
+見つからない場合は R_NilValue (NULL) を返す。
 
-```
-SEXP ls(bool all) const
-```
+#### ls(all)
+
+この環境にあるオブジェクトの一覧を返す。
+
+論理値 all が true なら全てのオブジェクト、false なら名前が `.` から始まるオブジェクトは除外する。
 
 ```
 SEXP get(const std::string& name) const
