@@ -5,10 +5,10 @@
 ##作成
 
 ```
-Environment env();
-Environment env(env1);
-Environment env("package:stats");
+Environment env();     //グローバル環境
+Environment env(env1); // env1 をコピー
 Environment env(1); //サーチパスの i 番目の環境（i=1はグローバル環境）
+Environment env("package:stats"); //パッケージの環境
 ```
 
 
@@ -135,7 +135,7 @@ Rcpp パッケージの名前空間を返す。
 
 
 
-## 関数
+## その他の関数
 
 ```
 Environment new_env(int size = 29)
