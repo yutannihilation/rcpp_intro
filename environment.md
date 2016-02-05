@@ -158,6 +158,7 @@ package:Rcpp の名前空間
 指定されたパッケージが見つからない場合には、 `"no_such_namespace"`が throw される。
 
 
+
 ## 関数
 
 ```
