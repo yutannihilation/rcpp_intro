@@ -122,35 +122,34 @@ Environment_Impl new_child(bool hashed) {
 
 ####Environment::global_env()
 
-グローバル環境を返す `?globalenv`
+グローバル環境を返す。 
+
+詳細は `?globalenv` を参照
+
 
 ####Environment::empty_env()
 
-空環境
-`?emptyenv`
+空環境を返す。 
 
+詳細は `?emptyenv` を参照
 
 ####Environment::base_env()
 
-baseパッケージの環境
+baseパッケージの環境を返す。 
 
-?baseenv
+詳細は `?baseenv` を参照
 
 ####Environment::base_namespace()
 
-baseパッケージの名前空間
-
-?baseenv
-
+baseパッケージの名前空間を返す。 
 
 #### Environment::Rcpp_namespace()
 
-package:Rcpp の名前空間
-
+Rcpp パッケージの名前空間を返す。 
 
 #### Environment::namespace_env(package)
 
-パッケージ名を指定して、その名前空間を得る。
+パッケージ名 package を指定して、その名前空間を得る。
 
 `namespace_env()`を使うと、export されていないパッケージ関数にもアクセスできる。
 また、R であらかじめパッケージをロードしておく必要がない。
