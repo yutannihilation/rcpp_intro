@@ -4,7 +4,7 @@
 
 ```
 NumericVector v(3);      // rep(0, 3)
-NumericVector v(1, 3);   // rep(1, 3)
+NumericVector v(1, 3.0);   // rep(1, 3)
 NumericVector v {1,2,3}; // c(1,2,3) 
 NumericVector v = NumericVector::create(1,2,3); // c(1,2,3) 
 NumericVector v = NumericVector::create(Named("x") = 1 , _["y"] = 2); // c(x=1, y=2) 名前付きベクター
