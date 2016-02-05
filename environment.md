@@ -132,30 +132,31 @@ Environment_Impl new_child(bool hashed) {
 
 ####Environment::base_env()
 
-package:base
+baseパッケージの環境
 
 ?baseenv
 
 ####Environment::base_namespace()
 
-package:base の名前空間
+baseパッケージの名前空間
 
 ?baseenv
 
 
-####Environment::Rcpp_namespace()
+#### Environment::Rcpp_namespace()
 
 package:Rcpp の名前空間
 
 
-```
-static Environment_Impl namespace_env(const std::string& package)
-```
-* @param name the name of the package of which we want the namespace
-*
-* @return the namespace of the package
-*
-* @throw no_such_namespace
+#### Environment::namespace_env(package)
+
+パッケージ名を指定して、その名前空間を得る。
+
+export されていない関数にもアクセスできる。
+namespace_env()を使う場合には、Rであらかじめパッケージをロードしておく必要がない。
+
+
+throw no_such_namespace
 
 
 ## 関数
