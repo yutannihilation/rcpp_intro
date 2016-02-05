@@ -17,7 +17,7 @@ Environment env(1); //サーチパスの i 番目の環境（i=1はグローバ�
 
 #### get(name)
 
-この環境空 name で指定された名前のオブジェクトを取得する。
+この環境から name で指定された名前のオブジェクトを取得する。
 見つからない場合は R_NilValue (NULL) を返す。
 
 #### ls(all)
@@ -26,34 +26,27 @@ Environment env(1); //サーチパスの i 番目の環境（i=1はグローバ�
 
 論理値 all が true なら全てのオブジェクト、false なら名前が `.` から始まるオブジェクトは除外する。
 
-```
-SEXP get(const std::string& name) const
-```
+#### find(name)
 
-```
-SEXP find( const std::string& name) const
-```
-Get an object from the environment or one of its parents
+この環境、および、この環境の（全ての）親環境から、name で指定された名前のオブジェクトを探して取得する。見つからない場合は "binding not found:" エラーが thow される。
 
-```
-bool exists( const std::string& name ) const
-```
+#### exists(name)
 
-```
-bool assign( const std::string& name, SEXP x )
-```
-```
-template <typename WRAPPABLE>
-        bool assign( const std::string& name, const WRAPPABLE& x) const
-```
+この環境に指定された名前のオブジェクトがあるかどうか。論理値を返す。
 
-```
-bool isLocked() const
-```
+#### assign( name, x )
 
-```
-bool remove( const std::string& name )
-```
+この環境にある name で指定された名前のオブジェクトに、x を代入する。成功した場合には true を返す。
+
+
+
+#### isLocked()
+
+この環境がロックされているかどうか。
+
+#### remove(name)
+
+この環境から name で指定された名前のオブジェクトを削除する。成功した場合には true を返す。
 
 ```
 void lock(bool bindings = false)
