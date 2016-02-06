@@ -87,7 +87,7 @@ NumericVector std_map(){
 ```
 // [[Rcpp::plugins("cpp11")]]
 // [[Rcpp::export]]
-vector<double> times_two_std(vector<double> v){ // 暗黙的に as() が呼ばれる
+vector<double> times_two_std_vector(vector<double> v){ // 暗黙的に as() が呼ばれる
     for(double &x : v){
         x *= 2;
     }
