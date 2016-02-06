@@ -15,11 +15,11 @@ NumericVector res = mean(noNA(v));
 [tail()](#tail)
 [rev()](#rev)
 [rep()](#rep)
-[rep_each()](#rep_each)
-[rep_len()](#rep_len)
+[rep_each()](#repeach)
+[rep_len()](#replen)
 [seq()](#seq)
-[seq_along()](#seq_along)
-[seq_len()](#seq_len)
+[seq_along()](#seqalong)
+[seq_len()](#seqlen)
 [diff()](#diff)
 
 **文字列**
@@ -30,16 +30,16 @@ NumericVector res = mean(noNA(v));
 **値の検索**
 
 [match()](#match)
-[self_match()](#self_match)
-[which_max()](#which_max)
-[which_min()](#which_min)
+[self_match()](#selfmatch)
+[which_max()](#whichmax)
+[which_min()](#whichmin)
 
 
 **重複の値**
 
 [duplicated()](#duplicated)
 [unique()](#unique)
-[sort_unique()](#sort_unique)
+[sort_unique()](#sortunique)
 
 **集合**
 
@@ -122,16 +122,16 @@ NumericVector res = mean(noNA(v));
 [all()](#all)
 [any()](#any)
 [ifelse()](#ifelse)
-[is_finite()](#is_finite)
-[is_infinite()](#is_infinite)
-[is_na()](#is_na)
-[is_nan()](#is_nan)
-[is_true()](#is_true)
-[is_false()](#is_false)
+[is_finite()](#isfinite)
+[is_infinite()](#isinfinite)
+[is_na()](#isna)
+[is_nan()](#isnan)
+[is_true()](#istrue)
+[is_false()](#isfalse)
 
 **NA**
 
-[na_omit()](#na_omit)
+[na_omit()](#naomit)
 
 
 
