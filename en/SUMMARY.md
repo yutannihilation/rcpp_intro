@@ -2,7 +2,7 @@
 
 
 * [Preface](README.md)
-* [Problems that Rcpp can adress](Rcpp_merit.md)
+* [Taking advantage of Rcpp](Rcpp_merit.md)
 * [Installation](install.md)
 * [Basic usage](basic_usage.md)
 * [Writing Rcpp code](function.md)
