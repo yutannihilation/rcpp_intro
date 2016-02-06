@@ -60,9 +60,11 @@ void parallelReduce(std::size_t begin, std::size_t end,
 `RcppParallel` では Rcppの `Vector` や　`Matrix` に対してスレッドセーフにアクセスするためのラッパー `RVector` `RMatrix`を提供している。
 
 ```cpp
+//整数ベクターを RVector<int> に変換する。
 IntegerVector v_int;
 RVector<int> vp_int(v_int);
 
+//実数行列を Rmatrix<double> に変換する。
 NumericMatrix m_num;
 Rmatrix<double> mp_num(m_num);
 
