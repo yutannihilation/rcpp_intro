@@ -41,16 +41,27 @@ void parallelReduce(std::size_t begin, std::size_t end,
                         Reducer& reducer, std::size_t grainSize = 1)
 ```
 
-`parallelFor``parallelReduce` は `Vector`と `Matrix` の
-
-
-`begin` から `end` までの要素に対して `worker` `reducer` で定義された処理を並列で実行する。
+`parallelFor``parallelReduce` は `Vector`と `Matrix` の `begin` から `end-1` までの要素に対して `worker` `reducer` で定義された処理を並列で実行する。
 
 **parallelFor** は入力データの各要素と出力データの各要素が１対１で対応するような処理（sqrt() や log()）を並列化する場合に用いる。
 
-
+```
+//parallelForは次のような処理を並列化する
+for(int i=begin; i<end; ++i){
+    output[i] = f(input[i])
+}
+```
 
 **parallelReduce** は入力データの全要素を１つの値に集約するような処理（sum()やmean()）を並列化する場合に用いる。
+
+```
+//parallelReduceは次のような処理を並列化する
+double value=0.0;
+for(int i=begin; i<end; ++i){
+    output[i] = f(input[i])
+}
+```
+現状の`RcppParallel(4.3.15)` では `parallelFor()` `parallelReduce()` は DataFrame のカラムや List の要素毎の並列化には対応していない。これを行うには TBB の機能用いて実装する必要がある。
 
 
 ### RVector, RMatrix
@@ -58,6 +69,8 @@ void parallelReduce(std::size_t begin, std::size_t end,
 マルチスレッド処理では、入力データや出力データの同じ要素に対して、異なる並列スレッドが同時にアクセスすることを防ぐ "スレッドセーフ" なデータアクセスが必要がある。
 
 `RcppParallel` では Rcppの `Vector` や　`Matrix` に対してスレッドセーフにアクセスするためのラッパー `RVector` `RMatrix`を提供している。
+
+
 
 ```cpp
 //整数ベクターを RVector<int> に変換する。
@@ -74,13 +87,16 @@ Rmatrix<double> mp_num(m_num);
 
 `parallelFor` `parallelReduce` で処理する内容は関数オブジェクトとして定義する。
 
-`parallelFor``parallelReduce` に渡す関数オブジェクトは `Worker` を継承して作成する。
+`parallelFor``parallelReduce` に渡す関数オブジェクトは `Worker` クラスを継承して作成する。
 
 
 ## 例：parallelFor()
 
 `parallelFor` を使って、`Matrix` の各要素の平方根を計算する。
 http://gallery.rcpp.org/articles/parallel-matrix-transform/
+
+
+
 
 ``` cpp
 // [[Rcpp::depends(RcppParallel)]]
