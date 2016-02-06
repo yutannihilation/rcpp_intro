@@ -36,4 +36,5 @@
 * [RcppParallel](parallel.md)
 * [リンク](link.md)
 * 活用例
-* C++機能
+* [C++機能](cpp_basics.md)
+
