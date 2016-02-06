@@ -10,7 +10,7 @@ Rcpp型に変換できるC++の型はRcpp関数の引数や返値にすること
 
 | Rcpp:: | std:: |as|wrap|
 |--| -- | -- | -- | -- |
-| `Vector` | `array`, `deque`, `list`, `vector` |+|+|
+| `Vector` | `vector`, `list`,`deque`  |+|+|
 | `List`, `DataFrame` | `vector<vector>`, `list<deque>`, ...|+|+|
 | Named `Vector` | `map`, `unordered_map`|-|+|
 | `Vector` | `set`, `unordered_set`|-|+|
@@ -18,20 +18,28 @@ Rcpp型に変換できるC++の型はRcpp関数の引数や返値にすること
 標準C++のシーケンスコンテナはRcpp `Vector` と互いに変換可能。
 
 ```cpp
+#include<vector>
+#include<list>
+#include<deque>
+
 // [[Rcpp::export]]
-NumericVector rcpp_as_wrap(){
-  using namespace std;
+void rcpp_as_wrap(){
   
   NumericVector   rcpp_vector = NumericVector::create(1,2,3,4,5);
+  
+  vector<double>  cpp_vector = as<vector<double> >(rcpp_vector);
+  list<double>    cpp_list   = as<list<double> >(rcpp_vector);
+  deque<double>   cpp_deque  = as<deque<double> >(rcpp_vector);
+  
+  NumericVector v1 = wrap(cpp_vector);
+  NumericVector v2 = wrap(cpp_list);
+  NumericVector v3 = wrap(cpp_deque);
 
-  array<double, 5> cpp_array  = as<array<double,5> >(rcpp_vector);
-  vector<double>   cpp_vector = as<vector<double> >(rcpp_vector);
-  deque<double>    cpp_deque  = as<deque<double> >(rcpp_vector);
-  list<double>     cpp_list   = as<list<double> >(rcpp_vector);
-  
-  
-  return wrap(cpp_container);
+  Rcout << v1 << "\n";
+  Rcout << v2 << "\n";
+  Rcout << v3 << "\n";
 }
+
 ```
 
 
