@@ -83,7 +83,7 @@ Rmatrix<double> mp_num(m_num);
 
 ```
 
-## Worker, Reducer
+## Worker
 
 `parallelFor` `parallelReduce` で処理する内容は関数オブジェクトとして定義する。
 
@@ -94,8 +94,6 @@ Rmatrix<double> mp_num(m_num);
 
 `parallelFor` を使って、`Matrix` の各要素の平方根を計算する。
 http://gallery.rcpp.org/articles/parallel-matrix-transform/
-
-
 
 
 ``` cpp
@@ -243,6 +241,7 @@ double parallelVectorSum(NumericVector x) {
 
 ##パッケージで利用する場合
 
+各ファイルに以下の記述を追加する
 
 **DESCRIPTION**
 
@@ -267,15 +266,3 @@ PKG_CXXFLAGS += -DRCPP_PARALLEL_USE_TBB=1
 PKG_LIBS += $(shell "${R_HOME}/bin${R_ARCH_BIN}/Rscript.exe" \
               -e "RcppParallel::RcppParallelLibs()")
 ```
-
-
-
-
-
-
-例
-
-http://gallery.rcpp.org/articles/parallel-matrix-transform/
-http://gallery.rcpp.org/articles/parallel-vector-sum/
-http://gallery.rcpp.org/articles/parallel-inner-product/
-http://gallery.rcpp.org/articles/parallel-distance-matrix/
