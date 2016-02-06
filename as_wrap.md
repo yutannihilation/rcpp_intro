@@ -88,7 +88,7 @@ NumericVector std_map(){
 // [[Rcpp::plugins("cpp11")]]
 // [[Rcpp::export]]
 vector<double> std_vector(vector<double> v){ // 暗黙的に as() が呼ばれる
-    for(double &x :v){
+    for(double &x : v){
         x *= 2;
     }
     return v; //暗黙的に wrap() が呼ばれる
