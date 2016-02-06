@@ -187,6 +187,58 @@ print(output_data)
 
 ## 例：parallelReduce()
 
+http://gallery.rcpp.org/articles/parallel-vector-sum/
+
+```cpp
+// [[Rcpp::depends(RcppParallel)]]
+#include <RcppParallel.h>
+using namespace RcppParallel;
+
+struct Sum : public Worker
+{   
+  // 入力値
+  const RVector<double> input_data;
+  
+  // 合計値
+  // この変数の型は RVector<T> の要素の型 T と一致している必要がある
+  double value;
+  
+  //最初に入力データを取得するためのコンストラクタ
+  Sum(const NumericVector input) : input_data(input), value(0) {}
+  //分割された入力データ(sum.input_data)を受け取って、スレッドに渡すときに使われるコンストラクタ
+  Sum(const Sum& sum, Split) : input_data(sum.input_data), value(0) {} 
+  
+  
+  // input_data の要素番号 begin から要素番号 (end - 1) までの要素の合計値を計算する 
+  void operator()(std::size_t begin, std::size_t end) {
+    value += std::accumulate(input_data.begin() + begin, input_data.begin() + end, 0.0);
+  }
+  
+  // 他のスレッドで計算された結果を、このスレッドで計算された結果と、合体させるための処理
+  void join(const Sum& rhs) { 
+    value += rhs.value; 
+  }
+};
+
+
+
+// [[Rcpp::export]]
+double parallelVectorSum(NumericVector x) {
+  
+  // 入力データ x を渡して関数オブジェクトをインスタンス化
+  Sum sum(x);
+  
+  // 要素番号 0 から x.length() -1 までの要素の合計を求める
+  parallelReduce(0, x.length(), sum);
+  
+  // 合計値を返す
+  return sum.value;
+}
+
+```
+
+
+
 
 ##パッケージで利用する場合
 
