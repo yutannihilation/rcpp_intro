@@ -38,4 +38,5 @@
 * [リンク](link.md)
 * 活用例
 * [パフォーマンス](performance.md)
+* English
 
