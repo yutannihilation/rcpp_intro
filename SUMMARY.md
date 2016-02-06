@@ -33,7 +33,6 @@
 * [エラー処理](error.md)
 * [その他](miscellaneous.md)
 * [Environment](environment.md)
-* Language
 * [RcppParallel](parallel.md)
 * [リンク](link.md)
 * 活用例
