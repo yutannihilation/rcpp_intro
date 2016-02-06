@@ -32,11 +32,10 @@
 * [パッケージ作成](package.md)
 * [エラー処理](error.md)
 * [その他](miscellaneous.md)
-
 * [Boost](boost.md)
 * [RcppParallel](parallel.md)
 * [リンク](link.md)
 * 活用例
 * [パフォーマンス](performance.md)
-* English
+* [English](en/english.md)
 
