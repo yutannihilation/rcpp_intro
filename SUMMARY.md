@@ -18,16 +18,14 @@
 * [Datetime](datetime.md)
 * [String](string.md)
 * [RObject](robject.md)
-* [Environment](environment.md)
 * [属性値](attributes.md)
 * [factor](factor.md)
-
-
 * [Rライクな関数](rcpp_functions.md)
 * [確率分布](dpqr_functions.md)
 * [R の関数を利用する](R_function.md)
 * [NA NaN Inf](na_nan_inf.md)
 * [イテレーター](iterator.md)
+* [Environment](environment.md)
 * [標準 C++ データ構造](as_wrap.md)
 * [標準 C++ アルゴリズム](STL.md)
 * [Rmath](Rmath.md)
