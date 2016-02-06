@@ -82,7 +82,7 @@ Rmatrix<double> mp_num(m_num);
 `parallelFor` を使って、`Matrix` の各要素の平方根を計算する。
 http://gallery.rcpp.org/articles/parallel-matrix-transform/
 
-```cpp
+``` cpp
 // [[Rcpp::depends(RcppParallel)]]
 #include <RcppParallel.h>
 using namespace RcppParallel;
