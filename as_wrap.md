@@ -79,5 +79,17 @@ NumericVector std_map(){
 
 ```
 
+## ユーザーが定義したクラスをRcppのデータ構造に変換する
+
+Rcpp が対応していないC++データ型をRcppのデータ構造に変換するために as や wrap を定義することができる。
+
+[Extending Rcpp](http://dirk.eddelbuettel.com/code/rcpp/Rcpp-extending.pdf)を参照すること
+
+
+
+
+
+
+
 
 
