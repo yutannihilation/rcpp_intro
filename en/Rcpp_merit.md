@@ -1,10 +1,10 @@
-# Rcppの活用ポイント
+# Performance problems that Rcpp can adress
 
-Rと比べて C++ で書くことによって特に高速化が見込めるのは次のようなケースである。
-* 繰り返し処理、次の処理が前の処理に依存しており並列化できない
-* 繰り返し関数の呼び出しがある
-* ベクターや行列の個々の要素へアクセスする
-* ベクターのサイズを動的に変更する
-* 高度なデータ構造やアルゴリズムを用いた処理
+R is not so fast for some kinds of operation. If you need operations listed below, it is time to consider adopting Rcpp for project.
 
+* Loop operations that previous iterations depend on previous ones.
+* Recuurent call of functions.
+* Accesing individual elements of vectors/matrices.
+* Dynamically changing size of vectors.
+* Operations that need advanced data structute and algorithms.
 

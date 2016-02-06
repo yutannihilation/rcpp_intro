@@ -8,7 +8,4 @@ Rcout << "message" << "\n";
 Rcerr << "error message" << "\n";
 ```
 
-```
-template <int MAX_SIZE>
-std::string sprintf( const char *format, ...)
-```
+
