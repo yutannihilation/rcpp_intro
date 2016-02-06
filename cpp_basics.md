@@ -3,7 +3,7 @@
 ## template
 
 ```
-
+// [[Rcpp::export]]
 double rcpp_sum(NumericVector v){
     int n = v.length();
     int sum = 0.0;
