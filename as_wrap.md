@@ -22,13 +22,12 @@ Rcpp型に変換できるC++の型はRcpp関数の引数や返値にすること
 NumericVector rcpp_as_wrap(){
   using namespace std;
   
-  NumericVector   rcpp_vector  = NumericVector::create(1,2,3,4,5);
+  NumericVector   rcpp_vector = NumericVector::create(1,2,3,4,5);
 
-  //OK
-  //array<double, 5> cpp_container = as<array<double,5> >(rcpp_vector);
-  //vector<double> cpp_container = as<vector<double> >(rcpp_vector);
-  //deque<double> cpp_container = as<deque<double> >(rcpp_vector);
-  list<double> cpp_container = as<list<double> >(rcpp_vector);
+  array<double, 5> cpp_array  = as<array<double,5> >(rcpp_vector);
+  vector<double>   cpp_vector = as<vector<double> >(rcpp_vector);
+  deque<double>    cpp_deque  = as<deque<double> >(rcpp_vector);
+  list<double>     cpp_list   = as<list<double> >(rcpp_vector);
   
   
   return wrap(cpp_container);
