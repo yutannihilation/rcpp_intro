@@ -187,6 +187,7 @@ print(output_data)
 
 ## 例：parallelReduce()
 
+ベクターの要素の合計値を計算する
 http://gallery.rcpp.org/articles/parallel-vector-sum/
 
 ```cpp
