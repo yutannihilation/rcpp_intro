@@ -17,8 +17,12 @@
 * [Date](date.md)
 * [Datetime](datetime.md)
 * [String](string.md)
+* [RObject](robject.md)
+* [Environment](environment.md)
 * [属性値](attributes.md)
 * [factor](factor.md)
+
+
 * [Rライクな関数](rcpp_functions.md)
 * [確率分布](dpqr_functions.md)
 * [R の関数を利用する](R_function.md)
@@ -26,13 +30,12 @@
 * [イテレーター](iterator.md)
 * [標準 C++ データ構造](as_wrap.md)
 * [標準 C++ アルゴリズム](STL.md)
-* [Boost](boost.md)
 * [Rmath](Rmath.md)
 * [パッケージ作成](package.md)
-* [RObject](robject.md)
 * [エラー処理](error.md)
 * [その他](miscellaneous.md)
-* [Environment](environment.md)
+
+* [Boost](boost.md)
 * [RcppParallel](parallel.md)
 * [リンク](link.md)
 * 活用例
