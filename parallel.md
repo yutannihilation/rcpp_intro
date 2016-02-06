@@ -79,7 +79,6 @@ Rmatrix<double> mp_num(m_num);
 http://gallery.rcpp.org/articles/parallel-matrix-transform/
 
 ```cpp
-
 // [[Rcpp::depends(RcppParallel)]]
 #include <RcppParallel.h>
 using namespace RcppParallel;
