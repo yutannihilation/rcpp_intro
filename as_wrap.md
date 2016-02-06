@@ -67,6 +67,7 @@ DataFrame std_vector_2d_DataFrame(){
 `map<key, value>` は key を名前とした、名前付き Vector に変換される。
 
 ```cpp
+//#include<map>
 // [[Rcpp::export]]
 NumericVector std_map(){
   std::map<std::string, double> cpp_num_map;
