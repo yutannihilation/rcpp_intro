@@ -4,7 +4,7 @@ The Rcpp package enables you to write R functions in C++. Rcpp is carefully impl
 
 This document is intended to provide neccesary information as easy as possible for people who is not familiar with C++. Thus we sometimes explain C++ conceptualally rather than describing precise C++ language definition.
 
-This document is preliminary version so that any comment or suggestion is welcome.
+This document is preliminary version so that any comments or suggestions are welcome.
 
 Then, the introductory remark is over. Let's get into the World of Rcpp!
 
