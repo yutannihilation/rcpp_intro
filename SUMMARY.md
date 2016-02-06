@@ -36,5 +36,5 @@
 * [RcppParallel](parallel.md)
 * [リンク](link.md)
 * 活用例
-* パフォーマンス
+* [パフォーマンス](performance.md)
 
