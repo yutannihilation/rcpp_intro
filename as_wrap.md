@@ -82,17 +82,17 @@ NumericVector std_map(){
 
 ## 標準C++データ構造を関数の引数や返値にする
 
-as() や　wrap() で変換可能な標準C++データ構造は Rcpp関数 の引数や返値にすることができる。
+`as()` や　`wrap()` で変換可能な標準C++データ構造は Rcpp 関数 の引数や返値にすることができる。
 
 ```
 // [[Rcpp::plugins("cpp11")]]
 // [[Rcpp::export]]
-vector<double> std_vector(vector<double> v){
+vector<double> std_vector(vector<double> v){ // 暗黙的に as() が呼ばれる
     
     for(double &x :v){
         x *= 2;
     }
-    return v;
+    return v; //暗黙的に wrap() が呼ばれる
 }
 
 ```
