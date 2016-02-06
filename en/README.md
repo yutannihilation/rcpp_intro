@@ -1,16 +1,10 @@
-# はじめに
+# Preface
 
-Rcpp は R の関数を C++ で実装することを可能にするパッケージです。
-R と類似したスタイルで記述できるように実装されているため、C++ に深い知識がなくても利用しやすいようになっています。しかも、そのために実行速度は犠牲にされていないので、誰でもハイパフォーマンスな結果を得ることができます。
+The Rcpp package enables you to write R functions in C++. Rcpp is carefully implemented in order that you can find variables and functions that have almost identical functionalities to those of R language. The execution speed is not sacrificed for the ease of usage, thus the even peaple without deep C++ knowleadge can enjoy its high performance functionalities.
 
+This document is intended to provide neccesary information as easy as possible for people who is not familiar with C++. Thus we sometimes explain C++ conceptualally rather than describing precise C++ language definition.
 
+This document is preliminary version so that any comment or suggestion is welcome.
 
-
-このドキュメントは、Rcpp を利用するユーザーに必要な情報を提供することに主眼をおいています。そのため、場合によっては C++的に正確な記述することよりも、ユーザーが理解しやすいような概念的なコード例を使って説明しています。
-
-それでは前置きはこれくらいにして、さっそく Rcpp の世界に足を踏み入れてみましょう！
-
-まだ執筆中ですので、間違い等のご指摘をいただけますと幸いです。
-
-
+Then, the introductory remark is over. Let's get into the World of Rcpp!
 
