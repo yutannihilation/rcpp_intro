@@ -5,7 +5,7 @@
 
 RcppParallel は Rcpp で並列プログラミングを可能にするパッケージ。バックエンドとして Windows, OS X, Linux では Intel Threaded Building Blocks (TBB) ライブラリ、その他のプラットフォームでは TinyThread ライブラリを用いている。
 
-####他の R の並列計算パッケージとの違い
+##RcppParallelの並列化の特徴
 
 Rには既に他にも parallel や snow など、多くの並列化パッケージあるが、RcppParallel 並列化との間には重要な違いが存在する。
 
@@ -13,8 +13,8 @@ parallel や snow での並列化は **マルチプロセス** の方式であ�
 
 一方、RcppParallelでの並列化は **マルチスレッド** である。そのため、１台のコンピュータの複数コアでの並列計算しか行うことができない。しかし、並列スレッドは元のRとメモリ上のデータを共有できるため、データ転送のコストがかからない。そのため1台のPCしかない場合にはマルチスレッドのほうがアドバンテージは非常に大きくなる。
 
-これまで、R や Rcpp のAPIを使ったマルチスレッド・プログラミングは技術的ハードルが高いため、使えるのはエキスパートに限られていた。ところが、RcppParallelを使うと、スレッド並列化に必要な処理
-を全て内部で行ってくれるので、ユーザーが記述するべきコードはシンプルなもので済むようになる。手軽にマルチスレッドの恩恵を享受できる。
+これまで、R や Rcpp のAPIを使ったマルチスレッド・プログラミングは技術的ハードルが高いため、使えるのはエキスパートに限られていた。しかし、RcppParallelを使うと、スレッド並列化に必要な処理
+を全て自動で行ってくれるので、ユーザーは実現したい処理の実装に集中できる。
 
 
 ## インストール
@@ -151,37 +151,6 @@ NumericMatrix parallelMatrixSqrt(NumericMatrix x) {
 ```
 
 
-上の Rcpp コード例
-
-```r
-#関数オブジェクト SquareRoot の operator()の定義
-SquareRoot <- function( begin, end){
-   #関数の外の output_data を書き換える
-   output_data[begin:end] <<- sqrt(input_data[begin:end])
-   invisible(NULL)
-}
-
-#関数オブジェクトをインスタンス化するときに
-#入力データと出力データを初期化される
-input_data  <- c(1)
-output_data <- rep(NA, 10)
-
-# parallelFor()を実行するときに引数として指定される
-begin <- 1
-end <- 10
-
-# parallelFor() は i を幾つかに分割して
-# SquareRoot() を並列で実行する
-i <- begin:end
-SquareRoot(i[1], i[3])
-SquareRoot(i[4], i[6])
-SquareRoot(i[7], i[10])
-
-#処理後の値を表示する
-print(input_data)
-print(output_data)
-
-```
 
 ## 例：parallelReduce()
 
