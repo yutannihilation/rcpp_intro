@@ -66,7 +66,7 @@ rcpp_sum(1:10)
 
 ###evalCpp
 
-`evalCpp()` は手軽にRcppの表現を評価
+`evalCpp()` は手軽にRcppの式を評価できる
 
 ```r
 # double の最大値を調べる
