@@ -36,7 +36,8 @@
 * [Boost](boost.md)
 * [RcppParallel](parallel.md)
 * [Links](link.md)
-* [Performance Comparison](performance.md)
+* [Performance comparison](performance.md)
+* [Good practice](good_practice.md)
 * Examples
 
 

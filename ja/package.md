@@ -44,5 +44,11 @@ NULL
 ```
 
 
+Writing a `.onUnload()` function.
 
+```
+.onUnload <- function (libpath) {
+  library.dynam.unload("mypackage", libpath)
+}
+```
 

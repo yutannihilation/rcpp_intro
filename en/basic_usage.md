@@ -1,19 +1,19 @@
-# 基本的な使い方
+# Basic usage
 
 Rcppで記述した関数を実行するまでの流れは次のとおりである。
 
-1. Rcppのコードを書く
-2. コンパイル
-3. 実行する
+1. Writing Rcpp source code
+2. Compiling the code
+3. Exucute
 
 
 
-## Rcppコードを書く
+## Writing Rcpp source code
 
-まずは、Rcppのファイルを作成する。下の例では、数値ベクターの要素の総和を計算する関数 `rcpp_sum()` を定義している。このコードを sum.cpp という名前で保存する。
-
+The below code define a function `rcpp_sum()` that calculate sum of a vector. Creating a file and save it as "sum.cpp".
 
 ```c++
+//sum.cpp
 #include <Rcpp.h>
 using namespace Rcpp;
 
@@ -27,16 +27,17 @@ double rcpp_sum(NumericVector v){
 }
 ```
 
-##コンパイル
+##Compiling the code
 
-`sourceCpp()` がソースコードのコンパイルと R へのロードをしてくれる。
+By using you `sourceCpp()` you cancompile the source code and load the function to R.
 
 ```R
 library(Rcpp)
 sourceCpp('sum.cpp')
 ```
 
-##実行結果
+##Execute
+
 ```r
 > sum(1:10)
 [1] 55

@@ -1,42 +1,21 @@
-# インストール
+# Installation
 
-まずは C++ のコンパイラをインストールする。
+Before you install Rcpp, you need c/c++ compiler.
 
-##開発ツールのインストール
+##Install C/C++ compiler
 
-**Windows**：[Rtools](https://cran.r-project.org/bin/windows/Rtools/index.html) をインストールする。すると、C:\\Rtools 以下にgccなどが配置される。
+**Windows**：Install [Rtools](https://cran.r-project.org/bin/windows/Rtools/index.html). gcc would be placed under C:\\Rtools.
 
-**Mac**：Xcode command line tools をインストールする。ターミナルで次のコマンドを打つ `xcode-select --install`
+**Mac**：Install Xcode command line tools. Execute command `xcode-select --install` in Terminal.app
 
-**Linux**：例えば
-`sudo apt-get install r-base-dev`
-
+**Linux**：Install gcc. For example `sudo apt-get install r-base-dev`
 
 
-自分でインストールした gcc や clang を使いたい場合など、必要に応じて、ユーザーのホームディレクトリに次のファイルに以下のファイルを作成し、そこに環境変数の設定を記述する。
+## Install Rcpp
 
-
-* `.R/Makevars` Linux, Mac
-* `.R/Makevars.win` Windows
-
-```
-CC=/opt/local/bin/gcc-mp-4.7
-CXX=/opt/local/bin/g++-mp-4.7
-CPLUS_INCLUDE_PATH=/opt/local/include:$CPLUS_INCLUDE_PATH
-LD_LIBRARY_PATH=/opt/local/lib:$LD_LIBRARY_PATH
-CXXFLAGS= -g0 -O3 -Wall
-MAKE=make -j4
-```
-
-ユーザーのホームディレクトリは次のコードで調べることができる。
-```
-path.expand("~")
-```
-
-## Rcpp のインストール 
-
-コンパイラがインストールできたら、R で Rcpp パッケージをインストールする。
+You can install Rcpp by executing following code.
 
 ```r
 install.packages("Rcpp")
 ```
+
