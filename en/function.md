@@ -1,35 +1,37 @@
-# Rcpp 関数の定義
+# Defining Rcpp functions
 
-Rcpp で関数を定義する際の基本形を下に示します。
+The following code shows fundamental form of defining a Rcpp function.
 
 ```cpp
 #include<Rcpp.h>
 using namespace Rcpp;
 
 // [[Rcpp::export]]
-返値型 関数名(引数型 引数){
+RETURN_TYPE FUNCTION_NAME(ARGMENT_TYPE ARGMENT){
 
-    ...
+    //your operation
 
-    return 返値;
+    return RETURN_VALUE;
 }
 ```
 
-* `#include<Rcpp.h>`：Rcppで定義されたデータ型や関数を利用するために必要なヘッダファイルをインクルードする。
-* `// [[Rcpp::export]]`：この直下に記述された関数がRで利用できるようになる。
-* `using namespace Rcpp` この文は必須ではないが、これを記述すると、Rcppの変数や関数名に`Rcpp::`を付ける必要がなくなる。
-* `返値型 関数名(引数型 引数){}`：C++では関数の返値や引数の型を指定する必要がある。
-* `return 返値`：関数の返値は `return` 文 により明示的に指定する必要がある。
-* 引数や返値として標準 C++ のデータ構造を指定することもできる。詳細は [標準C++データ構造の項](as_wrap.md)を参照。
+* `#include<Rcpp.h>`：Including header file so as to use Rcpp classes and functions.
+* `// [[Rcpp::export]]`：The function definied just below this symbol will be exported to R.
+* `using namespace Rcpp` : This statement is optional. But if you add this statement, you need not to append `Rcpp::` to every Rcpp classes and functions.
+* `RETURN_TYPE FUNCTION_NAME(ARGMENT_TYPE ARGMENT){}`：You need to specify data type of return value and argments.
+* `return RETURN_VALUE;`：`return` statement is nessesary
+* You can use standard C++ data structure for return type and argment types. See [Standard C++ data structures](as_wrap.md) for detail.
 
 
-##Rcpp コードを記述する
+## Describing the Rcpp code in R code
 
-Rcppのコードをファイルに保存せずに、Rのコードの中で記述することもできる。`sourceCpp()` `cppFunction()` `evalCpp()` を使う。
+You can also define Rcpp functions in your R source codes in 3 ways, `sourceCpp()` `cppFunction()` `evalCpp()`.
 
-###sourceCpp
+### sourceCpp()
 
-```R
+Saving Rcpp code as string object in R and compiling it by `sourceCpp()`.
+
+``` R
 src<-
 "#include <Rcpp.h>
 using namespace Rcpp;
@@ -46,7 +48,7 @@ sourceCpp(code = src)
 rcpp_sum(1:10)
 ```
 
-###cppFunction
+### cppFunction()
 
 `cppFunction()` は、単一のRcpp関数を手軽に作成する方法を提供する。`cppFunction()`は、 R の文字列として保存された Rcpp のコードをコンパイルする。この時、`#include<Rcpp.h>`と`using namespase Rcpp`の記述を省略できる。
 
@@ -64,7 +66,7 @@ Rcpp::cppFunction(src)
 rcpp_sum(1:10)
 ```
 
-###evalCpp
+### evalCpp()
 
 `evalCpp()` は手軽にRcppの式を評価できる
 

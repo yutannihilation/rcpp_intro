@@ -1,12 +1,10 @@
 # Basic usage
 
-Rcppで記述した関数を実行するまでの流れは次のとおりである。
+You can use your Rcpp function in 3 steps.
 
 1. Writing Rcpp source code
 2. Compiling the code
-3. Exucute
-
-
+3. Exucuting the function
 
 ## Writing Rcpp source code
 
@@ -27,7 +25,7 @@ double rcpp_sum(NumericVector v){
 }
 ```
 
-##Compiling the code
+## Compiling the code
 
 By using you `sourceCpp()` you cancompile the source code and load the function to R.
 
@@ -36,7 +34,7 @@ library(Rcpp)
 sourceCpp('sum.cpp')
 ```
 
-##Execute
+## Exucuting the function
 
 ```r
 > sum(1:10)
