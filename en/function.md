@@ -23,13 +23,13 @@ RETURN_TYPE FUNCTION_NAME(ARGMENT_TYPE ARGMENT){
 * You can use standard C++ data structure for return type and argment types. See [Standard C++ data structures](as_wrap.md) for detail.
 
 
-## Describing the Rcpp code in R code
+## Embedding your Rcpp code in R code
 
 You can also define Rcpp functions in your R source codes in 3 ways, `sourceCpp()` `cppFunction()` `evalCpp()`.
 
 ### sourceCpp()
 
-Saving Rcpp code as string object in R and compiling it by `sourceCpp()`.
+Save Rcpp code as string object in R and compile it by `sourceCpp()`.
 
 ``` R
 src<-
@@ -50,7 +50,7 @@ rcpp_sum(1:10)
 
 ### cppFunction()
 
-`cppFunction()` は、単一のRcpp関数を手軽に作成する方法を提供する。`cppFunction()`は、 R の文字列として保存された Rcpp のコードをコンパイルする。この時、`#include<Rcpp.h>`と`using namespase Rcpp`の記述を省略できる。
+The `cppFunction()` offers the easiest way to create single Rcpp function. You can omit `#include<Rcpp.h>` and `using namespase Rcpp` in your code when using `cppFunction()`.
 
 ```r
 src <-
@@ -68,22 +68,16 @@ rcpp_sum(1:10)
 
 ### evalCpp()
 
-`evalCpp()` は手軽にRcppの式を評価できる
+You can evaluate single C++ statement by using `evalCpp()`.
 
 ```r
-# double の最大値を調べる
+# Showing maximum value of double.
 evalCpp('std::numeric_limits<double>::max()')
-
-
-
 ```
 
-##C++のソースにRのコードを埋め込む
+## Embedding R code code in Rcpp code
 
-逆に Rcppのコード内に R のコードを記述することもできる。
-
-Rcpp コード内で `/*** R`で始まるコメントの内に R のコードを書くと、`sourceCpp()` した時に、それが実行される。・
-
+You can also embed R code in your Rcpp code. Describe your R code in a comment begining with `/*** R` and the code will be executed when you compile the code with `sourceCpp()`.
 
 ```cpp
 #include<Rcpp.h>
