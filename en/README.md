@@ -1,6 +1,6 @@
 # Preface
 
-The Rcpp package enables you to write R functions in C++. Rcpp is carefully implemented in order that the variables and functions that have almost identical functionalities to those of R language. The execution speed is not sacrificed for the ease of usage, thus the even peaple without deep C++ knowleadge can enjoy its high performance functionalities.
+The Rcpp package enables you to write R functions in C++. Rcpp is implemented so as to the variables and functions  have almost identical functionalities to those of R language. The execution speed is not sacrificed for the ease of usage, thus the even people without deep C++ knowleadge can enjoy its high performance functionalities.
 
 This document is intended to provide neccesary information for people not being familiar with C++ as easy as possible. Thus we would sometimes explain conceptualally rather than describing detailed C++ definition preciselly.
 
