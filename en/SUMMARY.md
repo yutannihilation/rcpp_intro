@@ -1,6 +1,5 @@
 # Summary
 
-
 * [Preface](README.md)
 * [Taking advantage of Rcpp](Rcpp_merit.md)
 * [Installation](install.md)
@@ -8,7 +7,7 @@
 * [Writing Rcpp code](function.md)
 * [Console output](utility.md)
 * [Data types](data_types.md)
-* [Arithmetic and comparison operation](calculation.md)
+* [Arithmetic and comparison operations](calculation.md)
 * [C++11](c++11.md)
 * [Vector](vector.md)
 * [Matrix](matrix.md)

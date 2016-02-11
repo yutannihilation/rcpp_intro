@@ -1,34 +1,35 @@
-#四則演算と比較演算
+#Arithmetic and comparison operations
 
-R と同様に、`+ - * /` 演算子により、ベクター
+##Arithmetic operations
 
-
-同じ長さのベクターの要素同士の四則演算を行うことができる。
+Like as R, operator `+ - * /` would execute element-wise calculation for `Vector` and `Matrix`.
 
 ```
 NumericVector x ;
 NumericVector y ;
 
+// operation between two vectors
 NumericVector res = x + y ;
 NumericVector res = x - y ;
 NumericVector res = x * y ;
 NumericVector res = x / y ;
 
+// operation between scalar and vector
 NumericVector res = x   + 2.0 ;
 NumericVector res = 2.0 - x;
 NumericVector res = y   * 2.0 ;
 NumericVector res = 2.0 / y;
 ```
 
-`-` 演算子で符号を反転する
+operator `-` flips signs of vector/matrix elements.
 
 ```
 NumericVector res = -x ;
 ```
 
-##比較演算
+##Comparison operations
 
-Rと同様に、ベクトル同士の値の比較により、論理ベクトルを生成する。論理ベクターを使って、ベクターの要素にアクセスすることもできる。
+Like as R, conparison operation with vector/matrices would generates `LogicalVector`/`Logicalmatrix`.
 
 ```cpp
 NumericVector x ;
@@ -50,14 +51,16 @@ LogicalVector res = 2 != y;
 LogicalVector res = ( x + y ) < ( x*x ) ;
 LogicalVector res = ( x + y ) >= ( x*x ) ;
 LogicalVector res = ( x + y ) == ( x*x ) ;
-
-// ! 演算子で論理値を反転
-// negate the logical expression "y < z"
-LogicalVector res = ! ( x < y );
 ```
 
 
-論理値ベクターを使って、ベクターの要素にアクセスすることもできる。
+// operator `!` negates values of `LogicalVector` elements.
+
+```
+LogicalVector res = ! ( x < y );
+```
+
+You can use `LogicalVector`/`Logicalmatrix` to acccess subset of `Vector`/`Matrix` elements.
 
 ```cpp
 x[x < 2];
