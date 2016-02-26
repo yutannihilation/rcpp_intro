@@ -43,12 +43,10 @@ rcpp_sum(1:10)
 
 ###evalCpp
 
-`evalCpp()` は手軽にRcppの式を評価できる
+`evalCpp()` は手軽にRcppの式を評価するために用いる。
 
 ```r
 # double の最大値を調べる
-evalCpp('std::numeric_limits<double>::max()')
-
-
-
+> Rcpp::evalCpp('std::numeric_limits<double>::max()')
+[1] 1.797693e+308
 ```
