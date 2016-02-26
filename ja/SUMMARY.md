@@ -5,7 +5,7 @@
 * [インストール](install.md)
 * [基本的な使い方](basic_usage.md)
 * [Rcpp関数の基本形](function.md)
-* Rのコード中にRcppのコードを埋め込む
+* [Rのコード中にRcppのコードを埋め込む](Rcpp_in_R.md)
 * Rcppのコード中にRのコードを埋め込む
 * [コンソールへの出力](utility.md)
 * [データ型](data_types.md)
@@ -39,5 +39,4 @@
 * [リンク](link.md)
 * 活用例
 * [パフォーマンス](performance.md)
-
 
