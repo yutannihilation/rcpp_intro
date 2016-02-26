@@ -23,7 +23,7 @@ sourceCpp(code = src)
 rcpp_sum(1:10)
 ```
 
-###cppFunction
+###cppFunction()
 
 `cppFunction()` は、単一のRcpp関数を手軽に作成する方法を提供する。`cppFunction()`は、 R の文字列として保存された Rcpp のコードをコンパイルする。この時、`#include<Rcpp.h>`と`using namespase Rcpp`の記述を省略できる。
 
