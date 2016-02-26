@@ -5,8 +5,8 @@
 * [インストール](install.md)
 * [基本的な使い方](basic_usage.md)
 * [Rcpp関数の基本形](function.md)
- * Rのコード中にRcppのコードを埋め込む
- * Rcppのコード中にRのコードを埋め込む
+* Rのコード中にRcppのコードを埋め込む
+* Rcppのコード中にRのコードを埋め込む
 * [コンソールへの出力](utility.md)
 * [データ型](data_types.md)
 * [四則演算と比較演算](calculation.md)
