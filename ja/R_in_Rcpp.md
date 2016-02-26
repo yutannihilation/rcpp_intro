@@ -10,16 +10,16 @@ C++ コード内で `/*** R`で始まるコメントの内に R のコードを�
 using namespace Rcpp;
 
 // [[Rcpp::export]]
-int fibonacci(const int x) {
-    if (x < 2)
-    return x;
-    else
-    return (fibonacci(x - 1)) + fibonacci(x - 2);
+double rcpp_sum(NumericVector v){
+    double sum = 0;
+    for(int i=0; i<v.length(); ++i){
+        sum += v[i];
+    }
+    return(sum);
 }
 
 /*** R
-# Call the ﬁbonacci function deﬁned in C++
-ﬁbonacci(10)
+rcpp_sum(1:10)
 */
 ```
 
