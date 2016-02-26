@@ -41,7 +41,7 @@ Rcpp::cppFunction(src)
 rcpp_sum(1:10)
 ```
 
-###evalCpp
+###evalCpp()
 
 `evalCpp()` は手軽にRcppの式を評価するために用いる。
 
