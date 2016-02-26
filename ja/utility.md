@@ -1,4 +1,4 @@
-# Console output
+# コンソール画面への出力
 
 If you want to print massages and values of objects to R console screen, you should use `Rprintf()` or `Rcout` for standard output, `REprintf`or `Rcerr` for error output. The use of std::printf() and std::cout is not allowed for CRAN packages.
 
