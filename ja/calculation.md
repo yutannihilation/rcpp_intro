@@ -15,6 +15,10 @@ NumericVector res = x   + 2.0 ;
 NumericVector res = 2.0 - x;
 NumericVector res = y   * 2.0 ;
 NumericVector res = 2.0 / y;
+
+NumericVector res = x * y + y / 2.0 ;
+NumericVector res = x * ( y - 2.0 ) ;
+NumericVector res = x / ( y * y ) ;
 ```
 
 `-` 演算子は符号を反転する
@@ -25,7 +29,7 @@ NumericVector res = -x ;
 
 ##比較演算
 
-Rと同様に、ベクトル同士の値の比較により、論理ベクトルを生成する。論理ベクターを使って、ベクターの要素にアクセスすることもできる。
+Rと同様に、`==` `!=` `<` `>``>=` `<=`演算子を用いた ベクトル同士の値の比較により、論理ベクトルを生成する。論理ベクターを使って、ベクターの要素にアクセスすることもできる。
 
 ```cpp
 NumericVector x ;
@@ -47,9 +51,10 @@ LogicalVector res = 2 != y;
 LogicalVector res = ( x + y ) < ( x*x ) ;
 LogicalVector res = ( x + y ) >= ( x*x ) ;
 LogicalVector res = ( x + y ) == ( x*x ) ;
+```
 
-// ! 演算子で論理値を反転
-// negate the logical expression "y < z"
+`!` 演算子は論理値を反転する
+```
 LogicalVector res = ! ( x < y );
 ```
 
