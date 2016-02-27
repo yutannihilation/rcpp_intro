@@ -12,10 +12,16 @@
 
 ```
 NumericVector v (3);      // rep(0.0, 3)
-NumericVector v (5, 3.0); // rep(3.0, 5)
+NumericVector v (3, 1.0); // rep(1.0, 3)
 NumericVector v {1,2,3};  // c(1,2,3) 
 NumericVector v = NumericVector::create(1,2,3); // c(1,2,3) 
 NumericVector v = NumericVector::create(Named("x") = 1 , _["y"] = 2); // c(x=1, y=2) 名前付きベクター
+```
+
+Named()により、要素名を指定する場合には
+```
+Named("name", value)
+Named("name") = value
 ```
 
 ###要素へのアクセス
