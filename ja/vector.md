@@ -9,8 +9,6 @@
 
 ###作成
 
-
-
 ```
 // 長さが 3 で要素の値が 0.0 のベクトル
 NumericVector v (3);
@@ -20,6 +18,8 @@ NumericVector v (3, 1.0);
 
 // c(1,2,3) と同等
 NumericVector v = NumericVector::create(1,2,3);
+
+// c(1,2,3) と同等、C++11 初期化リストで作成
 NumericVector v = {1,2,3};
 
 // c(x=1, y=2, z=3) と同様 名前付きベクトル
@@ -27,50 +27,51 @@ NumericVector v =
   NumericVector::create(Named("x",1), Named("y")=2 , _["z"]=3); 
 ```
 
-要素名を指定する場合には `Named()` または `_[]`を用いる。
-```
-Named("name") = value
-Named("name", value)
-// c(x=1, y=2) 名前付きベクトル
-NumericVector v = NumericVector::create(Named("x") = 1 , _["y"] = 2);
-```
-
 ###要素へのアクセス
 
-Rと同様に、整数（実数）ベクトル・文字列ベクトル・論理ベクトルを使って、ベクトル要素にアクセスして、値を参照・代入することができる。
+Rと同様に、要素番号（整数・実数ベクトル）、要素名（文字列ベクトル）、論理ベクトルを用いて、ベクターの要素にアクセスして、値の取得・代入を行うことができる。
 
 **【重要】**：
 Rcpp は C++ のスタイルに従い、**ベクトルや行列の要素番号は ０ から始まる**ので注意すること。
 
 ```
 // [[Rcpp::export]]
-void access(){
-  NumericVector v {10,20,30,40,50};
-  v.names() = CharacterVector({"A", "B", "C", "D", "E"});
+void rcpp_vector_access(){
+
+  //ベクトルの作成
+  NumericVector v  {10,20,30,40,50};
+  NumericVector v2 {100,200};
   
-  IntegerVector   i {1,3};
-  CharacterVector c {"C","E"};
+  //要素名を設定する
+  v.names() = CharacterVector({"A","B","C","D","E"});
   
-  //要素の値の参照
-  NumericVector res1 = v[i];     //整数ベクトルでアクセス
-  NumericVector res2 = v[c];     //文字列ベクトルでアクセス
-  NumericVector res3 = v[v>=40]; //論理ベクトルでアクセス
+  //アクセスするためのベクトル
+  NumericVector   numeric = {1,3};
+  IntegerVector   integer = {1,3};
+  CharacterVector character = {"B","D"};
+  LogicalVector   logical = {false, true, false, true, false};
   
-  Rcout << "res1: " << res1 << "\n";
-  Rcout << "res2: " << res2 << "\n";
-  Rcout << "res3: " << res3 << "\n";
+  //ベクトル要素の値の取得
+  double x1 = v[0];
+  double x2 = v["A"];
+  NumericVector res1 = v[numeric];
+  NumericVector res2 = v[integer];
+  NumericVector res3 = v[character];
+  NumericVector res4 = v[logical];
   
-  //ベクトルの一部の要素への値の代入
-  v[i] = NumericVector::create(100,200);
-  v[c] = NumericVector::create(1000,2000);
-  
-  Rcout << "v: " << v << "\n";
+  //ベクトル要素への値の代入
+  v[0]   = 100;
+  v["A"] = 100;
+  v[numeric]   = v2;
+  v[integer]   = v2;
+  v[character] = v2;
+  v[logical]   = v2;
 }
+```
 
+### []演算子の返値
 
-### []演算子の返り値
-
-[]演算子を使ってベクトルのサブセットへアクセスした場合の返値は、正確には `Vector`そのものではなく、`Vector::Proxy` という特殊な型となっている。そのため、`v[]` を、そのまま他の関数に与えるとエラーになることがある。その場合には、`as()` を用いて、目的の `Vector` 型に変換する。as()については
+[]演算子を使ってベクトルの要素へアクセスした場合の返値は、正確には `Vector`そのものではなく、`Vector::Proxy` という型となっている。そのため、`v[]` を、そのまま他の関数に与えるとエラーになることがある。その場合には、`as()` を用いて、目的の `Vector` 型に変換する。
 
 
 ```
