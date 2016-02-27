@@ -11,17 +11,27 @@
 
 
 ```
-NumericVector v (3);      // rep(0.0, 3)
-NumericVector v (3, 1.0); // rep(1.0, 3)
+// 値が 0.0 で長さが 3 のベクター
+NumericVector v (3);
+
+// 値が 1.0 で長さが 3 のベクター
+NumericVector v (3, 1.0);
+
+NumericVector v = NumericVector::create(1,2,3);
 NumericVector v {1,2,3};  // c(1,2,3) 
-NumericVector v = NumericVector::create(1,2,3); // c(1,2,3) 
-NumericVector v = NumericVector::create(Named("x") = 1 , _["y"] = 2); // c(x=1, y=2) 名前付きベクター
+
+
+ // c(1,2,3) 
+// c(x=1, y=2) 名前付きベクター
+NumericVector v = NumericVector::create(Named("x") = 1 , _["y"] = 2); 
 ```
 
-Named()により、要素名を指定する場合には
+要素名を指定する場合には `Named()` または `_[]`を用いる。
 ```
-Named("name", value)
 Named("name") = value
+Named("name", value)
+// c(x=1, y=2) 名前付きベクター
+NumericVector v = NumericVector::create(Named("x") = 1 , _["y"] = 2);
 ```
 
 ###要素へのアクセス
