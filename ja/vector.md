@@ -71,14 +71,15 @@ void rcpp_vector_access(){
 
 ### []演算子の返値
 
-[]演算子を使ってベクトルの要素へアクセスした場合の返値は、正確には `Vector`そのものではなく、`Vector::Proxy` という型となっている。そのため、`v[]` を、そのまま他の関数に与えるとエラーになることがある。その場合には、`as()` を用いて、目的の `Vector` 型に変換する。
+`[]` 演算子ベクトルの要素へアクセスした場合の返値は、正確には `Vector`そのものではなく、`Vector::Proxy` という型となっている。そのため、`v[]` を、そのまま他の関数に与えるとエラーになることがある。その場合には、`as()` を用いて、目的の `Vector` 型に変換する。
 
 
 ```
 NumericVector v {1,2,3,4,5};
 IntegerVector i {1,3};
-//double x = sum(v[i]); // error
-double x = sum(as<NumericVector>(v[i]));
+
+//double x1 = sum(v[i]); // error
+double   x2 = sum(as<NumericVector>(v[i]));
 ```
 
 
