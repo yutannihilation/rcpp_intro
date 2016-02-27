@@ -62,7 +62,7 @@ List
 `List`は、`Dataframe` や `List`を含む、どのような型でも要素に持つことができる。要素となる`Vector`などのサイズにも制限はない。
 
 
-###Vector、DataFrame、List
+###Vector、DataFrame、List の共通性
 
 Rcpp においては、`Vector`, `List`, `DataFrame` は、どれもある種のベクターとして実装されている。つまり、`Vector` は、スカラー値を要素とするベクター、`DataFrame` は同じ長さの `Vector` を要素とするベクター、`List`は任意のオブジェクトを要素するベクターである。
 
