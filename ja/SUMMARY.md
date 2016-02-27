@@ -10,6 +10,7 @@
 * [コンソールへの出力](utility.md)
 * [データ型](data_types.md)
 * [四則演算と比較演算](calculation.md)
+* 論理演算
 * [C++11](c++11.md)
 * [Vector](vector.md)
 * [Matrix](matrix.md)
