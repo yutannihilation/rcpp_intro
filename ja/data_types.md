@@ -1,6 +1,6 @@
 # データ型
 
-Rcppでは、Rの全ての基本的なデータ型とデータ構造を利用することができる。Rcpp で提供される様々なクラスは、R のデータ型を模倣した独自のデータ構造を独自に実装しているわけではない。実際のところ、Rcppのクラスはユーザーが実行中のRのメモリにあるオブジェクトに直接アクセスして操作するためのインターフェースを提供している。
+Rcppでは、Rの全ての基本的なデータ型とデータ構造を利用することができる。Rcpp で提供される様々なクラスは、R のデータ型を模倣した独自のデータ構造を独自に実装しているわけではない。Rcppのクラスはユーザーが実行中のRのメモリにあるオブジェクトに直接アクセスして操作するためのインターフェースを提供している。
 
 ##基本データ型
 
@@ -29,11 +29,11 @@ Rcppの基本データ型のそれぞれについてベクター型と行列型�
 ### Vector
 
 ```
+LogicalVector
 IntegerVector
 NumericVector
 ComplexVector
 CharacterVector (StringVector)
-LogicalVector
 DateVector
 DatetimeVector
 ```
@@ -41,11 +41,11 @@ DatetimeVector
 ### Matrix
 
 ```
+LogicalMatrix
 IntegerMatrix
 NumericMatrix
 ComplexMatrix
 CharacterMatrix (StringMatrix)
-LogicalMatrix
 DateMatrix
 DatetimeMatrix
 ```
@@ -64,9 +64,7 @@ List
 
 ###Vector、DataFrame、List の共通性
 
-Rcpp においては、`Vector`, `List`, `DataFrame` は、どれもある種のベクターとして実装されている。つまり、`Vector` は、スカラー値を要素とするベクター、`DataFrame` は同じ長さの `Vector` を要素とするベクター、`List`は任意のオブジェクトを要素するベクターである。
-
-そのため、`Vector`, `List`, `DataFrame` は多くの共通するメンバー関数を持っている。
+Rcpp においては、`Vector`, `List`, `DataFrame` は、どれもある種のベクターとして実装されている。つまり、`Vector` は、スカラー値を要素とするベクター、`DataFrame` は同じ長さの `Vector` を要素とするベクター、`List`は任意のオブジェクトを要素するベクターである。そのため、`Vector`, `List`, `DataFrame` は多くの共通するメンバー関数を持っている。
 
 
 
