@@ -12,7 +12,7 @@ Rcpp型に変換できるC++の型はRcpp関数の引数や返値にすること
 |--| -- | -- | -- | -- |
 | `Vector` | `vector`, `list`,`deque`  |+|+|
 | `List`, `DataFrame` | `vector<vector>`, `list<deque>`, ...|+|+|
-|  `Vector`() | `map`, `unordered_map`|-|+|
+|  `Vector`(名前付き) | `map`, `unordered_map`|-|+|
 | `Vector` | `set`, `unordered_set`|-|+|
 
 標準C++のシーケンスコンテナはRcpp `Vector` と互いに変換可能。
@@ -101,7 +101,7 @@ vector<double> times_two_std_vector(vector<double> v){ // 暗黙的に as() が�
 
 ## ユーザーが定義したクラスをRcppのデータ構造に変換する
 
-Rcpp が対応していないC++データ型をRcppのデータ構造に変換するために as や wrap を定義することができる。
+Rcpp が対応していない C++ データ型を Rcpp のデータ構造に変換するために、ユーザーが `as()` や `wrap()` を定義することができる。
 
 [Extending Rcpp](http://dirk.eddelbuettel.com/code/rcpp/Rcpp-extending.pdf) を参照すること
 
