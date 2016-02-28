@@ -12,12 +12,13 @@
 
 ##作成
 
+
 ```cpp
-// 長さが 3 で要素の値が 0.0 のベクトル
+// rep(0, 3) と同等
 NumericVector v (3);
 
-// 長さが 3 で要素の値が 1.0 のベクトル
-NumericVector v (3, 1.0);
+// rep(1, 3) と同等
+NumericVector v (3,1);
 
 // c(1,2,3) と同等
 NumericVector v = NumericVector::create(1,2,3);
