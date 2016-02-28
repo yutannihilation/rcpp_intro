@@ -1,6 +1,6 @@
 # 標準 C++ のデータ構造を利用する
 
-Rcpp の `Vector` には `push_back` `push_front` 
+Rcpp の `Vector` には `push_back()` `push_front()` `insert()` `erase()` など `Vector` のサイズを変更する関数が提供されている。しかし、これらを実行すると、`Vector` 全体の値をコピーする処理が行われるのでコストが大きい。
 
 
 標準C++には `std::vector` などの様々なデータ構造が提供されている。Rcppのデータ構造に変換できるものもある。
