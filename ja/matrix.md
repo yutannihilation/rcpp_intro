@@ -3,8 +3,9 @@
 ###作成
 
 ```
-NumericMatrix m(2, 3);  // matrix(0, nrow = 2, ncol = 3)
-NumericMatrix m(2);     // matrix(0, nrow = 2, ncol = 2)
+NumericMatrix m(2);     // matrix(0, nrow=2, ncol=2)
+NumericMatrix m(2,3);   // matrix(0, nrow=2, ncol=3)
+NumericMatrix m(2,3,v.begin()); // matrix(v, nrow=2, ncol=3)
 ```
 
 ###要素へのアクセス
@@ -48,7 +49,7 @@ m(_,1) = 2*m(_,1) //上の例と同義
 
 ##メソッド
 
-Matrix は基本的には Vector と同じメソッドを持っている。下に Matrix 固有のメソッドを示す。
+`Matrix` の実体は `Vector` であるので、`Matrix` は基本的には `Vector` と同じメソッドを持っている。下に Matrix 固有のメソッドを示す。
 
 #### nrow() rows()
 
@@ -65,9 +66,13 @@ i番目の行への参照 `Vector::Row` を返す
 
 i番目の列への参照 `Vector::Column` を返す
 
-void fill_diag( const U& u)
+#### fill_diag( x )
 
+対角要素をスカラー値 x で埋める
 
+#### offset(i,j)
+
+i行j列の要素が、
 
 
 ##staticメソッド
