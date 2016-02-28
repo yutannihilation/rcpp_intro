@@ -111,9 +111,7 @@ vector<double> times_two_std_vector(vector<double> v){
 
 ## ユーザーが定義したクラスを Rcpp のデータ構造に変換する
 
-Rcpp が対応していない C++ データ型を Rcpp のデータ構造に変換するために、ユーザーが `as()` や `wrap()` を定義することができる。
-
-[Extending Rcpp](http://dirk.eddelbuettel.com/code/rcpp/Rcpp-extending.pdf) を参照すること
+Rcpp がデフォルトでは対応していない C++ データ型を Rcpp のデータ構造に変換するために、ユーザーが `as()` や `wrap()` を独自に定義することもできる。詳細は、Rcppのビネット [Extending Rcpp](http://dirk.eddelbuettel.com/code/rcpp/Rcpp-extending.pdf) を参照すること。
 
 
 
