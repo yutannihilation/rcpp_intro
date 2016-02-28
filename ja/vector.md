@@ -89,7 +89,7 @@ double   x2 = sum(as<NumericVector>(v[i]));
 
 64bitシステムではRのベクターの要素数は int 型の最大値よりも大きくなりうる。そのため、ベクターの要素数を変数として保持する場合には `R_xlen_t` 型を用いる。
 
-```
+```cpp
 R_xlen_t n = v.length();
 for(R_xlen_t i=0; i<n; ++i){
   v[i] = x;
