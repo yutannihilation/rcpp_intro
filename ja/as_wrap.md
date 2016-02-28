@@ -53,7 +53,7 @@ void rcpp_as_wrap(){
 ```
 
 
-シーケンス・コンテナが入れ子になった2次元コンテナ は `DataFrame`や `List` と互いに変換できる。
+シーケンス・コンテナが入れ子になった2次元コンテナ は `DataFrame`や `List` に変換できる。
 
 ```cpp
 // [[Rcpp::plugins("cpp11")]]
