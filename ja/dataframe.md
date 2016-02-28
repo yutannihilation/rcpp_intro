@@ -71,9 +71,7 @@ v2 = v2*2;                       //df[0] の値は変わらない
 
 `DataFrame` も `Vector` と同じメソッドを持っている。しかし、`Vector` の要素はスカラー値であるのに対して、 `DataFrame` の要素は `Vector` (カラム) なので、同じメソッドでも意味合いが少し変わる場合もある。
 
-####inherits(str)
 
-このオブジェクトの属性 class に文字列 str が含まれているかどうか。
 
 #### length() size()
 
@@ -83,6 +81,9 @@ v2 = v2*2;                       //df[0] の値は変わらない
 ####nrows()
 
 行数
+
+###names()
+
 
 
 ####offset(str)
@@ -167,3 +168,7 @@ first_it から last_it で指定されるカラムを削除し、削除後の�
 
 ####eval(env)
 環境 env でこの`DataFrame`を評価した結果を返す
+
+####inherits(str)
+
+このオブジェクトの属性 class に文字列 str が含まれているかどうか。
