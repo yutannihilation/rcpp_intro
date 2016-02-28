@@ -152,7 +152,7 @@ int n = v.length();
 
 
 
-####push_back(x)
+####push_back( x )
 
 このベクトル の末尾に x（スカラー） を追加する。
 
@@ -161,7 +161,7 @@ int n = v.length();
 追加した要素の名前を "x" とする。
 
 
-####push_front(x)
+####push_front( x )
 
 このベクトル の先頭に x（スカラー） を追加する。
 
@@ -179,47 +179,47 @@ int n = v.length();
 
 このベクトルの末尾へのイテレータを返す。
 
-#### insert( it, x)
+#### insert( it, x )
 
 このベクトルの it（イテレータ） の位置に x を追加し、その要素へのイテレータを返す。
 
 
-#### erase(i)
+#### erase( i )
 
 このベクトルの i 番目の要素を削除し、削除後の同じ位置の要素へのイテレータを返す。
 
-####erase(it)
+####erase( it )
 イテレータ itで指定された要素を削除し、削除後の同じ位置の要素へのイテレータを返す。
 
-####erase(first_i, last_i)
+####erase( first_i, last_i )
 
 first_i 番目 から last_i 番目 までの要素を削除し、削除後の同じ位置の要素への要素番号を返す。
 
 
-#### erase(first_it, last_it)
+#### erase( first_it, last_it )
 
 first_it から last_it で指定される要素を削除し、削除後の同じ位置の要素へのイテレータを返す。
 
-#### update(v1)
+#### update( v1 )
 
 このベクトルの内容を ベクトル v1 と同じにする
 
-#### containsElementNamed(str)
+#### containsElementNamed( str )
 
 このベクトルが str で指定された名前の要素を持っているかどうかを返す
 
-####findName(str)
+####findName( str )
 
 str で指定された名前の（最初の）要素の要素番号を返す。見つからない場合は -1 を返す。
 
 ####eval()
 グローバル環境でこのベクトルを評価した結果を返す
 
-####eval(env)
+####eval( env )
 環境 env でこのベクトルを評価した結果を返す
 
 
-####inherits(str)
+####inherits( str )
 
 このオブジェクトの属性 class に文字列 str が含まれているかどうか。
 
@@ -233,15 +233,15 @@ str で指定された名前の（最初の）要素の要素番号を返す。�
 
 このベクトルの型のNA値を取得する
 
-####Vector::is_na(x)
+####Vector::is_na( x )
 スカラー値 x がNAであるかどうかを
 
 
-####Vector::create(x1, x2, ...)
+####Vector::create( x1, x2, ...)
 スカラー値 x1, x2, ...  を要素とするベクトルを作成する。指定できる引数の数は20個まで
 
 
-####Vector::import( first_it, last_it) 
+####Vector::import( first_it , last_it ) 
 イテレーター first_it, last_it で指定された範囲の値が代入されたベクトルを返す
 
 
