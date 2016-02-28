@@ -1,6 +1,6 @@
 # 標準 C++ データ構造を利用する
 
-標準C++には std::vector などのデータ構造が提供されており、Rcppのデータ構造に変換できるものもある。
+標準C++には `std::vector` などの様々なデータ構造が提供されている。Rcppのデータ構造に変換できるものもある。
 Rcpp と 標準C++のデータ構造の変換は　`as()` と `wrap()` を用いる。
 Rcpp型に変換できるC++の型はRcpp関数の引数や返値にすることもできる。
 
@@ -12,7 +12,7 @@ Rcpp型に変換できるC++の型はRcpp関数の引数や返値にすること
 |--| -- | -- | -- | -- |
 | `Vector` | `vector`, `list`,`deque`  |+|+|
 | `List`, `DataFrame` | `vector<vector>`, `list<deque>`, ...|+|+|
-| Named `Vector` | `map`, `unordered_map`|-|+|
+|  `Vector`() | `map`, `unordered_map`|-|+|
 | `Vector` | `set`, `unordered_set`|-|+|
 
 標準C++のシーケンスコンテナはRcpp `Vector` と互いに変換可能。
