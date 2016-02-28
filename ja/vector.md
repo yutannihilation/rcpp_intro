@@ -129,6 +129,10 @@ int n = v.length();
 ####length( )  size( )
 要素数
 
+####names()
+
+要素名をベクトル
+
 ####offset(str)
 
 要素名が str である要素のインデックスint
