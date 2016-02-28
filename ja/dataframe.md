@@ -1,6 +1,6 @@
 # DataFrame
 
-##オブジェクトの作成
+##作成
 
 `DataFrame` の作成には `DataFrame::create()` を使用する。また、
 `DataFrame` の作成時にカラム名を指定する場合には、`Named("名前")` または `_["名前"]` を使用する。
