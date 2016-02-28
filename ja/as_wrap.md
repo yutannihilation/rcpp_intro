@@ -1,4 +1,7 @@
-# 標準 C++ データ構造を利用する
+# 標準 C++ のデータ構造を利用する
+
+Rcpp の `Vector` には `push_back` `push_front` 
+
 
 標準C++には `std::vector` などの様々なデータ構造が提供されている。Rcppのデータ構造に変換できるものもある。
 Rcpp と 標準C++のデータ構造の変換は　`as()` と `wrap()` を用いる。
@@ -87,7 +90,9 @@ NumericVector std_map(){
 ```
 // [[Rcpp::plugins("cpp11")]]
 // [[Rcpp::export]]
-vector<double> times_two_std_vector(vector<double> v){ // 暗黙的に as() が呼ばれる
+vector<double> times_two_std_vector(vector<double> v){
+    // 暗黙的に as() が呼ばれる
+    
     for(double &x : v){
         x *= 2;
     }
