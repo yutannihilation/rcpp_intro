@@ -1,13 +1,8 @@
 # 標準 C++ のデータ構造を利用する
 
-標準C++には `vector` `list` `map` `set` などの様々なデータ構造が提供されている。
+標準C++には `vector` `list` `map` `set` などの様々なデータ構造が提供されている。それらは Rcpp のデータ構造にはない高度な機能を提供する。例えば、Rcpp の `Vector` には `push_back()` `push_front()` `insert()` `erase()` など `Vector` のサイズを変更する関数が提供されている。しかし、これらを実行すると、`Vector` 全体の値をコピーする処理が行われるためコストが大きい。標準C++のデータ構造では要素の追加・削除をより効率よく行うことができる。
 
 
-
-Rcpp の `Vector` には `push_back()` `push_front()` `insert()` `erase()` など `Vector` のサイズを変更する関数が提供されている。しかし、これらを実行すると、`Vector` 全体の値をコピーする処理が行われるためコストが大きい。そこで、そのような処理が必要な場合には標準C++
-
-
-Rcppのデータ構造に変換できるものもある。
 
 
 ##データの変換
@@ -25,7 +20,7 @@ Rcpp と 標準C++のデータ構造の変換は　`as()` と `wrap()` を用い
 |  `Vector`(名前付き) | `map`, `unordered_map`|-|+|
 | `Vector` | `set`, `unordered_set`|-|+|
 
-標準C++のシーケンスコンテナはRcpp `Vector` と互いに変換可能。
+標準C++のシーケン・スコンテナは Rcpp `Vector` と互いに変換可能。
 
 ```cpp
 #include<vector>
