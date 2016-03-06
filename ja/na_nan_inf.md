@@ -1,5 +1,39 @@
 # NA NaN Inf NULL
 
+ベクターの中にある NA NaN Inf の判定
+
+
+####is_finite()
+
+is.finite(v)
+
+####is_infinite()
+
+is_infinite(v)
+
+####is_na()
+
+is_na(v)
+
+####is_nan()
+
+is_nan(v)
+
+####na_omit()
+
+na_omit(v)
+
+ベクター v から NA を削除したベクターを返す。
+
+```
+// [[Rcpp::export]]
+NumericVector rcpp_na_omit(){
+  NumericVector   v1  = NumericVector::create(1,2,NA_REAL,4,5);
+  return na_omit(v1); // 1 2 4 5
+}
+```
+
+
 ### NULL
 ```
 R_NilValue
