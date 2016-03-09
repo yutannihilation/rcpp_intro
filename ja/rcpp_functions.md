@@ -208,14 +208,13 @@ NumericVector rcpp_rep_len(){
 
 seq(start, end)
 
-start から end までの連続した整数の数列を返す。
-
-
-```
-IntegerVector v = seq(-3,3);
-Rcout << v << endl;
+start から end までの連続した整数の数列を返す。NumericVector に代入する場合には wrap() で変換する。
 
 ```
+IntegerVector v1 = seq(-3,3);
+NumericVector v2 = wrap(seq(-3,3));
+```
+
 ####seq_along()
 
 seq_along(v)
