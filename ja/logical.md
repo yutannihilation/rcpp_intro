@@ -2,7 +2,7 @@
 
 ## LogicalVector の正体
 
-R の論理ベクトルの実体は、実は、整数ベクトルである。C++ の論理値型は `bool` であるので、`LogicalVector` の要素の型は `bool` であると思うかもしれないが、実際には `int` 型である。なぜこのようになっているかというと `bool` で表現できるのは `true` と `false` だけであるが、R の論理ベクトルの要素の値には `TRUE`, `FALSE` だけではなく `NA` もあり得るためである。
+C++ の論理値型は `bool` であるので、`LogicalVector` の要素の型も `bool` であると思うかもしれないが、実際には `int` 型である。(R でも論理ベクトルの実体は整数ベクトルである) なぜこのようになっているかというと `bool` で表現できるのは `true` と `false` だけであるが、R の論理ベクトルの要素の値には `TRUE`, `FALSE` だけではなく `NA` もあり得るためである。
 
 Rcpp では `TRUE` は 1、`FALSE` は 0、`NA` は `NA_LOGICAL`（int の最小値）で表現されている。
 
@@ -14,7 +14,7 @@ Rcpp では `TRUE` は 1、`FALSE` は 0、`NA` は `NA_LOGICAL`（int の最小
 
 ## LogicalVector の要素の評価
 
-`LogicalVector` の要素の値を、そのまま if 文の条件式として使用してはならない。なぜなら、C++ の `bool` 型は 0 以外の値を全て `true` と評価するので、Rcpp 論理ベクトルの `NA`（`NA_LOGICAL`） は `true` となってしまう。
+`LogicalVector` の要素の値を、そのまま if 文の条件式として使用してはならない。なぜなら、C++ の `bool` 型は 0 以外の値を全て `true` と評価するので、`LogicalVector` の `NA`（`NA_LOGICAL`） は `true` と評価されてしまう。
 
  `LogicalVector` の要素の値を if 文で評価する方法については、次のコード例を参考にして欲しい。
 
@@ -28,39 +28,44 @@ LogicalVector rcpp_logical(){
   // 比較演算の結果は LogicalVector となる
   LogicalVector v = (x >= 3); 
   
+  // LogicalVector の要素を直接 if 文の条件式で使うと
+  // NA_LOGICAL は TRUE と評価されてしまう
+  for(int i=0; i<v.size();++i) {
+    if(v[i]) Rprintf("v[%i] is evaluated as true.\n",i);
+    else Rprintf("v[%i] is evaluated as false.\n",i);
+  } 
+  
   // LogicalVector の要素の評価する
   for(int i=0; i<v.size();++i) {
-    if(v[i]==TRUE) Rprintf("v[%i] is TRUE\n",i);
-    else if (v[i]==FALSE) Rprintf("v[%i] is FALSE\n",i);
-    else if (v[i]==NA_LOGICAL) Rprintf("v[%i] is NA\n",i);
-    else Rprintf("v[%i] is not 1\n",i);
+    if(v[i]==TRUE) Rprintf("v[%i] is TRUE.\n",i);
+    else if (v[i]==FALSE) Rprintf("v[%i] is FALSE.\n",i);
+    else if (v[i]==NA_LOGICAL) Rprintf("v[%i] is NA.\n",i);
+    else Rcout << "v[" << i << "] is not 1\n";
   }
-  
   
   // TRUE FALSE NA_LOGICAL の値を表示
   Rcout << "TRUE " << TRUE << "\n";
   Rcout << "FALSE " << FALSE << "\n";
   Rcout << "NA_LOGICAL " << NA_LOGICAL << "\n";
-  return v;
   
-  // LogicalVector の要素を直接 if 文の条件式で使うと
-  // NA_LOGICAL は TRUE と評価されてしまう
-  for(int i=0; i<v.size();++i) {
-    if(v[i]) Rcout << "v[" << i << "] is evaluated as true\n";
-    else Rcout << "v[" << i << "] is false\n";
-  } 
+  return v;
 }
 ```
 
 実行結果
 
 ```
-> rcpp_logical_05()
-v[0] is FALSE
-v[1] is FALSE
-v[2] is TRUE
-v[3] is TRUE
-v[4] is NA
+> rcpp_logical()
+v[0] is evaluated as false.
+v[1] is evaluated as false.
+v[2] is evaluated as true.
+v[3] is evaluated as true.
+v[4] is evaluated as true.
+v[0] is FALSE.
+v[1] is FALSE.
+v[2] is TRUE.
+v[3] is TRUE.
+v[4] is NA.
 TRUE 1
 FALSE 0
 NA_LOGICAL -2147483648
@@ -131,11 +136,13 @@ void rcpp_ifelse(){
   NumericVector   v1  = NumericVector::create(1,2,3,4,5);
   NumericVector   v2  = NumericVector::create(2,1,4,3,5);
   
-  NumericVector res1 = ifelse(v1 > v2, v1, 0);
-  NumericVector res2 = ifelse(v1 > v2, v1, v2);
+  NumericVector res1 = ifelse(v1 > v2, 1, 0);
+  NumericVector res2 = ifelse(v1 > v2, v1, 0);
+  NumericVector res3 = ifelse(v1 > v2, v1, v2);
   
-  Rcout << "res1 : " << res1 << "\n"; // 0 2 0 4 0
-  Rcout << "res2 : " << res2 << "\n"; // 2 2 4 4 5
+  Rcout << "res1 : " << res1 << "\n"; // 0 1 0 1 0
+  Rcout << "res2 : " << res2 << "\n"; // 0 2 0 4 0
+  Rcout << "res3 : " << res3 << "\n"; // 2 2 4 4 5
 }
 ```
 

@@ -1,9 +1,6 @@
 # factor
 
-
 `factor` の実体は属性 `levels` が定義された `IntegerVector` である。
-
-http://gallery.rcpp.org/articles/fast-factor-generation/
 
 ```
 // factor の作成

@@ -60,12 +60,12 @@ x.names();
 //Vector V
 V.names()  //要素名
 
-
 //Matrix M;
 M.ncol() //列数
 M.nrow() //行数
-
-M.attr(“dimnames”) = List::create(行名ベクタ, 列名ベクタ);　//行名、列名へはリストでアクセスする　
+List dimnames  = M.attr(“dimnames”);
+CharacterVector rownames = dimnames[0]; //行名
+CharacterVector colnames = dimnames[1]; //列名
 
 DataFrame DF;
 DF.attr(“names”)     //列名
