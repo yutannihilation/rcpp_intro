@@ -11,7 +11,7 @@
 * [Vector](vector.md)
 * [Matrix](matrix.md)
 * [四則演算と比較演算](calculation.md)
-* [LogicalVector と論理演算](logical.md)
+* [LogicalVectorと論理演算](logical.md)
 * [属性値](attributes.md)
 * [factor](factor.md)
 * データ構造
