@@ -42,4 +42,5 @@
 * [リンク](link.md)
 * [パフォーマンス比較](performance.md)
 * 活用例
+* RのC言語APIを利用する　
 
