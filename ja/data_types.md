@@ -1,65 +1,46 @@
-# データ型
+# 基本データ型とデータ構造
 
-Rcppでは、Rの全ての基本的なデータ型とデータ構造を利用することができる。Rcpp で提供される様々なクラスは、R のデータ型を模倣した独自のデータ構造を独自に実装しているわけではない。Rcppのクラスはユーザーが実行中のRのメモリにあるオブジェクトに直接アクセスして操作するためのインターフェースを提供している。
-
-##基本データ型
-
-R、Rcpp、C++で利用できる基本的なデータ型の対応関係を「概念的」に表現すると以下のようになっている。
-
-||R|Rcpp|C++|
-|:---:|:---:|:---:|:---:|
-|論理|logical|Logical|bool|
-|整数|integer|Integer|int|
-|実数|numeric|Numeric|double|
-|複素数|complex|Complex|complex|
-|文字列|character|Character (String)|string|
-|日付|Date|Date|-|
-|日時|POSIXct|Datetime|-|
+Rcpp では R の全てのデータ型とデータ構造を利用することができます。ユーザーは Rcpp で提供される様々なクラスを通して、実行中の R のメモリにあるオブジェクトを直接操作することができます。この章では Rcpp で利用できるデータ型とデータ構造を紹介します。
 
 
-なぜわざわざ「概念的」という言葉を強調したかというと、正確には、Rcppでは `Logical`, `Integer`, `Numeric`, `Complex` については、スカラー値の型は用意されておらず、ベクター型や行列型（`NumericVector`, `NumericMatrix` など）のみが定義されている。一方、 `String`, `Date`, `Datetime` についてはスカラー型が定義されている。そのため、例えば `Numeric x;` というような変数 x を宣言することはできないが、`Date d;` という変数 d は宣言することができる。
+## 基本データ型
+
+R には基本的なデータ型として、`logical`（論理値）、`integer`（整数）、`numeric`（実数）、`complex`（複素数）、`character`（文字列）、`Date`（日付）、`POSIXct`（日時） があります。Rcpp には、これらと対応したベクトル型と行列型が定義されています。ただし、日付と日時については R と同様にベクトル型だけが定義されています。
+
+本書ではこれ以降 Rcpp が提供するベクトル型と行列型を総称するために `Vector`、 `Matrix` という語を用います。
+
+R、Rcpp、C++ で利用できる基本的なデータ型の対応関係をまとめると下の表のようになります。
+
+| | Rベクトル|Rcppベクトル型|Rcpp行列型|Rcppスカラー型|C++スカラー型|
+|:---:|:---:|:---:|:---:|:---:|:---:|
+|論理  |`logical`  |`NumericVector`| `NumericMatrix`| - |`bool`|
+|整数  |`integer`  |`IntegerVector`|`IntegerMatrix`|-|`int`|
+|実数  |`numeric` |`NumericVector`|`NumericMatrix`|-|`double`|
+|複素数|`complex`  |`ComplexVector`| `ComplexMatrix`|`Rcomplex`|`complex`|
+|文字列|`character`|`CharacterVector` (`StringVector`)| `CharacterMatrix` (`StringMatrix`)|`String`|`string`|
+|日付  |`Date`     |`DateVector`|-|`Date`|-|
+|日時  |`POSIXct`  |`DatetimeVector`|-| `Datetime` | `time_t` |
 
 
+## データ構造
 
-# データ構造
+R にはベクトル、行列の他にデータフレーム、リスト、S3 クラス、S4 クラスのデータ構造がありますが、Rcpp はそれら全てを扱うことができます。
 
-Rcppの基本データ型のそれぞれについてベクター型と行列型が定義されている。以降、このドキュメントでは、Rcpp が提供するベクター型や行列型を総称するために、`Vector`, `Matrix` という語を用いる。
+下の表に R と Rcpp のデータ構造の対応関係を示します。
 
+|R データ構造|Rcpp データ構造|
+|:---:|:---:|
+|`data.frame`|`DataFrame`|
+|`list`|`List`|
+|S3 クラス|`List`|
+|S4 クラス|`S4`|
 
-### Vector
+`Dataframe` は、様々な型のベクトルを要素として格納することができます。しかし、要素となる全てのベクトルの長さは等しいという制約があます。
 
-```
-LogicalVector
-IntegerVector
-NumericVector
-ComplexVector
-CharacterVector (StringVector)
-DateVector
-DatetimeVector
-```
+`List` は、`Dataframe` や `List` を含む、どのような型のオブジェクトでも要素として持つことができます。要素となるベクトルの長さにも制限はありません。
 
-### Matrix
+S3 クラスは属性 `class` に独自の名前が設定されたリストですので、使い方は `List` と同様です。
 
-```
-LogicalMatrix
-IntegerMatrix
-NumericMatrix
-ComplexMatrix
-CharacterMatrix (StringMatrix)
-```
+S4 クラスはスロット（`slot`）と呼ばれる内部データを持っています。Rcpp の `S4` を用いることで R で定義した S4 クラスのオブジェクトの作成、および、スロットへのアクセスが可能になります。
 
-
-### List, DataFrame
-
-```
-DataFrame
-List
-```
-`Dataframe` は、様々な型のベクターを要素として格納することができる。しかし、要素となる全てのベクターサイズは等しいという制約がある。
-
-`List`は、`Dataframe` や `List`を含む、どのような型でも要素に持つことができる。要素となる`Vector`などのサイズにも制限はない。
-
-
-###Vector、DataFrame、List の共通性
-
-Rcpp においては、`Vector`, `List`, `DataFrame` は、どれもある種のベクターとして実装されている。つまり、`Vector` は、スカラー値を要素とするベクター、`DataFrame` は同じ長さの `Vector` を要素とするベクター、`List`は任意のオブジェクトを要素するベクターである。そのため、`Vector`, `List`, `DataFrame` は多くの共通するメンバー関数を持っている。
+なお、Rcpp では `Vector`, `List`, `DataFrame` は、どれもある種のベクトルとして実装されています。つまり、`Vector` は、スカラー値を要素とするベクトル、`DataFrame` は同じ長さの `Vector` オブジェクトを要素とするベクトル、`List` は任意のオブジェクトを要素とするベクトルです。そのため、`Vector`, `List`, `DataFrame` は多くの共通するメンバー関数を持っています。
