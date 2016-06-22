@@ -15,7 +15,7 @@ R、Rcpp、C++で利用できる基本的なデータ型の対応関係を「概
 |文字列|character|Character (String)|string|
 |日付|Date|Date|-|
 |日時|POSIXct|Datetime|-|
- 
+
 
 なぜわざわざ「概念的」という言葉を強調したかというと、正確には、Rcppでは `Logical`, `Integer`, `Numeric`, `Complex` については、スカラー値の型は用意されておらず、ベクター型や行列型（`NumericVector`, `NumericMatrix` など）のみが定義されている。一方、 `String`, `Date`, `Datetime` についてはスカラー型が定義されている。そのため、例えば `Numeric x;` というような変数 x を宣言することはできないが、`Date d;` という変数 d は宣言することができる。
 
@@ -46,12 +46,10 @@ IntegerMatrix
 NumericMatrix
 ComplexMatrix
 CharacterMatrix (StringMatrix)
-DateMatrix
-DatetimeMatrix
 ```
 
 
-### List, DataFrame 
+### List, DataFrame
 
 ```
 DataFrame
@@ -65,12 +63,3 @@ List
 ###Vector、DataFrame、List の共通性
 
 Rcpp においては、`Vector`, `List`, `DataFrame` は、どれもある種のベクターとして実装されている。つまり、`Vector` は、スカラー値を要素とするベクター、`DataFrame` は同じ長さの `Vector` を要素とするベクター、`List`は任意のオブジェクトを要素するベクターである。そのため、`Vector`, `List`, `DataFrame` は多くの共通するメンバー関数を持っている。
-
-
-
-
-
-
-
-
-
