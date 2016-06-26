@@ -41,7 +41,7 @@ R_NilValue
 
 ### NA
 
-型ごとにNA値が定義されている。
+型ごとにNA値が定義されています。
 
 ```
 NA_INTEGER
@@ -49,7 +49,7 @@ NA_REAL
 NA_STRING
 NA_LOGICAL
 ```
-各型のメソッド  `get_na()` を使うと、各型に対応したNA値を得ることができる。
+各型のメソッド  `get_na()` を使うと、各型に対応したNA値を得ることができます。
 
 ```
 IntegerVector::get_na()
@@ -162,10 +162,10 @@ LogicalVector rcpp_is_naC(NumericVector x) {
 
 ### Rcpp の NA NaN Inf を扱う際の注意点
 
-Rcppで定義された関数や演算子は、Rcpp の NA NaN Inf を適切に扱ってくれるが、標準C++の関数や演算子はその扱い方を必ずしも知らないので、注意が必要である。
+Rcppで定義された関数や演算子は、Rcpp の NA NaN Inf を適切に扱ってくれるが、標準C++の関数や演算子はその扱い方を必ずしも知らないので、注意が必要です。
 
 **double**
-`double` には元々 `nan` `inf` が定義されているので、Rcpp の `R_NaN` `R_PosInf`を代入すると `nan` `inf` がセットされる。`NA_REAL` は `nan ` に解釈される。
+`double` には元々 `nan` `inf` が定義されているので、Rcpp の `R_NaN` `R_PosInf`を代入すると `nan` `inf` がセットされます。`NA_REAL` は `nan ` に解釈されます。
 
 ```
 double double_na  = NA_REAL;    //nan
@@ -174,7 +174,7 @@ double double_inf = R_PosInf;   //inf
 ```
 
 
-**int** :  `int` には `nan` `inf` が定義されていない、そのため `int` に `NA_INTEGER` `R_NaN` `R_PosInf` を代入すると `int` の最小値 `-2147483648` が設定される。Rcpp で定義された演算では、`int` の最小値を`NA`として扱うが、標準C++ではただの数値として扱われる。
+**int** :  `int` には `nan` `inf` が定義されていない、そのため `int` に `NA_INTEGER` `R_NaN` `R_PosInf` を代入すると `int` の最小値 `-2147483648` が設定されます。Rcpp で定義された演算では、`int` の最小値を`NA`として扱うが、標準C++ではただの数値として扱われる。
 
 ```cpp
 int    int_na     = NA_INTEGER; //-2147483648
@@ -182,7 +182,7 @@ int    int_nan    = R_NaN;      //-2147483648
 int    int_inf    = R_PosInf;   //-2147483648
 ```
 
-下のコード例は、Rcppの演算子と標準C++の演算子における `NA_INTEGER` の扱いの違いを示している。
+下のコード例は、Rcppの演算子と標準C++の演算子における `NA_INTEGER` の扱いの違いを示しています。
 
 ```cpp
 // [[Rcpp::export]]
@@ -225,7 +225,7 @@ bool   bool_inf   = R_PosInf;   //true
 
 
 **string**
-Rcppの `String` は Rcpp で定義された型なので `NA_STRING` `R_NaN` `R_PosInf` を適切に扱うことができる。しかし、`std::string` にはこれらの値は代入できない。
+Rcppの `String` は Rcpp で定義された型なので `NA_STRING` `R_NaN` `R_PosInf` を適切に扱うことができます。しかし、`std::string` にはこれらの値は代入できない。
 
 ```
 String chr_na     = NA_STRING;  //"NA"

@@ -1,6 +1,6 @@
 # コンソール画面への出力
 
-メッセージやオブジェクトの値を画面に表示するためには `Rprintf()` か `Rcout` を用いる。エラー表示のためには `REprintf` か `Rcerr` を用いる。`Rprintf()`の使い方はC++標準にある `printf` と同じである。
+メッセージやオブジェクトの値を画面に表示するためには `Rprintf()` か `Rcout` を用います。エラー表示のためには `REprintf` か `Rcerr` を用います。`Rprintf()`の使い方はC++標準にある `printf` と同じです。
 
 ```cpp
 // [[Rcpp::export]]
@@ -15,8 +15,3 @@ void rprintf(NumericVector v){
   
 }
 ```
-
-
-
-http://gallery.rcpp.org/articles/using-rcout/
-https://cran.r-project.org/doc/manuals/R-exts.html#Printing

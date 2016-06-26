@@ -1,6 +1,6 @@
 # String
 
-`String` は、`CharacterVector`, `CharacterMatrix` の要素となるスカラー型である。
+`String` は、`CharacterVector`, `CharacterMatrix` の要素となるスカラー型です。
 
 ##作成
 
@@ -19,7 +19,7 @@ String s(char_vec, "UTF-8") ////encodingも指定する
 
 ##演算
 
-`String` には　`+=` 演算子が定義されている。文字列の後ろに、別の文字列を付加できる。 （`+`演算子は定義されていない）
+`String` には　`+=` 演算子が定義されています。文字列の後ろに、別の文字列を付加できます。 （`+`演算子は定義されていない）
 
 ```
 String s("A");
@@ -34,7 +34,7 @@ Rcout << s << endl; //"AB"
 
 この String オブジェクトの最初に見つけた文字列 str と一致する部分を 文字列 new_str に置き換える。
 
-単に置き換えた文字列を返すだけはなく、このオブジェクトの値を書き換えてしまうことに注意する。（このページの最後のコード例を参照）
+単に置き換えた文字列を返すだけはなく、このオブジェクトの値を書き換えてしまうことに注意します。（このページの最後のコード例を参照）
 
 #### replace_last( str, new_str) 
 
@@ -46,7 +46,7 @@ Rcout << s << endl; //"AB"
 
 #### push_back(str)
 
-この String オブジェクトの末尾に文字列 str を追加する。
+この String オブジェクトの末尾に文字列 str を追加します。
 
 
 #### push_back(str)

@@ -1,13 +1,13 @@
 # 標準 C++ のデータ構造を利用する
 
-標準C++には `vector` `list` `map` `set` などの様々なデータ構造が提供されている。それらは Rcpp のデータ構造にはない高度な機能を提供する。例えば、Rcpp の `Vector` には `push_back()` `push_front()` `insert()` `erase()` など `Vector` のサイズを変更する関数が提供されている。しかし、これらを実行すると、`Vector` 全体の値をコピーする処理が行われるためコストが大きい。標準C++のデータ構造では要素の追加・削除をより効率よく行うことができる。
+標準C++には `vector` `list` `map` `set` などの様々なデータ構造が提供されています。それらは Rcpp のデータ構造にはない高度な機能を提供します。例えば、Rcpp の `Vector` には `push_back()` `push_front()` `insert()` `erase()` など `Vector` のサイズを変更する関数が提供されています。しかし、これらを実行すると、`Vector` 全体の値をコピーする処理が行われるためコストが大きい。標準C++のデータ構造では要素の追加・削除をより効率よく行うことができます。
 
 
 
 
 ##データの変換
 
-Rcpp と 標準C++のデータ構造の変換は　`as()` と `wrap()` を用いる。
+Rcpp と 標準C++のデータ構造の変換は　`as()` と `wrap()` を用います。
 
 
 * `as()` : Rcpp型 を C++型 に変換する
@@ -51,7 +51,7 @@ void rcpp_as_wrap(){
 ```
 
 
-シーケンス・コンテナが入れ子になった2次元コンテナ は `DataFrame` や `List` と変換できる。
+シーケンス・コンテナが入れ子になった2次元コンテナ は `DataFrame` や `List` と変換できます。
 
 ```cpp
 // [[Rcpp::plugins("cpp11")]]
@@ -72,7 +72,7 @@ DataFrame std_vector_2d_DataFrame(){
 }
 ```
 
-`map<key, value>` は key を名前とした、名前付き Vector に変換される。
+`map<key, value>` は key を名前とした、名前付き Vector に変換されます。
 
 ```cpp
 //#include<map>
@@ -90,7 +90,7 @@ NumericVector std_map(){
 
 ## 標準 C++ データ構造を関数の引数や返値にする
 
-`as()` や　`wrap()` で変換可能な標準C++データ構造は Rcpp 関数の引数や返値にすることもできる。
+`as()` や　`wrap()` で変換可能な標準C++データ構造は Rcpp 関数の引数や返値にすることもできます。
 
 ```
 // [[Rcpp::plugins("cpp11")]]
@@ -111,7 +111,7 @@ vector<double> times_two_std_vector(vector<double> v){
 
 ## ユーザーが定義したクラスを Rcpp のデータ構造に変換する
 
-Rcpp がデフォルトでは対応していない C++ データ型を Rcpp のデータ構造に変換するために、ユーザーが `as()` や `wrap()` を独自に定義することもできる。詳細は、Rcppのビネット [Extending Rcpp](http://dirk.eddelbuettel.com/code/rcpp/Rcpp-extending.pdf) を参照すること。
+Rcpp がデフォルトでは対応していない C++ データ型を Rcpp のデータ構造に変換するために、ユーザーが `as()` や `wrap()` を独自に定義することもできます。詳細は、Rcppのビネット [Extending Rcpp](http://dirk.eddelbuettel.com/code/rcpp/Rcpp-extending.pdf) を参照すること。
 
 
 

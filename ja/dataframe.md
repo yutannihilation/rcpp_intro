@@ -2,8 +2,8 @@
 
 ##作成
 
-`DataFrame` の作成には `DataFrame::create()` を使用する。また、
-`DataFrame` の作成時にカラム名を指定する場合には、`Named("名前")` または `_["名前"]` を使用する。
+`DataFrame` の作成には `DataFrame::create()` を使用します。また、
+`DataFrame` の作成時にカラム名を指定する場合には、`Named("名前")` または `_["名前"]` を使用します。
 
 
 ```cpp
@@ -12,10 +12,10 @@ DataFrame df = DataFrame::create(v1, v2);
 //列に名前をつける
 DataFrame df = DataFrame::create(Named("V1") = v1 , _["V2"]=v2); 
 ```
-上の方法で `DataFrame` を作成すると、df のカラムには元の`Vector` の値がコピーされるのではなく、元の`Vector` への「参照」となる。`Vector` の値をコピーして`DataFrame` を作成する場合には `clone()` を使う。
+上の方法で `DataFrame` を作成すると、df のカラムには元の`Vector` の値がコピーされるのではなく、元の`Vector` への「参照」となります。`Vector` の値をコピーして`DataFrame` を作成する場合には `clone()` を使う。
 
 `clone()` を使った場合と使わなかった場合の違いを見るために、下のコード例を見て欲しい。コード例では、`Vector`  v から`DataFrame`  df を作成してる。その時、
-カラム V1 は v への参照、カラム V2 は `clone()` により v の値をコピーしている。その後、`Vector`  v に変更操作を行うと、データフレーム df のカラム V1 は変更されているが、V2は影響をうけないことがわかる。
+カラム V1 は v への参照、カラム V2 は `clone()` により v の値をコピーしています。その後、`Vector`  v に変更操作を行うと、データフレーム df のカラム V1 は変更されているが、V2は影響をうけないことがわかる。
 
  ```cpp
 // [[Rcpp::export]]
@@ -43,20 +43,20 @@ DataFrame rcpp_df(){
 ##要素へのアクセス
 
 
-`DataFrame` の特定のカラムにアクセスする場合には、カラムを一旦`Vector` に代入し、その`Vector` を介してアクセスする。
+`DataFrame` の特定のカラムにアクセスする場合には、カラムを一旦`Vector` に代入し、その`Vector` を介してアクセスします。
 
-カラムは、数値、文字列、により指定できる。
+カラムは、数値、文字列、により指定できます。
 
 ```
 NumericVector v1 = df[0];
 NumericVector v2 = df["V2"];
 ```
 
-`DataFrame` 作成の時と同様、上の方法で `Vector` に `DataFrame` のカラムを代入すると、`Vector` には カラムの値がコピーされるのではなく、カラムへの「参照」となる。そのため、`Vector` へ変更操作を行うと、df のカラムの内容も変更される。
+`DataFrame` 作成の時と同様、上の方法で `Vector` に `DataFrame` のカラムを代入すると、`Vector` には カラムの値がコピーされるのではなく、カラムへの「参照」となります。そのため、`Vector` へ変更操作を行うと、df のカラムの内容も変更されます。
 
 
 
-`DataFrame` のカラムの値コピーして `Vector` を作成たい場合には `clone()` を用いる。
+`DataFrame` のカラムの値コピーして `Vector` を作成たい場合には `clone()` を用います。
 
 ```
 NumericVector v1 = df[0]; // v は dfの0列目への「参照」
@@ -69,7 +69,7 @@ v2 = v2*2;                       //df[0] の値は変わらない
 
 ##メソッド
 
-`DataFrame` も `Vector` と同じメソッドを持っている。しかし、`Vector` の要素はスカラー値であるのに対して、 `DataFrame` の要素は `Vector` (カラム) なので、同じメソッドでも意味合いが少し変わる場合もある。
+`DataFrame` も `Vector` と同じメソッドを持っています。しかし、`Vector` の要素はスカラー値であるのに対して、 `DataFrame` の要素は `Vector` (カラム) なので、同じメソッドでも意味合いが少し変わる場合もあります。
 
 
 
@@ -106,22 +106,22 @@ v2 = v2*2;                       //df[0] の値は変わらない
 
 ####push_back(v)
 
-この `DataFrame`  の末尾に `Vector` v を追加する。
+この `DataFrame`  の末尾に `Vector` v を追加します。
 
 ####push_back( v, "col" )
 
 この `DataFrame`  の末尾に `Vector` v を追加する
-追加したカラムの名前を "col" とする。
+追加したカラムの名前を "col" とします。
 
 ####push_front(x)
 
-この `DataFrame`  の先頭に `Vector` v を追加する。
+この `DataFrame`  の先頭に `Vector` v を追加します。
 
 
 ####push_front( x, "x" )
 
 この `DataFrame`  の先頭に `Vector` v を追加する
-追加したカラムの名前を "col" とする。
+追加したカラムの名前を "col" とします。
 
 #### begin()
 

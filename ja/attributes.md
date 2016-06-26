@@ -1,6 +1,6 @@
 # 属性値
 
-Rcppのオブジェクトの属性値へアクセスするには、次のメソッドを用いる。
+Rcppのオブジェクトの属性値へアクセスするには、次のメソッドを用います。
 
 #### attr( name )
 
@@ -13,7 +13,7 @@ L.attr("class") = "my_class";
 
 #### attributeNames()
 
-オブジェクトが持っている属性の一覧を返す。返値の型は C++の`vector<string>` なので、`CharacterVector`に変換するためには `wrap()` を用いる必要がある。
+オブジェクトが持っている属性の一覧を返す。返値の型は C++の`vector<string>` なので、`CharacterVector`に変換するためには `wrap()` を用いる必要があります。
 
 ```
 CharacterVector ch = wrap(x.attributeNames());
@@ -34,7 +34,7 @@ NumericVector attribs() {
   //ベクターの要素の名前を設定する
   out.attr("names") = CharacterVector::create("a", "b", "c");
   
-  //新しい属性を作成して、その値をセットする。
+  //新しい属性を作成して、その値をセットします。
   out.attr("new_attribute") = "new_value";
   
   //このオブジェクト class を "new_class" に設定する
@@ -46,7 +46,7 @@ NumericVector attribs() {
 
 ##主要な属性値
 
-要素名など使用頻度の高い属性については専用のアクセス関数が用意されている。
+要素名など使用頻度の高い属性については専用のアクセス関数が用意されています。
 
 ```
 //要素名、これらは同義である

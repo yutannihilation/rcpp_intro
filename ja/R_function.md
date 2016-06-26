@@ -1,13 +1,13 @@
 # RcppからRの関数を利用する
 
-Rcpp 内で R の関数を利用するには、`Function`、`Environment`、`Language` 、を用いる３つの方法がある。
+Rcpp 内で R の関数を利用するには、`Function`、`Environment`、`Language` 、を用いる３つの方法があります。
 
 
 ##Function
 
-Functionクラスを使うと、R の関数を引数として渡して、Rcpp内で呼び出すことができる。Rの関数に与えた値がどの引数に渡されるかは、位置と名前に基づいて判断される。
+Functionクラスを使うと、R の関数を引数として渡して、Rcpp内で呼び出すことができます。Rの関数に与えた値がどの引数に渡されるかは、位置と名前に基づいて判断されます。
 
-引数の名前を指定して値を渡すには `Named()`または `_[]`を使用する。
+引数の名前を指定して値を渡すには `Named()`または `_[]`を使用します。
 `Name()`の使い方は、`Named("引数名", "値")` でも　`Named("引数名")=値`のどちらでも良い。
 
 
@@ -29,7 +29,7 @@ NumericVector my_fun(Function f){
 my_fun(rnorm)
 
 ```
-上の例では、`my_fun` に渡された R の関数の返り値は `NumericVector` であると仮定されている。しかし、どのような返値の関数が引数として渡されるのか決まっていない場合もある。そのような場合には、どんな型でも代入できる `RObject` か `List` に関数の返値を代入するようにする（下の例を参照）。
+上の例では、`my_fun` に渡された R の関数の返り値は `NumericVector` であると仮定されています。しかし、どのような返値の関数が引数として渡されるのか決まっていない場合もあります。そのような場合には、どんな型でも代入できる `RObject` か `List` に関数の返値を代入するようにする（下の例を参照）。
 
 **例：lapply を Rcpp で実装**
 
@@ -53,7 +53,7 @@ List rcpp_lapply(List input, Function f) {
 
 ##Environment
 
-Environmentクラスを利用するとパッケージ等の環境からオブジェクト（変数や関数）を取り出すことができる。
+Environmentクラスを利用するとパッケージ等の環境からオブジェクト（変数や関数）を取り出すことができます。
 
 ```cpp
 // [[Rcpp::export]]
@@ -81,7 +81,7 @@ rcpp_package_function(m)
 
 ##Language
 
-`Language` クラスを使うと、 R の `call()` と同様のやり方で R の関数を呼び出す事ができる。
+`Language` クラスを使うと、 R の `call()` と同様のやり方で R の関数を呼び出す事ができます。
 
 ```
 Language call("rnorm", 5, Named("sd", ), Named("mean", 10));

@@ -1,6 +1,6 @@
 # Date
 
-`Date` は、`DateVector`, `DateMatrix` の要素となる、スカラー型である。
+`Date` は、`DateVector`, `DateMatrix` の要素となる、スカラー型です。
 
 
 ##作成
@@ -15,7 +15,7 @@ Date( 2000, 1, 2); // 2000-01-02 Date(year, mon, day)
 ```
 ##演算子
 
-`Date` には 以下の演算子が定義されている。
+`Date` には 以下の演算子が定義されています。
 
 `+ - < > >= <= == !=`
 

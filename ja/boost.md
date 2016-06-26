@@ -1,13 +1,13 @@
 # Boost を利用する
 
-Boost ライブラリには標準 C++ よりもさらに先進的な機能が提供されている。
-Boost ライブラリのうち、ヘッダー・ファイル・オンリーで使えるものについては、R のパッケージ `BH` をインストールすることで Rcpp でも利用できるようになる。
+Boost ライブラリには標準 C++ よりもさらに先進的な機能が提供されています。
+Boost ライブラリのうち、ヘッダー・ファイル・オンリーで使えるものについては、R のパッケージ `BH` をインストールすることで Rcpp でも利用できるようになります。
 
 ```
 install.packages("BH")
 ```
 
-自分でインストールした Boost についても、ヘッダーとライブラリーへのパスを指定すれば利用できる。
+自分でインストールした Boost についても、ヘッダーとライブラリーへのパスを指定すれば利用できます。
 
 ```
 Sys.setenv("PKG_CXXFLAGS"="-std=c++11 -I/opt/local/include -L/opt/local/lib/")
@@ -81,7 +81,7 @@ test replications elapsed relative
 4        rnorm(n)          500   0.675    1.679
 ```
 
-C++11やBoost のネイティブ乱数生成器が早いが、Rcpp版も健闘している。どれも、ただのR関数よりは早い。
+C++11やBoost のネイティブ乱数生成器が早いが、Rcpp版も健闘しています。どれも、ただのR関数よりは早い。
 
 
 ```cpp
@@ -103,7 +103,7 @@ date::ymd_type ymd = d.year_month_day();
 return Rcpp::wrap(Rcpp::Date(ymd.year, ymd.month, ymd.day));
 }
 ```
-IMM date は、毎月の３番目の水曜日のことを指す。Boost には mon 月 の N 週目の M 曜日を返す関数がある。`nth_day_of_the_week_in_month(M, N, mon)`
+IMM date は、毎月の３番目の水曜日のことを指す。Boost には mon 月 の N 週目の M 曜日を返す関数があります。`nth_day_of_the_week_in_month(M, N, mon)`
 
 ```r
 getIMMDate(3, 2013)

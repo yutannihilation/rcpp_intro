@@ -2,9 +2,9 @@
 
 ## LogicalVector の正体
 
-C++ の論理値型は `bool` であるので、`LogicalVector` の要素の型も `bool` であると思うかもしれないが、実際には `int` 型である。(R でも論理ベクトルの実体は整数ベクトルである) なぜこのようになっているかというと `bool` で表現できるのは `true` と `false` だけであるが、R の論理ベクトルの要素の値には `TRUE`, `FALSE` だけではなく `NA` もあり得るためである。
+C++ の論理値型は `bool` であるので、`LogicalVector` の要素の型も `bool` であると思うかもしれないが、実際には `int` 型です。(R でも論理ベクトルの実体は整数ベクトルである) なぜこのようになっているかというと `bool` で表現できるのは `true` と `false` だけであるが、R の論理ベクトルの要素の値には `TRUE`, `FALSE` だけではなく `NA` もあり得るためです。
 
-Rcpp では `TRUE` は 1、`FALSE` は 0、`NA` は `NA_LOGICAL`（int の最小値）で表現されている。
+Rcpp では `TRUE` は 1、`FALSE` は 0、`NA` は `NA_LOGICAL`（int の最小値）で表現されています。
 
 |logical|Rcppの記号|int|bool|
 |:---:|:---:|:---:|:---:|
@@ -74,7 +74,7 @@ NA_LOGICAL -2147483648
 
 ## 論理演算
 
-LogicalVector の要素ごとの論理演算には演算子 `&`（論理積） `|`（論理和） `!`（論理否定）を用いる。
+LogicalVector の要素ごとの論理演算には演算子 `&`（論理積） `|`（論理和） `!`（論理否定）を用います。
 
 ```
 LogicalVector v1 = {1,1,0,0};
@@ -91,13 +91,13 @@ Rcout << res3 << "\n"; // 0 0 0 1
 
 ## LogicalVector を受け取る関数
 
-LogicalVector を受け取る関数には `all()` `any()` `ifelse()` がある。
+LogicalVector を受け取る関数には `all()` `any()` `ifelse()` があります。
 
 ### all() と any()
 
 `LogicalVector` v に対して、`all(v)` は、v の全ての要素が `TRUE` の時 `TRUE` を返す。`any(v)` は、v のいずれかのの要素が `TRUE` の時、`TRUE`を返す。
 
-`all()` と `any()` の返値の型は `bool` でも `int` でもなく `SingleLogicalResult` という特殊な型になっている。そのため `all()` や `any()` の返値を if 文の条件式として用いたり、bool 型に代入する場合には、`is_true()` `is_false()` `is_na()` を使って値を変換する必要がある。
+`all()` と `any()` の返値の型は `bool` でも `int` でもなく `SingleLogicalResult` という特殊な型になっています。そのため `all()` や `any()` の返値を if 文の条件式として用いたり、bool 型に代入する場合には、`is_true()` `is_false()` `is_na()` を使って値を変換する必要があります。
 
 ```cpp
 // [[Rcpp::export]]
@@ -128,7 +128,7 @@ List rcpp_logical_03(){
 
 ### ifelse()
 
-`ifelse(v, x1, x2)` は論理ベクター v を受け取り、v の要素が `TRUE` の時には x1 の対応する要素を, `FALSE` の時には x2 の対応する要素を返す。x1, x2 はベクターでもスカラーでも良いが、ベクターの場合はその長さは v と一致している必要がある。
+`ifelse(v, x1, x2)` は論理ベクター v を受け取り、v の要素が `TRUE` の時には x1 の対応する要素を, `FALSE` の時には x2 の対応する要素を返す。x1, x2 はベクターでもスカラーでも良いが、ベクターの場合はその長さは v と一致している必要があります。
 
 ```cpp
 // [[Rcpp::export]]
@@ -147,7 +147,7 @@ void rcpp_ifelse(){
 ```
 
 
-次のテーブルに R の 論理ベクトル (`logical`) の要素の値と C++ の `int` と `bool` の値の対応関係を示している。
+次のテーブルに R の 論理ベクトル (`logical`) の要素の値と C++ の `int` と `bool` の値の対応関係を示しています。
 
 
 

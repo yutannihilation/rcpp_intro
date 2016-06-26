@@ -1,10 +1,10 @@
 # Rのコード中にRcppのコードを埋め込む
 
-Rcppのコードをファイルに保存せずに、Rのコードの中で記述することもできる。そのためには `sourceCpp()` `cppFunction()` `evalCpp()` を使う。
+Rcppのコードをファイルに保存せずに、Rのコードの中で記述することもできます。そのためには `sourceCpp()` `cppFunction()` `evalCpp()` を使う。
 
 ###sourceCpp()
 
-sourceCpp() に対しては、Rcpp コードを記述したファイルへのパスを与える代わりに、RcppのコードをRの文字列として記述して与えることもできる。
+sourceCpp() に対しては、Rcpp コードを記述したファイルへのパスを与える代わりに、RcppのコードをRの文字列として記述して与えることもできます。
 
 ```R
 src<-
@@ -25,7 +25,7 @@ rcpp_sum(1:10)
 
 ###cppFunction()
 
-`cppFunction()`を使うと「単一のRcpp関数」を手軽に作成することができる。その際には `#include<Rcpp.h>`と`using namespase Rcpp`の記述を省略できる。
+`cppFunction()`を使うと「単一のRcpp関数」を手軽に作成することができます。その際には `#include<Rcpp.h>`と`using namespase Rcpp`の記述を省略できます。
 
 ```r
 src <-
@@ -43,7 +43,7 @@ rcpp_sum(1:10)
 
 ###evalCpp()
 
-`evalCpp()` を使うと手軽にRcppの式を評価することができる。
+`evalCpp()` を使うと手軽にRcppの式を評価することができます。
 
 ```r
 # double の最大値を調べる

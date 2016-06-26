@@ -2,7 +2,7 @@
 
 ## Rcppコードを記述する
 
-Rcppのコードをファイルに保存せずに、Rのコードの中で記述することもできる。`sourceCpp()` `cppFunction()` `evalCpp()` を使う。
+Rcppのコードをファイルに保存せずに、Rのコードの中で記述することもできます。`sourceCpp()` `cppFunction()` `evalCpp()` を使う。
 
 ###sourceCpp
 
@@ -25,7 +25,7 @@ rcpp_sum(1:10)
 
 ###cppFunction
 
-`cppFunction()` は、単一のRcpp関数を手軽に作成する方法を提供する。`cppFunction()`は、 R の文字列として保存された Rcpp のコードをコンパイルする。この時、`#include<Rcpp.h>`と`using namespase Rcpp`の記述を省略できる。
+`cppFunction()` は、単一のRcpp関数を手軽に作成する方法を提供します。`cppFunction()`は、 R の文字列として保存された Rcpp のコードをコンパイルします。この時、`#include<Rcpp.h>`と`using namespase Rcpp`の記述を省略できます。
 
 ```r
 src <-
@@ -55,9 +55,9 @@ evalCpp('std::numeric_limits<double>::max()')
 
 ##C++のソースにRのコードを埋め込む
 
-逆に Rcppのコード内に R のコードを記述することもできる。
+逆に Rcppのコード内に R のコードを記述することもできます。
 
-Rcpp コード内で `/*** R`で始まるコメントの内に R のコードを書くと、`sourceCpp()` した時に、それが実行される。・
+Rcpp コード内で `/*** R`で始まるコメントの内に R のコードを書くと、`sourceCpp()` した時に、それが実行されます。・
 
 
 ```cpp

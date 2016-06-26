@@ -1,6 +1,6 @@
 # Environment
 
-`Environment` を用いると環境中の変数や関数にアクセスすることができる。
+`Environment` を用いると環境中の変数や関数にアクセスすることができます。
 
 ##作成
 
@@ -15,18 +15,18 @@ Environment env("package:stats"); //パッケージの環境
 
 #### get(name)
 
-この環境から name で指定された名前のオブジェクトを取得する。
+この環境から name で指定された名前のオブジェクトを取得します。
 見つからない場合は R_NilValue (NULL) を返す。
 
 #### ls(all)
 
 この環境にあるオブジェクトの一覧を返す。
 
-論理値 all が true なら全てのオブジェクト、false なら名前が `.` から始まるオブジェクトは除外する。
+論理値 all が true なら全てのオブジェクト、false なら名前が `.` から始まるオブジェクトは除外します。
 
 #### find(name)
 
-この環境、および、この環境の（全ての）親環境から、name で指定された名前のオブジェクトを探して取得する。見つからない場合は "binding not found:" エラーが thow される。
+この環境、および、この環境の（全ての）親環境から、name で指定された名前のオブジェクトを探して取得します。見つからない場合は "binding not found:" エラーが thow されます。
 
 #### exists(name)
 
@@ -34,7 +34,7 @@ Environment env("package:stats"); //パッケージの環境
 
 #### assign( name, x )
 
-この環境にある name で指定された名前のオブジェクトに、x を代入する。成功した場合には true を返す。
+この環境にある name で指定された名前のオブジェクトに、x を代入します。成功した場合には true を返す。
 
 
 
@@ -44,39 +44,39 @@ Environment env("package:stats"); //パッケージの環境
 
 #### remove(name)
 
-この環境から name で指定された名前のオブジェクトを削除する。成功した場合には true を返す。
+この環境から name で指定された名前のオブジェクトを削除します。成功した場合には true を返す。
 
 #### lock(bindings = false)
 
-この環境をロックする。
+この環境をロックします。
 
-binding = true なら、この環境の binding もロックする。
+binding = true なら、この環境の binding もロックします。
 
 #### lockBinding(name)
 
-この環境にある name で指定された名前の binding をロックする。
+この環境にある name で指定された名前の binding をロックします。
 
 詳細は `?bindingIsLocked` を参照
 
-指定された binding が見つからない場合は `"no_such_binding"` を throw する。
+指定された binding が見つからない場合は `"no_such_binding"` を throw します。
 
 #### unlockBinding(name){
 
-この環境から name で指定された名前の binding のロックを解除する。
+この環境から name で指定された名前の binding のロックを解除します。
 
-指定された binding が見つからない場合は `"no_such_binding"` を throw する。
+指定された binding が見つからない場合は `"no_such_binding"` を throw します。
 
 #### bindingIsLocked(name)
 
 この環境にある name で指定された名前の binding がロックされているかどうか。
 
-指定された binding が見つからない場合は `"no_such_binding"` を throw する。
+指定された binding が見つからない場合は `"no_such_binding"` を throw します。
 
 #### bindingIsActive(name)
 
 この環境にある name で指定された名前の binding がアクティブかどうか。
 
-指定された binding が見つからない場合は `"no_such_binding"` を throw する。
+指定された binding が見つからない場合は `"no_such_binding"` を throw します。
 
 #### is_user_database()
 
@@ -88,7 +88,7 @@ binding = true なら、この環境の binding もロックする。
 
 #### new_child(hashed)
 
-この環境を親とした、新しい環境を作成する。
+この環境を親とした、新しい環境を作成します。
 
 hashed が true なら??
 
@@ -126,10 +126,10 @@ Rcpp パッケージの名前空間を返す。
 
 パッケージ名 package を指定して、その名前空間を得る。
 
-`namespace_env()`を使うと、export されていないパッケージ関数にもアクセスできる。
+`namespace_env()`を使うと、export されていないパッケージ関数にもアクセスできます。
 また、R であらかじめパッケージをロードしておく必要がない。
 
-指定されたパッケージが見つからない場合には、 `"no_such_namespace"`が throw される。
+指定されたパッケージが見つからない場合には、 `"no_such_namespace"`が throw されます。
 
 
 

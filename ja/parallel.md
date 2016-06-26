@@ -3,18 +3,18 @@
 公式サイト：http://rcppcore.github.io/RcppParallel/
 
 
-RcppParallel は Rcpp で並列プログラミングを可能にするパッケージ。バックエンドとして Windows, OS X, Linux では Intel Threaded Building Blocks (TBB) ライブラリ、その他のプラットフォームでは TinyThread ライブラリを用いている。
+RcppParallel は Rcpp で並列プログラミングを可能にするパッケージ。バックエンドとして Windows, OS X, Linux では Intel Threaded Building Blocks (TBB) ライブラリ、その他のプラットフォームでは TinyThread ライブラリを用いています。
 
 ##RcppParallelの並列化の特徴
 
-Rには既に他にも parallel や snow など、多くの並列化パッケージあるが、RcppParallel 並列化との間には重要な違いが存在する。
+Rには既に他にも parallel や snow など、多くの並列化パッケージあるが、RcppParallel 並列化との間には重要な違いが存在します。
 
-parallel や snow での並列化は **マルチプロセス** の方式であり、複数のRを別プロセスとして立ち上げて並列で実行する。そのため、元のRから並列計算を行うRにデータを転送する必要がある。１台のコンピュータでのみ並列計算を行う際にも並列プロセス間で　socket 通信を介してデータをコピーするため、データが大きい場合には転送に非常に時間がかかってしまう。
+parallel や snow での並列化は **マルチプロセス** の方式であり、複数のRを別プロセスとして立ち上げて並列で実行します。そのため、元のRから並列計算を行うRにデータを転送する必要があります。１台のコンピュータでのみ並列計算を行う際にも並列プロセス間で　socket 通信を介してデータをコピーするため、データが大きい場合には転送に非常に時間がかかってしまう。
 
-一方、RcppParallelでの並列化は **マルチスレッド** である。そのため、１台のコンピュータの複数コアでの並列計算しか行うことができない。しかし、並列スレッドは元のRとメモリ上のデータを共有できるため、データ転送のコストがかからない。そのため1台のPCしかない場合にはマルチスレッドのほうがアドバンテージは非常に大きくなる。
+一方、RcppParallelでの並列化は **マルチスレッド** です。そのため、１台のコンピュータの複数コアでの並列計算しか行うことができない。しかし、並列スレッドは元のRとメモリ上のデータを共有できるため、データ転送のコストがかからない。そのため1台のPCしかない場合にはマルチスレッドのほうがアドバンテージは非常に大きくなります。
 
 これまで、R や Rcpp のAPIを使ったマルチスレッド・プログラミングは技術的ハードルが高いため、使えるのはエキスパートに限られていた。しかし、RcppParallelを使うと、スレッド並列化に必要な処理
-を全て自動で行ってくれるので、ユーザーは実現したい処理の実装に集中できる。
+を全て自動で行ってくれるので、ユーザーは実現したい処理の実装に集中できます。
 
 
 ## インストール
@@ -32,7 +32,7 @@ Rcppソースに以下を追加
 
 ### parallelFor, parallelReduce
 
-RcppParallel は `parallelFor()` と `parallelReduce()` の２つの関数を提供する。
+RcppParallel は `parallelFor()` と `parallelReduce()` の２つの関数を提供します。
 
 ```cpp
 void parallelFor(std::size_t begin, std::size_t end, 
@@ -41,9 +41,9 @@ void parallelReduce(std::size_t begin, std::size_t end,
                         Reducer& reducer, std::size_t grainSize = 1)
 ```
 
-`parallelFor``parallelReduce` は `Vector`と `Matrix` の `begin` から `end-1` までの要素に対して `worker` `reducer` で定義された処理を並列で実行する。
+`parallelFor``parallelReduce` は `Vector`と `Matrix` の `begin` から `end-1` までの要素に対して `worker` `reducer` で定義された処理を並列で実行します。
 
-**parallelFor** は入力データの各要素と出力データの各要素が１対１で対応するような処理（sqrt() や log()）を並列化する場合に用いる。
+**parallelFor** は入力データの各要素と出力データの各要素が１対１で対応するような処理（sqrt() や log()）を並列化する場合に用います。
 
 ```
 //parallelForは次のような処理を並列化する
@@ -52,7 +52,7 @@ for(int i=begin; i<end; ++i){
 }
 ```
 
-**parallelReduce** は入力データの全要素を１つの値に集約するような処理（sum()やmean()）を並列化する場合に用いる。
+**parallelReduce** は入力データの全要素を１つの値に集約するような処理（sum()やmean()）を並列化する場合に用います。
 
 ```
 //parallelReduceは次のような処理を並列化する
@@ -61,23 +61,23 @@ for(int i=begin; i<end; ++i){
     output[i] = f(input[i])
 }
 ```
-現状の`RcppParallel(4.3.15)` では `parallelFor()` `parallelReduce()` は DataFrame のカラムや List の要素毎の並列化には対応していない。これを行うには TBB の機能用いて実装する必要がある。
+現状の`RcppParallel(4.3.15)` では `parallelFor()` `parallelReduce()` は DataFrame のカラムや List の要素毎の並列化には対応していない。これを行うには TBB の機能用いて実装する必要があります。
 
 
 ### RVector, RMatrix
 
-マルチスレッド処理では、入力データや出力データの同じ要素に対して、異なる並列スレッドが同時にアクセスすることを防ぐ "スレッドセーフ" なデータアクセスが必要がある。
+マルチスレッド処理では、入力データや出力データの同じ要素に対して、異なる並列スレッドが同時にアクセスすることを防ぐ "スレッドセーフ" なデータアクセスが必要があります。
 
-`RcppParallel` では Rcppの `Vector` や　`Matrix` に対してスレッドセーフにアクセスするためのラッパー `RVector` `RMatrix`を提供している。
+`RcppParallel` では Rcppの `Vector` や　`Matrix` に対してスレッドセーフにアクセスするためのラッパー `RVector` `RMatrix`を提供しています。
 
 
 
 ```cpp
-//整数ベクターを RVector<int> に変換する。
+//整数ベクターを RVector<int> に変換します。
 IntegerVector v_int;
 RVector<int> vp_int(v_int);
 
-//実数行列を Rmatrix<double> に変換する。
+//実数行列を Rmatrix<double> に変換します。
 NumericMatrix m_num;
 Rmatrix<double> mp_num(m_num);
 
@@ -85,14 +85,14 @@ Rmatrix<double> mp_num(m_num);
 
 ## Worker
 
-`parallelFor` `parallelReduce` で処理する内容は関数オブジェクトとして定義する。
+`parallelFor` `parallelReduce` で処理する内容は関数オブジェクトとして定義します。
 
-`parallelFor``parallelReduce` に渡す関数オブジェクトは `Worker` クラスを継承して作成する。
+`parallelFor``parallelReduce` に渡す関数オブジェクトは `Worker` クラスを継承して作成します。
 
 
 ## 例：parallelFor()
 
-`parallelFor` を使って、`Matrix` の各要素の平方根を計算する。
+`parallelFor` を使って、`Matrix` の各要素の平方根を計算します。
 http://gallery.rcpp.org/articles/parallel-matrix-transform/
 
 

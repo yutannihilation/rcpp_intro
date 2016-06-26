@@ -1,6 +1,6 @@
 # factor
 
-`factor` の実体は属性 `levels` が定義された `IntegerVector` である。
+`factor` の実体は属性 `levels` が定義された `IntegerVector` です。
 
 ```
 // factor の作成
