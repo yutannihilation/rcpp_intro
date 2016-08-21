@@ -189,6 +189,6 @@ int n = v.length();
 |`is_na(x)`|ベクトルの要素 x が `NA` である場合には `true` を返します。|
 |`create( x1, x2, ...)`|スカラー値 x1, x2, ...  を要素とするベクトルを作成します。指定できる引数の数は20個まで対応しています。|
 |`import( first_it , last_it )` |イテレーター `first_it`, `last_it` で指定された範囲の値で満たされたベクトルを作成します。|
-|`import_transform( first_it, last_it, func)`|イテレーター `first_it`, `last_it` で指定された範囲の値を、関数 `func` で変換した値で満たされたベクトルを作成します。|
+|`import_transform( first_it, last_it, func)`|イテレーター `first_it`, `last_it` で指定された範囲の値を、`func` で指定した関数で変換した値で満たされたベクトルを作成します。|
 
 
