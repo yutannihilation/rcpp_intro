@@ -1,6 +1,6 @@
 # Date
 
-`Date` は、`DateVector`, `DateMatrix` の要素となる、スカラー型です。
+`Date` は、`DateVector` の要素となる、スカラー型です。
 
 
 ##作成
