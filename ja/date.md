@@ -44,8 +44,17 @@ DateVector rcpp_date1(){
 
 
 ####getDay()
+
+
+
 ####getMonth()
+
+
+
 ####getYear()
+
+
+
 ####getWeekday()
 
 曜日を int で返す。
