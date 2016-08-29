@@ -29,6 +29,7 @@ Datetime は、日時を協定世界時(UTC) `1970-01-01 00:00:00` からの秒�
 
 
 ####getFractionalTimestamp()
+
 基準日からの秒数（実数値）。
 
 ####getMicroSeconds()
@@ -38,22 +39,39 @@ Datetime は、日時を協定世界時(UTC) `1970-01-01 00:00:00` からの秒�
 秒の小数点以下の値を 1/1000 秒単位で表記した値。 (0.1 sec = 100000 micro sec)
 
 ####getSeconds()
+
 世界協定時の秒
+
 ####getMinutes()
+
 世界協定時の分
+
 ####getHours()
+
 世界協定時の時
+
 ####getDay()
+
 世界協定時の日
+
 ####getMonth()
+
 世界協定時の月
+
 ####getYear()
+
 世界協定時の年
+
 ####getWeekday()
+
 世界協定時の曜日
+
 1=Sun 2=Mon 3=Tue 4=Wed 5=Thu 6=Sat
+
 ####getYearday()
+
 1月1日を1として、年初からの日数を整数で表した値。
+
 ####is_na()
 
 ##コード例
