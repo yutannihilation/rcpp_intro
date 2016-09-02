@@ -1,473 +1,451 @@
 # 確率分布
 
-Rcpp は R にある主要な全ての確率分布関数 (ここでは `d/p/q/r` 関数と表記する) を提供します。
+Rcpp は R にある主要な全ての確率分布関数を提供します。R と同じく各確率分布のそれぞれについて d p q r の文字から始まる４つの関数が定義されています。
 
-* d*: density function
-* p*: cumulative distribution function
-* q*: quantile function
-* r*: random generation
+確率分布 XXX に関する４つの関数
+
+* dXXX: 確率密度関数
+* pXXX: 累積分布関数
+* qXXX: 分位関数
+* rXXX: 乱数生成関数
 
 
-###Rcpp::d/p/q/r 関数の基本構造
+## 確率分布関数の基本構造
 
-下のコードは、d/p/q/r関数の基本構造を概念的に表したものです。実際には、`Rcpp::d/p/q/r` 関数はマクロを使って記述されているので、ソースコード中に `Rcpp::d/p/q/r` の定義はそのまま書かれていないが、通常のユーザーにとってはこのような形式の関数が定義されていると考えても差し支えはない。
+Rcpp では、同じ名前の確率分布関数が `R::` と `Rcpp::` の２つの名前空間で定義されています。これらの違いは、`Rcpp::` 名前空間で定義されている確率分布関数はベクトルを受け取りベクトルを返す（つまりベクトル化されている）一方、`R::` 名前空間の関数はスカラーを受け取りスカラーを返すということです。通常は `Rcpp::` 名前空間の関数を使えば良いでしょう。
 
+### `Rcpp::`名前空間の確率分布関数の基本構造
+
+基本的には `Rcpp::` 名前空間で定義されている確率分布関数は R にある確率分布関数と同じ機能を持っています。下にその基本構造を示します。実際には、`Rcpp::` 名前空間の確率分布関数はマクロを使って記述されているので、ソースコード中に `Rcpp::` 名前空間の確率分布関数の定義はそのまま書かれてはいないのですが、ユーザーにとってはこのような形式の関数が定義されていると考えて差し支えありません。
+
+なお、下のコードでは `par` で示されている分布パラメータ引数の数は確率分布の種類により異なります。
 
 ```cpp
-//分布パラメータ p0 の数は分布により異なります。
-NumericVector Rcpp::dXXX( NumericVector x, double p0, bool log = false)
-NumericVector Rcpp::pXXX( NumericVector x, double p0, bool lower = true, bool log = false)
-NumericVector Rcpp::qXXX( NumericVector p, double p0, bool lower = true, bool log = false)
-NumericVector Rcpp::rXXX(           int n, double p0)
+NumericVector Rcpp::dXXX( NumericVector x, double par, bool log = false )
+NumericVector Rcpp::pXXX( NumericVector x, double par, bool lower = true, bool log = false )
+NumericVector Rcpp::qXXX( NumericVector q, double par, bool lower = true, bool log = false )
+NumericVector Rcpp::rXXX(           int n, double par )
+```
+
+### `R::`名前空間の確率分布関数の基本構造
+
+下に `R::` 名前空間で定義されている確率分布関数の基本構造を示します。これは double を受け取り double を返すという点以外は `Rcpp::` 名前空間で定義されている確率分布関数と基本的には同じ機能を持っています。しかし、引数のデフォルト値は与えられていないので明示的に与える必要があります。
+
+```cpp
+double R::dXXX( double x, double par, int log )
+double R::pXXX( double x, double par, int lower, int log )
+double R::qXXX( double q, double par, int lower, int log )
+double R::rXXX( double par )
+```
+
+##確率分布関数の一覧
+
+以下では Rcpp が提供する確率分布関数の一覧を示します。ここでは確率分布の分布パラメータの名前は R の確率分布関数と一致させているので、詳しくは R のヘルプを参照してください。
+
+- [一様分布](#一様分布)
+- [正規分布](#正規分布)
+- [ポワソン分布](#ポワソン分布)
+- [t分布](#t分布)
+- [ベータ分布](#ベータ分布)
+- [一様分布](#一様分布)
+- [一様分布](#一様分布)
+- [一様分布](#一様分布)
+- [一様分布](#一様分布)
+- [一様分布](#一様分布)
+- [一様分布](#一様分布)
+- [一様分布](#一様分布)
+- [一様分布](#一様分布)
+- [一様分布](#一様分布)
+- [一様分布](#一様分布)
+- [一様分布](#一様分布)
+- [一様分布](#一様分布)
+- 
+
+
+
+
+
+### 一様分布
+
+次は一様分布の関数です。
+
+```cpp
+Rcpp::dunif( x, min = 0.0, max = 1.0, log = false )
+Rcpp::punif( x, min = 0.0, max = 1.0, lower = true, log = false )
+Rcpp::qunif( q, min = 0.0, max = 1.0, lower = true, log = false )
+Rcpp::runif( n, min = 0.0, max = 1.0 )
+
+R::dunif( x, min, max, log )
+R::punif( x, min, max, lower, log )
+R::qunif( q, min, max, lower, log )
+R::runif( min, max )
 ```
 
 
+### 正規分布
 
-`Rcpp::` 名前空間で定義されている d/p/q/r 関数は、基本的にRの関数と同じ機能を持っています。しかし、分布パラメータ引数（上のコードでは `p0` で示されている）のデフォルト値は与えられていないので、ユーザーが値を明示的に与える必要があります。
-
-
-
-###R::d/p/q/r関数
-
-Rcppでは、同じ名前の d/p/q/r関数が `R::` と `Rcpp::` の２つの名前空間で定義されています。これらの違いは、
-`Rcpp::` 名前空間で定義されている d/p/q/r 関数はベクトル化されているが、一方、`R::`名前空間の関数はベクトル化されていないということ。一般的には `Rcpp::` の関数を使えば良いだろう。
-
-`R::` 名前空間で定義されている d/p/q/r 関数の基本構造
+次は正規分布の関数です。
 
 ```cpp
-double R::dXXX(double x, double p0, int lg)			
-double R::pXXX(double x, double p0, int lt, int lg)		
-double R::qXXX(double p, double p0, int lt, int lg)		
-double R::rXXX(double p0)
+Rcpp::dnorm( x, mean = 0.0, sd = 1.0, log = false )
+Rcpp::pnorm( x, mean = 0.0, sd = 1.0, lower = true, log = false )
+Rcpp::qnorm( q, mean = 0.0, sd = 1.0, lower = true, log = false )
+Rcpp::rnorm( n, mean = 0.0, sd = 1.0 )
+
+R::dnorm( x, mean, sd, log )
+R::pnorm( x, mean, sd, lower, log )
+R::qnorm( q, mean, sd, lower, log )
+R::rnorm( mean, sd )
 ```
 
-## d/p/q/r関数
+### ポワソン分布
 
-以下ではRcppが提供するd/p/q/r関数の形式を模式的に示す。
-
-[beta](#beta),
-[binom](#binom),
-[cauchy](#cauchy),
-[chisq](#chisq),
-[exp](#exp),
-[f](#f),
-[gamma](#gamma),
-[geom](#geom),
-[hyper](#hyper),
-[lnorm](#lnorm),
-[logis](#logis),
-[nbeta](#nbeta),
-[nbinom_mu](#nbinom_mu),
-[nbinom](#nbinom),
-[nchisq](#nchisq),
-[nf](#nf),
-[norm](#norm),
-[nt](#nt),
-[pois](#pois),
-[t](#t),
-[unif](#unif),
-[weibull](#weibull)
-
-
-###beta
-
-Rcpp::
-
+次はポワソン分布の関数です。
 
 ```cpp
-NumericVector dbeta(NumericVector x, double a, double b, bool log = false)
-NumericVector pbeta(NumericVector q, double p, double q, bool lower = true, bool log = false)
-NumericVector qbeta(NumericVector p, double p, double q, bool lower = true, bool log = false)
-NumericVector rbeta( int n, double a, double b);
+Rcpp::dpois( x, lambda, log = false )
+Rcpp::ppois( x, lambda, lower = true, log = false )
+Rcpp::qpois( q, lambda, lower = true, log = false )
+Rcpp::rpois( n, lambda )
+
+R::dpois( x, lambda, log )
+R::ppois( x, lambda, lower, log )
+R::qpois( q, lambda, lower, log )
+R::rpois( lambda )
 ```
 
-R::
+### t分布
+
+次はt分布の関数です。これは R のt分布関数において非心パラメータ `ncp` にゼロを設定した場合に相当します。
 
 ```cpp
-double dbeta(double x, double a, double b, int lg)         
-double pbeta(double x, double p, double q, int lt, int lg) 
-double qbeta(double a, double p, double q, int lt, int lg) 
-double rbeta(double a, double b) 
+Rcpp::dt( x, df, log = false )
+Rcpp::pt( x, df, lower = true, log = false )
+Rcpp::qt( q, df, lower = true, log = false )
+Rcpp::rt( n, df )
+
+R::dt( x, df, log )
+R::pt( x, df, lower, log )
+R::qt( q, df, lower, log )
+R::rt( df )
 ```
 
+### ベータ分布
 
+次はベータ分布の関数です。これは R のベータ分布関数において非心パラメータ `ncp` にゼロを設定した場合に相当します。
 
-###binom
-
-Rcpp::
 ```cpp
-NumericVector dbinom(NumericVector x, double n, double p, bool log = false)
-NumericVector pbinom(NumericVector x, double n, double p, bool lower = true, bool log = false)
-NumericVector qbinom(NumericVector p, double n, double m, bool lower = true, bool log = false)
-NumericVector rbinom( int n, double nin, double pp )
+Rcpp::dbeta( x, shape1, shape2, log = false )
+Rcpp::pbeta( x, shape1, shape2, lower = true, log = false )
+Rcpp::qbeta( q, shape1, shape2, lower = true, log = false )
+Rcpp::rbeta( n, shape1, shape2)
+
+R::dbeta( x, shape1, shape2, log )
+R::pbeta( x, shape1, shape2, lower, log )
+R::qbeta( q, shape1, shape2, lower, log )
+R::rbeta( shape1, shape2 )
 ```
-R::
+
+### 二項分布
+
+次は二項分布の関数です。
+
 ```cpp
-double dbinom(double x, double n, double p, int lg)	  	
-double pbinom(double x, double n, double p, int lt, int lg)  
-double qbinom(double p, double n, double m, int lt, int lg)  
-double rbinom(double n, double p)
+Rcpp::dbinom( x, size, prob, log = false )
+Rcpp::pbinom( x, size, prob, lower = true, log = false )
+Rcpp::qbinom( q, size, prob, lower = true, log = false )
+Rcpp::rbinom( n, size, prob )
+
+R::dbinom( x, size, prob, log )
+R::pbinom( x, size, prob, lower, log )
+R::qbinom( q, size, prob, lower, log )
+R::rbinom( size, prob )
 ```
 
 
+### カイ２乗分布
 
-###cauchy
+次はカイ２乗分布の関数です。これは R のカイ２乗分布関数において非心パラメータ `ncp` にゼロを設定した場合に相当します。
 
-Rcpp::
 ```cpp
-NumericVector dcauchy(NumericVector x, double lc = 0.0, double sl = 1.0, bool log = false)
-NumericVector pcauchy(NumericVector x, double lc = 0.0, double sl = 1.0, bool lower = true, bool log = false)
-NumericVector qcauchy(NumericVector p, double lc = 0.0, double sl = 1.0, bool lower = true, bool log = false)
-NumericVector rcauchy( int n, double location = 0.0, double scale = 1.0)
-```
-R::
-```cpp
-double dcauchy(double x, double lc, double sl, int lg)		
-double pcauchy(double x, double lc, double sl, int lt, int lg)	
-double qcauchy(double p, double lc, double sl, int lt, int lg)	
-double rcauchy(double lc, double sl)
+Rcpp::dchisq( x, df, log = false )
+Rcpp::pchisq( x, df, lower = true, log = false )
+Rcpp::qchisq( q, df, lower = true, log = false )
+Rcpp::rchisq( n, df)
+
+R::dchisq( x, df, log )
+R::pchisq( x, df, lower, log )
+R::qchisq( q, df, lower, log )
+R::rchisq( df )
 ```
 
+### 指数分布
 
+次は指数分布の関数です。
 
-
-###chisq
-Rcpp::
 ```cpp
-NumericVector dchisq(NumericVector x, double df, bool log = false)
-NumericVector pchisq(NumericVector x, double df, bool lower = true, bool log = false)
-NumericVector qchisq(NumericVector p, double df, bool lower = true, bool log = false)
-NumericVector rchisq(int n, double df)    
+Rcpp::dexp( x, rate = 1.0, log = false )
+Rcpp::pexp( x, rate = 1.0, lower = true, log = false )
+Rcpp::qexp( q, rate = 1.0, lower = true, log = false )
+Rcpp::rexp( n, rate = 1.0)
+
+R::dexp( x, rate, log )
+R::pexp( x, rate, lower, log )
+R::qexp( q, rate, lower, log )
+R::rexp( rate )
 ```
 
-R::
+### F分布
+
+次はF分布の関数です。これは R のF分布関数において非心パラメータ `ncp` にゼロを設定した場合に相当します。
+
 ```cpp
-double dchisq(double x, double df, int lg)          
-double pchisq(double x, double df, int lt, int lg)  
-double qchisq(double p, double df, int lt, int lg)  
-double rchisq(double df)    
+Rcpp::df( x, df1, df2, log = false )
+Rcpp::pf( x, df1, df2, lower = true, log = false )
+Rcpp::qf( q, df1, df2, lower = true, log = false )
+Rcpp::rf( n, df1, df1 )
+
+R::df( x, df1, df2, log )
+R::pf( x, df1, df2, lower, log )
+R::qf( q, df1, df2, lower, log )
+R::rf( df1, df2 )
 ```
 
+### コーシー分布
 
-
-###exp
-
-Rcpp::
+次はコーシー分布の関数です。
 
 ```cpp
-NumericVector dexp(double x, double rate = 1.0, bool log = false)
-NumericVector pexp(double x, double rate = 1.0, bool lower = true, bool log = false)
-NumericVector qexp(double p, double rate = 1.0, bool lower = true, bool log = false)
-NumericVector rexp(   int n, double rate = 1.0)
+Rcpp::dcauchy( x, location = 0.0, scale = 1.0, log = false )
+Rcpp::pcauchy( x, location = 0.0, scale = 1.0, lower = true, log = false )
+Rcpp::qcauchy( q, location = 0.0, scale = 1.0, lower = true, log = false )
+Rcpp::rcauchy( n, location = 0.0, scale = 1.0)
+
+R::dcauchy( x, location, scale, log )
+R::pcauchy( x, location, scale, lower, log )
+R::qcauchy( q, location, scale, lower, log )
+R::rcauchy( location, scale )
 ```
 
-R::
-```cpp
-double dexp(double x, double sl, int lg)		
-double pexp(double x, double sl, int lt, int lg)	
-double qexp(double p, double sl, int lt, int lg)	
-double rexp(double sl)	
+### ガンマ分布
 
-```
-
-
-
-###f
-
-Rcpp::
-```cpp
-NumericVector df(NumericVector x, double df1, double df2, bool log = false)
-NumericVector pf(NumericVector x, double df1, double df2, bool lower = true, bool log = false)
-NumericVector qf(NumericVector p, double df1, double df2, bool lower = true, bool log = false)
-NumericVector rf( int n, double n1, double n2 )
-```
-R::
-```cpp
-double df(double x, double df1, double df2, int lg)		
-double pf(double x, double df1, double df2, int lt, int lg)	
-double qf(double p, double df1, double df2, int lt, int lg)	
-double rf(double df1, double df2)
-```
-
-###gamma
-
-Rcpp::
-```cpp
-NumericVector dgamma(NumericVector x, double shp, double scl = 1.0, bool log = false)
-NumericVector pgamma(NumericVector x, double alp, double scl = 1.0, bool lower = true, bool log = false)
-NumericVector qgamma(NumericVector p, double alp, double scl = 1.0, bool lower = true, bool log = false)
-NumericVector rgamma( int n, double a, double scale = 1.0)
-```
-R::
-```cpp
-double dgamma(double x, double shp, double scl, int lg)	   
-double pgamma(double x, double alp, double scl, int lt, int lg) 
-double qgamma(double p, double alp, double scl, int lt, int lg) 
-double rgamma(double a, double scl)  
-```
-
-###geom
-Rcpp::
-```cpp
-NumericVector dgeom(NumericVector x, double p, bool log = false)
-NumericVector pgeom(NumericVector x, double p, bool lower = true, bool log = false)
-NumericVector qgeom(NumericVector p, double pb, bool lower = true, bool log = false)
-NumericVector rgeom( int n, double p )
-```
-R::
-```cpp
-double dgeom(double x, double p, int lg)		
-double pgeom(double x, double p, int lt, int lg)	
-double qgeom(double p, double pb, int lt, int lg)	
-double rgeom(double p)
-```
-
-###hyper
-Rcpp::
-```cpp
-NumericVector dhyper(NumericVector x, double r, double b, double n, bool log = false)
-NumericVector phyper(NumericVector x, double r, double b, double n, bool lower = true, bool log = false)
-NumericVector qhyper(NumericVector p, double r, double b, double n, bool lower = true, bool log = false)
-NumericVector rhyper( int n, double nn1, double nn2, double kk )
-```
-R::
-```cpp
-double dhyper(double x, double r, double b, double n, int lg)		
-double phyper(double x, double r, double b, double n, int lt, int lg)	
-double qhyper(double p, double r, double b, double n, int lt, int lg)	
-double rhyper(double r, double b, double n)					
-
-```
-###lnorm
-
-
-Rcpp::
-```cpp
-NumericVector dlnorm(NumericVector x, double ml = 0.0, double sl = 1.0, bool log = false)
-NumericVector plnorm(NumericVector x, double ml = 0.0, double sl = 1.0, bool lower = true, bool log = false)
-NumericVector qlnorm(NumericVector p, double ml = 0.0, double sl = 1.0, bool lower = true, bool log = false)
-NumericVector rlnorm( int n, double meanlog = 0.0, double sdlog = 1.0)
-```
-R::
-```cpp
-double dlnorm(double x, double ml, double sl, int lg)	 
-double plnorm(double x, double ml, double sl, int lt, int lg) 
-double qlnorm(double p, double ml, double sl, int lt, int lg) 
-double rlnorm(double ml, double sl)    
-```
-
-###logis
-Rcpp::
-```cpp
-NumericVector dlogis(NumericVector x, double lc = 0.0, double sl = 1.0, bool log = false)
-NumericVector plogis(NumericVector x, double lc = 0.0, double sl = 1.0, bool lower = true, bool log = false)
-NumericVector qlogis(NumericVector p, double lc = 0.0, double sl = 1.0, bool lower = true, bool log = false)
-NumericVector rlogis( int n, double location, double scale )
-NumericVector rlogis( int n, double location /*, double scale =1.0 */ )
-NumericVector rlogis( int n /*, double location [=0.0], double scale =1.0 */ )
-```
-R::
-```cpp
-double dlogis(double x, double lc, double sl, int lg)		
-double plogis(double x, double lc, double sl, int lt, int lg)	
-double qlogis(double p, double lc, double sl, int lt, int lg)	
-double rlogis(double lc, double sl)			
-```
-
-###nbeta
-Rcpp::
-```cpp
-NumericVector dnbeta(double x, double a, double b, double ncp, , bool log = false);
-NumericVector pnbeta(double x, double a, double b, double ncp,  bool lower = true, bool log = false);
-NumericVector qnbeta(double p, double a, double b, double ncp, bool lower = true, bool log = false);
-//NumericVector rnbeta( int n, double a, double b, double np) //not defined
-```
-R::
-```cpp
-double dnbeta(double x, double a, double b, double ncp, int lg)		
-double pnbeta(double x, double a, double b, double ncp, int lt, int lg)	
-double qnbeta(double p, double a, double b, double ncp, int lt, int lg)	
-double rnbeta(double a, double b, double np)
-```
-
-
-
-###nbinom_mu
-Rcpp::
-```cpp
-NumericVector dnbinom_mu(NumericVector x, double sz, double mu, bool log = false)
-NumericVector pnbinom_mu(NumericVector x, double sz, double mu, bool lower = true, bool log = false)
-NumericVector qnbinom_mu(NumericVector x, double sz, double mu, bool lower = true, bool log = false)
-NumericVector rnbinom_mu( int n, double siz, double mu )
-```
-R::
-```cpp
-double dnbinom_mu(double x, double sz, double mu, int lg)		
-double pnbinom_mu(double x, double sz, double mu, int lt, int lg)	
-double qnbinom_mu(double x, double sz, double mu, int lt, int lg)	
-double rnbinom_mu(double sz, double mu)
-```
-
-###nbinom
-Rcpp::
-```cpp
-NumericVector dnbinom(NumericVector x, double sz, double pb, bool log = false)
-NumericVector pnbinom(NumericVector x, double sz, double pb, bool lower = true, bool log = false)
-NumericVector qnbinom(NumericVector p, double sz, double pb, bool lower = true, bool log = false)
-NumericVector rnbinom( int n, double siz, double prob )
-NumericVector rnbinom_mu( int n, double siz, double mu )
-```
-R::
-```cpp
-double dnbinom(double x, double sz, double pb, int lg)		
-double pnbinom(double x, double sz, double pb, int lt, int lg)	
-double qnbinom(double p, double sz, double pb, int lt, int lg)	
-double rnbinom(double sz, double pb)
-```
-
-###nchisq
-Rcpp::
-```cpp
-NumericVector dnchisq(NumericVector x, double df, double ncp, bool log = false)
-NumericVector pnchisq(NumericVector x, double df, double ncp, bool lower = true, bool log = false)
-NumericVector qnchisq(NumericVector p, double df, double ncp, bool lower = true, bool log = false)
-NumericVector rnchisq( int n, double df, double lambda )
-NumericVector rnchisq( int n, double df /*, double lambda = 0.0 */ )
-```
-R::
-```cpp
-double dnchisq(double x, double df, double ncp, int lg)         
-double pnchisq(double x, double df, double ncp, int lt, int lg) 
-double qnchisq(double p, double df, double ncp, int lt, int lg) 
-double rnchisq(double df, double lb)   
-```
-
-###nf
-Rcpp::
+次はガンマ分布の関数です。
 
 ```cpp
-NumericVector dnf(NumericVector x, double df1, double df2, double ncp, bool log = false)
-NumericVector pnf(NumericVector x, double df1, double df2, double ncp, bool lower = true, bool log = false)
-NumericVector qnf(NumericVector p, double df1, double df2, double ncp, bool lower = true, bool log = false)
+Rcpp::dgamma( x, shape, scale = 1.0, log = false )
+Rcpp::pgamma( x, shape, scale = 1.0, lower = true, log = false )
+Rcpp::qgamma( q, shape, scale = 1.0, lower = true, log = false )
+Rcpp::rgamma( n, shape, scale = 1.0 )
+
+R::dgamma( x, shape, scale, log )
+R::pgamma( x, shape, scale, lower, log )
+R::qgamma( q, shape, scale, lower, log )
+R::rgamma( shape, scale )
 ```
-R::
+
+### 幾何分布
+
+次は幾何分布の関数です。
+
 ```cpp
-double dnf(double x, double df1, double df2, double ncp, int lg)		
-double pnf(double x, double df1, double df2, double ncp, int lt, int lg)	
-double qnf(double p, double df1, double df2, double ncp, int lt, int lg)
+Rcpp::dgeom( x, prob, log = false )
+Rcpp::pgeom( x, prob, lower = true, log = false )
+Rcpp::qgeom( q, prob, lower = true, log = false )
+Rcpp::rgeom( n, prob )
+
+R::dgeom( x, prob, log )
+R::pgeom( x, prob, lower, log )
+R::qgeom( q, prob, lower, log )
+R::rgeom( prob )
+```
+
+### 超幾何分布
+
+次は超幾何分布の関数です。
+
+```cpp
+Rcpp::dhyper( x, m, n, k, log = false )
+Rcpp::phyper( x, m, n, k, lower = true, log = false )
+Rcpp::qhyper( q, m, n, k, lower = true, log = false )
+Rcpp::rhyper( nn, m, n, k )
+
+R::dhyper( x, m, n, k, log )
+R::phyper( x, m, n, k, lower, log )
+R::qhyper( q, m, n, k, lower, log )
+R::rhyper( m, n, k )
+```
+
+### 対数正規分布
+
+次は対数正規分布の関数です。
+
+```cpp
+Rcpp::dlnorm( x, meanlog = 0.0, sdlog = 1.0, log = false )
+Rcpp::plnorm( x, meanlog = 0.0, sdlog = 1.0, lower = true, log = false )
+Rcpp::qlnorm( q, meanlog = 0.0, sdlog = 1.0, lower = true, log = false )
+Rcpp::rlnorm( n, meanlog = 0.0, sdlog = 1.0 )
+
+R::dlnorm( x, meanlog, sdlog, log )
+R::plnorm( x, meanlog, sdlog, lower, log )
+R::qlnorm( q, meanlog, sdlog, lower, log )
+R::rlnorm( meanlog, sdlog )
+```
+
+### ロジスティック分布
+
+次はロジスティック分布の関数です。
+
+```cpp
+Rcpp::dlogis( x, location = 0.0, scale = 1.0, log = false )
+Rcpp::plogis( x, location = 0.0, scale = 1.0, lower = true, log = false )
+Rcpp::qlogis( q, location = 0.0, scale = 1.0, lower = true, log = false )
+Rcpp::rlogis( n, location = 0.0, scale = 1.0 )
+
+R::dlogis( x, location, scale, log )
+R::plogis( x, location, scale, lower, log )
+R::qlogis( q, location, scale, lower, log )
+R::rlogis( location, scale )
+```
+
+### 負の二項分布（成功確率を指定するバージョン）
+
+次は負の二項分布の関数です。パラメータとして１試行あたりの成功確率 prob を指定します。
+
+```cpp
+Rcpp::dnbinom( x, size, prob, log = false )
+Rcpp::pnbinom( x, size, prob, lower = true, log = false )
+Rcpp::qnbinom( q, size, prob, lower = true, log = false )
+Rcpp::rnbinom( n, size, prob )
+
+R::dnbinom( x, size, prob, log )
+R::pnbinom( x, size, prob, lower, log )
+R::qnbinom( q, size, prob, lower, log )
+R::rnbinom( size, prob )
+```
+
+### 負の二項分布（平均値を指定するバージョン）
+
+次は負の二項分布の関数です。パラメータとして分布の平均値 mu を指定します。
+
+```cpp
+Rcpp::dnbinom_mu( x, size, mu, log = false )
+Rcpp::pnbinom_mu( x, size, mu, lower = true, log = false )
+Rcpp::qnbinom_mu( q, size, mu, lower = true, log = false )
+Rcpp::rnbinom_mu( n, size, mu )
+
+R::dnbinom_mu( x, size, mu, log )
+R::pnbinom_mu( x, size, mu, lower, log )
+R::qnbinom_mu( q, size, mu, lower, log )
+R::rnbinom_mu( size, mu )
+```
+
+### 非心ベータ分布
+
+次は非心ベータ分布の関数です。これは R のベータ分布関数において非心パラメータ ncp に値を設定する場合に相当します。
+
+```cpp
+Rcpp::dnbeta( x, shape1, shape2, ncp, log = false );
+Rcpp::pnbeta( x, shape1, shape2, ncp, lower = true, log = false );
+Rcpp::qnbeta( q, shape1, shape2, ncp, lower = true, log = false );
+// Rcpp::rnbeta関数は存在しません
+
+R::dnbeta( x, shape1, shape2, ncp, log )
+R::pnbeta( x, shape1, shape2, ncp, lower, log )
+R::qnbeta( q, shape1, shape2, ncp, lower, log )
+R::rnbeta( shape1, shape2, ncp )
+```
+
+### 非心カイ２乗分布
+
+次は非心ベータ分布の関数です。これは R のカイ２乗分布関数において非心パラメータ ncp に値を設定する場合に相当します。
+
+```cpp
+Rcpp::dnchisq( x, df, ncp, log = false )
+Rcpp::pnchisq( x, df, ncp, lower = true, log = false )
+Rcpp::qnchisq( q, df, ncp, lower = true, log = false )
+Rcpp::rnchisq( n, df, ncp = 0.0 )
+
+R::dnchisq( x, df, ncp, log )
+R::pnchisq( x, df, ncp, lower, log )
+R::qnchisq( q, df, ncp, lower, log )
+R::rnchisq( df, ncp )
+```
+
+### 非心F分布
+
+次は非心F分布の関数です。これは R のF分布関数において非心パラメータ ncp に値を設定する場合に相当します。
+
+```cpp
+Rcpp::dnf( x, df1, df2, ncp, log = false )
+Rcpp::pnf( x, df1, df2, ncp, lower = true, log = false )
+Rcpp::qnf( q, df1, df2, ncp, lower = true, log = false )
+// Rcpp::rnf関数は存在しません
+
+R::dnf( x, df1, df2, ncp, log )
+R::pnf( x, df1, df2, ncp, lower, log )
+R::qnf( q, df1, df2, ncp, lower, log )
+// R::rnf関数は存在しません
 ```
 
 
-###norm
-Rcpp::
+### 非心t分布
+
+次は非心t分布の関数です。これは R のt分布関数において非心パラメータ ncp に値を設定する場合に相当します。
+
 ```cpp
-NumericVector dnorm(NumericVector x, double mu = 0.0, double sigma = 1.0, bool log = false)
-NumericVector pnorm(NumericVector x, double mu = 0.0, double sigma = 1.0, bool lower = true, bool log = false)
-NumericVector qnorm(NumericVector p, double mu = 0.0, double sigma = 1.0, bool lower = true, bool log = false)
-NumericVector rnorm( int n, double mean 0.0, double sd = 1.0)
-```
-R::
-```cpp
-double dnorm(double x, double mu, double sigma, int lg)
-double pnorm(double x, double mu, double sigma, int lt, int lg)
-double qnorm(double p, double mu, double sigma, int lt, int lg)
-double rnorm(double mu, double sigma)
+Rcpp::dnt( x, df, ncp, log = false  )
+Rcpp::pnt( x, df, ncp, lower = true, log = false  )
+Rcpp::qnt( q, df, ncp, lower = true, log = false  )
+
+R::dnt( x, df, ncp, log )
+R::pnt( x, df, ncp, lower, log )
+R::qnt( q, df, ncp, lower, log )
 ```
 
+### ワイブル分布
 
-
-
-###nt
-Rcpp::
+次はワイブル分布の関数です。
 
 ```cpp
-NumericVector dnt(NumericVector x, double df, double ncp, int lg)		
-NumericVector pnt(NumericVector x, double df, double ncp, int lt, int lg)	
-NumericVector qnt(NumericVector p, double df, double ncp, int lt, int lg)
-```
-R::
-```cpp
-double dnt(double x, double df, double ncp, int lg)		
-double pnt(double x, double df, double ncp, int lt, int lg)	
-double qnt(double p, double df, double ncp, int lt, int lg)	
+Rcpp::dweibull( x, shape, scale = 1.0, log = false  )
+Rcpp::pweibull( x, shape, scale = 1.0, lower = true, log = false  )
+Rcpp::qweibull( q, shape, scale = 1.0, lower = true, log = false  )
+Rcpp::rweibull( n, shape, scale = 1.0 )
+
+R::dweibull( x, shape, scale, log )
+R::pweibull( x, shape, scale, lower, log )
+R::qweibull( q, shape, scale, lower, log )
+R::rweibull( shape, scale )
 ```
 
-###pois
-Rcpp::
-```cpp
-NumericVector dpois(NumericVector x, double lb, bool log = false)
-NumericVector ppois(NumericVector x, double lb, bool lower = true, bool log = false)
-NumericVector qpois(NumericVector p, double lb, bool lower = true, bool log = false)
-NumericVector rpois( int n, double mu )
-```
-R::
-```cpp
-double dpois(double x, double lb, int lg)		
-double ppois(double x, double lb, int lt, int lg)	
-double qpois(double p, double lb, int lt, int lg)	
-double rpois(double mu)	
-```
+### ウィルコクソン符号順位検定統計量の分布
 
-###t
-Rcpp::
+次はウィルコクソン符号順位検定統計量の分布の関数です。
+
 ```cpp
-NumericVector dt(NumericVector x, double n, bool log = false)
-NumericVector pt(NumericVector x, double n, bool lower = true, bool log = false)
-NumericVector qt(NumericVector p, double n, bool lower = true, bool log = false)
-NumericVector rt( int n, double df )
-```
-R::
-```cpp
-double dt(double x, double n, int lg)			
-double pt(double x, double n, int lt, int lg)		
-double qt(double p, double n, int lt, int lg)		
-double rt(double n)		
+// Rcpp::dsignrank関数は存在しません
+// Rcpp::psignrank関数は存在しません
+// Rcpp::qsignrank関数は存在しません
+rsignrank( nn, n )
+
+R::dsignrank( x, n, log )
+R::psignrank( x, n, lower, log )
+R::qsignrank( q, n, lower, log )
+R::rsignrank( n )
 ```
 
-###unif
-Rcpp::
-```cpp
-NumericVector dunif(NumericVector x, double a = 0.0, double b = 1.0, bool log = false)
-NumericVector punif(NumericVector x, double a = 0.0, double b = 1.0, bool lower = true, bool log = false)
-NumericVector qunif(NumericVector p, double a = 0.0, double b = 1.0, bool lower = true, bool log = false)
-NumericVector runif( int n, double min = 0.0, double max = 1.0)
-```
-R::
-```cpp
-double dunif(double x, double a, double b, int lg)
-double punif(double x, double a, double b, int lt, int lg)
-double qunif(double p, double a, double b, int lt, int lg)
-double runif(double a, double b)
-```
+### ウィルコクソンの順位和検定統計量の分布
 
-
-###weibull
-Rcpp::
+次はウィルコクソンの順位和検定統計量の分布の関数です。
 
 ```cpp
-NumericVector dweibull(NumericVector x, double sh, double sl = 1.0, int lg)	
-NumericVector pweibull(NumericVector x, double sh, double sl = 1.0, int lt, int lg)	
-NumericVector qweibull(NumericVector p, double sh, double sl = 1.0, int lt, int lg)	
-NumericVector rweibull( int n, double shape, double scale  = 1.0)
-```
-R::
-```cpp
-double dweibull(double x, double sh, double sl, int lg)		
-double pweibull(double x, double sh, double sl, int lt, int lg)	
-double qweibull(double p, double sh, double sl, int lt, int lg)	
-double rweibull(double sh, double sl)
-```
+// Rcpp::dwilcox関数は存在しません
+// Rcpp::pwilcox関数は存在しません
+// Rcpp::qwilcox関数は存在しません
+Rcpp::rwilcox( nn, m, n );
 
-
-###signrank
-
-```cpp
-NumericVector Rcpp::rsignrank( int n, double nn );
-
-```
-
-###wilcox
-
-```cpp
-NumericVector Rcpp::rwilcox( int n, double mm, double nn );
+R::dwilcox( x, m, n, log )
+R::pwilcox( x, m, n, lower, log )
+R::qwilcox( q, m, n, lower, log )
+R::rwilcox( m, n )
 ```
