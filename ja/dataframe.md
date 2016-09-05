@@ -96,16 +96,15 @@ Rcpp では、`DataFrame` や `List` は、ある種のベクトルとして実�
 
 ####assign( first_it, last_it)
 
-イテレーター first_it, last_it で指定された範囲のカラムを、この `DataFrame` に代入する
+イテレーター first_it, last_it で指定された範囲のカラムを、この `DataFrame` に代入します。
 
 ####push_back(v)
 
 この `DataFrame`  の末尾に `Vector` v を追加します。
 
-####push_back( v, "col" )
+####push_back( v, name )
 
-この `DataFrame`  の末尾に `Vector` v を追加する
-追加したカラムの名前を "col" とします。
+この `DataFrame`  の末尾に `Vector` v を追加します。 追加したカラムの名前を文字列 name で指定します。
 
 ####push_front(x)
 
