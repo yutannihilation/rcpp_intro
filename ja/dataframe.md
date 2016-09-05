@@ -2,32 +2,34 @@
 
 ##作成
 
-`DataFrame` の作成には `DataFrame::create()` を使用します。また、
-`DataFrame` の作成時にカラム名を指定する場合には、`Named("名前")` または `_["名前"]` を使用します。
+`DataFrame` の作成には `DataFrame::create()` を使用します。また、 `DataFrame` の作成時にカラム名を指定する場合には、`Named("名前")` または `_["名前"]` を使用します。
 
 
 ```cpp
-// Vector v1, v2 から DataFrame df を作成
-DataFrame df = DataFrame::create(v1, v2); 
-//列に名前をつける
-DataFrame df = DataFrame::create(Named("V1") = v1 , _["V2"]=v2); 
+// Vector v1, v2 から DataFrame df を作成します
+DataFrame df = DataFrame::create(v1, v2);
+//列に名前をつける場合
+DataFrame df = DataFrame::create(Named("V1") = v1 , _["V2"]=v2);
 ```
-上の方法で `DataFrame` を作成すると、df のカラムには元の`Vector` の値がコピーされるのではなく、元の`Vector` への「参照」となります。`Vector` の値をコピーして`DataFrame` を作成する場合には `clone()` を使う。
+`DataFrame::create()` で `DataFrame` を作成すると、カラムには元の `Vector` の要素の値が複製されるのではなく、元の `Vector` への「参照」となります。そのため、元の `Vector` の値を変更すると `DataFrame` の値も変更されます。そうならないように `Vector` の要素の値を複製して`DataFrame` のカラムを作成する場合には `clone()` 関数を使います。
 
-`clone()` を使った場合と使わなかった場合の違いを見るために、下のコード例を見て欲しい。コード例では、`Vector`  v から`DataFrame`  df を作成してる。その時、
-カラム V1 は v への参照、カラム V2 は `clone()` により v の値をコピーしています。その後、`Vector`  v に変更操作を行うと、データフレーム df のカラム V1 は変更されているが、V2は影響をうけないことがわかる。
+`clone()` 関数を使った場合と使わなかった場合の違いを見るために、下のコード例を見てください。コード例では、`Vector` v から`DataFrame` df を作成しています。そこでは、カラム V1 は v への参照、カラム V2 は `clone()` 関数により v の値を複製しています。その後、`Vector`  v に変更操作を行うと、データフレーム df のカラム V1 は変更されていますが、V2 は影響を受けないことがわかります。
 
- ```cpp
+
+``` cpp
 // [[Rcpp::export]]
 DataFrame rcpp_df(){
-  NumericVector v = NumericVector::create(1,2);
-  DataFrame df = DataFrame::create( Named("V1") = v,
-                                    Named("V2") = clone(v)
-                                    );
-  v = v*2;
-  return df;
+    // ベクトル v を作成します
+    NumericVector v = {1,2};
+    // データフレムを作成します
+    DataFrame df = DataFrame::create( Named("V1") = v,
+                                      Named("V2") = clone(v));
+    // ベクトル v を変更します                                
+    v = v*2;
+    return df;
 }
 ```
+
 実行結果
 
 ```
