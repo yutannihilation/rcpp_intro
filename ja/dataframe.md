@@ -45,66 +45,58 @@ DataFrame rcpp_df(){
 ##要素へのアクセス
 
 
-`DataFrame` の特定のカラムにアクセスする場合には、カラムを一旦`Vector` に代入し、その`Vector` を介してアクセスします。
-
-カラムは、数値、文字列、により指定できます。
+`DataFrame` の特定のカラムにアクセスする場合には、カラムを一旦 `Vector` に代入し、その`Vector` を介してアクセスします。ベクトルの要素の指定の場合と同様に、`DataFrame` のカラムは、数値ベクトル（カラム番号）、文字列ベクトル（カラム名）、論理値ベクトルにより指定できます。
 
 ```
 NumericVector v1 = df[0];
 NumericVector v2 = df["V2"];
 ```
 
-`DataFrame` 作成の時と同様、上の方法で `Vector` に `DataFrame` のカラムを代入すると、`Vector` には カラムの値がコピーされるのではなく、カラムへの「参照」となります。そのため、`Vector` へ変更操作を行うと、df のカラムの内容も変更されます。
+`DataFrame` 作成の時と同様に、上の方法で `Vector` に `DataFrame` のカラムを代入すると、`Vector` には カラムの値がコピーされるのではなく、カラムへの「参照」となります。そのため、`Vector` へ変更操作を行うと、df のカラムの内容も変更されます。
 
-
-
-`DataFrame` のカラムの値コピーして `Vector` を作成たい場合には `clone()` を用います。
+元の `DataFrame` の値が変更されないようにカラムの値コピーして `Vector` を作成たい場合には `clone()` 関数を用います。
 
 ```
-NumericVector v1 = df[0]; // v は dfの0列目への「参照」
-v1 = v1*2;                //df[0] の値が2倍になる
+NumericVector v1 = df[0]; // v1 は dfの 0 列目への「参照」となります
+v1 = v1*2;                // v1 の値を変更すると df[0] の値も変更されます
 
-NumericVector v2 = clone(df[0]); //df[0]の値をコピーする
-v2 = v2*2;                       //df[0] の値は変わらない
+NumericVector v2 = clone(df[0]); // v2 には df[0] の要素の値を複製します
+v2 = v2*2;                       // v2 を変更しても df[0] の値は変わりません
 ```
 
 
-##メソッド
 
-`DataFrame` も `Vector` と同じメソッドを持っています。しかし、`Vector` の要素はスカラー値であるのに対して、 `DataFrame` の要素は `Vector` (カラム) なので、同じメソッドでも意味合いが少し変わる場合もあります。
+##メンバ関数
 
+Rcpp では、`DataFrame` や `List` は、ある種のベクトルとして実装されています。つまり、`Vector` は、スカラー値を要素とするベクトル、`DataFrame` は同じ長さの `Vector` を要素とするベクトルです。そのため、`DataFrame` は `Vector` 共通するメンバ関数を多く持っています。
 
 
 #### length() size()
 
-列数
+列数を返します。
 
 
 ####nrows()
 
-行数
+行数を返します。
 
 ####names()
 
-カラム名
+カラム名を文字列ベクトルで返します。
 
-####offset(str)
+####offset(name) findName(name)
 
-カラム名が str であるカラムのインデックスint
+文字列 name で指定された名前のカラムの列番号を返します。
+
 
 ####fill(v)
 
-この `DataFrame` の全てのカラムを `Vector`  v で埋める ???
-
-
-####sort()
-
-この `DataFrame` をソートした`Vector` を返す ???
+この `DataFrame` の全てのカラムを `Vector`  v で満たします。
 
 
 ####assign( first_it, last_it)
 
-イテレーター first_it, last_it で指定された範囲のカラムを、この`DataFrame` に代入する
+イテレーター first_it, last_it で指定された範囲のカラムを、この `DataFrame` に代入する
 
 ####push_back(v)
 
