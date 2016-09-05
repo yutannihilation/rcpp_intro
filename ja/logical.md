@@ -2,7 +2,7 @@
 
 ## LogicalVector の正体
 
-C++ の論理値型は `bool` であるので、`LogicalVector` の要素の型も `bool` であると思うかもしれないが、実際には `int` 型です。(R でも論理ベクトルの実体は整数ベクトルである) なぜこのようになっているかというと `bool` で表現できるのは `true` と `false` だけであるが、R の論理ベクトルの要素の値には `TRUE`, `FALSE` だけではなく `NA` もあり得るためです。
+C++ の論理値型は `bool` であるので、`LogicalVector` の要素の型も `bool` であると思うかもしれないが、実際には `int` 型です。(R でも論理ベクトルの実体は整数ベクトルである) なぜこのようになっているかというと `bool` で表現できるのは `true` と `false` の２つだけですが、R の論理ベクトルの要素の値には `TRUE`, `FALSE`,`NA` の３つがあり得るためです。
 
 Rcpp では `TRUE` は 1、`FALSE` は 0、`NA` は `NA_LOGICAL`（int の最小値）で表現されています。
 
@@ -14,28 +14,28 @@ Rcpp では `TRUE` は 1、`FALSE` は 0、`NA` は `NA_LOGICAL`（int の最小
 
 ## LogicalVector の要素の評価
 
-`LogicalVector` の要素の値を、そのまま if 文の条件式として使用してはならない。なぜなら、C++ の `bool` 型は 0 以外の値を全て `true` と評価するので、`LogicalVector` の `NA`（`NA_LOGICAL`） は `true` と評価されてしまう。
+`LogicalVector` の要素の値を、そのまま if 文の条件式として使用してはいけません。なぜなら、C++ の  if 文の条件式は式の値を`bool` 型として評価するのですが、 `bool` 型は 0 以外の値を全て `true` と評価するので、`LogicalVector` の `NA`（`NA_LOGICAL`） は `true` と評価されてしまうためです。
 
- `LogicalVector` の要素の値を if 文で評価する方法については、次のコード例を参考にして欲しい。
+ `LogicalVector` の要素の値を if 文で評価する方法については、次のコード例を参考にしてください。
 
 ```
 // [[Rcpp::export]]
 LogicalVector rcpp_logical(){
   
-  // NA を含む整数ベクトル
+  // NA を含む整数ベクトルを作成します
   IntegerVector x = {1,2,3,4,NA_INTEGER};
   
-  // 比較演算の結果は LogicalVector となる
+  // 比較演算の結果は LogicalVector となります
   LogicalVector v = (x >= 3); 
   
   // LogicalVector の要素を直接 if 文の条件式で使うと
-  // NA_LOGICAL は TRUE と評価されてしまう
+  // NA_LOGICAL は TRUE と評価されてしまいます
   for(int i=0; i<v.size();++i) {
     if(v[i]) Rprintf("v[%i] is evaluated as true.\n",i);
     else Rprintf("v[%i] is evaluated as false.\n",i);
   } 
   
-  // LogicalVector の要素の評価する
+  // LogicalVector の要素の評価します
   for(int i=0; i<v.size();++i) {
     if(v[i]==TRUE) Rprintf("v[%i] is TRUE.\n",i);
     else if (v[i]==FALSE) Rprintf("v[%i] is FALSE.\n",i);
@@ -43,7 +43,7 @@ LogicalVector rcpp_logical(){
     else Rcout << "v[" << i << "] is not 1\n";
   }
   
-  // TRUE FALSE NA_LOGICAL の値を表示
+  // TRUE FALSE NA_LOGICAL の値を表示します
   Rcout << "TRUE " << TRUE << "\n";
   Rcout << "FALSE " << FALSE << "\n";
   Rcout << "NA_LOGICAL " << NA_LOGICAL << "\n";
