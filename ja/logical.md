@@ -161,7 +161,7 @@ NumericVector   res8 = ifelse( v1>v2, num_v1, num_v2);
 CharacterVector res9 = ifelse( v1>v2, chr_v1, chr_v2);
 ```
 
-（注）：`Rf_mkChar()` はC言語の文字列型 (char*) を`CHARSXP`（CharacterVector` の要素の型）に変換する関数です。
+（注）：`Rf_mkChar()` はC言語の文字列型 (`char*`) を `CHARSXP` （`CharacterVector` の要素の型）に変換する関数です。
 
 
 
