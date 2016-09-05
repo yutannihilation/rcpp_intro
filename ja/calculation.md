@@ -58,7 +58,8 @@ LogicalVector res = ( x + y ) >= ( x*x ) ;
 LogicalVector res = ( x + y ) == ( x*x ) ;
 ```
 
-また、`!` 演算子は論理値を反転します
+また、`!` 演算子は論理値を反転します。
+
 ```
 LogicalVector res = ! ( x < y );
 ```
