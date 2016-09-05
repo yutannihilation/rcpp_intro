@@ -95,9 +95,11 @@ LogicalVector を受け取る関数には `all()` `any()` `ifelse()` があり�
 
 ### all() と any()
 
-`LogicalVector` v に対して、`all(v)` は、v の全ての要素が `TRUE` の時 `TRUE` を返す。`any(v)` は、v のいずれかのの要素が `TRUE` の時、`TRUE`を返す。
+`LogicalVector` v に対して、`all(v)` は、v の全ての要素が `TRUE` の時 `TRUE` を返します。`any(v)` は、v のいずれかのの要素が `TRUE` の時、`TRUE`を返します。
 
-`all()` と `any()` の返値の型は `bool` でも `int` でもなく `SingleLogicalResult` という特殊な型になっています。そのため `all()` や `any()` の返値を if 文の条件式として用いたり、bool 型に代入する場合には、`is_true()` `is_false()` `is_na()` を使って値を変換する必要があります。
+`all()` 関数や `any()` 関数の返値を if 文の条件式としてそのまま用いることはできません。これは `all()` 関数と `any()` 関数の返値の型は `SingleLogicalResult` という型になっているためです。`all()` 関数や `any()` 関数の返値を if 文の条件式として用いるためには関数 `is_true()` `is_false()` `is_na()` を使って返値を `bool` 型に変換します。
+
+下のコード例では、関数 `all()` と `any()` の返値を if 文の条件式として使うときの方法を示します。この例では、全ての if 文の条件式は真となります、そして、`all()`, `any()` の返値を表示します。
 
 ```cpp
 // [[Rcpp::export]]
@@ -105,11 +107,10 @@ List rcpp_logical_03(){
   LogicalVector v1 = LogicalVector::create(1,1,1,NA_LOGICAL);
   LogicalVector v2 = LogicalVector::create(0,1,0,NA_LOGICAL);
   
-  // NA を含む LogicalVector に対する
-  // all(), any() の挙動は R と同じ
-  LogicalVector lv1 = all( v1 ); //NA
-  LogicalVector lv2 = all( v2 ); //FALSE
-  LogicalVector lv3 = any( v2 ); //TRUE 
+  // NA を含む LogicalVector に対する all(), any() の挙動は R と同じです
+  LogicalVector lv1 = all( v1 );   // NA
+  LogicalVector lv2 = all( v2 );   // FALSE
+  LogicalVector lv3 = any( v2 ); // TRUE 
   
   // bool に代入する場合
   bool b1 = is_true ( all(v1) );  // false
@@ -117,7 +118,6 @@ List rcpp_logical_03(){
   bool b3 = is_na   ( all(v1) );  // true
 
   // if 文の条件式で用いる場合
-  //if(all( v2 )){       // 直接 if の条件式に入れるとエラー
   if(is_na(all( v1 ))) { // OK 
     Rcout << "all( v1 ) is NA\n";
   }
@@ -128,60 +128,40 @@ List rcpp_logical_03(){
 
 ### ifelse()
 
-`ifelse(v, x1, x2)` は論理ベクター v を受け取り、v の要素が `TRUE` の時には x1 の対応する要素を, `FALSE` の時には x2 の対応する要素を返す。x1, x2 はベクターでもスカラーでも良いが、ベクターの場合はその長さは v と一致している必要があります。
+`ifelse(v, x1, x2)` は論理ベクター v を受け取り、v の要素が `TRUE` の時には x1 の対応する要素を, `FALSE` の時には x2 の対応する要素を返します。 x1, x2 はベクターでもスカラーでも良いですが、ベクターの場合にはその長さは v と一致している必要があります。
 
 ```cpp
-// [[Rcpp::export]]
-void rcpp_ifelse(){
-  NumericVector   v1  = NumericVector::create(1,2,3,4,5);
-  NumericVector   v2  = NumericVector::create(2,1,4,3,5);
-  
-  NumericVector res1 = ifelse(v1 > v2, 1, 0);
-  NumericVector res2 = ifelse(v1 > v2, v1, 0);
-  NumericVector res3 = ifelse(v1 > v2, v1, v2);
-  
-  Rcout << "res1 : " << res1 << "\n"; // 0 1 0 1 0
-  Rcout << "res2 : " << res2 << "\n"; // 0 2 0 4 0
-  Rcout << "res3 : " << res3 << "\n"; // 2 2 4 4 5
-}
+NumericVector v1;
+NumericVector v2;
+
+//ベクトルの要素数
+int n = v1.length();
+
+// x1, x2 が スカラー, スカラーの場合
+IntegerVector res1     = ifelse( v1>v2, 1, 0);
+NumericVector res2     = ifelse( v1>v2, 1.0, 0.0);
+//CharacterVector res3 = ifelse( v1>v2, "T", "F"); // 対応していない
+
+// ifelse()が文字列スカラーには対応していないので
+// 同等の結果を得るためには要素の値が全て同じである文字列ベクトルを用います
+CharacterVector chr_v1 = rep(CharacterVector("T"), n);
+CharacterVector chr_v2 = rep(CharacterVector("F"), n);
+CharacterVector res3   = ifelse( v1>v2, chr_v1, chr_v2);
+
+// x1, x2 が ベクトル, スカラーの場合
+IntegerVector int_v1, int_v2;
+NumericVector num_v1, num_v2;
+IntegerVector   res4 = ifelse( v1>v2, int_v1, 0);
+NumericVector   res5 = ifelse( v1>v2, num_v1, 0.0);
+CharacterVector res6 = ifelse( v1>v2, chr_v1, Rf_mkChar("F")); //（注）
+
+// x1, x2 が ベクトル, ベクトルの場合
+IntegerVector   res7 = ifelse( v1>v2, int_v1, int_v2);
+NumericVector   res8 = ifelse( v1>v2, num_v1, num_v2);
+CharacterVector res9 = ifelse( v1>v2, chr_v1, chr_v2);
 ```
 
+（注）：`Rf_mkChar()` はC言語の文字列型 (char*) を`CHARSXP`（CharacterVector` の要素の型）に変換する関数です。
 
-次のテーブルに R の 論理ベクトル (`logical`) の要素の値と C++ の `int` と `bool` の値の対応関係を示しています。
-
-
-
-```cpp
-// [[Rcpp::export]]
-List rcpp_logical_01(){
-
-  // int 型で初期化
-  LogicalVector v1 =
-      LogicalVector::create(0,1,-1,2,NA_LOGICAL); 
-  // bool 型で初期化
-  LogicalVector v2 =
-      LogicalVector::create(true,false);
-  
-  // Rcout で値を表示させると
-  // LogicalVector の要素は int であることがわかる
-  Rcout << "v1 : " << v1 << "\n";
-  Rcout << "v2 : " << v2 << "\n";  
-  
-  return List::create(v1, v2);
-}
-```
-
-実行結果
-
-```
-> rcpp_logical_01()
-v1 : 0 1 -1 2 -2147483648
-v2 : 1 0
-[[1]]
-[1] FALSE  TRUE  TRUE  TRUE    NA
-
-[[2]]
-[1]  TRUE FALSE
-```
 
 
