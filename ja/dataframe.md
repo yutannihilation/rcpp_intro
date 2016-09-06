@@ -88,10 +88,14 @@ Rcpp では、`DataFrame` や `List` は、ある種のベクトルとして実�
 
 文字列 name で指定された名前のカラムの列番号を返します。
 
+####findName(name)
+
+文字列 name で指定された名前のカラムの列番号を返します。
+
 
 ####fill(v)
 
-この `DataFrame` の全てのカラムを `Vector`  v で満たします。
+この `DataFrame` の全てのカラムを `Vector` v で満たします。
 
 
 ####assign( first_it, last_it)
@@ -117,49 +121,35 @@ Rcpp では、`DataFrame` や `List` は、ある種のベクトルとして実�
 
 #### begin()
 
-この `DataFrame` の先頭カラムへのイテレータを返す。
+この `DataFrame` の先頭カラムへのイテレータを返します。
 
 #### end()
 
-この `DataFrame` の末尾へのイテレータを返す。
+この `DataFrame` の末尾へのイテレータを返します。
 
-#### insert( it, v)
+#### insert( it, v )
 
-この `DataFrame` の、イテレータ it で示された位置に``Vector` ` v を追加し、その要素へのイテレータを返す。
+この `DataFrame` の、イテレータ it で示された位置に``Vector` ` v を追加し、その要素へのイテレータを返します。
 
 #### erase(i)
 
-この `DataFrame` の i番目のカラムを削除し、削除後の同じ位置へのイテレータを返す。
+この `DataFrame` の i 番目のカラムを削除し、削除した直後のカラムへのイテレータを返す。
 
 ####erase(it)
-イテレータ itで指定されたカラムを削除し、削除後の同じ位置の要素へのイテレータを返す。
+イテレータ itで指定されたカラムを削除し、削除した直後のカラムへのイテレータを返します。
 
 ####erase(first_i, last_i)
 
-first_i番目 から last_i番目 までのカラムを削除し、削除後の同じ位置へのインデックスを返す。
+first_i 番目 から last_i -1 番目 までのカラムを削除し、削除した直後のカラムへのイテレータを返します。
 
 
 #### erase(first_it, last_it)
 
-first_it から last_it で指定されるカラムを削除し、削除後の同じ位置へのイテレータを返す。
+first_it から last_it -1 で指定されるカラムまでを削除し、削除した直後のカラムへのイテレータを返します。
 
-#### update(df)
+#### containsElementNamed(name)
 
-この `DataFrame` の内容を 他の `DataFrame`  df と同じにする
-
-#### containsElementNamed(str)
-
-この`DataFrame`が str で指定された名前の要素を持っているかどうかを返す
-
-####findName(str)
-
-指定された名前の（最初の）カラムのインデックスを返す。見つからなかったら -1 を返す。
-
-####eval()
-グローバル環境でこの`DataFrame`を評価した結果を返す
-
-####eval(env)
-環境 env でこの`DataFrame`を評価した結果を返す
+この `DataFrame` が文字列 name で指定された名前のカラムを持っている場合には true を返します。
 
 ####inherits(str)
 
