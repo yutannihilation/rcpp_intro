@@ -82,24 +82,35 @@ String オブジェクトの文字列を C 言語の文字列定数（const char
 
 ### コード例
 
+以下のコードでは、"abcdabcd" という文字列に対して、"ab" を "AB" に置換する処理を以下の3通りの方法で実行しています。
+　(1) "ab" が初めて出現する箇所でのみ置換 (`replace_first()` メンバ関数)
+　(2) "ab" が最後に出現する箇所でのみ置換 (`replace_last()` メンバ関数)
+　(3) "ab" が出現するすべての箇所で置換 (`replace_all()` メンバ関数)
+
+なお、メンバ関数 `replace_first()`, `replace_last()`, `replace_all()` は単に文字を置き換えた文字列を返すわけではなく、このオブジェクトの値をそのものを書き換えます。
+
 ```
 // [[Rcpp::export]]
+void rcpp_replace(){
+    //"ab" が初めて出現する箇所でのみ置換します
+    String s("abcdabcd");
+    s.replace_first("ab", "AB");
+    Rcout << s.get_cstring() << "\n"; // ABcdabcd
 
-void rcpp_string(){
+    //"ab" が最後に出現する箇所でのみ置換します
+    s="abcdabcd";
+    s.replace_last("ab", "AB");
+    Rcout << s.get_cstring() << "\n"; // abcdABcd
 
-  String s("abcdabcd");
-  
-  Rcout << s.replace_first("ab", "AB").get_cstring() << endl;
-  Rcout << s.get_cstring() << endl;
-  
-  s="abcdabcd";
-  Rcout << s.replace_last("ab", "AB").get_cstring()  << endl;
-  
-  s="abcdabcd";
-  Rcout << s.replace_all("ab", "AB").get_cstring()  << endl;
+    //"ab" が出現するすべての箇所で置換します
+    s="abcdabcd";
+    s.replace_all("ab", "AB");
+    Rcout << s.get_cstring() << "\n"; // ABcdABcd
 }
 ```
-###実行結果
+
+実行結果
+
 ```
 > rcpp_string()
 ABcdabcd
