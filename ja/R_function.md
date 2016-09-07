@@ -58,19 +58,30 @@ List rcpp_lapply(List input, Function f) {
 
 `Environment` クラスを利用するとパッケージ等の環境からオブジェクト（変数や関数）を取り出すことができます。
 
-下のコード例では、パッケージ `Matrix` にある関数 `Matrix()` を呼び出す例を示します。
+下のコード例では、パッケージ `Matrix` にある関数 `Matrix()` を呼び出す例を示します。なお、この方法でパッケージの関数を呼び出す場合には、library 関数を用いてパッケージの環境をサーチパスに追加する必要はありません。
 
 ```cpp
 // [[Rcpp::export]]
-NumericVector rcpp_package_function(NumericVector m){
+S4 rcpp_package_function(NumericMatrix m){
     // Matrix パッケージの名前空間を取得します
     Environment pkg = Environment::namespace_env("Matrix");
-
+    
     // Matrix パッケージの Matrix 関数を取得します
     Function f = pkg["Matrix"];
-
+    
     // Matrix( m, sparse = TRIE ) を実行します
     return f( m, Named("sparse", true));
 }
+```
+
+実行結果
+
+```
+> m <- matrix(c(1,0,0,2), nrow = 2, ncol = 2)
+> rcpp_package_function(m)
+2 x 2 sparse Matrix of class "dsCMatrix"
+        
+[1,] 1 .
+[2,] . 2
 ```
 
