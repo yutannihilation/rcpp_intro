@@ -13,30 +13,33 @@ Date( "2000-01-01", "%Y-%m-%d"); //default format is "%Y-%m-%d"
 Date( 1, 2, 2000); // 2000-01-02 Date(mon, day, year)
 Date( 2000, 1, 2); // 2000-01-02 Date(year, mon, day)
 ```
-##演算子
+## 演算子
 
-`Date` には 以下の演算子が定義されています。
+`Date` には `+ - < > >= <= == !=` の演算子が定義されています。これらの演算子を用いることにより、日数の加算(+)、日数の差分計算(-)、日付の比較(<, <=, >, >=, ==, !=) を行えるようになります。
+
 
 `+ - < > >= <= == !=`
 
 ```
 // [[Rcpp::export]]
 DateVector rcpp_date1(){
-  
-  Date d1("2000-01-01");
-  Date d2("2000-02-01");
-  
-  DateVector date(1);
-  
-  int  i  = d2 - d1;
-  bool b  = d2 > d1;
-  date[0] = d1 + 1;
-  
-  Rcout << i << endl; // 31
-  Rcout << b << endl; // 1
-  return date;        // 2000-01-02
+    // Date の作成
+    Date d1("2000-01-01");
+    Date d2("2000-02-01");
+
+    int  i  = d2 - d1;    //日付の差（日）
+    bool b  = d2 > d1; //日付の比較
+
+    Rcout << i << "\n"; // 31
+    Rcout << b << "\n"; // 1
+
+    // d1 に 1 日加算した結果を日付ベクトルに代入します。
+    DateVector date(1);
+    date[0] = d1 + 1;  
+
+    return date; // 2000-01-02
 }
-````
+```
 
 
 
@@ -45,26 +48,27 @@ DateVector rcpp_date1(){
 
 ####getDay()
 
-
+日付の日を返します。
 
 ####getMonth()
 
-
+日付のの月を返します。
 
 ####getYear()
 
-
+日付の年を返します。
 
 ####getWeekday()
 
-曜日を int で返す。
-1=Sun 2=Mon 3=Tue 4=Wed 5=Thu 6=Sat
+日付の曜日を int で返します。返値は 1=Sun 2=Mon 3=Tue 4=Wed 5=Thu 6=Sat に対応します。
 
 ####getYearday()
 
-1月1日を 1 とした年間を通した日付の番号
+1月1日を 1 、12月31日を 365 とした年間を通した日付の番号を返します。
 
-####is.na()
+####is_na()
+
+このオブジェクトが NA であるなら `true` を返します。
 
 ##実行例
 
