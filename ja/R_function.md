@@ -3,7 +3,7 @@
 Rcpp 内で R の関数を利用するには、`Function`、`Environment` を用います。
 
 
-## Function
+## Function を用いた方法
 
 Function を使ってRの関数を利用する
 
@@ -54,7 +54,7 @@ List rcpp_lapply(List input, Function f) {
 ```
 
 
-## Environmentを使ってRの関数を利用する
+## Environment を用いた方法
 
 `Environment` クラスを利用するとパッケージ等の環境からオブジェクト（変数や関数）を取り出すことができます。
 
