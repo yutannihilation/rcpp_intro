@@ -1,108 +1,137 @@
 # Datetime
 
-`Datetime` は `DatetimeVector` の要素となるスカラー型です。
+`Datetime` は `DatetimeVector` の要素に対応するスカラー型です。
 
-##作成
+## Datetime オブジェクトの作成
+
+Date と同様に、Datetime の作成方法も、世界協定時（UTC）の 1970-01-01 00:00:00 からの秒数を指定して作成する方法と、明示的に日時を指定して作成する方法があります。
+
+明示的に日時を指定して作成する形式は `Datetime dt( str, format)` となります。この形式では書式文字列 `format` を指定して文字列 `str` を `Datetime` に変換します。(formatで使用する記号は R の `help(strptime)` を参照してください）
 
 ```
-Datetime dt;         //"1970-01-01 00:00:00 UTC"
-Datetime dt(10.1);   //"1970-01-01 00:00:00 UTC" + 10.1sec
-Datetime dt("2000-01-01 00:00:00", "%Y-%m-%d %H:%M:%OS")
+// 1970年1月1日 00:00:00 からの経過秒数（実数）で作成します
+Datetime dt;         // "1970-01-01 00:00:00 UTC"
+Datetime dt(10.1);   // "1970-01-01 00:00:00 UTC" + 10.1sec
+
+// 日時・時間と書式を指定して作成します
+// デフォルトの書式は "%Y-%m-%d %H:%M:%OS" です
+// 指定した日時はローカルなタイムゾーンの日時として解釈されます
+Datetime dt("2000-01-01 00:00:00");
+Datetime dt("2000年1月1日 0時0分0秒", "%Y年%m月%d日 %H時%M分%OS秒");
 ```
 
-Datetime は、日時を協定世界時(UTC) `1970-01-01 00:00:00` からの秒数（実数）で日時を管理しています。
+## タイムゾーン
 
-`Datetime dt(10.1)` は世界協定時 `1970-01-01 00:00:00 UTC` から `10.1` 秒経過後の時点を表す。この値を R 返すと実行者のタイムゾーンに変換された時刻として表示されます。例えば日本なら日本標準時（JST）は UTC + 9時間なので、Datetime(10.0) は　`1970-01-01 09:00:10 JST` となります。
+`Datetime` は、内部的には日時を協定世界時 (UTC) `1970-01-01 00:00:00` からの秒数（実数）で管理しています。例えば `Datetime dt(10)` は世界協定時 `1970-01-01 00:00:00 UTC` から10秒経過後の時点を表します。この値を R に返すと実行されたタイムゾーンに変換された時刻として表示されます。例えば日本なら日本標準時（JST）は UTC + 9時間なので、`Datetime(10)` は　`1970-01-01 09:00:10 JST` となります。
 
-`Datetime dt( str, format)` では、 形式 `fmt` を指定して、文字列 `str` を `Datetime` に変換します。(formatの記号は Rヘルプの `?strptime` の記載内容と一致している？）この形式では、**`str` はユーザーのローカルなタイムゾーンの時刻として解釈される**。例えば 日本標準時（JST）で、`Datetime("2000-01-01 00:00:00")` を実行すると `1999-12-31 15:00:00 UTC` の値がセットされます。
-
-
+この形式では、`str` はローカルなタイムゾーンの時刻として解釈されます。例えば日本標準時（JST）で、`Datetime("2000-01-01 00:00:00")` を実行すると、内部的には `1999-12-31 15:00:00 UTC` の値がセットされます。
 
 
-##演算子
+## 演算子
+
+`Datetime ` には `+ - < > >= <= == !=` の演算子が定義されています。
+
+これらの演算子を用いることにより、秒数の加算 (+)、日時の差分(-)、日時の比較(<, <=, >, >=, ==, !=) を行えるようになります。日時に加算する値と、日時の差分の返値の単位は秒となります。
+
+```cpp
+Datetime dt1("2000-01-01 00:00:00");
+Datetime dt2("2000-01-02 00:00:00");
+
+//日時の差分（秒）
+int sec = dt2 - dt1;  // 86400
+
+//日時に秒数を加算
+dt1 = dt1 + 1; // "2000-01-01 00:00:01"
+
+//日時の比較
+bool b = dt2 > dt1; // true
+```
 
 
+## メンバ関数
 
-##メソッド
-
-**注意！**：これらのメソッドを使って出力される時刻の値は、世界協定時で解釈した時刻の値です。そのため、ユーザーのタイムゾーンの値とは異なります。（このページの末尾に記載したのコードの実行結果を参照すること）
+**注意**：これらのメンバ関数を使って出力される時刻の値は、世界協定時で解釈した時刻の値になっています。そのため、ユーザーのタイムゾーンの日時とは異なって見えます。（出力結果はこの章の末尾に記載したのコードの実行結果を参照してください）
 
 
 ####getFractionalTimestamp()
 
-基準日からの秒数（実数値）。
+世界協定時の基準日（1970-01-01 00:00:00 UTC）からの秒数（実数値）を返します
 
 ####getMicroSeconds()
 
-世界協定時のマイクロ秒
-
-秒の小数点以下の値を 1/1000 秒単位で表記した値。 (0.1 sec = 100000 micro sec)
+世界協定時の日時のマイクロ秒を返します。これは秒の小数点以下の値を 1/1000000 秒単位で表記した値です。（0.1 秒 = 100000 マイクロ秒）
 
 ####getSeconds()
 
-世界協定時の秒
+世界協定時の日時の秒を返します。
 
 ####getMinutes()
 
-世界協定時の分
+世界協定時の日時の分を返します。
 
 ####getHours()
 
-世界協定時の時
+世界協定時の日時の時を返します。
 
 ####getDay()
 
-世界協定時の日
+世界協定時の日時の日を返します。
 
 ####getMonth()
 
-世界協定時の月
+世界協定時の日時の月を返します。
 
 ####getYear()
 
-世界協定時の年
+世界協定時の日時の年を返します。
 
 ####getWeekday()
 
 世界協定時の曜日
 
-1=Sun 2=Mon 3=Tue 4=Wed 5=Thu 6=Sat
+世界協定時の日時の曜日を int で返します。1=Sun 2=Mon 3=Tue 4=Wed 5=Thu 6=Sat
 
 ####getYearday()
 
-1月1日を1として、年初からの日数を整数で表した値。
+1月1日を 1 、12月31日を 365 とした年間を通した日付の番号を返します。
 
 ####is_na()
 
+このオブジェクトが NA である場合には true を返します。
+
+
 ##コード例
 
-以下のコードを日本標準時（JST）で実行した結果を示す。
+以下のコード例では、日本標準時（JST）の環境で実行した結果を示します。
+
 
 ```
 // [[Rcpp::export]]
 Datetime rcpp_datetime(){
-  Datetime dt("2000-01-01 00:00:00", "%Y-%m-%d %H:%M:%S");
-  
-  Rcout << "getYear " << dt.getYear() << endl;
-  Rcout << "getMonth " << dt.getMonth() << endl;
-  Rcout << "getDay " << dt.getDay() << endl;
-  
-  Rcout << "getHours " << dt.getHours() << endl;
-  Rcout << "getMinutes " << dt.getMinutes() << endl;
-  Rcout << "getSeconds " << dt.getSeconds() << endl;
-  
-  Rcout << "getMicroSeconds " << dt.getMicroSeconds() << endl;
-  Rcout << "getWeekday " << dt.getWeekday() << endl;
-  Rcout << "getYearday " << dt.getYearday() << endl;
-  Rcout << "getFractionalTimestamp " << dt.getFractionalTimestamp() << endl;
-  
-  return dt;
+    // 日時を指定して Datetime オブジェクトを作成する
+    Datetime dt("2000-01-01 00:00:00");
+
+    // 日時の要素を世界協定時で表示します
+    Rcout << "getYear " << dt.getYear() << "\n";
+    Rcout << "getMonth " << dt.getMonth() << "\n";
+    Rcout << "getDay " << dt.getDay() << "\n";
+
+    Rcout << "getHours " << dt.getHours() << "\n";
+    Rcout << "getMinutes " << dt.getMinutes() << "\n";
+    Rcout << "getSeconds " << dt.getSeconds() << "\n";
+
+    Rcout << "getMicroSeconds " << dt.getMicroSeconds() << "\n";
+    Rcout << "getWeekday " << dt.getWeekday() << "\n";
+    Rcout << "getYearday " << dt.getYearday() << "\n";
+    Rcout << "getFractionalTimestamp " << dt.getFractionalTimestamp() << "\n";
+
+    return dt;
 }
 ```
 
 実行結果
 
-JST は UTC よりも +9時間進んでいます。
+出力される世界協定時（UTC）は日本標準時（JST）から9時間前の日時となっていることがわかります。
 
 ```
 > rcpp_datetime()
@@ -118,5 +147,4 @@ getYearday 365
 getFractionalTimestamp 9.46652e+08
 [1] "2000-01-01 JST"
 ```
-
 
