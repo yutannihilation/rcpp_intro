@@ -1,17 +1,59 @@
 # Environment
 
-`Environment` を用いると環境中の変数や関数にアクセスすることができます。
+`Environment` クラスを用いるとアクセスしたい環境を変数として保持し、その環境中の変数や関数にアクセスすることができます。
 
-##作成
+## Environment オブジェクトの作成
+
+`Environment ` クラスのオブジェクトを作成する方法を下に示します。
 
 ```
-Environment env();     //グローバル環境
-Environment env(env1); // env1 をコピー
-Environment env(1); //サーチパスの i 番目の環境（i=1はグローバル環境）
-Environment env("package:stats"); //パッケージの環境
+Environment env();                           //グローバル環境
+Environment env = Environment::global_env(); //グローバル環境
+Environment env("package:stats");            // パッケージ stats 内の環境
+Environment env(1); // オブジェクトのサーチパスの i 番目にある環境（i=1はグローバル環境）
 ```
 
-##メンバ関数
+オブジェクトサーチパスを確認するには R の `search()` 関数を利用します。
+
+```
+> search()
+ [1] ".GlobalEnv"        "tools:RGUI"        "package:stats"    
+ [4] "package:graphics"  "package:grDevices" "package:utils"    
+ [7] "package:datasets"  "package:methods"   "Autoloads"        
+[10] "package:base"   
+```
+
+## 環境にあるオブジェクトにアクセスする
+
+Environment オブジェクトを通して環境中の変数や関数にアクセスするためには `[]` 演算子または `get()` メンバ関数を用います。もしも、その環境に存在しない変数や関数にアクセスした場合には `R_NilValue` (`NULL`) が返ります。
+
+```
+// グローバル環境を取得します
+Environment env = Environment::global_env();
+
+//グローバル環境にある変数を取得します
+NumericVector x = env["x"];
+
+//グローバル環境にある変数 x の値を変更します
+x[0] = 100;
+```
+
+## 新しい環境を作成する
+
+関数 `new_env()` 関数を用いることで新しい空の環境を作成することができます。
+
+#### new_env(size = 29)
+
+
+
+#### new_env(parent, size = 29)
+
+|`new_env(size = 29)`|新しい環境を返します。size は作成される環境のハッシュテーブルの初期サイズを指定します。|
+|`new_env(parent, size = 29)`|parent を親環境とする新しい環境を返します。size は作成される環境のハッシュテーブルの初期サイズを指定します。|
+
+
+
+## メンバ関数
 
 #### get(name)
 
