@@ -44,12 +44,11 @@ x[0] = 100;
 
 #### new_env(size = 29)
 
-
+新しい環境を返します。size は作成される環境のハッシュテーブルの初期サイズを指定します。
 
 #### new_env(parent, size = 29)
 
-|`new_env(size = 29)`|新しい環境を返します。size は作成される環境のハッシュテーブルの初期サイズを指定します。|
-|`new_env(parent, size = 29)`|parent を親環境とする新しい環境を返します。size は作成される環境のハッシュテーブルの初期サイズを指定します。|
+parent を親環境とする新しい環境を返します。size は作成される環境のハッシュテーブルの初期サイズを指定します。
 
 
 
@@ -57,104 +56,79 @@ x[0] = 100;
 
 #### get(name)
 
-この環境から name で指定された名前のオブジェクトを取得します。
-見つからない場合は R_NilValue (NULL) を返す。
+name で指定された名前のオブジェクトを取得します。見つからない場合は `R_NilValue` を返します。
 
 #### ls(all)
 
-この環境にあるオブジェクトの一覧を返す。
-
-論理値 all が true なら全てのオブジェクト、false なら名前が `.` から始まるオブジェクトは除外します。
+この環境にあるオブジェクトの一覧を返します。引数 all が true なら全てのオブジェクトを、false なら名前が `.` から始まるオブジェクトは除外します。
 
 #### find(name)
 
-この環境、および、この環境の（全ての）親環境から、name で指定された名前のオブジェクトを探して取得します。見つからない場合は "binding not found:" エラーが thow されます。
+この環境、あるいは、その親環境から文字列 name で指定した名前のオブジェクトを取得します。見つからない場合は binding_not_found 例外が thow されます。
 
 #### exists(name)
 
-この環境に指定された名前のオブジェクトがあるかどうか。論理値を返す。
+この環境に文字列 name で指定した名前のオブジェクトが存在する場合には true を返します。
 
 #### assign( name, x )
 
-この環境にある name で指定された名前のオブジェクトに、x を代入します。成功した場合には true を返す。
-
-
+この環境にある文字列 name で指定した名前のオブジェクトに値 x を代入します。成功した場合には true を返します。
 
 #### isLocked()
 
-この環境がロックされているかどうか。
+この環境がロックされている場合には true を返します。
 
 #### remove(name)
 
-この環境から name で指定された名前のオブジェクトを削除します。成功した場合には true を返す。
+この環境から文字列 name で指定した名前のオブジェクトを削除します。成功した場合には true を返します。
 
 #### lock(bindings = false)
 
-この環境をロックします。
-
-binding = true なら、この環境の binding もロックします。
+この環境をロックします。binding = true の場合は、この環境の binding （Rのオブジェクト名とメモリ上のオブジェクト値の対応関係）もロックします。
 
 #### lockBinding(name)
 
-この環境にある name で指定された名前の binding をロックします。
-
-詳細は `?bindingIsLocked` を参照
-
-指定された binding が見つからない場合は `"no_such_binding"` を throw します。
+この環境にある文字列 name で指定した binding をロックします。
 
 #### unlockBinding(name){
 
-この環境から name で指定された名前の binding のロックを解除します。
-
-指定された binding が見つからない場合は `"no_such_binding"` を throw します。
+この環境にある文字列 name で指定した binding のロックを解除します。
 
 #### bindingIsLocked(name)
 
-この環境にある name で指定された名前の binding がロックされているかどうか。
-
-指定された binding が見つからない場合は `"no_such_binding"` を throw します。
+この環境にある文字列 name で指定した binding がロックされている場合には true を返します。
 
 #### bindingIsActive(name)
 
-この環境にある name で指定された名前の binding がアクティブかどうか。
+この環境にある文字列 name で指定した binding がアクティブである場合には true を返します。
 
-指定された binding が見つからない場合は `"no_such_binding"` を throw します。
 
 #### is_user_database()
 
-この環境がユーザーが定義したデータベースであるかどうか。
+この環境がユーザーが定義したデータベース（"UserDefinedDatabase"）を継承している場合には true を返します。
 
 #### parent()
 
-この環境の親環境を返す。
+この環境の親環境を返します。
 
 #### new_child(hashed)
 
-この環境を親とした、新しい環境を作成します。
-
-hashed が true なら??
+この環境を親とする新しい環境を作成します。hashed = true の場合は、作成した環境はハッシュテーブルを使用します。
 
 
 ## static メンバ関数
 
 ####Environment::global_env()
 
-グローバル環境を返す。 
-
-詳細は `?globalenv` を参照
-
+グローバル環境を返します。
 
 ####Environment::empty_env()
 
-空環境を返す。 
-
-詳細は `?emptyenv` を参照
+ルート環境である空環境を返します。
 
 ####Environment::base_env()
 
-baseパッケージの環境を返す。 
-
-詳細は `?baseenv` を参照
+base パッケージの環境を返します。
 
 ####Environment::base_namespace()
 
@@ -162,26 +136,8 @@ baseパッケージの名前空間を返す。
 
 #### Environment::Rcpp_namespace()
 
-Rcpp パッケージの名前空間を返す。 
+Rcpp パッケージの名前空間を返します。
 
 #### Environment::namespace_env(package)
 
-パッケージ名 package を指定して、その名前空間を得る。
-
-`namespace_env()`を使うと、export されていないパッケージ関数にもアクセスできます。
-また、R であらかじめパッケージをロードしておく必要がない。
-
-指定されたパッケージが見つからない場合には、 `"no_such_namespace"`が throw されます。
-
-
-
-## その他の関数
-
-```
-Environment new_env(int size = 29)
-```
-
-```
-Environment new_env(SEXP parent, int size = 29)
-```
-
+文字列 package で指定した名前のパッケージの名前空間を返します。`Environment::namespace_env()` を使った場合には、R であらかじめ `library()` 関数でパッケージをロードしていなくてもパッケージ内の関数を呼び出すことができますこれは R で `パッケージ名::関数()` という形式で呼び出した場合と同等です。それに加えて、パッケージ内で export されていない関数にもアクセスすることができます。これは Rで `パッケージ名:::関数()` という形式で呼び出した場合と同等です。
