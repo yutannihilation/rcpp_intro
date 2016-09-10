@@ -2,14 +2,14 @@
 
 ### ユーザーからのキャンセルを受け付ける。
 
-`checkUserInterrupt()` は処理の実行途中でユーザーがキャンセル（ctrl + c）ボタンが押されたかどうかを確認し、押されていた場合には処理を中断します。長時間を要する処理を実行する場合には、おおよそ数秒に１回程度の頻度で `checkUserInterrupt()` が実行されるようにすると良いだろう。
+`checkUserInterrupt()` は処理の実行途中でユーザーが処理をキャンセルするため「ctrl + c」ボタンが押されたかどうかを確認し、押されていた場合には処理を中止します。長時間を要する処理を実行する場合には、おおよそ数秒に１回程度の頻度で `checkUserInterrupt()` が実行されるようにすると良いでしょう。
 
 ```
-for (int i=0; i<1000000; ++i) {
-  // check for interrupt every 1000 iterations
-  if (i % 1000 == 0)
-    Rcpp::checkUserInterrupt();
-  // ...do some expensive work...
-}
+for (int i=0; i<100000; ++i) {
+    // 1000 繰り返しごとに中断をチェックします
+    if (i % 1000 == 0)
+        Rcpp::checkUserInterrupt();
 
+    do_something();
+}
 ```
