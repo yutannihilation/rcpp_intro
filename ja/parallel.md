@@ -43,25 +43,11 @@ void parallelReduce(std::size_t begin, std::size_t end,
 
 `parallelFor``parallelReduce` は `Vector`と `Matrix` の `begin` から `end-1` までの要素に対して `worker` `reducer` で定義された処理を並列で実行します。
 
-**parallelFor** は入力データの各要素と出力データの各要素が１対１で対応するような処理（sqrt() や log()）を並列化する場合に用います。
+**parallelFor** は入力データの各要素と出力データの各要素が１対１で対応するような処理 （例えば sqrt() や log()） を並列化する場合に用います。
 
-```
-//parallelForは次のような処理を並列化する
-for(int i=begin; i<end; ++i){
-    output[i] = f(input[i])
-}
-```
+**parallelReduce** は入力データの全要素を１つの値に集約するような処理 （例えば sum()やmean()） を並列化する場合に用います。
 
-**parallelReduce** は入力データの全要素を１つの値に集約するような処理（sum()やmean()）を並列化する場合に用います。
-
-```
-//parallelReduceは次のような処理を並列化する
-double value=0.0;
-for(int i=begin; i<end; ++i){
-    output[i] = f(input[i])
-}
-```
-現状の`RcppParallel(4.3.15)` では `parallelFor()` `parallelReduce()` は DataFrame のカラムや List の要素毎の並列化には対応していない。これを行うには TBB の機能用いて実装する必要があります。
+現状の`RcppParallel(バージョン4.3.15)` では `parallelFor()` `parallelReduce()` は DataFrame のカラムや List の要素毎の並列化には対応していません。
 
 
 ### RVector, RMatrix
