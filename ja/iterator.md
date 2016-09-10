@@ -30,13 +30,11 @@ List::iterator
 
 ```cpp
 // [[Rcpp::export]]
-void rcpp_iterator(){
-  CharacterVector v = CharacterVector::create("A","B","C","D");
-  CharacterVector::iterator i;
-  i = v.begin();
-  Rcout << *i     << endl;  //"A"
-  Rcout << *(i+1) << endl;  //"B"
-  Rcout << *(++i) << endl;  //"B"
-  Rcout << *(++i) << endl;  //"C"
+double rcpp_sum(NumericVector x) {
+  double total = 0;
+  for(NumericVector::iterator i = x.begin(); i != x.end(); ++i) {
+    total += *i;
+  }
+  return total;
 }
 ```
