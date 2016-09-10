@@ -1,26 +1,32 @@
 # イテレーター
 
-イテレーターとは、ベクターなどの要素にアクセスするためのオブジェクトです。Rcpp のデータ構造は、それぞれ独自のイテレータ型が定義されています。
+イテレータ（反復子）とは、ベクトルなどの要素にアクセスするためのオブジェクトです。Rcpp のベクトルに対して標準 C++ のアルゴリズムを適用したい場合にはイテレータを利用します。なぜなら標準 C++ で提供されているアルゴリズムの多くはイテレータを使って処理を適用するデータの位置や範囲を指定するためです。
 
-標準C++で提供されているアルゴリズムの多くはイテレータを使って、処理を適用するデータの範囲などを指定します。
+Rcpp のデータ構造には、それぞれ独自のイテレータ型が定義されています。
 
 ```
-NumericVector::iterator   nm_i;
-CharacterVector::iterator ch_i;
-...
-DataFrame::iterator       df_i;
-List::iterator            lt_i;
+NumericVector::iterator
+IntegerVector::iterator
+LogicalVector::iterator
+CharacterVector::iterator
+DataFrame::iterator
+List::iterator
 ```
 
-* `i = v.begin()` とするとイテレータ `i` には `v` の先頭要素を指し示す状態にセットされます。
-* `*i` は、イテレータが指し示す要素の値を表す。
-* `i+2` は、iの2つ次の要素を指し示すイテレータ
-* `i-1` は、iの1つ前の要素を指し示すイテレータ
-* `++i` iを1つ次の要素を指す状態に更新する
-* `--i` iを1つ前の要素を指す状態に更新する
-* `v.end()` は `v` の末尾（最後の要素の１つ後）を指し示すイテレータ
+下の図はイテレータを使ってベクトルの要素にアクセスする方法を模式的に示しています。
 
 ![](iterator.png)
+
+* `i = v.begin()` とするとイテレータ `i` は `v` の先頭要素を指し示します。
+* `++i` は、i を1つ次の要素を指す状態に更新します。
+* `--i` は、i を1つ前の要素を指す状態に更新します。
+* `i+1` は、i の1つ次の要素を指し示すイテレータを表します。
+* `i-1` は、i の1つ前の要素を指し示すイテレータを表します。
+* `*i`  は、i が指し示す要素の値を表します。
+* `v.end()` は `v` の末尾（最後の要素の１つ後）を指し示すイテレータを表します。
+* `*(v.begin()+k)` は v の k 番目の要素の値（`v[k]`）を表します。
+
+次のコード例は、イテレータを使って `NumericVector`の全ての要素を走査して値の合計値を求める例を示しています。
 
 ```cpp
 // [[Rcpp::export]]
@@ -34,19 +40,3 @@ void rcpp_iterator(){
   Rcout << *(++i) << endl;  //"C"
 }
 ```
-
-例；イテレータを使って、`NumericVector`の要素の値の合計値を求める
-
-```cpp
-// [[Rcpp::export]]
-double rcpp_sum(NumericVector x) {
-  double total = 0;
-  for(NumericVector::iterator it = x.begin(); it != x.end(); ++it) {
-    total += *it;
-  }
-  return total;
-}
-```
-
-
-
