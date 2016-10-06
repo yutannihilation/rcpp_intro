@@ -12,31 +12,36 @@ Rcpp は R にある主要な全ての確率分布関数を提供します。R �
 
 ## 確率分布関数の基本構造
 
-Rcpp では、同じ名前の確率分布関数が `R::` と `Rcpp::` の２つの名前空間で定義されています。これらの違いは、`Rcpp::` 名前空間で定義されている確率分布関数はベクトルを返す（つまりベクトル化されている）一方、`R::` 名前空間の関数はスカラーを返すということです。通常は `Rcpp::` 名前空間の関数を使えば良いでしょう。
+Rcpp では、同じ名前の確率分布関数が `R::` と `Rcpp::` の２つの名前空間で定義されています。これらの違いは、`Rcpp::` 名前空間で定義されている確率分布関数はベクトルを返すのに対して、`R::` 名前空間の関数はスカラーを返すということです。通常は `Rcpp::` 名前空間の関数を使えば良いですが、スカラー値が欲しい場合は R:: 名前空間の関数のほうが速度が速いためそちらを用いたほうが良いでしょう。
 
-### `Rcpp::`名前空間の確率分布関数の基本構造
-
-基本的には `Rcpp::` 名前空間で定義されている確率分布関数は R にある確率分布関数と同じ機能を持っています。下にその基本構造を示します。実際には、`Rcpp::` 名前空間の確率分布関数はマクロを使って記述されているので、ソースコード中に `Rcpp::` 名前空間の確率分布関数の定義はそのまま書かれてはいないのですが、ユーザーにとってはこのような形式の関数が定義されていると考えて差し支えありません。
-
-なお、下のコードでは `par` で示されている分布パラメータ引数の数は確率分布の種類により異なります。
+下に `Rcpp::` 名前空間で定義されている確率分布関数の基本構造を示します。基本的には `Rcpp::` 名前空間で定義されている確率分布関数は R にある確率分布関数と同じ機能を持っています。実際にはソースコード中に `Rcpp::` 名前空間の確率分布関数の定義はそのまま書かれてはいない（マクロを使って記述されているため）のですが、ユーザーにとってはこのような形式の関数が定義されていると考えて差し支えありません。
 
 ```cpp
-NumericVector Rcpp::dXXX( NumericVector x, double par, bool log = false )
-NumericVector Rcpp::pXXX( NumericVector x, double par, bool lower = true, bool log = false )
-NumericVector Rcpp::qXXX( NumericVector q, double par, bool lower = true, bool log = false )
+NumericVector Rcpp::dXXX( NumericVector x, double par,                    bool log = false )
+NumericVector Rcpp::pXXX( NumericVector q, double par, bool lower = true, bool log = false )
+NumericVector Rcpp::qXXX( NumericVector p, double par, bool lower = true, bool log = false )
 NumericVector Rcpp::rXXX(           int n, double par )
 ```
 
-### `R::`名前空間の確率分布関数の基本構造
-
-下に `R::` 名前空間で定義されている確率分布関数の基本構造を示します。これは double を受け取り double を返すという点以外は `Rcpp::` 名前空間で定義されている確率分布関数と基本的には同じ機能を持っています。しかし、引数のデフォルト値は与えられていないので明示的に与える必要があります。
+次に `R::` 名前空間で定義されている確率分布関数の基本構造を示します。これは double を受け取り double を返すという点以外は `Rcpp::` 名前空間で定義されている確率分布関数と基本的には同じ機能を持っています。しかし、引数のデフォルト値は与えられていないのでユーザーが明示的に与える必要があります。
 
 ```cpp
-double R::dXXX( double x, double par, int log )
-double R::pXXX( double x, double par, int lower, int log )
-double R::qXXX( double q, double par, int lower, int log )
-double R::rXXX( double par )
+double R::dXXX( double x, double par,            int log )
+double R::pXXX( double q, double par, int lower, int log )
+double R::qXXX( double p, double par, int lower, int log )
+double R::rXXX(           double par )
 ```
+
+下に確率分布関数の引数の説明を示します。
+
+|引数|説明|
+|--|--|
+|x, q|確率変数の値（のベクトル）|
+|p|分位数を求めたい確率値（のベクトル）|
+|n|発生させたい乱数の個数|
+|par|分布パラメータの値（実際には確率分布によって分布パラメータの数は異なる）|
+|lower|true : 確率変数の値が x 以下の領域の確率を算出する、false : x より大の領域の確率を算出する|
+|log|true : 確率を対数変換した値を算出する|
 
 ##確率分布関数の一覧
 
@@ -71,7 +76,7 @@ double R::rXXX( double par )
 
 ### 一様分布
 
-次は一様分布の関数です。
+区間 min から max の一様分布の情報を与えます。
 
 ```cpp
 Rcpp::dunif( x, min = 0.0, max = 1.0, log = false )
@@ -88,7 +93,7 @@ R::runif( min, max )
 
 ### 正規分布
 
-次は正規分布の関数です。
+平均値 mean 標準偏差 sd の正規分布の情報を与えます。
 
 ```cpp
 Rcpp::dnorm( x, mean = 0.0, sd = 1.0, log = false )
@@ -104,7 +109,7 @@ R::rnorm( mean, sd )
 
 ### ポワソン分布
 
-次はポワソン分布の関数です。
+平均値と分散が lambda であるポワソン分布の情報を与えます。
 
 ```cpp
 Rcpp::dpois( x, lambda, log = false )
@@ -120,7 +125,7 @@ R::rpois( lambda )
 
 ### t分布
 
-次はt分布の関数です。これは R のt分布関数において非心パラメータ `ncp` にゼロを設定した場合に相当します。
+自由度 df の t 分布の情報を与えます。これは R の t 分布関数において非心パラメータ ncp の値に 0 を設定した場合に相当します。
 
 ```cpp
 Rcpp::dt( x, df, log = false )
@@ -136,7 +141,7 @@ R::rt( df )
 
 ### ベータ分布
 
-次はベータ分布の関数です。これは R のベータ分布関数において非心パラメータ `ncp` にゼロを設定した場合に相当します。
+形状パラメータ shape1, shape2 を持つベータ分布の情報を与えます。これは R のベータ分布関数において非心パラメータ ncp の値に 0 を設定した場合に相当します。
 
 ```cpp
 Rcpp::dbeta( x, shape1, shape2, log = false )
@@ -152,7 +157,7 @@ R::rbeta( shape1, shape2 )
 
 ### 二項分布
 
-次は二項分布の関数です。
+試行回数 size 成功確率 prob の二項分布の情報を与えます。
 
 ```cpp
 Rcpp::dbinom( x, size, prob, log = false )
@@ -169,7 +174,7 @@ R::rbinom( size, prob )
 
 ### カイ２乗分布
 
-次はカイ２乗分布の関数です。これは R のカイ２乗分布関数において非心パラメータ `ncp` にゼロを設定した場合に相当します。
+自由度 df のカイ2乗分布の情報を与えます。これは R のカイ２乗分布関数において非心パラメータ ncp の値に 0 を設定した場合に相当します。
 
 ```cpp
 Rcpp::dchisq( x, df, log = false )
@@ -185,7 +190,7 @@ R::rchisq( df )
 
 ### 指数分布
 
-次は指数分布の関数です。
+割合 rate (平均が1/rate) の指数分布の情報を与えます。
 
 ```cpp
 Rcpp::dexp( x, rate = 1.0, log = false )
@@ -201,7 +206,7 @@ R::rexp( rate )
 
 ### F分布
 
-次はF分布の関数です。これは R のF分布関数において非心パラメータ `ncp` にゼロを設定した場合に相当します。
+自由度 df1, df2 のF分布の情報を与えます。これは R のF分布関数において非心パラメータ ncp の値に 0 を設定した場合に相当します。
 
 ```cpp
 Rcpp::df( x, df1, df2, log = false )
@@ -217,7 +222,7 @@ R::rf( df1, df2 )
 
 ### コーシー分布
 
-次はコーシー分布の関数です。
+位置パラメータ location、尺度パラメータ scale のコーシー分布の情報を与えます。
 
 ```cpp
 Rcpp::dcauchy( x, location = 0.0, scale = 1.0, log = false )
@@ -233,7 +238,7 @@ R::rcauchy( location, scale )
 
 ### ガンマ分布
 
-次はガンマ分布の関数です。
+形状パラメータ shape、尺度パラメータ rate のガンマ分布の情報を与えます。
 
 ```cpp
 Rcpp::dgamma( x, shape, scale = 1.0, log = false )
@@ -249,7 +254,7 @@ R::rgamma( shape, scale )
 
 ### 幾何分布
 
-次は幾何分布の関数です。
+成功確率 prob の幾何分布の情報を与えます。
 
 ```cpp
 Rcpp::dgeom( x, prob, log = false )
@@ -265,7 +270,7 @@ R::rgeom( prob )
 
 ### 超幾何分布
 
-次は超幾何分布の関数です。
+母集団に含まれる成功数 m、母集団に含まれる失敗数 n、母集団からサンプリングする標本の数 k の超幾何分布の情報を与えます。
 
 ```cpp
 Rcpp::dhyper( x, m, n, k, log = false )
@@ -281,7 +286,7 @@ R::rhyper( m, n, k )
 
 ### 対数正規分布
 
-次は対数正規分布の関数です。
+位置パラメータmeanlog 尺度パラメータ meansd の対数正規分布の情報を与えます。
 
 ```cpp
 Rcpp::dlnorm( x, meanlog = 0.0, sdlog = 1.0, log = false )
@@ -297,7 +302,7 @@ R::rlnorm( meanlog, sdlog )
 
 ### ロジスティック分布
 
-次はロジスティック分布の関数です。
+位置パラータ location 尺度パラメータ scale のロジスティック分布の情報を与えます。
 
 ```cpp
 Rcpp::dlogis( x, location = 0.0, scale = 1.0, log = false )
@@ -313,7 +318,7 @@ R::rlogis( location, scale )
 
 ### 負の二項分布（成功確率を指定するバージョン）
 
-次は負の二項分布の関数です。パラメータとして１試行あたりの成功確率 prob を指定します。
+成功回数 size、１試行あたりの成功確率 prob の負の二項分布の情報を与えます。
 
 ```cpp
 Rcpp::dnbinom( x, size, prob, log = false )
@@ -329,7 +334,7 @@ R::rnbinom( size, prob )
 
 ### 負の二項分布（平均値を指定するバージョン）
 
-次は負の二項分布の関数です。パラメータとして分布の平均値 mu を指定します。
+成功回数 size、分布の平均が mu (=size/prob) の負の二項分布の情報を与えます。
 
 ```cpp
 Rcpp::dnbinom_mu( x, size, mu, log = false )
@@ -345,7 +350,7 @@ R::rnbinom_mu( size, mu )
 
 ### 非心ベータ分布
 
-次は非心ベータ分布の関数です。これは R のベータ分布関数において非心パラメータ ncp に値を設定する場合に相当します。
+形状パラメータ shape1、shape2、非心パラメータ ncp を持つベータ分布の情報を与えます。ncp = 0 ではベータ分布に一致します。
 
 ```cpp
 Rcpp::dnbeta( x, shape1, shape2, ncp, log = false );
@@ -361,7 +366,7 @@ R::rnbeta( shape1, shape2, ncp )
 
 ### 非心カイ２乗分布
 
-次は非心ベータ分布の関数です。これは R のカイ２乗分布関数において非心パラメータ ncp に値を設定する場合に相当します。
+自由度 df 、非心パラメータ ncp を持つベータ分布の情報を与えます。ncp = 0 ではカイ２乗分布に一致します。
 
 ```cpp
 Rcpp::dnchisq( x, df, ncp, log = false )
@@ -377,7 +382,7 @@ R::rnchisq( df, ncp )
 
 ### 非心F分布
 
-次は非心F分布の関数です。これは R のF分布関数において非心パラメータ ncp に値を設定する場合に相当します。
+自由度 df1, df2 非心パラメータ ncp の F 分布の情報を与えます。ncp = 0 では F 分布に一致します。
 
 ```cpp
 Rcpp::dnf( x, df1, df2, ncp, log = false )
@@ -394,7 +399,7 @@ R::qnf( q, df1, df2, ncp, lower, log )
 
 ### 非心t分布
 
-次は非心t分布の関数です。これは R のt分布関数において非心パラメータ ncp に値を設定する場合に相当します。
+自由度 df、非心パラメータ ncp の t 分布の情報を与えます。ncp = 0 では t 分布に一致します。
 
 ```cpp
 Rcpp::dnt( x, df, ncp, log = false  )
@@ -408,7 +413,7 @@ R::qnt( q, df, ncp, lower, log )
 
 ### ワイブル分布
 
-次はワイブル分布の関数です。
+形状パラメータ shape、尺度パラメータ scale のワイブル分布の情報を与えます。
 
 ```cpp
 Rcpp::dweibull( x, shape, scale = 1.0, log = false  )
@@ -424,7 +429,8 @@ R::rweibull( shape, scale )
 
 ### ウィルコクソン符号順位検定統計量の分布
 
-次はウィルコクソン符号順位検定統計量の分布の関数です。
+n 個の標本への各2回の観察に対してウィルコクソン符号順位検定を行ったときの検定統計量の分布の情報を与えます。
+
 
 ```cpp
 // Rcpp::dsignrank関数は存在しません
@@ -440,7 +446,7 @@ R::rsignrank( n )
 
 ### ウィルコクソンの順位和検定統計量の分布
 
-次はウィルコクソンの順位和検定統計量の分布の関数です。
+標本数がそれぞれ m、n である２つの標本に対してウィルコクソン順位和検定（マン・ホイットニーのU検定）を行ったときの検定統計量の分布の情報を与えます。
 
 ```cpp
 // Rcpp::dwilcox関数は存在しません
