@@ -1,7 +1,4 @@
-# パフォーマンス
-
-
-##パフォーマンス比較
+#パフォーマンス比較
 
 RとRcppで記述した関数の実行速度を比較してみる。
 
@@ -16,11 +13,11 @@ http://gallery.rcpp.org/articles/gibbs-sampler/
 
 ```r
 gibbsR <- function(N,thin){
-  
+
   mat<-matrix(0,nrow=N,ncol=2)
   x <- 0
   y <- 0
-  
+
   for(i in 1:N){
     for(j in 1:thin){
       x <- rgamma(1, 3, 1/(y*y+4))
@@ -44,10 +41,10 @@ using namespace Rcpp;
 
 // [[Rcpp::export]]
 NumericMatrix gibbsCpp(int N, int thin) {
-  
+
   NumericMatrix mat(N, 2);
   double x = 0, y = 0;
-  
+
   for(int i = 0; i < N; i++) {
     for(int j = 0; j < thin; j++) {
       x = R::rgamma(3.0, 1.0 / (y * y + 4));
@@ -56,7 +53,7 @@ NumericMatrix gibbsCpp(int N, int thin) {
     mat(i, 0) = x;
     mat(i, 1) = y;
   }
-  
+
   return(mat);
 }
 ```
@@ -96,9 +93,3 @@ test  replications elapsed relative
    2     gibbsCpp(n, thn)           10   1.454    1.000
    1       gibbsR(n, thn)           10  81.427   56.002
 ```
-
-
-
-
-
-

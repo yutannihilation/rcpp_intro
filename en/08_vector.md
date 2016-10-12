@@ -1,62 +1,52 @@
-# ベクトル
+# Vector
 
-* [ベクトルオブジェクトの作成](#ベクトルオブジェクトの作成)
-* [ベクトル要素へのアクセス](#ベクトル要素へのアクセス)
-* [メンバ関数](#メンバ関数)
-* [静的メンバ関数](静的メンバ関数)
-* [ベクトルを扱う際の注意点](#ベクトルを扱う際の注意点)
- * [ベクトル同士の代入](#ベクトル同士の代入)
- * [要素番号の型](#)
- * [[]演算子の返値](#[]演算子の返値)
-
-##ベクトルオブジェクトの作成
+## Creating Vector object
 
 
 ```cpp
-// v <- rep(0, 3) と同等
+// v <- rep(0, 3)
 NumericVector v (3);
 
-// v <- rep(1, 3) と同等
+// v <- rep(1, 3)
 NumericVector v (3,1);
 
-// v <- c(1,2,3) と同等
-NumericVector v = NumericVector::create(1,2,3);
-
-// v <- c(1,2,3) と同等、C++11 の初期化リストで作成
+// v <- c(1,2,3) C++11 Initializer list
 NumericVector v = {1,2,3};
 
-// v <- c(x=1, y=2, z=3) と同様 名前付きベクトル
+// v <- c(1,2,3)
+NumericVector v = NumericVector::create(1,2,3);
+
+// v <- c(x=1, y=2, z=3)
 NumericVector v =
   NumericVector::create(Named("x",1), Named("y")=2 , _["z"]=3);
 ```
 
-##ベクトル要素へのアクセス
+## Accessing Vector elements
 
-Rと同様に、要素番号（整数・実数ベクトル）、要素名（文字列ベクトル）、論理ベクトルを用いて、ベクターの要素にアクセスして、値の取得・代入を行うことができます。
+You can access to individual element of a vector object using `[]` or `()` operator. Both operators accept NumericVector/IntegerVector (numerical index), CharacterVector (element names) and LogicalVector. `[]` operator ignores out of range access, while `()` operator throws an exception.
 
-要素へのアクセスには `[]` または `()` を用います。`[]` を用いた場合はベクトルの範囲外へのアクセスを無視しますが、`()` を用いた場合は実行時にエラーとなります。
+An important point when you access to vector is that vector indices in C++ start at 0.
 
-また、要素番号を用いて Rcpp でベクトルの要素にアクセスする際に気をつけるべき重要な点として、R ではベクトルの最初の要素は 1 番であるのに対して、Rcpp では 0 番から始まるということがあります。間違いやすいので注意してください。
+**[Important] : Vector indices start at 0 in C++. **
 
-**【重要】： Rcpp は C++ のスタイルに従い、ベクトルや行列の要素番号は ０ から始まります。**
 
 ```cpp
 // [[Rcpp::export]]
 void rcpp_vector_access(){
 
-  //ベクトルの作成
+  // Creating vector
   NumericVector v  {10,20,30,40,50};
 
-  //要素名を設定します
+  // Setting element names
   v.names() = CharacterVector({"A","B","C","D","E"});
 
-  //ベクトルの要素にアクセスするためのベクトルを用意します
+  // Preparing vector for access
   NumericVector   numeric = {1,3};
   IntegerVector   integer = {1,3};
   CharacterVector character = {"B","D"};
   LogicalVector   logical = {false, true, false, true, false};
 
-  //ベクトル要素の値を取得します
+  // Getting values of vector elements
   double x1 = v[0];
   double x2 = v["A"];
   NumericVector res1 = v[numeric];
@@ -64,7 +54,7 @@ void rcpp_vector_access(){
   NumericVector res3 = v[character];
   NumericVector res4 = v[logical];
 
-  //ベクトル要素へ値を代入します
+  // Assigning values to vector elements
   v[0]   = 100;
   v["A"] = 100;
   NumericVector v2 {100,200};
@@ -75,125 +65,126 @@ void rcpp_vector_access(){
 }
 ```
 
+## Member functions
 
-
-
-
-
-## メンバ関数
-
-メンバ関数（メソッドとも呼ばれる）とは、個々のオブジェクトと結びついた関数です。呼び出し方が通常の関数とは少し異なっており、 `v.length()` のような形式で呼び出す。
+Member functions (also called as Methods) are functions that is attached to individual object. You can call member functions `f()` of object `v` in the form of `v.f()`.
 
 ```cpp
 NumericVector v = {1,2,3,4,5};
+
+// Calling member function
 int n = v.length(); // 5
 ```
 
-### length() size()
+The Vector object in Rcpp have member object listed below.
 
-要素数を返します。
+
+### length(), size()
+
+returns the number of elements.
 
 ### names()
 
-要素名を文字列ベクトルで返します。
+returns element names as CharacterVector.
 
-### offset(name) findName(name)
+### offset(name), findName(name)
 
-文字列 `name` で指定した要素名の要素の要素番号を返します。
+returns numerical index of the element specified by character string `name`.
 
 ### fill(x)
 
-このベクトルの全ての要素をスカラー値 `x` で埋めます。
+fills all the element of this vector with scalar value `x`.
 
 ### sort()
 
-このベクトルを昇順でソートしたベクトルを返します。
+returns vector sorted in increasing order.
+
 
 ### assign( first_it, last_it)
 
-イテレータ `first_it`、`last_it` で指定された範囲の値を、このベクトルに代入します。
+assign values specified by iterator `first_it` and `last_it` to this vector.
 
 ### push_back(x)
 
-このベクトルの末尾にスカラー値 `x` を追加します。
+append a scalar value `x` to the end of this vector.
 
 ### push_back( x, name )
 
-このベクトルの末尾にスカラー値 `x` を追加します。追加した要素の名前を文字列 `name` で指定します。
+append a scalar value `x` to the end of this vector and set name of the element as character string `name`.
 
 ### push_front(x)
 
-このベクトルの先頭にスカラー値 `x` を追加します。
+append a scalar value `x` to the front of this vector.
 
 ### push_front( x, name )
 
-このベクトルの先頭にスカラー値 `x` を追加します。追加した要素の名前を文字列 `name` で指定します。
+append a scalar value `x` to the front of this vector and set name of the element as character string `name`.
 
 ### begin()
 
-このベクトルの先頭を指し示すイテレータを返します。
+return an iterator pointing to the first element of the vector.
 
 ### end()
 
-このベクトルの末尾（最後の要素の１個後ろ）を指し示すイテレータを返します。
+return an iterator pointing to the end of the vector (**one past the last element of this vector**).
+
 
 ### insert( i, x )
 
-このベクトルの要素番号 i の位置の前にスカラー値 x を追加し、追加された要素へのイテレータを返します。
+insert scalar value `x` to the position pointed by numerical index `i`. Return the iterator pointing the inserted element.
+
 
 ### insert( it, x )
 
-このベクトルのイテレータ it で指し示す位置の直前にスカラー値 x を追加し、追加された要素へのイテレータを返します。
+insert scalar value `x` to the position pointed by iterator `it`. Return the iterator pointing the inserted element.
 
 ### erase(i)
 
-このベクトルの `i` 番目の要素を削除し、削除した直後の要素へのイテレータを返します。
+erase element at the position pointed by numerical index `i`. Return the iterator pointing the element just behind the erased element.
 
 ### erase(it)
 
-イテレータ it で指定された要素を削除し、削除した直後の要素へのイテレータを返します。
+erase element at the position pointed by iterator `it`. Return the iterator pointing the element just behind the erased element.
 
 ### erase( first_i, first_i )
 
-first_i 番目 から last_i 番目 までの要素を削除し、削除した直後の要素へのイテレータを返します。
+erase elements from the position pointed by numerical index `first_i` to `last_i - 1`. Return the iterator pointing the element just behind the erased elements.
 
 ### erase( first_it, last_it )
 
-イテレータ first_it と last_it - 1 で指定される範囲の要素を削除し、削除した直後の要素へのイテレータを返します。
+erase elements from the position pointed by iterator `first_it` to `last_it - 1`. Return the iterator pointing the element just behind the erased elements.
 
 ### containsElementNamed(name)
 
-このベクトルが文字列 name で指定された名前の要素を持っている場合には true を返します。
+return `true` if this vector contains an element with the name specified by character string `name`.
 
 
-## 静的メンバ関数
+## Static member functions
 
-静的メンバ関数は `NumericVector::create()` のような形式で呼び出します。
+Static member function is the function that is attached to the class from which an object being molded. Static member functions is called in the form such as `NumericVector::create()`.
 
 ### get_na()
 
-このベクトルの型に対応した `NA` 値を返します。
+return the `NA` value of this `Vector` class.
 
 ### is_na(x)
 
-ベクトルの要素 x が `NA` である場合には `true` を返します。
+return `true` if a vector element specified by `x` is `NA`.
+
 
 ### create( x1, x2, ...)
 
-スカラー値 x1, x2, ...  を要素とするベクトルを作成します。指定できる引数の数は20個まで対応しています。
+create a `Vector` object containing elements specified by scalar value `x1` and `x2`. Maximum number of arguments are 20.
 
 ### import( first_it , last_it )
 
-イテレーター `first_it`, `last_it` で指定された範囲の値で満たされたベクトルを作成します。
+create a `Vector` object filled with data from the position pointed by iterator `first_it` to `last_it - 1`.
 
 ### import_transform( first_it, last_it, func)
 
-イテレーター `first_it`, `last_it` で指定された範囲の値を、`func` で指定した関数で変換した値で満たされたベクトルを作成します。
-
+create a `Vector` object filled with data from the position pointed by iterator `first_it` to `last_it - 1` that is transformed by function specified by `func`.
 
 ##ベクトルを扱う際の注意点
-
-
 
 ### ベクトル同士の代入
 
