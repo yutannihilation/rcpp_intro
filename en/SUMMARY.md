@@ -9,6 +9,7 @@
 * [Printing messages](06_utility.md)
 * [Data types](07_data_types.md)
 * [Vector](08_vector.md)
+* [Notifications in handling vector](08_notification_vector.md)
 * [Matrix](09_matrix.md)
 * [Arithmetic and comparison operations](10_calculation.md)
 * [LogicalVector and logical operations](11_logical.md)

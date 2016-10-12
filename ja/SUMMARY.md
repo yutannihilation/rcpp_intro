@@ -9,6 +9,7 @@
 * [コンソールへの出力](06_utility.md)
 * [データ型](07_data_types.md)
 * [Vector](08_vector.md)
+* [ベクトルを扱う際の注意点](08_notification_vector.md)
 * [Matrix](09_matrix.md)
 * [四則演算と比較演算](10_calculation.md)
 * [LogicalVectorと論理演算](11_logical.md)
