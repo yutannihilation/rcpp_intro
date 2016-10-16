@@ -24,15 +24,15 @@ As explanation for people who have deeper knowledge of C++, a Rcpp object do not
 
 
 
-### 要素番号の型
+### Data type of numerical index
 
-32 bit システムやバージョン 2 以前の R ではベクトルの要素番号には `int` 型が使われていたため、ベクトルの要素数の最大値は 2^31 - 1 となっていました。しかし、現在一般的となっている 64 bit システムにおけるバージョン3以降のRではこれよりも要素数の大きいベクトル（Long Vector）を扱うことができます。Rcpp で Long Vector をサポートするためには、要素数や要素番号を変数として保持する場合に `int` 型ではなく `R_xlen_t` 型を用います。64 bit システムでも要素番号として `int` 型を用いることもできますが、その場合には長さが 2^31 - 1 を超えるベクトルを渡された時に処理ができなくなります。
+Maximum number of vector elements is limited to the length of 2^31 - 1 in R <= version 2.0.0 or 32 bit build of R, because `int` is used as data type of numerical index. However, long vector is supported after 64 bit build of R 3.0.0. You should use `R_xlen_t` as data data type for numerical index or the number of elements to support long vector in your Rcpp code.
 
 ```cpp
-// 要素数 n を R_xlen_t 型として宣言する
+// Declare the number of element "n" using R_xlen_t
 R_xlen_t n = v.length();
 double sum = 0;
-// 要素番号 i を R_xlen_t 型として宣言する
+// Declare the numerical index "i" using R_xlen_t
 for(R_xlen_t i=0; i<n; ++i){
   sum += v[i];
 }
@@ -40,22 +40,22 @@ for(R_xlen_t i=0; i<n; ++i){
 
 
 
-### []演算子の返値
+### Return type of operator[]
 
-`[]` や `()` 演算子でベクトルの要素へアクセスした時の返値は、`Vector`そのものではなく `Vector::Proxy` という型となっています。そのため、`v[]` を他の関数の引数として与えるとコンパイルエラーになることがあります。その場合には、`as<T>()` を用いて、目的の型 `T` (`NumericVector` など) に変換します。
+When you access to vector elements using `[]` or `()` operator, the return type is not `Vector` itself but `Vector::Proxy`. Thus, it will cause compile error when you pass `v[i]` directly to some function, if the function only supports `Vector` type. To avoid compile error `v[i]` assign to new object or convert it to type `T` using `as<T>()`.
 
 
 ```cpp
 NumericVector v {1,2,3,4,5};
 IntegerVector i {1,3};
 
-// これはコンパイルエラーとなる
+// Compile error
 //double x1 = sum(v[i]);
 
-// 変数として保持する
+// Save as new object
 NumericVector vi = v[i];
 double   x2 = sum(vi);
 
-// as<T>() で変換する
+// Convert to NumericVector using as<T>()
 double   x3 = sum(as<NumericVector>(v[i]));
 ```
