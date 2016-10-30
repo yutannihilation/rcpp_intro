@@ -1,4 +1,4 @@
-# Defining your Rcpp function
+# Defining Rcpp function
 
 The following code shows the basic format for defining a Rcpp function.
 
@@ -78,7 +78,7 @@ You can evaluate single C++ statement by using `evalCpp()`.
 evalCpp('std::numeric_limits<double>::max()')
 ```
 
-## Embedding R code code in Rcpp code
+## Embedding R code in Rcpp code
 
 You can also embed R code in your Rcpp code. Describe your R code in a comment begining with `/*** R` and the code will be executed when you compile the code with `sourceCpp()`.
 
