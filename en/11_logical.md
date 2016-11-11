@@ -2,57 +2,57 @@
 
 ## LogicalVector の正体
 
-C++ の論理値型は `bool` であるので、`LogicalVector` の要素の型も `bool` であると思うかもしれないが、実際には `int` 型です。(R でも論理ベクトルの実体は整数ベクトルである) なぜこのようになっているかというと `bool` で表現できるのは `true` と `false` の２つだけですが、R の論理ベクトルの要素の値には `TRUE`, `FALSE`,`NA` の３つがあり得るためです。
+Since boolean type in C++ is `bool`, you may think that the type of the element of `LogicalVector` is also `bool`, but it is `int`. (In fact, a logical vector is actually an integer vector in R.) This is because `bool` type can only represent `true` or `false`, but there are three possible values `TRUE`,` FALSE`, and `NA` for elements of the logical vector in R.
 
-Rcpp では `TRUE` は 1、`FALSE` は 0、`NA` は `NA_LOGICAL`（int の最小値）で表現されています。
+In Rcpp, `TRUE` is represented by 1,` FALSE` by 0, and `NA` by` NA_LOGICAL` (minimum value of int).
 
-|logical|Rcppの記号|int|bool|
+|R|Rcpp|int|bool|
 |:---:|:---:|:---:|:---:|
 |TRUE|TRUE|1 (0以外の値)|true|
 |FALSE|FALSE|0|false|
 |NA|NA_LOGICAL|int の最小値|true|
 
-## LogicalVector の要素の評価
+## Evaluation of elements of LogicalVector
 
-`LogicalVector` の要素の値を、そのまま if 文の条件式として使用してはいけません。なぜなら、C++ の  if 文の条件式は式の値を`bool` 型として評価するのですが、 `bool` 型は 0 以外の値を全て `true` と評価するので、`LogicalVector` の `NA`（`NA_LOGICAL`） は `true` と評価されてしまうためです。
+The value of the element of `LogicalVector` should not be used as a conditional expression of the `if` statement. Because the conditional expression of the C ++ `if` statement evaluates the value of the expression as a `bool` type. `bool` type evaluates all values other than 0 as `true`, thus the` NA of `LogicalVector` (`NA_LOGICAL`) is evaluated as `true`.
 
- `LogicalVector` の要素の値を if 文で評価する方法については、次のコード例を参考にしてください。
+See the following code example for how to evaluate the value of an element of `LogicalVector` with an `if` statement.
 
 ```
 // [[Rcpp::export]]
 LogicalVector rcpp_logical(){
-  
-  // NA を含む整数ベクトルを作成します
+
+  // Create an integer vector containing NA
   IntegerVector x = {1,2,3,4,NA_INTEGER};
-  
-  // 比較演算の結果は LogicalVector となります
-  LogicalVector v = (x >= 3); 
-  
-  // LogicalVector の要素を直接 if 文の条件式で使うと
-  // NA_LOGICAL は TRUE と評価されてしまいます
+
+  // The result of the comparison operation becomes LogicalVector
+  LogicalVector v = (x >= 3);
+
+   // If you use the element of LogicalVector directly in the "if" statement
+   // NA_LOGICAL will be evaluated as TRUE
   for(int i=0; i<v.size();++i) {
     if(v[i]) Rprintf("v[%i] is evaluated as true.\n",i);
     else Rprintf("v[%i] is evaluated as false.\n",i);
-  } 
-  
-  // LogicalVector の要素の評価します
+  }
+
+  // Evaluate the elements of LogicalVector
   for(int i=0; i<v.size();++i) {
     if(v[i]==TRUE) Rprintf("v[%i] is TRUE.\n",i);
     else if (v[i]==FALSE) Rprintf("v[%i] is FALSE.\n",i);
     else if (v[i]==NA_LOGICAL) Rprintf("v[%i] is NA.\n",i);
     else Rcout << "v[" << i << "] is not 1\n";
   }
-  
-  // TRUE FALSE NA_LOGICAL の値を表示します
+
+  // Displays the value of TRUE, FALSE and NA_LOGICAL
   Rcout << "TRUE " << TRUE << "\n";
   Rcout << "FALSE " << FALSE << "\n";
   Rcout << "NA_LOGICAL " << NA_LOGICAL << "\n";
-  
+
   return v;
 }
 ```
 
-実行結果
+Execution result
 
 ```
 > rcpp_logical()
@@ -72,9 +72,9 @@ NA_LOGICAL -2147483648
 [1] FALSE FALSE  TRUE  TRUE    NA
 ```
 
-## 論理演算
+## Logical operation
 
-LogicalVector の要素ごとの論理演算には演算子 `&`（論理積） `|`（論理和） `!`（論理否定）を用います。
+Use the operator `&` (logical product) `|` (logical sum) `!` (Logical negation) for the logical operation for each element of LogicalVector.
 
 ```
 LogicalVector v1 = {1,1,0,0};
@@ -89,79 +89,77 @@ Rcout << res2 << "\n"; // 1 1 1 0
 Rcout << res3 << "\n"; // 0 0 0 1
 ```
 
-## LogicalVector を受け取る関数
+## Function that receive LogicalVector
 
-LogicalVector を受け取る関数には `all()` `any()` `ifelse()` があります。
+Examples of functions that receive `LogicalVector` are `all()`, `any()` and `ifelse()`.
 
 ### all() と any()
 
-`LogicalVector` v に対して、`all(v)` は、v の全ての要素が `TRUE` の時 `TRUE` を返します。`any(v)` は、v のいずれかのの要素が `TRUE` の時、`TRUE`を返します。
+For `LogicalVector` v, `all (v) `returns` TRUE` when all elements of v are `TRUE`, and `any(v)` returns `TRUE` if any of v's elements are `TRUE`.
 
-`all()` 関数や `any()` 関数の返値を if 文の条件式としてそのまま用いることはできません。これは `all()` 関数と `any()` 関数の返値の型は `SingleLogicalResult` という型になっているためです。`all()` 関数や `any()` 関数の返値を if 文の条件式として用いるためには関数 `is_true()` `is_false()` `is_na()` を使って返値を `bool` 型に変換します。
+You can not use the return value of the `all()` and `any()` as the conditional expression of the `if` statement. This is because the return type of the `all()` and `any()` is not `bool` but `SingleLogicalResult`. To use the return value of the `all()` and `any()` as a conditional expression of an `if` statement, use the function `is_true()`, `is_false()` and `is_na()`. These functions convert `SingleLogicalResult` to `bool`.
 
-下のコード例では、関数 `all()` と `any()` の返値を if 文の条件式として使うときの方法を示します。この例では、全ての if 文の条件式は真となります、そして、`all()`, `any()` の返値を表示します。
+The code example below shows how to use the return values of the functions `all()` and `any()` as a conditional expression of an `if` statement. In this example, the conditional expression of all `if` statements will be `true`, and the return value of `all()`, `any()` will be displayed.
 
 ```cpp
 // [[Rcpp::export]]
 List rcpp_logical_03(){
   LogicalVector v1 = LogicalVector::create(1,1,1,NA_LOGICAL);
   LogicalVector v2 = LogicalVector::create(0,1,0,NA_LOGICAL);
-  
-  // NA を含む LogicalVector に対する all(), any() の挙動は R と同じです
+
+  // Behavior of all (), any () for LogicalVector including NA is the same as R
   LogicalVector lv1 = all( v1 );   // NA
   LogicalVector lv2 = all( v2 );   // FALSE
-  LogicalVector lv3 = any( v2 ); // TRUE 
-  
-  // bool に代入する場合
+  LogicalVector lv3 = any( v2 ); // TRUE
+
+  // In case assigning to bool
   bool b1 = is_true ( all(v1) );  // false
   bool b2 = is_false( all(v1) );  // false
   bool b3 = is_na   ( all(v1) );  // true
 
-  // if 文の条件式で用いる場合
-  if(is_na(all( v1 ))) { // OK 
+  // In case used in conditional expression of if statement
+  if(is_na(all( v1 ))) { // OK
     Rcout << "all( v1 ) is NA\n";
   }
-  
+
   return List::create(lv1, lv2, lv3, b1, b2, b3);
 }
 ```
 
 ### ifelse()
 
-`ifelse(v, x1, x2)` は論理ベクター v を受け取り、v の要素が `TRUE` の時には x1 の対応する要素を, `FALSE` の時には x2 の対応する要素を返します。 x1, x2 はベクターでもスカラーでも良いですが、ベクターの場合にはその長さは v と一致している必要があります。
+`ifelse (v, x1, x2)` receives the logical vector v, and returns the corresponding element of x1 when the element of v is `TRUE` and the corresponding element of x2 when it is` FALSE`. Although x1 and x2 can be vectors or scalars, in the case of vectors the length of x1 and x2 must match the length of v.
 
 ```cpp
 NumericVector v1;
 NumericVector v2;
 
-//ベクトルの要素数
+//Number of elements of vector
 int n = v1.length();
 
-// x1, x2 が スカラー, スカラーの場合
+// In case, both x1 and x2 are scalar
 IntegerVector res1     = ifelse( v1>v2, 1, 0);
 NumericVector res2     = ifelse( v1>v2, 1.0, 0.0);
 //CharacterVector res3 = ifelse( v1>v2, "T", "F"); // 対応していない
 
-// ifelse()が文字列スカラーには対応していないので
-// 同等の結果を得るためには要素の値が全て同じである文字列ベクトルを用います
+
+// Since ifelse() does not work with a scalar caracter string,
+// in order to obtain results equivalent to R,
+// we need to use a string vector whose values of elements are all the same.
 CharacterVector chr_v1 = rep(CharacterVector("T"), n);
 CharacterVector chr_v2 = rep(CharacterVector("F"), n);
 CharacterVector res3   = ifelse( v1>v2, chr_v1, chr_v2);
 
-// x1, x2 が ベクトル, スカラーの場合
+// In case, x1 and x2 are vector and scalar
 IntegerVector int_v1, int_v2;
 NumericVector num_v1, num_v2;
 IntegerVector   res4 = ifelse( v1>v2, int_v1, 0);
 NumericVector   res5 = ifelse( v1>v2, num_v1, 0.0);
 CharacterVector res6 = ifelse( v1>v2, chr_v1, Rf_mkChar("F")); //（注）
 
-// x1, x2 が ベクトル, ベクトルの場合
+// In case, x1 and x2 are vector and vector
 IntegerVector   res7 = ifelse( v1>v2, int_v1, int_v2);
 NumericVector   res8 = ifelse( v1>v2, num_v1, num_v2);
 CharacterVector res9 = ifelse( v1>v2, chr_v1, chr_v2);
 ```
-
-（注）：`Rf_mkChar()` はC言語の文字列型 (`char*`) を `CHARSXP` （`CharacterVector` の要素の型）に変換する関数です。
-
-
-
+Note: `Rf_mkChar ()` is a function that convert C language string (`char*`) to `CHARSXP` (type of element of `CharacterVector`).
