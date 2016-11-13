@@ -1,10 +1,10 @@
-# 属性値
+# Attribute
 
-Rcppのオブジェクトの属性値へアクセスするには、次のメンバ関数を用います。
+The following member functions are used to access the attributes of Rcpp objects.
 
 #### attr( name )
 
-文字列 name で指定した属性値へアクセスして値の取得や設定を行います。
+accesses the attribute specified by the character string "name" and gets and sets the value.
 
 ```
 List L;
@@ -13,7 +13,7 @@ L.attr("class") = "my_class";
 
 #### attributeNames()
 
-オブジェクトが持っている属性の一覧を返します。返値の型は C++ の `vector<string>` なので、`CharacterVector` に変換する場合には `wrap()` 関数を用います。
+Returns a list of the attributes the object has. Since the return type of this function is `std::vector<std::string>`, if you want to convert it to `CharacterVector` use `wrap()` function.
 
 ```
 CharacterVector ch = wrap(x.attributeNames());
@@ -21,81 +21,63 @@ CharacterVector ch = wrap(x.attributeNames());
 
 #### hasAttribute( name )
 
-このオブジェクトが 文字列 name で指定した名前の属性を持っている場合は `true` を返します。
+If this object has an attribute with the name specified by the string "name", it returns `true`.
 
 ```
 bool b = x.hasAttribute("name");
 ```
 
 ```cpp
-// リストを作成します
+// Creating a List object
 NumericVector   v1 = {1,2,3,4,5};
 CharacterVector v2 = {"A","B","C"};
 List L = List::create(v1, v2);
 
-// 要素に名前を設定します
+// Setting element names
 L.attr("names") = CharacterVector::create("x", "y");
 
-// 新しい属性を作成して、その値をセットします。
+// Creating a new attribute and set its value
 L.attr("new_attribute") = "new_value";
 
-// このオブジェクトのクラス名を "new_class" に変更します
+// Changing the class name of this object to "new_class"
 L.attr("class") = "new_class";
 
-// このオブジェクトが持つ属性の一覧を出力します
+// Outputting a list of the names of the attributes of this object
 CharacterVector ch = wrap(L.attributeNames());
 Rcout << ch << "\n"; // "names" "new_attribute" "class"
 
-// このオブジェクトが属性 "new_attribute" を持っているか確かめます
+// Check if this object has the attribute "new_attribute".
 bool b = L.hasAttribute("new_attribute");
 Rcout << b << "\n"; // 1
 ```
 
-##主要な属性値
+## Common attribute values
 
-要素名など使用頻度の高い属性については専用のアクセス関数が用意されている場合があります。
+Dedicated access functions may be prepared for frequently used attributes such as element names.
 
 ```
-//要素名、これらは同義である
+// Element name, the following two sentences are synonymous
 x.attr("names");
 x.names();
 ```
 
-下に主要な属性値へのアクセス方法を示す
+The code example below shows how to access common attributes.
 
 ```
 Vector v
-v.attr("names");//要素名
-v.names();      //要素名
+v.attr("names"); // Element names
+v.names();       // Element names
 
 Matrix m;
-m.ncol();  //列数
-m.nrow();  //行数
-m.attr(“dim”) = NumericVector::create(行数, 列数);
-m.attr(“dimnames”) = List::create(行名ベクトル, 列名ベクトル);
+m.ncol();  // Number of columns
+m.nrow();  // Number of rows
+m.attr(“dim”) = NumericVector::create( nrows, ncols );
+m.attr(“dimnames”) = List::create( row_names, col_names );
 
 DataFrame df;
-df.attr(“names”);     //列名
-df.attr(“row.names”); //行名
+df.attr(“names”);     // column names
+df.attr(“row.names”); // row names
 
 List L;
-L.names(); //要素名
+L.names(); // Element names
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

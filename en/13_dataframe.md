@@ -1,36 +1,35 @@
 # DataFrame
 
-##作成
+## Creating a DataFrame object
 
-`DataFrame` の作成には `DataFrame::create()` を使用します。また、 `DataFrame` の作成時にカラム名を指定する場合には、`Named("名前")` または `_["名前"]` を使用します。
-
+`DataFrame::create()` is used to create a `DataFrame` object. Also, use `Named()` or `_[]` if you want to specify column names when creating `DataFrame`　object.
 
 ```cpp
-// Vector v1, v2 から DataFrame df を作成します
+// Creating DataFrame df from Vector v1, v2
 DataFrame df = DataFrame::create(v1, v2);
-//列に名前をつける場合
-DataFrame df = DataFrame::create(Named("V1") = v1 , _["V2"]=v2);
+// When giving names to columns
+DataFrame df = DataFrame::create( Named("V1") = v1 , _["V2"] = v2 );
 ```
-`DataFrame::create()` で `DataFrame` を作成すると、カラムには元の `Vector` の要素の値が複製されるのではなく、元の `Vector` への「参照」となります。そのため、元の `Vector` の値を変更すると `DataFrame` の値も変更されます。そうならないように `Vector` の要素の値を複製して`DataFrame` のカラムを作成する場合には `clone()` 関数を使います。
 
-`clone()` 関数を使った場合と使わなかった場合の違いを見るために、下のコード例を見てください。コード例では、`Vector` v から`DataFrame` df を作成しています。そこでは、カラム V1 は v への参照、カラム V2 は `clone()` 関数により v の値を複製しています。その後、`Vector`  v に変更操作を行うと、データフレーム df のカラム V1 は変更されていますが、V2 は影響を受けないことがわかります。
+When you create a `DataFrame` with` DataFrame::create() `, the value of the original` Vector` element will not be duplicated in the columns of the `DataFrame`, but the columns will be the "reference" to the original `Vector`. Therefore, changing the value of the original `Vector` changes the value of the columns. To avoid this, we use the `clone()` function to duplicate the value of the `Vector` element when creating a `DataFrame` column.
 
+To see the difference between using the `clone()` function and not using it, see the code example below. In the code example, we are creating `DataFrame` df from `Vector` v. There, column V1 is a reference to v, and column V2 replicates the value of v by the `clone ()` function. After that, if you change to `Vector` v, the values of column V1 is changed, but V2 is not affected.
 
 ``` cpp
 // [[Rcpp::export]]
 DataFrame rcpp_df(){
-    // ベクトル v を作成します
+    // Creating vector v
     NumericVector v = {1,2};
-    // データフレムを作成します
-    DataFrame df = DataFrame::create( Named("V1") = v,
-                                      Named("V2") = clone(v));
-    // ベクトル v を変更します                                
-    v = v*2;
+    // Creating DataFrame df
+    DataFrame df = DataFrame::create( Named("V1") = v,         // simple assign
+                                      Named("V2") = clone(v)); // using clone()
+    // Changing vector v
+    v = v * 2;
     return df;
 }
 ```
 
-実行結果
+Execution result
 
 ```
 > rcpp_df()
@@ -42,19 +41,18 @@ DataFrame rcpp_df(){
 
 
 
-##要素へのアクセス
+## Accessing DataFrame elements
 
-
-`DataFrame` の特定のカラムにアクセスする場合には、カラムを一旦 `Vector` に代入し、その`Vector` を介してアクセスします。ベクトルの要素の指定の場合と同様に、`DataFrame` のカラムは、数値ベクトル（カラム番号）、文字列ベクトル（カラム名）、論理値ベクトルにより指定できます。
+When accessing a specific column of `DataFrame`, the column is temporarily assigned to `Vector` object and accessed via the object. As with `Vector`, the `DataFrame` column can be specified by a numeric vector (column number), a string vector (column name), and a logical vector.
 
 ```
 NumericVector v1 = df[0];
 NumericVector v2 = df["V2"];
 ```
 
-`DataFrame` 作成の時と同様に、上の方法で `Vector` に `DataFrame` のカラムを代入すると、`Vector` には カラムの値がコピーされるのではなく、カラムへの「参照」となります。そのため、`Vector` へ変更操作を行うと、df のカラムの内容も変更されます。
+As with `DataFrame` creation, assigning a` DataFrame` column to `Vector` in the above way will not copy the column  value to `Vector` object, but it will be a "reference" to the column. Therefore, when you change the values of `Vector` object, the content of the column will also be changed.
 
-元の `DataFrame` の値が変更されないようにカラムの値コピーして `Vector` を作成たい場合には `clone()` 関数を用います。
+If you want to create a `Vector` by copying the value of the column, use `clone()` function so that the value of the original `DataFrame` column is not changed.
 
 ```
 NumericVector v1 = df[0]; // v1 は dfの 0 列目への「参照」となります

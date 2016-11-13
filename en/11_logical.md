@@ -1,20 +1,20 @@
-# LogicalVector と 論理演算
+# LogicalVector and logical operation
 
-## LogicalVector の正体
+## Data type of LogicalVector element
 
-Since boolean type in C++ is `bool`, you may think that the type of the element of `LogicalVector` is also `bool`, but it is `int`. (In fact, a logical vector is actually an integer vector in R.) This is because `bool` type can only represent `true` or `false`, but there are three possible values `TRUE`,` FALSE`, and `NA` for elements of the logical vector in R.
+Since boolean type in C++ is `bool`, you may think that the type of the element of `LogicalVector` is also `bool`, but it is `int`. This is because `bool` type can only represent `true` or `false`, but there are three possible values `TRUE`,` FALSE`, and `NA` for elements of the logical vector in R.
 
-In Rcpp, `TRUE` is represented by 1,` FALSE` by 0, and `NA` by` NA_LOGICAL` (minimum value of int).
+In Rcpp, `TRUE` is represented by 1,` FALSE` by 0, and `NA` by` NA_LOGICAL` (minimum value of int: -2147483648).
 
 |R|Rcpp|int|bool|
 |:---:|:---:|:---:|:---:|
-|TRUE|TRUE|1 (0以外の値)|true|
+|TRUE|TRUE|1 (Values other than 0 and -2147483648)|true|
 |FALSE|FALSE|0|false|
-|NA|NA_LOGICAL|int の最小値|true|
+|NA|NA_LOGICAL|-2147483648|true|
 
-## Evaluation of elements of LogicalVector
+## Evaluation of LogicalVector elements
 
-The value of the element of `LogicalVector` should not be used as a conditional expression of the `if` statement. Because the conditional expression of the C ++ `if` statement evaluates the value of the expression as a `bool` type. `bool` type evaluates all values other than 0 as `true`, thus the` NA of `LogicalVector` (`NA_LOGICAL`) is evaluated as `true`.
+The value of the element of `LogicalVector` should not be used as a conditional expression of the `if` statement. Because the conditional expression of the C++ `if` statement evaluates the value of the expression as a `bool` type. `bool` type evaluates all values other than 0 as `true`, thus the` NA of `LogicalVector` (`NA_LOGICAL`) is evaluated as `true`.
 
 See the following code example for how to evaluate the value of an element of `LogicalVector` with an `if` statement.
 
@@ -155,7 +155,7 @@ IntegerVector int_v1, int_v2;
 NumericVector num_v1, num_v2;
 IntegerVector   res4 = ifelse( v1>v2, int_v1, 0);
 NumericVector   res5 = ifelse( v1>v2, num_v1, 0.0);
-CharacterVector res6 = ifelse( v1>v2, chr_v1, Rf_mkChar("F")); //（注）
+CharacterVector res6 = ifelse( v1>v2, chr_v1, Rf_mkChar("F")); // Note
 
 // In case, x1 and x2 are vector and vector
 IntegerVector   res7 = ifelse( v1>v2, int_v1, int_v2);
