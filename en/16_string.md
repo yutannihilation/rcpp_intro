@@ -1,121 +1,99 @@
 # String
 
-`String` は、`CharacterVector` の要素に対応するスカラー型です。`String` は C の文字列 `char*` や C++ の文字列 `std::string` では対応していない NA 値（`NA_STRING`）も扱うことができます。
+`String` is a scalar type corresponding to the element of `CharacterVector`. `String` can also handle NA values (`NA_STRING`) which are not supported by the C character string `char*` and the C++ string `std::string`.
 
-## String オブジェクトの作成
+## Creating String object
 
-`String` 型のオブジェクトの作成方法には、大別して、C/C++の文字列から作成する方法、別の `String` オブジェクトから作成する方法、長さが文字列ベクトルの１つの要素から作成する方法、の3通りの方法があります。また、文字コードも合わせて指定することができます。
+There are roughly　three ways to create a `String` object, as follows. The first method is to create from a C/C++ string, the second is to create it from another `String` object, and the third is to create it from one element of a `CharacterVector`.
 
 ```cpp
-//文字列を指定する
-String s;      // ""
+// Creating from C string
 String s("X"); // "X"
 
-//String 型の文字列 str の値をコピーして作成する
-String s(str);          
-String s(str, "UTF-8"); //encodingも指定する
+// Creating from Rcpp String
+String s(str);
 
-//文字列ベクトル char_vec の１つの要素の値をコピーして作成する
+//Creating from single element of CharacterVector object
 String s(char_vec[0])
-String s(char_vec[0], "UTF-8") //encodingを指定する
 ```
 
-## 演算子
+## Operators
 
-`String` には　`+=` 演算子が定義されています。これにより文字列の末尾に別の文字列を結合できます。 （ `+` 演算子は定義されてないので注意してください）
+The `+=` operator is defined in `String` type. This allows you to combine another string object at the end of the string. (Note that the `+` operator is not defined)
 
 ```
-// String オブジェクトの作成
+// Creating String object
 String s("A");
 
-// 文字列を結合します
+// Conbining a string
 s += "B";
 
-Rcout << s << "\n"; //"AB"
+Rcout << s << "\n"; // "AB"
 ```
 
 
-## メンバ関数
+## Member functions
 
-注：メンバ関数 `replace_first()`, `replace_last()`, `replace_all()` は単に文字を置き換えた文字列を返すわけではなく、このオブジェクトの値をそのものを書き換えます。
+Note: The member functions `replace_first()`, `replace_last()`, `replace_all()` do not just return the replaced character string, but instead rewrite the value of this object.
 
-#### replace_first( str, new_str)
+#### replace_first( str, new_str )
 
-この String オブジェクトの中で文字列 str と一致する最初に見つけた部分文字列を文字列 new_str に置き換えます。
+Replace first substring that matches the string `str` with the string `new_str`.
 
+#### replace_last( str, new_str )
 
-#### replace_last( str, new_str) 
+Replace last substring that matches the string `str` with the string `new_str`.
 
-この String オブジェクトの中で、文字列 str と一致する最後に見つけた部分文字列 str を 文字列 new_str に置き換えます。
+#### replace_all( str, new_str )
 
-#### replace_all( str, new_str) 
-
-この String オブジェクトの中で、文字列 str と一致する全ての部分文字列 str を 文字列 new_str に置き換えます。
-
-#### push_back(str)
-
-この String オブジェクトの末尾に文字列 str を結合します。（ += 演算子と同じ機能）
-
+Replace all substrings that matches the string `str` with the string `new_str`.
 
 #### push_back(str)
 
-この String オブジェクトの先頭に文字列 str を結合します。
+Combine the string `str` to the end of this `String` object. (Same as += operator)
+
+#### push_back(str)
+
+Combine the string str at the beginning of this `String` object.
 
 #### set_na()
 
-NA 値をセットします。
+Set NA value to this `String` object.
 
 #### get_cstring()
 
-String オブジェクトの文字列を C 言語の文字列定数（const char*）に変換して返します。
+Convert the string of this String object into a C character string constant (const char*) and return it.
 
 #### get_encoding()
 
-文字コード（"bytes", "latin1", "UTF-8", "unknown"のいずれか）を返します。
+Returns the character encoding ( "bytes", "latin1", "UTF-8", "unknown").
 
 #### set_encoding(str)
 
-文字列 str で指定する文字コード設定します。
+Set the character encoding specified by the character string `str`.
 
 
 
 
-### コード例
-
-以下のコードでは、"abcdabcd" という文字列に対して、"ab" を "AB" に置換する処理を以下の3通りの方法で実行しています。
-　(1) "ab" が初めて出現する箇所でのみ置換 (`replace_first()` メンバ関数)
-　(2) "ab" が最後に出現する箇所でのみ置換 (`replace_last()` メンバ関数)
-　(3) "ab" が出現するすべての箇所で置換 (`replace_all()` メンバ関数)
-
-なお、メンバ関数 `replace_first()`, `replace_last()`, `replace_all()` は単に文字を置き換えた文字列を返すわけではなく、このオブジェクトの値をそのものを書き換えます。
+### Code example
 
 ```
 // [[Rcpp::export]]
 void rcpp_replace(){
-    //"ab" が初めて出現する箇所でのみ置換します
+
+    // Replace only at the first occurrence of "ab"
     String s("abcdabcd");
     s.replace_first("ab", "AB");
     Rcout << s.get_cstring() << "\n"; // ABcdabcd
 
-    //"ab" が最後に出現する箇所でのみ置換します
+    // Replace only at the last occurrence of "ab"
     s="abcdabcd";
     s.replace_last("ab", "AB");
     Rcout << s.get_cstring() << "\n"; // abcdABcd
 
-    //"ab" が出現するすべての箇所で置換します
+    // Replace every occurrence of "ab"
     s="abcdabcd";
     s.replace_all("ab", "AB");
     Rcout << s.get_cstring() << "\n"; // ABcdABcd
 }
-```
-
-実行結果
-
-```
-> rcpp_string()
-ABcdabcd
-ABcdabcd
-abcdaABd
-ABcdABcd
-
 ```

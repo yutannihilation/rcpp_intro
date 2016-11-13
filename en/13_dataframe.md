@@ -41,8 +41,6 @@ Execution result
 ```
 
 
-
-
 ## Accessing DataFrame elements
 
 When accessing a specific column of `DataFrame`, the column is temporarily assigned to `Vector` object and accessed via the object. As with `Vector`, the `DataFrame` column can be specified by a numeric vector (column number), a string vector (column name), and a logical vector.
