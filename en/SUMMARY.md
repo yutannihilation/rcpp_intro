@@ -15,7 +15,7 @@
 * [LogicalVector and logical operations](11_logical.md)
 * [Attributes](12_attributes.md)
 * [DataFrame](13_dataframe.md)
-* [List(ja)](14_list.md)
+* [List](14_list.md)
 * [S3, S4(ja)](15_s3_s4.md)
 * [String(ja)](16_string.md)
 * [Date(ja)](17_date.md)

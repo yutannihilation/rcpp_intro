@@ -1,5 +1,7 @@
 # DataFrame
 
+This chapter explains how to create `DataFrame` object, how to access its elements, and its member functions. In Rcpp, `DataFrame` is implemented as a kind of vector. In other words, `Vector` is a vector whose element is scalar value, while `DataFrame` is a vector whose elements are `Vector`s of the same length. Therefore, `Vector` and `DataFrame` have many common methods of creating objects, accessing elements, and member functions.
+
 ## Creating a DataFrame object
 
 `DataFrame::create()` is used to create a `DataFrame` object. Also, use `Named()` or `_[]` if you want to specify column names when creating `DataFrame`　object.
