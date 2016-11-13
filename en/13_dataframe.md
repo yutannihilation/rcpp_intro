@@ -55,101 +55,93 @@ As with `DataFrame` creation, assigning a` DataFrame` column to `Vector` in the 
 If you want to create a `Vector` by copying the value of the column, use `clone()` function so that the value of the original `DataFrame` column is not changed.
 
 ```
-NumericVector v1 = df[0]; // v1 は dfの 0 列目への「参照」となります
-v1 = v1*2;                // v1 の値を変更すると df[0] の値も変更されます
+NumericVector v1 = df[0]; // v1 becomes "reference" to the 0th column of df
+v1 = v1 * 2;              // Changing the value of v1 also changes the value of df[0]
 
-NumericVector v2 = clone(df[0]); // v2 には df[0] の要素の値を複製します
-v2 = v2*2;                       // v2 を変更しても df[0] の値は変わりません
+NumericVector v2 = clone(df[0]); // Duplicate the value of the element of df[0] to v2
+v2 = v2*2;                       // Changing v2 does not change the value of df [0]
 ```
 
 
 
-##メンバ関数
+## Member functions
 
-Rcpp では、`DataFrame` や `List` は、ある種のベクトルとして実装されています。つまり、`Vector` は、スカラー値を要素とするベクトル、`DataFrame` は同じ長さの `Vector` を要素とするベクトルです。そのため、`DataFrame` は `Vector` 共通するメンバ関数を多く持っています。
-
+In Rcpp, `DataFrame` is implemented as certain kinds of vectors. In other words, `Vector` is a vector whose elements are scalar values, and `DataFrame` is a vector whose elements are `Vector`s. Therefore, `DataFrame` has many member functions common to `Vector`.
 
 #### length() size()
 
-列数を返します。
+Returns the number of columns.
 
 
-####nrows()
+#### nrows()
 
-行数を返します。
+Returns the number of rows.
 
-####names()
+#### names()
 
-カラム名を文字列ベクトルで返します。
+Returns the column name as a CharacterVector.
 
-####offset(name) findName(name)
+#### offset(name) findName(name)
 
-文字列 name で指定された名前のカラムの列番号を返します。
+Returns the numerical index of the column with the name specified by the string "name".
 
-####findName(name)
+#### fill(v)
 
-文字列 name で指定された名前のカラムの列番号を返します。
+fills all the columns of this `DataFrame` with` Vector` v.
 
+#### assign( first_it, last_it)
 
-####fill(v)
+Assign columns in the range specified by the iterators first_it and last_it to this `DataFrame`.
 
-この `DataFrame` の全てのカラムを `Vector` v で満たします。
+#### push_back(v)
 
+Add `Vector` v to the end of this` DataFrame`.
 
-####assign( first_it, last_it)
+#### push_back( v, name )
 
-イテレーター first_it, last_it で指定された範囲のカラムを、この `DataFrame` に代入します。
+Append a `Vector` v to the end of this` DataFrame`. Specify the name of the added column with the string "name".
 
-####push_back(v)
+#### push_front(x)
 
-この `DataFrame`  の末尾に `Vector` v を追加します。
-
-####push_back( v, name )
-
-この `DataFrame`  の末尾に `Vector` v を追加します。 追加したカラムの名前を文字列 name で指定します。
-
-####push_front(x)
-
-この `DataFrame`  の先頭に `Vector` v を追加します。
+Append a `Vector` v at the beginning of this` DataFrame`.
 
 
-####push_front( x, name )
+#### push_front( x, name )
 
-この `DataFrame`  の先頭に `Vector` v を追加します。追加したカラムの名前を文字列 name で指定します。
+Append a `Vector` v at the beginning of this` DataFrame`. Specify the name of the added column with the string "name".
 
 #### begin()
 
-この `DataFrame` の先頭カラムへのイテレータを返します。
+Returns an iterator pointing to the first column of this `DataFrame`.
 
 #### end()
 
-この `DataFrame` の末尾へのイテレータを返します。
+Return an iterator pointing to the end of this `DataFrame`.
 
 #### insert( it, v )
 
-この `DataFrame` の、イテレータ it で示された位置に``Vector` ` v を追加し、その要素へのイテレータを返します。
+Add `Vector` v to this `DataFrame` at the position pointed by the iterator `it` and return an iterator to that element.
 
 #### erase(i)
 
-この `DataFrame` の i 番目のカラムを削除し、削除した直後のカラムへのイテレータを返す。
+Delete the `i`th column of this `DataFrame` and return an iterator to the column just after erased column.
 
-####erase(it)
+#### erase(it)
 
-イテレータ it で指定されたカラムを削除し、削除した直後のカラムへのイテレータを返します。
+Deletes the column specified by the iterator `it` and returns an iterator to the column just after erased column.
 
 ####erase(first_i, last_i)
 
-first_i 番目 から last_i -1 番目 までのカラムを削除し、削除した直後のカラムへのイテレータを返します。
-
+Deletes the `first_i`th to `last_i - 1`th columns and returns an iterator to the column just after erased column.
 
 #### erase(first_it, last_it)
 
-イテレータ first_it から last_it -1 で指定されるカラムまでを削除し、削除した直後のカラムへのイテレータを返します。
+Deletes the range of columns from those specified by the iterator `first_it` to those specified by `last_it - 1` and returns an iterator to the column just after the erased columns.
 
 #### containsElementNamed(name)
 
-この `DataFrame` が文字列 name で指定された名前のカラムを持っている場合には true を返します。
+Returns true if this `DataFrame` has a column with the name specified by the string `name`.
 
 #### inherits(str)
 
-このオブジェクトの属性 class に文字列 str が含まれているかどうか。
+Returns true if the attribute "class" of this object contains the string `str`.
