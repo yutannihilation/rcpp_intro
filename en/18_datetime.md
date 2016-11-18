@@ -1,108 +1,108 @@
 # Datetime
 
-`Datetime` は `DatetimeVector` の要素に対応するスカラー型です。
+`Datetime` is a scalar type corresponding to the elements of` DatetimeVector`.
 
-## Datetime オブジェクトの作成
+## Creating Datetime object
 
-Date と同様に、Datetime の作成方法も、世界協定時（UTC）の 1970-01-01 00:00:00 からの秒数を指定して作成する方法と、明示的に日時を指定して作成する方法があります。
+As with Date, Datetime is also created by specifying the number of seconds from 1970-01-01 00:00:00 UTC (Coordinated Universal Time), and by explicitly specifying the date and time.
 
-明示的に日時を指定して作成する形式は `Datetime dt( str, format)` となります。この形式では書式文字列 `format` を指定して文字列 `str` を `Datetime` に変換します。(formatで使用する記号は R の `help(strptime)` を参照してください）
+The format to explicitly specify the date and time is `Datetime dt(str, format)`. This format converts the string `str` to `Datetime` with the format string `format`. Please refer to `help(strptime)` in R for symbols used in the format string.
 
 ```
-// 1970年1月1日 00:00:00 からの経過秒数（実数）で作成します
+// Creating Datetime object it with elapsed seconds since 00:00:00 on January 1, 1970
 Datetime dt;         // "1970-01-01 00:00:00 UTC"
-Datetime dt(10.1);   // "1970-01-01 00:00:00 UTC" + 10.1sec
+Datetime dt(10.1);   // "1970-01-01 00:00:00 UTC" + 10.1 sec
 
-// 日時・時間と書式を指定して作成します
-// デフォルトの書式は "%Y-%m-%d %H:%M:%OS" です
-// 指定した日時はローカルなタイムゾーンの日時として解釈されます
+// Creating by specifying the date and time
+// The default format is "%Y-%m-%d %H:%M:%OS"
+// The specified date and time are interpreted as vthe date and time of the local time zone
 Datetime dt("2000-01-01 00:00:00");
 Datetime dt("2000年1月1日 0時0分0秒", "%Y年%m月%d日 %H時%M分%OS秒");
 ```
 
-## タイムゾーン
+## Time zone
 
-`Datetime` は、内部的には日時を協定世界時 (UTC) `1970-01-01 00:00:00` からの秒数（実数）で管理しています。例えば `Datetime dt(10)` は世界協定時 `1970-01-01 00:00:00 UTC` から10秒経過後の時点を表します。この値を R に返すと実行されたタイムゾーンに変換された時刻として表示されます。例えば日本なら日本標準時（JST）は UTC + 9時間なので、`Datetime(10)` は　`1970-01-01 09:00:10 JST` となります。
+`Datetime` internally manages the date and time in seconds (real number) from `1970-01-01 00:00:00` in Coordinated Universal Time (UTC). For example, `Datetime dt(10)` represents the point after 10 seconds from `1970-01-01 00:00:00 UTC`. When this value is returned to R, it is displayed as the time converted to the executed time zone. For example, in Japan, Japan Standard Time (JST) is UTC + 9 hours, so `Datetime d(10)` will be `1970-01-01 09:00:10 JST`.
 
-この形式では、`str` はローカルなタイムゾーンの時刻として解釈されます。例えば日本標準時（JST）で、`Datetime("2000-01-01 00:00:00")` を実行すると、内部的には `1999-12-31 15:00:00 UTC` の値がセットされます。
+When creating a Datetime object in the form of `Datetime dt(str, format)`, `str` is interpreted as the time in the local timezone. For example, if you run `Datetime dt(2000-01-01 00:00:00);` in Japan Standard Time (JST), the value of `1999-12-31 15:00:00 UTC` is set internally.
 
 
-## 演算子
+## Operators
 
-`Datetime ` には `+ - < > >= <= == !=` の演算子が定義されています。
+The `+, -, <, >, >=, <=, ==, !=` operators are defined in `Datetime`.
 
-これらの演算子を用いることにより、秒数の加算 (+)、日時の差分(-)、日時の比較(<, <=, >, >=, ==, !=) を行えるようになります。日時に加算する値と、日時の差分の返値の単位は秒となります。
+By using these operators, you can perform addition of seconds (`+`), difference of datetime (`-`) in seconds, comparison of datetime (`<, <=, >, >=, ==, !=`) .
 
 ```cpp
 Datetime dt1("2000-01-01 00:00:00");
 Datetime dt2("2000-01-02 00:00:00");
 
-//日時の差分（秒）
+// difference of datetime (seconds)
 int sec = dt2 - dt1;  // 86400
 
-//日時に秒数を加算
+// addition of seconds
 dt1 = dt1 + 1; // "2000-01-01 00:00:01"
 
-//日時の比較
+// comparison of datetime
 bool b = dt2 > dt1; // true
 ```
 
 
-## メンバ関数
+## Member functions
 
-**注意**：これらのメンバ関数を使って出力される時刻の値は、世界協定時で解釈した時刻の値になっています。そのため、ユーザーのタイムゾーンの日時とは異なって見えます。（出力結果はこの章の末尾に記載したのコードの実行結果を参照してください）
+Note: The value output using these member functions is the time interpreted at the time of Coordinated Universal Time. Therefore, it looks different from the date and time of the user's time zone. (For example, refer to the execution result of the code at the end of this chapter)
+
+#### getFractionalTimestamp()
+
+Returns the number of seconds (real number) from the base date (1970-01-01 00: 00: 00 UTC).
+
+#### getMicroSeconds()
+
+Returns the microseconds of the date and time at the Coordinated Universal Time. This value express the value of the second after decimal point in units of microseconds. (i.e. 0.1 second = 100000 microseconds)
+
+#### getSeconds()
+
+Returns the second of the date and time in Coordinated Universal Time.
+
+#### getMinutes()
+
+Returns the minute of the date and time in Coordinated Universal Time.
 
 
-####getFractionalTimestamp()
+#### getHours()
 
-世界協定時の基準日（1970-01-01 00:00:00 UTC）からの秒数（実数値）を返します
-
-####getMicroSeconds()
-
-世界協定時の日時のマイクロ秒を返します。これは秒の小数点以下の値を 1/1000000 秒単位で表記した値です。（0.1 秒 = 100000 マイクロ秒）
-
-####getSeconds()
-
-世界協定時の日時の秒を返します。
-
-####getMinutes()
-
-世界協定時の日時の分を返します。
-
-####getHours()
-
-世界協定時の日時の時を返します。
+Returns the hour of the date and time in Coordinated Universal Time.
 
 ####getDay()
 
-世界協定時の日時の日を返します。
+Returns the day of the date and time in Coordinated Universal Time.
 
 ####getMonth()
 
-世界協定時の日時の月を返します。
+Returns the month of the date and time in Coordinated Universal Time.
 
-####getYear()
+#### getYear()
 
-世界協定時の日時の年を返します。
+Returns the year of the date and time in Coordinated Universal Time.
 
 ####getWeekday()
 
-世界協定時の曜日
+Returns the day of the week of the date and time in Coordinated Universal Time in `int`.
 
-世界協定時の日時の曜日を int で返します。1=Sun 2=Mon 3=Tue 4=Wed 5=Thu 6=Sat
+1:Sun 2:Mon 3:Tue 4:Wed 5:Thu 6:Sat
 
-####getYearday()
+#### getYearday()
 
-1月1日を 1 、12月31日を 365 とした年間を通した日付の番号を返します。
+Returns the number of the date through the year with January 1st as 1 and December 31st as 365.
 
-####is_na()
+#### is_na()
 
-このオブジェクトが NA である場合には true を返します。
+Returns `true` if this object is `NA`.
 
 
-##コード例
+## Code example
 
-以下のコード例では、日本標準時（JST）の環境で実行した結果を示します。
+The code example below shows the result of executing in Japan Standard Time (JST) environment.
 
 
 ```
@@ -147,4 +147,3 @@ getYearday 365
 getFractionalTimestamp 9.46652e+08
 [1] "2000-01-01 JST"
 ```
-

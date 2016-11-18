@@ -18,7 +18,7 @@
 * [List](14_list.md)
 * [S3, S4](15_s3_s4.md)
 * [String](16_string.md)
-* [Date(ja)](17_date.md)
+* [Date](17_date.md)
 * [Datetime(ja)](18_datetime.md)
 * [RObject(ja)](19_robject.md)
 * [R like functions(ja)](20_rcpp_functions.md)
