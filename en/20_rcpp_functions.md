@@ -10,7 +10,7 @@ NumericVector res = mean(noNA(v));
 
 ## List of R-like functions
 
-<!--
+
 - [ベクトルに関連する関数](#ベクトルに関連する関数)
 - [文字列に関連する関数](#文字列に関連する関数)
 - [値の検索に関連する関数](#値の検索に関連する関数)
@@ -23,8 +23,8 @@ NumericVector res = mean(noNA(v));
 - [論理値に関連する関数](#論理値に関連する関数)
 - [NA、Inf、NaNに関連する関数](#NA、Inf、NaNに関連する関数)
 - [apply関数](#apply関数)
-- [cbind関数](#cbind関数)
--->
+- [cbind関数](#cbindfunction)
+
 
 ### Vector related functions
 
