@@ -108,10 +108,10 @@ The code example below shows the result of executing in Japan Standard Time (JST
 ```
 // [[Rcpp::export]]
 Datetime rcpp_datetime(){
-    // 日時を指定して Datetime オブジェクトを作成する
+    // Creating Datetime object by specifying date and time to
     Datetime dt("2000-01-01 00:00:00");
 
-    // 日時の要素を世界協定時で表示します
+    // Displaying parts of the Datetime object in Coordinated Universal Time
     Rcout << "getYear " << dt.getYear() << "\n";
     Rcout << "getMonth " << dt.getMonth() << "\n";
     Rcout << "getDay " << dt.getDay() << "\n";
@@ -129,9 +129,10 @@ Datetime rcpp_datetime(){
 }
 ```
 
-実行結果
+Execution result
 
-出力される世界協定時（UTC）は日本標準時（JST）から9時間前の日時となっていることがわかります。
+You can see that the time output is 9 hours before Japan Standard Time (JST).
+
 
 ```
 > rcpp_datetime()

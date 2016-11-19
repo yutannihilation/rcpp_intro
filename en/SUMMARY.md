@@ -19,7 +19,7 @@
 * [S3, S4](15_s3_s4.md)
 * [String](16_string.md)
 * [Date](17_date.md)
-* [Datetime(ja)](18_datetime.md)
+* [Datetime](18_datetime.md)
 * [RObject(ja)](19_robject.md)
 * [R like functions(ja)](20_rcpp_functions.md)
 * [Probability distributions(ja)](21_dpqr_functions.md)

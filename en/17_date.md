@@ -1,7 +1,6 @@
 # Date
 
-`Date` is a scalar type which is an element of` DateVector`.
-
+`Date` is a scalar type corresponding to an element of `DateVector`.
 
 ##　Creating Date object
 
