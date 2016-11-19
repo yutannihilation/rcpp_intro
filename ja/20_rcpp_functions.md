@@ -171,13 +171,13 @@ NumericVector res = mean(noNA(v));
 
 |関数|説明|
 |---|---|
-|`lapply(x, fun)`|オブジェクト（`Vector`,`DataFrame`,`List`）x の各要素に対して関数 fun を適用した結果を List で返す。|
-|`sapply(x, fun)`|オブジェクト（`Vector`, `DataFrame`, `List`）x の各要素に対して関数 fun を適用した結果を Vector で返す。|
-|`mapply(x1, x2, fun2)`| オブジェクト x1, x2 の各要素に対して2個の引数を受け取る関数 fun2 を適用した結果を返す。|
-|`mapply(x1, x2, x3, fun3)`|オブジェクト x1, x2, x3 の各要素に対して3個の引数を受け取る関数 fun3 を適用した結果を返す。|
+|`lapply(x, fun)`|`Vector` x の各要素に対してC++の関数 fun を適用した結果を List で返す。|
+|`sapply(x, fun)`|`Vector` x の各要素に対してC++の関数 fun を適用した結果を Vector で返す。|
+|`mapply(x1, x2, fun2)`| `Vector` x の各要素に対して2個の引数を受け取るC++の関数 fun2 を適用した結果を返す。|
+|`mapply(x1, x2, x3, fun3)`|`Vector` x の各要素に対して3個の引数を受け取るC++の関数 fun3 を適用した結果を返す。|
 
 ### cbind関数
 
 |関数|説明|
 |---|---|
-|`cbind(v1,v2,...)`|引数として渡したベクトルを列とした行列・データフレームを作成します。渡せる引数の数は50個まで。|
+|`cbind(v1,v2,...)`|引数として渡したベクトル・行列を列方向に結合した行列・データフレームを返します。渡せる引数の数は50個まで。|

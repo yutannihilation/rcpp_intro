@@ -1,13 +1,16 @@
-#R ライクな関数
+# R-like functions
 
-R の関数と類似した Rcpp の関数の一覧を示します。また、これらの関数に与えるベクトルに `NA` が含まれていないと保証できる場合には、`noNA()`を使って印をつけると Rcpp 関数が `NA` のチェックを行わなくなるので計算が速くなります。
+Here is a list of Rcpp functions similar to R functions.
+
+Also, if you can guarantee that `NA` is not included in the vector given to these functions, you can use `noNA()` to mark the vector. Then the functions below no longer checks for `NA`, so the calculation may speed up.
 
 ```
 NumericVector res = mean(noNA(v));
 ```
 
-## Rライクな関数の一覧
+## List of R-like functions
 
+<!--
 - [ベクトルに関連する関数](#ベクトルに関連する関数)
 - [文字列に関連する関数](#文字列に関連する関数)
 - [値の検索に関連する関数](#値の検索に関連する関数)
@@ -21,163 +24,168 @@ NumericVector res = mean(noNA(v));
 - [NA、Inf、NaNに関連する関数](#NA、Inf、NaNに関連する関数)
 - [apply関数](#apply関数)
 - [cbind関数](#cbind関数)
+-->
 
-### ベクトルに関連する関数
+### Vector related functions
 
-|関数|説明|
+|Function|Explanation|
 |---|---|
-|`head(v, n)`|ベクトル v の最初の要素から n 個のベクトルを返す。|
-|`tail(v, n)`|ベクトル v の最後の要素から n 個のベクトルを返す。|
-|`rev(v)`|ベクトル v の要素を逆順に並べたベクトルを返す。|
-|`rep(x, n)`|ベクトルあるいはスカラー x を n 個つなげたベクトルを返す。|
-|`rep_each(v, times)`|ベクトル v の要素を順に times 回ずつ繰り返したベクトルを返す。|
-|`rep_len(v, n)`| 最終的にベクトルの長さが n になるまでベクトル v を繰り返したベクトルを返す。 |
-|`seq(start, end)`|整数 start から end までの連続した整数のベクトルを返す。|
-|`seq_along(v)`|1 からベクトル v の要素数までの連続した整数のベクトルを返す|
-|`seq_len(n)`|1 から n までの連続した整数のベクトルを返す|
-|`diff(v)`|ベクトル v の最後の要素を除いた各要素 i について `v[i+1] - v[i]` を計算したベクトルを返す。|
+|`head(v, n)`|Returns a vector of `n` elements from the first element of the vector `v`.|
+|`tail(v, n)`|Returns a vector of last `n` elements from the last element of vector `v`.|
+|`rev(v)`|Returns a vector in which elements of vector `v` are arranged in reverse order.|
+|`rep(x, n)`|Returns a vector in which `x` is repeated `n` times. `x` can be a scalar or vector.|
+|`rep_each(v, n)`|Returns a vector in which each elements of vector v are repeated `n` times.|
+|`rep_len(v, n)`| Returns a vector in which the vector `v` is repeated until the length of the vector becomes `n`. |
+|`seq(start, end)`|Returns a vector of consecutive integers from `start` to `end`.|
+|`seq_along(v)`|Returns a vector of consecutive integers from 1 to the number of elements of vector `v`|
+|`seq_len(n)`|Returns a vector of consecutive integers from 1 to `n`|
+|`diff(v)`|Returns a vector that computed `v[i + 1] - v[i]` for each element `i` excluding the last element of the vector `v`.|
 
-### 文字列に関連する関数
+### String related functions
 
-|関数|説明|
+|Function|Explanation|
 |---|---|
-|`collapse(v)`|文字列ベクトル v の各要素を結合した文字列を `String` 型で返す。|
+|`collapse(v)`|Returns a string concatenated with each element of the `CharacterVector` v as `String` type.|
 
-### 値の検索に関連する関数
+### Functions related to finding values
 
-|関数|説明|
+|Function|Explanation|
 |---|---|
-|`match(v, table)`|ベクトル v の各要素について、値が一致するベクトル table の最初の要素の要素番号（1から始まる）を格納した整数ベクトルを返す。（つまり、`res = match(v, table)` とすると、res[i] には v[i]==table[j] となる最小の j+1 の値が格納される）|
-|`self_match(v)`|match(v, table) の v と table に同じベクトルを渡した場合と同義。|
-|`which_max(v)`|ベクトル v の最大の要素の要素番号を返す。|
-|`which_min(v)`|ベクトル v の最小の要素の要素番号を返す。|
+|`match(v, table)`| Returns an integer vector containing the R style numerical index (starting from 1) of the element of vector `table` that match value to each elements of vector `x`. Namely、if you execute `res = match(v, table);`, then it will be `res[i] ==  j+1` where `j` equals to minimum `j`  satisfying `v[i] == table[j]`|
+|`self_match(v)`|Synonymous with passing the same vector to `match (v, table)`.|
+|`which_max(v)`|Returns the numerical index of the largest element of the vector v.|
+|`which_min(v)`|Returns the numerical index of the smallest element of the vector v.|
 
-### 重複の値に関連する関数
 
-|関数|説明|
+
+
+### Functions related to duplicated values
+
+|Function|Explanation|
 |---|---|
-|`duplicated(v)`|ベクトル v の各要素の値が、それより前の要素に存在する場合には 1 を、そうでない場合には 0 を入れたベクトルを返す。|
-|`unique(v)`|ベクトル v から要素の値の重複をなくしたベクトルを返す。|
-|`sort_unique(v)`|ベクトル v から要素の値の重複をなくし、値を昇順でソートしたベクトルを返す。|
+|`duplicated(v)`|Returns a vector containing 1 if the value of each element of vector v exists in the previous element, containing 0 if not.|
+|`unique(v)`|Returns a vector that eliminates the duplication of the element value from the vector `v`.|
+|`sort_unique(v)`|Returns a vector that eliminates the duplication of the element value from the vector `v` and sorts the values in ascending order.|
 
-### 集合演算に関連する関数
+### Functions related to set operation
 
-|関数|説明|
+|Function|Explanation|
 |---|---|
-|`setdiff(v1,v2)`|ベクトル v1 のユニークな(値の重複のない)要素から、ベクトル v2 のユニークな要素にある値を除いたベクトルを返す。|
-|`setequal(v1,v2)`|ベクトル v1 のユニークな要素がベクトル v2 のユニークな要素と等しい場合には true を返す。|
-|`intersect(v1,v2)`|ベクトル v1 のユニークな要素とベクトル v2 のユニークな要素の両方に含まれる要素をベクトルで返す。|
-|`union_(v1,v2)`|ベクトル v1 とベクトル v2 の要素を合わせてから値の重複をなくしたベクトルを返す。|
+|`setdiff(v1,v2)`|Returns a vector obtained by subtracting the value of the unique element of the vector `v2` from the unique element of the vector `v1`.|
+|`setequal(v1,v2)`|Returns true if the unique element of vector `v1` is equal to the unique element of vector `v2`.|
+|`intersect(v1,v2)`|Returns a vector containing elements contained in both the unique element of vector `v1` and the unique element of vector `v2`.|
+|`union_(v1,v2)`|Return vector which eliminated value duplication after combining elements of vector `v1` and vector `v2`.|
 
-### 最大値・最小値に関連する関数
+### Functions related to maximum and minimum values
 
-|関数|説明|
+|Function|Explanation|
 |---|---|
-|`min(v)`|ベクトル v の要素の最小値を返す。|
-|`max(v)`|ベクトル v の要素の最大値を返す。|
-|`cummin(v)`|ベクトル v の各要素について、その要素自身を含むそれ以前の要素の最小値を格納したベクトルを返す|
-|`cummax(v)`|ベクトル v の各要素について、その要素自身を含むそれ以前の要素の最大値を格納したベクトルを返す|
-|`pmin(v1,v2)`|ベクトル v1 v2 の対応する要素を比較し、大さい方の要素を格納したベクトルを返す。|
-|`pmax(v1,v2)`|ベクトル v1 v2 の対応する要素を比較し、大きい方の要素を格納したベクトルを返す。|
-|`range(v)`|ベクトル v の最小値と最大値からなるベクトルを返す。|
-|`clamp(min, v, max)`|ベクトル v の要素の min 未満の値を min に、max 超の値を max に置き換えたベクトルを返す。|
+|`min(v)`|Returns the minimum value of the vector `v`.|
+|`max(v)`|Returns the maximum value of the vector `v`.|
+|`cummin(v)`|Returns the cumulative minimum elements of vector `v`|
+|`cummax(v)`|Returns the cumulative maximum elements of vector `v`|
+|`pmin(v1,v2)`|Compares the corresponding elements of vectors `v1` and `v2`, and return a vector containing the smaller elements.|
+|`pmax(v1,v2)`|Compares the corresponding elements of vectors `v1` and `v2`, and return a vector containing the larger elements.|
+|`range(v)`|Returns a vector consisting of the minimum and maximum values of vector `v`.|
+|`clamp(min, v, max)`|Returns a vector that the elements of vector `v` smaller than `min` is replaced with `min` and the elements larger than `max` is replaced with `max`.|
 
+### Functions related to summaries
 
-### 集計に関連する関数
-
-|関数|説明|
+|Function|Explanation|
 |---|---|
-|`sum(v)`|ベクトル v の要素の値の総和を返す。|
-|`mean(v)`|ベクトル v の要素の値の平均値を返す。|
-|`median(v)`|ベクトル v の要素の値の中央値を返す。|
-|`sd(v)`|ベクトル v の要素の値の標準偏差を返す。|
-|`var(v)`|ベクトル v の要素の値の分散を返す。|
-|`cumsum(v)`|ベクトル v の各要素について、それ以前の要素の総和を格納したベクトル返す。|
-|`cumprod(v)`|ベクトル v の各要素について、それ以前の要素の総積を格納したベクトル返す。|
-|`table(v)`|ベクトル v のユニークな要素の値それぞれについて、値の等しい要素がいくつあるか集計した名前付き整数ベクトルを返す。|
+|`sum(v)`|Returns the sum of the elements of vector `v`.|
+|`mean(v)`|Returns the arithmetic mean of the elements of vector `v`.|
+|`median(v)`|Returns the median value of the elements of vector `v`.|
+|`sd(v)`|Returns the standard deviation of the elements of vector `v`.|
+|`var(v)`|Returns the variance of the elements of vector `v`.|
+|`cumsum(v)`|Returns the cumulative sum of the elements of vector `v`|
+|`cumprod(v)`|Returns the cumulative product of the elements of vector `v`|
+|`table(v)`| Returns a named integer vector that counts the number of elements for each unique element of vector `v`.|
 
 
-### 端数処理に関連する関数
+### Functions related to rounding values
 
-|関数|説明|
+|Function|Explanation|
 |---|---|
-|`floor(v)`|ベクトル v の各要素について、その値より大きくない最大の整数を格納したベクトルを返す。|
-|`ceil(v)`|ベクトル v の各要素について、その値より小さくない最大の整数を格納したベクトルを返す。|
-|`ceiling(v)`|`ceil()` と同義。|
-|`round(v, digits)`|ベクトル v の各要素を有効桁数 digits で丸めたベクトルを返す。|
-|`trunc(v)`|ベクトル v の各要素について、小数点以下を切り捨てたベクトルを返す。|
+|`floor(v)`|Returns a vector containing the largest integer not greater than each element of vector `v`.|
+|`ceil(v)`|Returns a vector containing the largest integer not smaller than each element of vector v.|
+|`ceiling(v)`|Synonymous with `ceil()`.|
+|`round(v, digits)`|Returns a vector obtained by rounding each element of the vector `v` with the number of significant figure `digits`.|
+|`trunc(v)`|Returns a vector with rounded down decimal places.|
 
 
-### 数学に関連する関数
 
-|関数|説明|
+
+### Functions related to math
+
+|Function|Explanation|
 |---|---|
-|`sign(v)`|ベクトル v の各要素について、正なら1を負なら-1を格納したベクトルを返す。|
-|`abs(v)`|ベクトル v の各要素の絶対値を格納したベクトルを返す。|
-|`pow(v, n)`|ベクトル v の各要素を n 乗したベクトルを返す。|
-|`sqrt(v)`|ベクトル v の各要素の平方根をとったベクトルを返す。|
-|`exp(v)`|ネイピア数 e をベクトル v の各要素の値でべき乗したベクトルを返す。|
-|`expm1(v)`|`exp(v) - 1` と同義。|
-|`log(v)`|ベクトル v の各要素の自然対数をとったベクトルを返す。|
-|`log10(v)`|ベクトル v の各要素の常用対数をとったベクトルを返す。|
-|`log1p(v)`|`log(v+1)` と同義。|
-|`sin(v)`|ベクトル v の各要素のサインをとったベクトルを返す。|
-|`sinh(v)`|ベクトル v の各要素のハイパボリックサインをとったベクトルを返す。|
-|`cos(v)`|ベクトル v の各要素のコサインをとったベクトルを返す。|
-|`cosh(v)`|ベクトル v の各要素のハイパボリックコサインをとったベクトルを返す。|
-|`tan(v)`|ベクトル v の各要素のタンジェントをとったベクトルを返す。|
-|`tanh(v)`|ベクトル v の各要素のハイパボリックタンジェントをとったベクトルを返す。|
-|`acos(v)`|ベクトル v の各要素のアークコサインをとったベクトルを返す。|
-|`asin(v)`|ベクトル v の各要素のアークサインをとったベクトルを返す。|
-|`atan(v)`|ベクトル v の各要素のアークタンジェントをとったベクトルを返す。|
-|`gamma(v)`|ベクトル v の各要素をガンマ関数で変換したベクトルを返す。|
-|`lgamma(v)`|`log(gamma(v))` と同義。|
-|`digamma(v)`|ベクトル v の各要素を lgamma() の一階微分関数で変換したベクトルを返す。|
-|`trigamma(v)`|ベクトル v の各要素を lgamma() の二階微分関数で変換したベクトルを返す。|
-|`tetragamma(v)`|ベクトル v の各要素を lgamma() の三階微分関数で変換したベクトルを返す。|
-|`pentagamma(v)`|ベクトル v の各要素を lgamma() の四階微分関数で変換したベクトルを返す。|
-|`psigamma(v, deriv)`|ベクトル v の各要素を digamma(v) の deriv 階微分関数で変換したベクトルを返す。|
-|`factrial(v)`|ベクトル v の各要素の階乗をとったベクトルを返す。|
-|`lfactorial(v)`|`log(factrial(v))` と同義。|
-|`choose(vn, vk)`|実数ベクトル vn、整数ベクトル vk の対応する各要素を用いて二項係数を計算したベクトルを返す。|
-|`lchoose(vn, vk)`|`log(choose(vn, vk))` と同義。|
-|`beta(va, vb)`|ベクトル va, vb の対応する各要素を用いてベータ関数の値を計算したベクトルを用います。|
-|`lbeta(va, vb)`|`log(beta(va, vb))` と同義。|
+|`sign(v)`|Returns a vector with the signs of the corresponding elements of `v` (the sign of a real number is 1, 0, or -1 if the number is positive, zero, or negative, respectively).|
+|`abs(v)`|Returns a vector containing the absolute value of each element of vector `v`.|
+|`pow(v, n)`|Returns a vector by raising each element of the vector `v` to the `n`th power.|
+|`sqrt(v)`|Returns a vector containing square root of each element of vector v.|
+|`exp(v)`|Returns a vector by raising Napier number (e) to the power of value of each element of the vector v.|
+|`expm1(v)`|Synonymous with `exp(v) - 1`|
+|`log(v)`|Returns a vector containing the natural logarithmic of each element of vector `v`.|
+|`log10(v)`|Returns a vector containing the common logarithmic of each element of vector `v`.|
+|`log1p(v)`|Synonymous with `log(v+1)`|
+|`sin(v)`|Returns a vector containing sine of each element of vector `v`.|
+|`sinh(v)`|Returns a vector containing hyperbolic sine of each element of vector `v`.|
+|`cos(v)`|Returns a vector containing cosine of each element of vector `v`.|
+|`cosh(v)`|Returns a vector containing hyperbolic cosine of each element of vector `v`.|
+|`tan(v)`|Returns a vector containing tangent of each element of vector `v`.|
+|`tanh(v)`|Returns a vector containing hyperbolic tangent of each element of vector `v`.|
+|`acos(v)`|Returns a vector containing arccosine of each element of vector `v`.|
+|`asin(v)`|Returns a vector containing arcsine of each element of vector `v`.|
+|`atan(v)`|Returns a vector containing arctangent of each element of vector `v`.|
+|`gamma(v)`|Returns a vector obtained by transforming each element of vector `v` with the gamma function.|
+|`lgamma(v)`|Synonymous with `log(gamma(v))`|
+|`digamma(v)`|Returns a vector obtained by transforming each element of vector `v` with the first derivative function of `lgamma()`.|
+|`trigamma(v)`|Returns a vector obtained by transforming each element of vector `v` with the second derivative function of `lgamma()`.|
+|`tetragamma(v)`|Returns a vector obtained by transforming each element of vector `v` with the third derivative function of `lgamma()`.|
+|`pentagamma(v)`|Returns a vector obtained by transforming each element of vector `v` with the fourth derivative function of `lgamma()`.|
+|`psigamma(v, deriv)`|Returns a vector obtained by transforming each element of vector `v` with the `deriv`-th derivative function of `lgamma()`.|
+|`factrial(v)`|Returns a vector containing the factorial of the each element of vector `v`.|
+|`lfactorial(v)`|Synonymous with `log(factrial(v))`|
+|`choose(vn, vk)`|Returns a vector obtained by calculating binomial coefficients using the corresponding elements of real vector `vn` and integer vector `vk`.|
+|`lchoose(vn, vk)`|Synonymous with `log(choose(vn, vk))`|
+|`beta(va, vb)`|Returns a vector obtained by calculating the value of the beta function using the corresponding elements of vectors `va` and `vb`.|
+|`lbeta(va, vb)`|Synonymous with `log(beta(va, vb))`|
 
 
-### 論理値に関連する関数
+### Functions related to logical values
 
-|関数|説明|
+|Function|Explanation|
 |---|---|
-|`all(v)`|論理ベクトル v を受け取り、全ての要素が `TRUE` の時、`TRUE` を意味する `SingleLogicalResult` 型を返す。|
-|`any(v)`|論理ベクトル v を受け取り、いずれかのの要素が `TRUE` の時、`TRUE` を意味する `SingleLogicalResult` 型を返す。|
-|`is_true(x)`|`all()`, `any()` の返値 x を受け取り `TRUE` の場合には `true` を bool 型で返す。|
-|`is_false(x)`|`all()`, `any()` の返値 x を受け取り `FALSE` の場合には `true` を bool 型で返す。|
-|`is_na(x)`|`all()`, `any()` の返値 x を受け取り `NA` の場合には `true` を bool 型で返す。|
-|`ifelse(v, x1, x2)`|論理ベクトル v を受け取り、v の要素が `TRUE` の時には x1 の対応する要素を, `FALSE` の時には x2 の対応する要素を格納したベクトルを返す。x1, x2 はベクトルでもスカラーでも良いが、ベクトルの長さは v と一致している必要がある。|
+|`all(v)`|Receives a `LogicalVector` `v` and returns `SingleLogicalResult` type meaning` TRUE` when all of elements are `TRUE`.|
+|`any(v)`|Receives a `LogicalVector` `v` and returns `SingleLogicalResult` type meaning` TRUE` when any of elements are `TRUE`.|
+|`is_true(x)`|Receives a return value of `all()` or `any()` and returns bool type `true` if it means `TRUE`.|
+|`is_false(x)`|Receives a return value of `all()` or `any()` and returns bool type `true` if it means `FALSE`.|
+|`is_na(x)`|Receives a return value of `all()` or `any()` and returns bool type `true` if it means `NA`.|
+|`ifelse(v, x1, x2)`|Receives the `LogicalVector` `v`, and returns a vector containing the corresponding element of x1 or x2 when the element of v is `TRUE` or `FALSE`, respectively. Although `x1` and `x2` can be vectors or scalars, the length of the vector needs to be equal to `v`.|
 
 
-### NA、Inf、NaNに関連する関数
+### Functions related to NA、Inf、NaN
 
-|関数|説明|
+|Function|Explanation|
 |---|---|
-|`na_omit(v)`|ベクトル v から `NA`を削除したベクトルを返す。|
-|`is_finite(v)`|ベクトル v の各要素が `Inf` または -Inf または NA ではない場合に `TRUE` を格納した論理ベクトルを返す。|
-|`is_infinite(v)`|ベクトル v の各要素が `Inf` または `-Inf` である場合に `TRUE` を格納した論理ベクトルを返す。|
-|`is_na(v)`|ベクトル v の各要素が `NA` または `NaN` である場合に `TRUE` を格納した論理ベクトルを返す。|
-|`is_nan(v)`|ベクトル v の各要素が `NaN` である場合に `TRUE` を格納した論理ベクトルを返す。|
+|`na_omit(v)`|Returns a vector which deleted `NA` from vector `v`.|
+|`is_finite(v)`|Returns a `LogicalVector` containing `TRUE` if corresponding elements of vector `v` is not `Inf` nor `-Inf` nor `NA`.|
+|`is_infinite(v)`|Returns a `LogicalVector` containing `TRUE` if corresponding elements of vector `v` is `Inf` or `-Inf` or `NA`.|
+|`is_na(v)`|Returns a `LogicalVector` containing `TRUE` if corresponding elements of vector `v` is `NA` or `NaN`.|
+|`is_nan(v)`|Returns a `LogicalVector` containing `TRUE` if corresponding elements of vector `v` is `NaN`.|
 
-### apply関数
+### apply functions
 
-|関数|説明|
+|Function|Explanation|
 |---|---|
-|`lapply(x, fun)`|オブジェクト（`Vector`,`DataFrame`,`List`）x の各要素に対して関数 fun を適用した結果を List で返す。|
-|`sapply(x, fun)`|オブジェクト（`Vector`, `DataFrame`, `List`）x の各要素に対して関数 fun を適用した結果を Vector で返す。|
-|`mapply(x1, x2, fun2)`| オブジェクト x1, x2 の各要素に対して2個の引数を受け取る関数 fun2 を適用した結果を返す。|
-|`mapply(x1, x2, x3, fun3)`|オブジェクト x1, x2, x3 の各要素に対して3個の引数を受け取る関数 fun3 を適用した結果を返す。|
+|`lapply(x, fun)`|Applies a C++ function `fun` to each element of the vector `x` and returns the result as `List`.|
+|`sapply(x, fun)`|Applies a C++ function `fun` to each element of the vector `x` and returns the result as `Vector`.|
+|`mapply(x1, x2, fun2)`|Applies a C++ function `fun` that receives two arguments to each corresponding elements of the vector `x1` and `x2` and returns the result as `Vector`.|
+|`mapply(x1, x2, x3, fun3)`|Applies a C++ function `fun` that receives three arguments to each corresponding elements of the vector `x1` and `x2`, `x3` and returns the result as `Vector`.|
 
-### cbind関数
+### cbind function
 
-|関数|説明|
+|Function|Explanation|
 |---|---|
-|`cbind(v1,v2,...)`|引数として渡したベクトルを列とした行列・データフレームを作成します。渡せる引数の数は50個まで。|
+|`cbind(x1, x2,...)`|Takes `Vector` or `Matrix` `x1` and `x2`, `...` and combine by columns. And returns the result as `Matrix` or `DataFrame`. You can pass up to 50 arguments.|
