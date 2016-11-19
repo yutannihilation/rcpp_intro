@@ -11,18 +11,18 @@ NumericVector res = mean(noNA(v));
 ## List of R-like functions
 
 
-- [ベクトルに関連する関数](#ベクトルに関連する関数)
-- [文字列に関連する関数](#文字列に関連する関数)
-- [値の検索に関連する関数](#値の検索に関連する関数)
-- [重複の値に関連する関数](#重複の値に関連する関数)
-- [集合演算に関連する関数](#集合演算に関連する関数)
-- [最大値・最小値に関連する関数](#最大値・最小値に関連する関数)
-- [集計に関連する関数](#集計に関連する関数)
-- [端数処理に関連する関数](#端数処理に関連する関数)
-- [数学に関連する関数](#数学に関連する関数)
-- [論理値に関連する関数](#論理値に関連する関数)
-- [NA、Inf、NaNに関連する関数](#NA、Inf、NaNに関連する関数)
-- [apply関数](#apply関数)
+- [Vector related functions](#vector-related-functions)
+- [String related functions](#string-related-functions)
+- [Functions related to finding values](#functions-related to-finding-values)
+- [Functions related to duplicated values](#functions-related-to-duplicated-values)
+- [Functions related to set operation](#functions-related-to-set-operation)
+- [Functions related to maximum and minimum values](#functions-related-to-maximum-and-minimum-values)
+- [Functions related to summaries](#functions-related-to-summaries)
+- [Functions related to rounding values](#functions-related-to-rounding-values)
+- [Functions related to math](#functions-related-to-math)
+- [Functions related to logical values](#functions-related-to-logical-values)
+- [Functions related to NA Inf NaN](#functions-related-to-na-inf-nan)
+- [apply functions](#apply-functions)
 - [cbind関数](#cbind-function)
 
 
@@ -165,7 +165,7 @@ NumericVector res = mean(noNA(v));
 |`ifelse(v, x1, x2)`|Receives the `LogicalVector` `v`, and returns a vector containing the corresponding element of x1 or x2 when the element of v is `TRUE` or `FALSE`, respectively. Although `x1` and `x2` can be vectors or scalars, the length of the vector needs to be equal to `v`.|
 
 
-### Functions related to NA、Inf、NaN
+### Functions related to NA Inf NaN
 
 |Function|Explanation|
 |---|---|
