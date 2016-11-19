@@ -13,7 +13,7 @@ NumericVector res = mean(noNA(v));
 
 - [Vector related functions](#vector-related-functions)
 - [String related functions](#string-related-functions)
-- [Functions related to finding values](#functions-related to-finding-values)
+- [Functions related to finding values](#functions-related-to-finding-values)
 - [Functions related to duplicated values](#functions-related-to-duplicated-values)
 - [Functions related to set operation](#functions-related-to-set-operation)
 - [Functions related to maximum and minimum values](#functions-related-to-maximum-and-minimum-values)
