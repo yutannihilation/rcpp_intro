@@ -23,7 +23,7 @@ NumericVector res = mean(noNA(v));
 - [Functions related to logical values](#functions-related-to-logical-values)
 - [Functions related to NA Inf NaN](#functions-related-to-na-inf-nan)
 - [apply functions](#apply-functions)
-- [cbind関数](#cbind-function)
+- [cbind function](#cbind-function)
 
 
 ### Vector related functions
