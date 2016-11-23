@@ -47,32 +47,40 @@ double R::rXXX(           double par )
 
 以下では Rcpp が提供する確率分布関数の一覧を示します。ここでは確率分布の分布パラメータの名前は R の確率分布関数と一致させているので、詳しくは R のヘルプを参照してください。
 
+### 連続分布
+
 - [一様分布](#一様分布)
 - [正規分布](#正規分布)
-- [ポワソン分布](#ポワソン分布)
-- [t分布](#t分布)
-- [ベータ分布](#ベータ分布)
-- [二項分布](#二項分布)
-- [カイ２乗分布](#カイ２乗分布)
-- [指数分布](#指数分布)
-- [F分布](#F分布)
-- [コーシー分布](#コーシー分布)
-- [ガンマ分布](#ガンマ分布)
-- [幾何分布](#幾何分布)
-- [超幾何分布](#超幾何分布)
 - [対数正規分布](#対数正規分布)
+- [ガンマ分布](#ガンマ分布)
+- [ベータ分布](#ベータ分布)
+- [非心ベータ分布](#非心ベータ分布)
+- [カイ２乗分布](#カイ２乗分布)
+- [非心カイ２乗分布](#非心カイ２乗分布)
+- [t分布](#t分布)
+- [非心t分布](#非心t分布)
+- [F分布](#F分布)
+- [非心F分布](#非心F分布)
+- [コーシー分布](#コーシー分布)
+- [指数分布](#指数分布)
 - [ロジスティック分布](#ロジスティック分布)
+- [ワイブル分布](#ワイブル分布)
+
+
+### 離散分布
+
+- [二項分布](#二項分布)
 - [負の二項分布（成功確率を指定するバージョン）](#負の二項分布（成功確率を指定するバージョン）)
 - [負の二項分布（平均値を指定するバージョン）](#負の二項分布（平均値を指定するバージョン）)
-- [非心ベータ分布](#非心ベータ分布)
-- [非心カイ２乗分布](#非心カイ２乗分布)
-- [非心F分布](#非心F分布)
-- [非心t分布](#非心t分布)
-- [ワイブル分布](#ワイブル分布)
+- [ポワソン分布](#ポワソン分布)
+- [幾何分布](#幾何分布)
+- [超幾何分布](#超幾何分布)
+- [ウィルコクソン順位和検定統計量の分布](#ウィルコクソン順位和検定統計量の分布)
 - [ウィルコクソン符号順位検定統計量の分布](#ウィルコクソン符号順位検定統計量の分布)
-- [ウィルコクソンの順位和検定統計量の分布](#ウィルコクソンの順位和検定統計量の分布)
 
 
+
+##連続分布
 
 ### 一様分布
 
@@ -107,36 +115,36 @@ R::qnorm( q, mean, sd, lower, log )
 R::rnorm(    mean, sd )
 ```
 
-### ポワソン分布
+### 対数正規分布
 
-平均値と分散が lambda であるポワソン分布の情報を与えます。
+位置パラメータmeanlog 尺度パラメータ meansd の対数正規分布の情報を与えます。
 
 ```cpp
-Rcpp::dpois( x, lambda,               log = false )
-Rcpp::ppois( x, lambda, lower = true, log = false )
-Rcpp::qpois( q, lambda, lower = true, log = false )
-Rcpp::rpois( n, lambda )
+Rcpp::dlnorm( x, meanlog = 0.0, sdlog = 1.0,               log = false )
+Rcpp::plnorm( x, meanlog = 0.0, sdlog = 1.0, lower = true, log = false )
+Rcpp::qlnorm( q, meanlog = 0.0, sdlog = 1.0, lower = true, log = false )
+Rcpp::rlnorm( n, meanlog = 0.0, sdlog = 1.0 )
 
-R::dpois( x, lambda, log )
-R::ppois( x, lambda, lower, log )
-R::qpois( q, lambda, lower, log )
-R::rpois(    lambda )
+R::dlnorm( x, meanlog, sdlog,        log )
+R::plnorm( x, meanlog, sdlog, lower, log )
+R::qlnorm( q, meanlog, sdlog, lower, log )
+R::rlnorm(    meanlog, sdlog )
 ```
 
-### t分布
+### ガンマ分布
 
-自由度 df の t 分布の情報を与えます。これは R の t 分布関数において非心パラメータ ncp の値に 0 を設定した場合に相当します。
+形状パラメータ shape、尺度パラメータ scale のガンマ分布の情報を与えます。
 
 ```cpp
-Rcpp::dt( x, df,               log = false )
-Rcpp::pt( x, df, lower = true, log = false )
-Rcpp::qt( q, df, lower = true, log = false )
-Rcpp::rt( n, df )
+Rcpp::dgamma( x, shape, scale = 1.0,               log = false )
+Rcpp::pgamma( x, shape, scale = 1.0, lower = true, log = false )
+Rcpp::qgamma( q, shape, scale = 1.0, lower = true, log = false )
+Rcpp::rgamma( n, shape, scale = 1.0 )
 
-R::dt( x, df,        log )
-R::pt( x, df, lower, log )
-R::qt( q, df, lower, log )
-R::rt(    df )
+R::dgamma( x, shape, scale, log )
+R::pgamma( x, shape, scale, lower, log )
+R::qgamma( q, shape, scale, lower, log )
+R::rgamma(    shape, scale )
 ```
 
 ### ベータ分布
@@ -155,22 +163,21 @@ R::qbeta( q, shape1, shape2, lower, log )
 R::rbeta(    shape1, shape2 )
 ```
 
-### 二項分布
+### 非心ベータ分布
 
-試行回数 size 成功確率 prob の二項分布の情報を与えます。
+形状パラメータ shape1、shape2、非心パラメータ ncp を持つベータ分布の情報を与えます。ncp = 0 ではベータ分布に一致します。
 
 ```cpp
-Rcpp::dbinom( x, size, prob,               log = false )
-Rcpp::pbinom( x, size, prob, lower = true, log = false )
-Rcpp::qbinom( q, size, prob, lower = true, log = false )
-Rcpp::rbinom( n, size, prob )
+Rcpp::dnbeta( x, shape1, shape2, ncp,               log = false );
+Rcpp::pnbeta( x, shape1, shape2, ncp, lower = true, log = false );
+Rcpp::qnbeta( q, shape1, shape2, ncp, lower = true, log = false );
+// Rcpp::rnbeta関数は存在しません
 
-R::dbinom( x, size, prob,        log )
-R::pbinom( x, size, prob, lower, log )
-R::qbinom( q, size, prob, lower, log )
-R::rbinom(    size, prob )
+R::dnbeta( x, shape1, shape2, ncp,        log )
+R::pnbeta( x, shape1, shape2, ncp, lower, log )
+R::qnbeta( q, shape1, shape2, ncp, lower, log )
+R::rnbeta(    shape1, shape2, ncp )
 ```
-
 
 ### カイ２乗分布
 
@@ -188,20 +195,55 @@ R::qchisq( q, df, lower, log )
 R::rchisq(    df )
 ```
 
-### 指数分布
 
-割合 rate (平均が1/rate) の指数分布の情報を与えます。
+
+
+### 非心カイ２乗分布
+
+自由度 df 、非心パラメータ ncp を持つベータ分布の情報を与えます。ncp = 0 ではカイ２乗分布に一致します。
 
 ```cpp
-Rcpp::dexp( x, rate = 1.0,               log = false )
-Rcpp::pexp( x, rate = 1.0, lower = true, log = false )
-Rcpp::qexp( q, rate = 1.0, lower = true, log = false )
-Rcpp::rexp( n, rate = 1.0)
+Rcpp::dnchisq( x, df, ncp,               log = false )
+Rcpp::pnchisq( x, df, ncp, lower = true, log = false )
+Rcpp::qnchisq( q, df, ncp, lower = true, log = false )
+Rcpp::rnchisq( n, df, ncp = 0.0 )
 
-R::dexp( x, rate,        log )
-R::pexp( x, rate, lower, log )
-R::qexp( q, rate, lower, log )
-R::rexp(    rate )
+R::dnchisq( x, df, ncp,        log )
+R::pnchisq( x, df, ncp, lower, log )
+R::qnchisq( q, df, ncp, lower, log )
+R::rnchisq(    df, ncp )
+```
+
+### t分布
+
+自由度 df の t 分布の情報を与えます。これは R の t 分布関数において非心パラメータ ncp の値に 0 を設定した場合に相当します。
+
+```cpp
+Rcpp::dt( x, df,               log = false )
+Rcpp::pt( x, df, lower = true, log = false )
+Rcpp::qt( q, df, lower = true, log = false )
+Rcpp::rt( n, df )
+
+R::dt( x, df,        log )
+R::pt( x, df, lower, log )
+R::qt( q, df, lower, log )
+R::rt(    df )
+```
+
+### 非心t分布
+
+自由度 df、非心パラメータ ncp の t 分布の情報を与えます。ncp = 0 では t 分布に一致します。
+
+```cpp
+Rcpp::dnt( x, df, ncp,               log = false  )
+Rcpp::pnt( x, df, ncp, lower = true, log = false  )
+Rcpp::qnt( q, df, ncp, lower = true, log = false  )
+// Rcpp::rnt関数は存在しません
+
+R::dnt( x, df, ncp,        log )
+R::pnt( x, df, ncp, lower, log )
+R::qnt( q, df, ncp, lower, log )
+// R::rnt関数は存在しません
 ```
 
 ### F分布
@@ -220,6 +262,23 @@ R::qf( q, df1, df2, lower, log )
 R::rf(    df1, df2 )
 ```
 
+
+### 非心F分布
+
+自由度 df1, df2 非心パラメータ ncp の F 分布の情報を与えます。ncp = 0 では F 分布に一致します。
+
+```cpp
+Rcpp::dnf( x, df1, df2, ncp,               log = false )
+Rcpp::pnf( x, df1, df2, ncp, lower = true, log = false )
+Rcpp::qnf( q, df1, df2, ncp, lower = true, log = false )
+// Rcpp::rnf関数は存在しません
+
+R::dnf( x, df1, df2, ncp,        log )
+R::pnf( x, df1, df2, ncp, lower, log )
+R::qnf( q, df1, df2, ncp, lower, log )
+// R::rnf関数は存在しません
+```
+
 ### コーシー分布
 
 位置パラメータ location、尺度パラメータ scale のコーシー分布の情報を与えます。
@@ -236,68 +295,21 @@ R::qcauchy( q, location, scale, lower, log )
 R::rcauchy(    location, scale )
 ```
 
-### ガンマ分布
 
-形状パラメータ shape、尺度パラメータ rate のガンマ分布の情報を与えます。
+### 指数分布
 
-```cpp
-Rcpp::dgamma( x, shape, scale = 1.0,               log = false )
-Rcpp::pgamma( x, shape, scale = 1.0, lower = true, log = false )
-Rcpp::qgamma( q, shape, scale = 1.0, lower = true, log = false )
-Rcpp::rgamma( n, shape, scale = 1.0 )
-
-R::dgamma( x, shape, scale, log )
-R::pgamma( x, shape, scale, lower, log )
-R::qgamma( q, shape, scale, lower, log )
-R::rgamma(    shape, scale )
-```
-
-### 幾何分布
-
-成功確率 prob の幾何分布の情報を与えます。
+割合 rate (平均が1/rate) の指数分布の情報を与えます。
 
 ```cpp
-Rcpp::dgeom( x, prob,               log = false )
-Rcpp::pgeom( x, prob, lower = true, log = false )
-Rcpp::qgeom( q, prob, lower = true, log = false )
-Rcpp::rgeom( n, prob )
+Rcpp::dexp( x, rate = 1.0,               log = false )
+Rcpp::pexp( x, rate = 1.0, lower = true, log = false )
+Rcpp::qexp( q, rate = 1.0, lower = true, log = false )
+Rcpp::rexp( n, rate = 1.0)
 
-R::dgeom( x, prob, log )
-R::pgeom( x, prob, lower, log )
-R::qgeom( q, prob, lower, log )
-R::rgeom(    prob )
-```
-
-### 超幾何分布
-
-母集団に含まれる成功数 m、母集団に含まれる失敗数 n、母集団からサンプリングする標本の数 k の超幾何分布の情報を与えます。
-
-```cpp
-Rcpp::dhyper( x, m, n, k,               log = false )
-Rcpp::phyper( x, m, n, k, lower = true, log = false )
-Rcpp::qhyper( q, m, n, k, lower = true, log = false )
-Rcpp::rhyper(nn, m, n, k )
-
-R::dhyper( x, m, n, k,        log )
-R::phyper( x, m, n, k, lower, log )
-R::qhyper( q, m, n, k, lower, log )
-R::rhyper(    m, n, k )
-```
-
-### 対数正規分布
-
-位置パラメータmeanlog 尺度パラメータ meansd の対数正規分布の情報を与えます。
-
-```cpp
-Rcpp::dlnorm( x, meanlog = 0.0, sdlog = 1.0,               log = false )
-Rcpp::plnorm( x, meanlog = 0.0, sdlog = 1.0, lower = true, log = false )
-Rcpp::qlnorm( q, meanlog = 0.0, sdlog = 1.0, lower = true, log = false )
-Rcpp::rlnorm( n, meanlog = 0.0, sdlog = 1.0 )
-
-R::dlnorm( x, meanlog, sdlog,        log )
-R::plnorm( x, meanlog, sdlog, lower, log )
-R::qlnorm( q, meanlog, sdlog, lower, log )
-R::rlnorm(    meanlog, sdlog )
+R::dexp( x, rate,        log )
+R::pexp( x, rate, lower, log )
+R::qexp( q, rate, lower, log )
+R::rexp(    rate )
 ```
 
 ### ロジスティック分布
@@ -315,6 +327,48 @@ R::plogis( x, location, scale, lower, log )
 R::qlogis( q, location, scale, lower, log )
 R::rlogis(    location, scale )
 ```
+
+
+### ワイブル分布
+
+形状パラメータ shape、尺度パラメータ scale のワイブル分布の情報を与えます。
+
+```cpp
+Rcpp::dweibull( x, shape, scale = 1.0,               log = false  )
+Rcpp::pweibull( x, shape, scale = 1.0, lower = true, log = false  )
+Rcpp::qweibull( q, shape, scale = 1.0, lower = true, log = false  )
+Rcpp::rweibull( n, shape, scale = 1.0 )
+
+R::dweibull( x, shape, scale,        log )
+R::pweibull( x, shape, scale, lower, log )
+R::qweibull( q, shape, scale, lower, log )
+R::rweibull(    shape, scale )
+```
+
+## 離散分布
+
+
+
+### 二項分布
+
+試行回数 size 成功確率 prob の二項分布の情報を与えます。
+
+```cpp
+Rcpp::dbinom( x, size, prob,               log = false )
+Rcpp::pbinom( x, size, prob, lower = true, log = false )
+Rcpp::qbinom( q, size, prob, lower = true, log = false )
+Rcpp::rbinom( n, size, prob )
+
+R::dbinom( x, size, prob,        log )
+R::pbinom( x, size, prob, lower, log )
+R::qbinom( q, size, prob, lower, log )
+R::rbinom(    size, prob )
+```
+
+
+
+
+
 
 ### 負の二項分布（成功確率を指定するバージョン）
 
@@ -348,86 +402,78 @@ R::qnbinom_mu( q, size, mu, lower, log )
 R::rnbinom_mu(    size, mu )
 ```
 
-### 非心ベータ分布
 
-形状パラメータ shape1、shape2、非心パラメータ ncp を持つベータ分布の情報を与えます。ncp = 0 ではベータ分布に一致します。
+### ポワソン分布
 
-```cpp
-Rcpp::dnbeta( x, shape1, shape2, ncp,               log = false );
-Rcpp::pnbeta( x, shape1, shape2, ncp, lower = true, log = false );
-Rcpp::qnbeta( q, shape1, shape2, ncp, lower = true, log = false );
-// Rcpp::rnbeta関数は存在しません
-
-R::dnbeta( x, shape1, shape2, ncp,        log )
-R::pnbeta( x, shape1, shape2, ncp, lower, log )
-R::qnbeta( q, shape1, shape2, ncp, lower, log )
-R::rnbeta(    shape1, shape2, ncp )
-```
-
-### 非心カイ２乗分布
-
-自由度 df 、非心パラメータ ncp を持つベータ分布の情報を与えます。ncp = 0 ではカイ２乗分布に一致します。
+平均値と分散が lambda であるポワソン分布の情報を与えます。
 
 ```cpp
-Rcpp::dnchisq( x, df, ncp,               log = false )
-Rcpp::pnchisq( x, df, ncp, lower = true, log = false )
-Rcpp::qnchisq( q, df, ncp, lower = true, log = false )
-Rcpp::rnchisq( n, df, ncp = 0.0 )
+Rcpp::dpois( x, lambda,               log = false )
+Rcpp::ppois( x, lambda, lower = true, log = false )
+Rcpp::qpois( q, lambda, lower = true, log = false )
+Rcpp::rpois( n, lambda )
 
-R::dnchisq( x, df, ncp,        log )
-R::pnchisq( x, df, ncp, lower, log )
-R::qnchisq( q, df, ncp, lower, log )
-R::rnchisq(    df, ncp )
-```
-
-### 非心F分布
-
-自由度 df1, df2 非心パラメータ ncp の F 分布の情報を与えます。ncp = 0 では F 分布に一致します。
-
-```cpp
-Rcpp::dnf( x, df1, df2, ncp,               log = false )
-Rcpp::pnf( x, df1, df2, ncp, lower = true, log = false )
-Rcpp::qnf( q, df1, df2, ncp, lower = true, log = false )
-// Rcpp::rnf関数は存在しません
-
-R::dnf( x, df1, df2, ncp,        log )
-R::pnf( x, df1, df2, ncp, lower, log )
-R::qnf( q, df1, df2, ncp, lower, log )
-// R::rnf関数は存在しません
+R::dpois( x, lambda, log )
+R::ppois( x, lambda, lower, log )
+R::qpois( q, lambda, lower, log )
+R::rpois(    lambda )
 ```
 
 
-### 非心t分布
 
-自由度 df、非心パラメータ ncp の t 分布の情報を与えます。ncp = 0 では t 分布に一致します。
 
-```cpp
-Rcpp::dnt( x, df, ncp,               log = false  )
-Rcpp::pnt( x, df, ncp, lower = true, log = false  )
-Rcpp::qnt( q, df, ncp, lower = true, log = false  )
-// Rcpp::rnt関数は存在しません
 
-R::dnt( x, df, ncp,        log )
-R::pnt( x, df, ncp, lower, log )
-R::qnt( q, df, ncp, lower, log )
-// R::rnt関数は存在しません
-```
 
-### ワイブル分布
 
-形状パラメータ shape、尺度パラメータ scale のワイブル分布の情報を与えます。
+### 幾何分布
+
+成功確率 prob の幾何分布の情報を与えます。
 
 ```cpp
-Rcpp::dweibull( x, shape, scale = 1.0,               log = false  )
-Rcpp::pweibull( x, shape, scale = 1.0, lower = true, log = false  )
-Rcpp::qweibull( q, shape, scale = 1.0, lower = true, log = false  )
-Rcpp::rweibull( n, shape, scale = 1.0 )
+Rcpp::dgeom( x, prob,               log = false )
+Rcpp::pgeom( x, prob, lower = true, log = false )
+Rcpp::qgeom( q, prob, lower = true, log = false )
+Rcpp::rgeom( n, prob )
 
-R::dweibull( x, shape, scale,        log )
-R::pweibull( x, shape, scale, lower, log )
-R::qweibull( q, shape, scale, lower, log )
-R::rweibull(    shape, scale )
+R::dgeom( x, prob, log )
+R::pgeom( x, prob, lower, log )
+R::qgeom( q, prob, lower, log )
+R::rgeom(    prob )
 ```
+
+### 超幾何分布
+
+母集団に含まれる成功数 m、母集団に含まれる失敗数 n、母集団からサンプリングする標本の数 k の超幾何分布の情報を与えます。
+
+```cpp
+Rcpp::dhyper( x, m, n, k,               log = false )
+Rcpp::phyper( x, m, n, k, lower = true, log = false )
+Rcpp::qhyper( q, m, n, k, lower = true, log = false )
+Rcpp::rhyper(nn, m, n, k )
+
+R::dhyper( x, m, n, k,        log )
+R::phyper( x, m, n, k, lower, log )
+R::qhyper( q, m, n, k, lower, log )
+R::rhyper(    m, n, k )
+```
+
+### ウィルコクソン順位和検定統計量の分布
+
+標本数がそれぞれ m、n である２つの標本に対してウィルコクソン順位和検定（マン・ホイットニーのU検定）を行ったときの検定統計量の分布の情報を与えます。
+
+```cpp
+// Rcpp::dwilcox関数は存在しません
+// Rcpp::pwilcox関数は存在しません
+// Rcpp::qwilcox関数は存在しません
+Rcpp::rwilcox( nn, m, n );
+
+R::dwilcox( x, m, n,        log )
+R::pwilcox( x, m, n, lower, log )
+R::qwilcox( q, m, n, lower, log )
+R::rwilcox(    m, n )
+```
+
+
 
 ### ウィルコクソン符号順位検定統計量の分布
 
@@ -444,20 +490,4 @@ R::dsignrank( x, n,        log )
 R::psignrank( x, n, lower, log )
 R::qsignrank( q, n, lower, log )
 R::rsignrank(    n )
-```
-
-### ウィルコクソンの順位和検定統計量の分布
-
-標本数がそれぞれ m、n である２つの標本に対してウィルコクソン順位和検定（マン・ホイットニーのU検定）を行ったときの検定統計量の分布の情報を与えます。
-
-```cpp
-// Rcpp::dwilcox関数は存在しません
-// Rcpp::pwilcox関数は存在しません
-// Rcpp::qwilcox関数は存在しません
-Rcpp::rwilcox( nn, m, n );
-
-R::dwilcox( x, m, n,        log )
-R::pwilcox( x, m, n, lower, log )
-R::qwilcox( q, m, n, lower, log )
-R::rwilcox(    m, n )
 ```
