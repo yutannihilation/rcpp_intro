@@ -3,25 +3,24 @@
 
 ## NA NaN Inf の値
 
+To express the value of `Inf` `-Inf` `NaN` in Rcpp, use the symbol `R_PosInf` `R_NegInf` `R_NaN`.
 
-Rcpp で `Inf` `-Inf` `NaN` の値を表現するには `R_PosInf` `R_NegInf` `R_NaN` の記号を用います。
-
-|Rでの値|Rcppでの表記|
+|R|Rcpp|
 |---|---|
 |`Inf|`R_PosInf`|
 |`-Inf`|`R_NegInf`|
 |`NaN`|`R_NaN`|
 
-一方、`NA` については `Vector` の型ごとに異なる `NA` の値が定義されています。
+On the other hand, for `NA`, different symbol of `NA`  are defined for each `Vector` type.
 
-| ベクトル型 | NA値 |
+| Vector | symbol of NA |
 |---|---|
 |`NumericVector`|`NA_REAL`|
 |`IntegerVector`|`NA_INTEGER`|
 |`LogicalVector`|`NA_LOGICAL`|
 |`CharacterVector`|`NA_STRING`|
 
-次のコード例では、これらの記号を使ってベクトルを作成する方法を示します。
+The following code example shows how to use these symbols to create `Vector` object.
 
 ```cpp
 NumericVector   v1 = NumericVector::create( 1, NA_REAL, R_NaN, R_PosInf, R_NegInf);
@@ -30,13 +29,13 @@ CharacterVector v3 = CharacterVector::create( "A", NA_STRING);
 LogicalVector   v4 = LogicalVector::create( true, NA_LOGICAL);
 ```
 
-## NA NaN Inf の判定
+## Evaluating NA NaN Inf
 
-### ベクトルの要素をまとめて判定する場合
+### Evaluating all the elements of a vector at once
 
-ベクトル v の要素にある、`NA` `NaN` `Inf` `-Inf` をまとめて判定するには、関数`is_na()` `is_nan()` `is_infinite()` を使います。
+To evaluate all the `NA` `NaN` `Inf` `-Inf` elements in a vector at once, use the function `is_na()` `is_nan()` `is_infinite()`.
 
-下のコード例では、R で `NA` `NaN` `Inf` `-Inf` を含むベクトルを作成し、それを Rcpp で判定しています。この例から Rcpp の `is_na()` 関数は R の `is.na()` 関数と同じく、`NA` と `NaN` の両方を `true` であると判定することがわかります。
+In the code example below, we create a vector containing `NA` `NaN` `Inf` `-Inf` and evaluate it. From this example we can see that the `is_na()` evaluates both `NA` and` NaN` as `TRUE` (same as R's `is.na()`).
 
 ```cpp
 NumericVector v =
@@ -49,33 +48,35 @@ Rcout << l2 << "\n"; // 0 0 1 0 0
 Rcout << l3 << "\n"; // 0 0 0 1 1
 ```
 
-これらの関数を使うことでベクトルから `NA` `NaN` `Inf` を取り除くことができます。また `NA` を取り除くためには `na_omit()` を使うこともできます。
+You can remove `NA` `NaN` `Inf` from a vector by using these functions. You can also use `na_omit()` to remove `NA`.
 
-下のコード例では、関数 `is_na()` と `na_omit()` を使ってベクトルから `NA` を取り除く方法を示します。
+The code example below shows how to remove `NA` from a vector using the `is_na()` and `na_omit()`.
+
 
 ```
-// NA を含むベクトルの作成
+// Creating a Vector object containg NA
 NumericVector v =
     NumericVector::create( 1, NA_REAL, 2, NA_REAL, 3);
 
-//ベクトルから NA を取り除く
+// Removeing NA from the vector
 NumericVector v1 = v[!is_na(v)];
 NumericVector v2 = na_omit(v);
 ```
 
-### ベクトルの要素１つに対して判定する場合
+### Evaluating single element of a vector
 
-ベクトルの要素１つに対して `NA` `NaN` `Inf` `-Inf` の判定を行いたい場合には、ベクトルの静的メンバ関数の `Vector::is_na()`、`traits::is_nan<RTYPE>()`、`traits:: is_infinite<RTYPE>()` を用います。`RTYPE` には判定したいベクトルの `SEXPTYPE` を指定します。
+If you want to evaluate `NA` `NaN` `Inf` `-Inf` on single element of a vector, use the static member function `Vector::is_na()`, `traits::is_nan<RTYPE>()`, `traits:: is_infinite<RTYPE>()`. In `RTYPE`, specify `SEXPTYPE` of the vector to be evaluated.
 
 
 ```cpp
 // [[Rcpp::export]]
 void rcpp_is_na2() {
-    // NA NaN Inf -Inf を含んだベクトルの作成
+
+    // Creating Vector object containing NA NaN Inf -Inf
     NumericVector v =
         NumericVector::create(1, NA_REAL, R_NaN, R_PosInf, R_NegInf);
 
-    // ベクトルの要素ごとに値を判定します
+    // Evaluating the value for each element of the vector
     int n = v.length();
     for (int i = 0; i < n; ++i) {
         if(NumericVector::is_na(v[i]))
@@ -88,15 +89,15 @@ void rcpp_is_na2() {
 }
 ```
 
-以下に主要なベクトルの `SEXPTYPE` のリストを示します。
+Here is the list of `SEXPTYPE` of the major Vector class.
 
-|SEXPTYPE|ベクトル|
+|SEXPTYPE|Vector|
 |---|---|
-|`LGLSXP`|論理ベクトル|
-|`INTSXP`|整数ベクトル|
-|`REALSXP`|実数ベクトル|
-|`CPLXSXP`|複素数ベクトル|
-|`STRSXP`|文字列ベクトル|
+|`LGLSXP`|LogicalVector|
+|`INTSXP`|IntegerVector|
+|`REALSXP`|NumericVector|
+|`CPLXSXP`|ComplexVector|
+|`STRSXP`|CharacterVector (StringVector)|
 
 
 
@@ -203,5 +204,3 @@ $`Rcpp plus`
 $`C++  plus`
 [1]  2 -2147483647 4
 ```
-
-
