@@ -90,13 +90,13 @@ These functions provide information about the uniform distribution on the interv
 
 ```cpp
 Rcpp::dunif( x, min = 0.0, max = 1.0, log = false )
-Rcpp::punif( x, min = 0.0, max = 1.0, lower = true, log = false )
-Rcpp::qunif( q, min = 0.0, max = 1.0, lower = true, log = false )
+Rcpp::punif( q, min = 0.0, max = 1.0, lower = true, log = false )
+Rcpp::qunif( p, min = 0.0, max = 1.0, lower = true, log = false )
 Rcpp::runif( n, min = 0.0, max = 1.0 )
 
 R::dunif( x, min, max,        log )
-R::punif( x, min, max, lower, log )
-R::qunif( q, min, max, lower, log )
+R::punif( q, min, max, lower, log )
+R::qunif( p, min, max, lower, log )
 R::runif(     min, max )
 ```
 
@@ -107,13 +107,13 @@ These functions provide information about the normal distribution with mean equa
 
 ```cpp
 Rcpp::dnorm( x, mean = 0.0, sd = 1.0, log = false )
-Rcpp::pnorm( x, mean = 0.0, sd = 1.0, lower = true, log = false )
-Rcpp::qnorm( q, mean = 0.0, sd = 1.0, lower = true, log = false )
+Rcpp::pnorm( q, mean = 0.0, sd = 1.0, lower = true, log = false )
+Rcpp::qnorm( p, mean = 0.0, sd = 1.0, lower = true, log = false )
 Rcpp::rnorm( n, mean = 0.0, sd = 1.0 )
 
 R::dnorm( x, mean, sd,        log )
-R::pnorm( x, mean, sd, lower, log )
-R::qnorm( q, mean, sd, lower, log )
+R::pnorm( q, mean, sd, lower, log )
+R::qnorm( p, mean, sd, lower, log )
 R::rnorm(    mean, sd )
 ```
 
@@ -123,13 +123,13 @@ These functions provide information about the log-normal distribution whose loga
 
 ```cpp
 Rcpp::dlnorm( x, meanlog = 0.0, sdlog = 1.0,               log = false )
-Rcpp::plnorm( x, meanlog = 0.0, sdlog = 1.0, lower = true, log = false )
-Rcpp::qlnorm( q, meanlog = 0.0, sdlog = 1.0, lower = true, log = false )
+Rcpp::plnorm( q, meanlog = 0.0, sdlog = 1.0, lower = true, log = false )
+Rcpp::qlnorm( p, meanlog = 0.0, sdlog = 1.0, lower = true, log = false )
 Rcpp::rlnorm( n, meanlog = 0.0, sdlog = 1.0 )
 
 R::dlnorm( x, meanlog, sdlog,        log )
-R::plnorm( x, meanlog, sdlog, lower, log )
-R::qlnorm( q, meanlog, sdlog, lower, log )
+R::plnorm( q, meanlog, sdlog, lower, log )
+R::qlnorm( p, meanlog, sdlog, lower, log )
 R::rlnorm(    meanlog, sdlog )
 ```
 
@@ -139,8 +139,8 @@ These functions provide information about the Gamma distribution with parameters
 
 ```cpp
 Rcpp::dgamma( x, shape, scale = 1.0,               log = false )
-Rcpp::pgamma( x, shape, scale = 1.0, lower = true, log = false )
-Rcpp::qgamma( q, shape, scale = 1.0, lower = true, log = false )
+Rcpp::pgamma( q, shape, scale = 1.0, lower = true, log = false )
+Rcpp::qgamma( p, shape, scale = 1.0, lower = true, log = false )
 Rcpp::rgamma( n, shape, scale = 1.0 )
 
 R::dgamma( x, shape, scale, log )
