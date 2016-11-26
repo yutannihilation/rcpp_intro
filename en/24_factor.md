@@ -1,11 +1,12 @@
 # factor
 
-因子ベクトル（`factor`）の実体は属性 `levels` が定義された整数ベクトルです。因子ベクトルの各要素の値は、属性 levels の最初の要素に対応する値が 1、次の要素に対応する値が 2、というようになっています。
+The factor vector (`factor`) is actually an integer vector with the attributes `levels` and `class` is defined.
+
+In the code below, an example of converting integer vector to `factor` by setting values to attributes.
 
 
-下の例では、`IntergerVector` に属性を指定することで `factor` に変換する例を示しています。 
 ```
-// factor の作成
+// Creating "factor"
 // [[Rcpp::export]]
 RObject rcpp_factor(){
   IntegerVector v = {1,2,3,1,2,3};
@@ -16,13 +17,10 @@ RObject rcpp_factor(){
 }
 ```
 
-下の実行結果を見ると R に返された整数ベクトル v は factor 型として扱われていることがわかります。
+The execution result below, we can see that the integer vector returned to R is treated as `factor`.
 
 ```
 > rcpp_factor()
 [1] A B C A B C
 Levels: A B C
 ```
-
-
-

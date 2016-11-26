@@ -1,9 +1,7 @@
-# エラー処理
+# Error handling
 
-プログラムの正常な進行が妨げられる自体が起きた場合には、エラーメッセージ（C++ 例外）を発し、プログラムをストップさせることができます。
+In a situation in which the normal progress of the program is hindered, you can print an error message and stop the program. If you want to warn the user without stopping the program, use `warning()` function. Both functions `stop()` and `warning()` can display messages by specifying the format as same as the `Rprintf()` function.
 
-
-プログラムの正常な進行が妨げられる事態が起きた場合には、`stop()` 関数を用いてエラーメッセージを表示し実行を停止させることができます。プログラムの進行を停止せずに、ユーザーに警告を発したい場合は `warning()` 関数を用います。関数 `stop()` と `warning()` のどちらとも `Rprintf()` 関数と同じように書式を指定してメッセージを表示することができます。
 
 ```
 stop("Error: Unexpected condition occurred");
@@ -13,7 +11,7 @@ warning("Warning: Unexpected condition occurred");
 warning("Warning: Column %i is not numeric.", i+1);
 ```
 
-下のコード例では、関数に与えた数値がマイナスであった場合にエラーを出力して実行を停止します。
+In the code example below, an error is printed and execution is stopped if the value given to the function is negative.
 
 ```
 // [[Rcpp::export]]
@@ -25,17 +23,17 @@ double rcpp_log(double x) {
 }
 ```
 
-実行結果
+Execution result
 
 ```
 > rcpp_log(-1)
- エラー: 'x' must be a positive value.
+ Error: 'x' must be a positive value.
 ```
 
 
-# C++ 例外を投げる
+# Throwing C++ exception
 
-`throw exception()` を使うことで、C++ の例外を throw する事もできます。
+By using you can throw a C++ exception.
 
 ```
 throw exception("Unexpected condition occurred");
