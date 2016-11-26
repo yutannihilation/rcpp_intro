@@ -1,8 +1,8 @@
 # Environment
 
-`Environment` クラスを用いるとアクセスしたい環境を変数として保持し、その環境中の変数や関数にアクセスすることができます。
+By using `Environment` class, you can keep the environment you want to access as a variable and retrieve variables and functions from the environment.
 
-## Environment オブジェクトの作成
+## Creating Environment object
 
 `Environment ` クラスのオブジェクトを作成する方法を下に示します。
 
@@ -132,7 +132,7 @@ base パッケージの環境を返します。
 
 ####Environment::base_namespace()
 
-baseパッケージの名前空間を返す。 
+baseパッケージの名前空間を返す。
 
 #### Environment::Rcpp_namespace()
 

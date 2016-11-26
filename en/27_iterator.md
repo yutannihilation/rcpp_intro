@@ -18,8 +18,8 @@ The figure below shows schematically how to access vector elements using an iter
 ![](iterator.png)
 
 * `i = v.begin()` : The iterator `i` points to the first element of` v`.
-* `++i` : Updates `i` to the state that points to the next element.
-* `--i` : Updates `i` to the state that points to the previous element.
+* `++i` : Updates `i` to the state pointing to the next element.
+* `--i` : Updates `i` to the state pointing to the previous element.
 * `i + 1` : Represents an iterator pointing to the element 1 elements behind of `i`.
 * `i - 1` : Represents an iterator pointing to the element 1 elements ahead of `i`.
 * `*i` : Represents the value of the element pointed by `i`.

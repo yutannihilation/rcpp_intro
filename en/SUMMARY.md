@@ -28,7 +28,7 @@
 * [factor](24_factor.md)
 * [Error handling](25_error.md)
 * [Interruption](26_miscellaneous.md)
-* [Iterator(ja)](27_iterator.md)
+* [Iterator](27_iterator.md)
 * [Environment(ja)](28_environment.md)
 * [Writing Rcpp in R code(ja)](29_Rcpp_in_R.md)
 * [Writing R in Rcpp code(ja)](30_R_in_Rcpp.md)
