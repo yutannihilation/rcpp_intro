@@ -72,7 +72,7 @@ List of probability distribution functions provided by Rcpp is shown below. Here
 
 ### Discrete probability distribution
 
-- [Binomial distribution](#二項分布)
+- [Binomial distribution](#binomial-distribution)
 - [Negative binomial distribution (Version with success probability as parameter)](#)
 - [Negative binomial distribution (Version with mean as parameter)](#)
 - [Poisson distribution](#poisson-distribution)
@@ -167,7 +167,7 @@ R::rbeta(    shape1, shape2 )
 
 ### Noncentral beta distribution
 
-These functions provide information about the Beta distribution with parameters `shape1` and `shape2`. These functions are equivalent to setting non 0 value for the noncentrality parameter `ncp` in the Beta distribution function in R.
+These functions provide information about the Noncentral beta distribution with parameters `shape1` and `shape2`, noncentrality parameter `ncp`. These functions are equivalent to setting non 0 value for the noncentrality parameter `ncp` in the Beta distribution function in R.
 
 ```cpp
 Rcpp::dnbeta( x, shape1, shape2, ncp,               log = false );
@@ -202,7 +202,7 @@ R::rchisq(    df )
 
 ### Noncentral chi-squared distribution
 
-These functions provide information about the Noncentral chi-squared distribution with df degrees of freedom `df`. These functions are equivalent to setting non 0 value for the noncentrality parameter `ncp` in the Chi-squared distribution function in R.
+These functions provide information about the Noncentral chi-squared distribution with df degrees of freedom `df` and noncentrality parameter `ncp`. These functions are equivalent to setting non 0 value for the noncentrality parameter `ncp` in the Chi-squared distribution function in R.
 
 ```cpp
 Rcpp::dnchisq( x, df, ncp,               log = false )
@@ -216,9 +216,9 @@ R::qnchisq( q, df, ncp, lower, log )
 R::rnchisq(    df, ncp )
 ```
 
-### t分布
+### t-distribution
 
-自由度 df の t 分布の情報を与えます。これは R の t 分布関数において非心パラメータ ncp の値に 0 を設定した場合に相当します。
+These functions provide information about the t-distribution with df degrees of freedom `df`. These functions are equivalent to setting 0 for the noncentrality parameter `ncp` in the Beta distribution function in R.
 
 ```cpp
 Rcpp::dt( x, df,               log = false )
@@ -232,25 +232,26 @@ R::qt( q, df, lower, log )
 R::rt(    df )
 ```
 
-### 非心t分布
+### Noncentral t-distribution
 
-自由度 df、非心パラメータ ncp の t 分布の情報を与えます。ncp = 0 では t 分布に一致します。
+These functions provide information about the Noncentral t-distribution with df degrees of freedom `df` and noncentrality parameter `ncp`. These functions are equivalent to setting non 0 value for the noncentrality parameter `ncp` in the t-distribution function in R.
+
 
 ```cpp
 Rcpp::dnt( x, df, ncp,               log = false  )
 Rcpp::pnt( x, df, ncp, lower = true, log = false  )
 Rcpp::qnt( q, df, ncp, lower = true, log = false  )
-// Rcpp::rnt関数は存在しません
+// Rcpp::rnt() does not exist.
 
 R::dnt( x, df, ncp,        log )
 R::pnt( x, df, ncp, lower, log )
 R::qnt( q, df, ncp, lower, log )
-// R::rnt関数は存在しません
+// R::rnt() does not exist.
 ```
 
-### F分布
+### F-distribution
 
-自由度 df1, df2 のF分布の情報を与えます。これは R のF分布関数において非心パラメータ ncp の値に 0 を設定した場合に相当します。
+These functions provide information about the F-distribution with df degrees of freedom `df1` and `df2`. These functions are equivalent to setting 0 for the noncentrality parameter `ncp` in the F-distribution function in R.
 
 ```cpp
 Rcpp::df( x, df1, df2,               log = false )
@@ -265,25 +266,25 @@ R::rf(    df1, df2 )
 ```
 
 
-### 非心F分布
+### Noncentral F-distribution
 
-自由度 df1, df2 非心パラメータ ncp の F 分布の情報を与えます。ncp = 0 では F 分布に一致します。
+These functions provide information about the F-distribution with df degrees of freedom `df1`, `df2` and noncentrality parameter `ncp`. These functions are equivalent to setting non 0 value for the noncentrality parameter `ncp` in the Noncentral F-distribution function in R.
 
 ```cpp
 Rcpp::dnf( x, df1, df2, ncp,               log = false )
 Rcpp::pnf( x, df1, df2, ncp, lower = true, log = false )
 Rcpp::qnf( q, df1, df2, ncp, lower = true, log = false )
-// Rcpp::rnf関数は存在しません
+// Rcpp::rnf() does not exist.
 
 R::dnf( x, df1, df2, ncp,        log )
 R::pnf( x, df1, df2, ncp, lower, log )
 R::qnf( q, df1, df2, ncp, lower, log )
-// R::rnf関数は存在しません
+// R::rnf() does not exist.
 ```
 
-### コーシー分布
+### Cauchy distribution
 
-位置パラメータ location、尺度パラメータ scale のコーシー分布の情報を与えます。
+These functions provide information about the Cauchy distribution with location parameter `location` and scale parameter `scale`.
 
 ```cpp
 Rcpp::dcauchy( x, location = 0.0, scale = 1.0,               log = false )
@@ -298,9 +299,9 @@ R::rcauchy(    location, scale )
 ```
 
 
-### 指数分布
+### Exponential distribution
 
-割合 rate (平均が1/rate) の指数分布の情報を与えます。
+These functions provide information about the Exponential distribution with rate `rate` (i.e., mean equals to 1/rate).
 
 ```cpp
 Rcpp::dexp( x, rate = 1.0,               log = false )
@@ -314,9 +315,9 @@ R::qexp( q, rate, lower, log )
 R::rexp(    rate )
 ```
 
-### ロジスティック分布
+### Logistic distribution
 
-位置パラータ location 尺度パラメータ scale のロジスティック分布の情報を与えます。
+These functions provide information about the Logistic distribution with parameters `location` and `scale`.
 
 ```cpp
 Rcpp::dlogis( x, location = 0.0, scale = 1.0,               log = false )
@@ -331,9 +332,9 @@ R::rlogis(    location, scale )
 ```
 
 
-### ワイブル分布
+### Weibull distribution
 
-形状パラメータ shape、尺度パラメータ scale のワイブル分布の情報を与えます。
+These functions provide information about the Weibull distribution with parameters `shape` and `scale`.
 
 ```cpp
 Rcpp::dweibull( x, shape, scale = 1.0,               log = false  )
@@ -347,13 +348,13 @@ R::qweibull( q, shape, scale, lower, log )
 R::rweibull(    shape, scale )
 ```
 
-## 離散分布
+## Discrete probability distribution
 
 
 
-### 二項分布
+### Binomial distribution
 
-試行回数 size 成功確率 prob の二項分布の情報を与えます。
+These functions provide information about the Binomial distribution with number of trials `size` and success probability `prob`.
 
 ```cpp
 Rcpp::dbinom( x, size, prob,               log = false )
@@ -372,9 +373,9 @@ R::rbinom(    size, prob )
 
 
 
-### 負の二項分布（成功確率を指定するバージョン）
+### Negative binomial distribution (with success probability as parameter)
 
-成功回数 size、１試行あたりの成功確率 prob の負の二項分布の情報を与えます。
+These functions provide information about the Negative binomial distribution with number of success `size` and success probability `prob`.
 
 ```cpp
 Rcpp::dnbinom( x, size, prob,               log = false )
@@ -388,9 +389,9 @@ R::qnbinom( q, size, prob, lower, log )
 R::rnbinom(    size, prob )
 ```
 
-### 負の二項分布（平均値を指定するバージョン）
+### Negative binomial distribution (with mean as parameter)
 
-成功回数 size、分布の平均が mu (=size/prob) の負の二項分布の情報を与えます。
+These functions provide information about the Negative binomial distribution with number of success `size` and mean `mu`.
 
 ```cpp
 Rcpp::dnbinom_mu( x, size, mu,               log = false )
@@ -405,9 +406,9 @@ R::rnbinom_mu(    size, mu )
 ```
 
 
-### ポワソン分布
+### Poisson distribution
 
-平均値と分散が lambda であるポワソン分布の情報を与えます。
+These functions provide information about the Poisson distribution with mean and variance are equal to `lambda`.
 
 ```cpp
 Rcpp::dpois( x, lambda,               log = false )
@@ -427,9 +428,9 @@ R::rpois(    lambda )
 
 
 
-### 幾何分布
+### Geometric distribution
 
-成功確率 prob の幾何分布の情報を与えます。
+These functions provide information about the Geometric distribution with success probability `prob`.
 
 ```cpp
 Rcpp::dgeom( x, prob,               log = false )
@@ -443,9 +444,9 @@ R::qgeom( q, prob, lower, log )
 R::rgeom(    prob )
 ```
 
-### 超幾何分布
+### Hypergeometric distribution
 
-母集団に含まれる成功数 m、母集団に含まれる失敗数 n、母集団からサンプリングする標本の数 k の超幾何分布の情報を与えます。
+These functions provide information about the Hypergeometric distribution with number of success in the population `m` , number of failure in the population `n`, number of sample from the population `k`.
 
 ```cpp
 Rcpp::dhyper( x, m, n, k,               log = false )
@@ -459,14 +460,14 @@ R::qhyper( q, m, n, k, lower, log )
 R::rhyper(    m, n, k )
 ```
 
-### ウィルコクソン順位和検定統計量の分布
+### Distribution of Wilcoxon rank-sum test statistic
 
-標本数がそれぞれ m、n である２つの標本に対してウィルコクソン順位和検定（マン・ホイットニーのU検定）を行ったときの検定統計量の分布の情報を与えます。
+These functions provide information about the distribution of test statistic when Wilcoxon rank-sum test (Mann–Whitney U test) is performed on two specimens with number of samples `m` and `n` respectively.
 
 ```cpp
-// Rcpp::dwilcox関数は存在しません
-// Rcpp::pwilcox関数は存在しません
-// Rcpp::qwilcox関数は存在しません
+// Rcpp::dwilcox() does not exist.
+// Rcpp::pwilcox() does not exist.
+// Rcpp::qwilcox() does not exist.
 Rcpp::rwilcox( nn, m, n );
 
 R::dwilcox( x, m, n,        log )
@@ -477,15 +478,15 @@ R::rwilcox(    m, n )
 
 
 
-### ウィルコクソン符号順位検定統計量の分布
+### Distribution of Wilcoxon signed-rank test statistic
 
-n 個の標本への各2回の観察に対してウィルコクソン符号順位検定を行ったときの検定統計量の分布の情報を与えます。
+These functions provide information about the distribution of test statistic when Wilcoxon signed-rank test is performed with number of samples `n`.
 
 
 ```cpp
-// Rcpp::dsignrank関数は存在しません
-// Rcpp::psignrank関数は存在しません
-// Rcpp::qsignrank関数は存在しません
+// Rcpp::dsignrank() does not exist.
+// Rcpp::psignrank() does not exist.
+// Rcpp::qsignrank() does not exist.
 Rcpp::rsignrank( nn, n )
 
 R::dsignrank( x, n,        log )
