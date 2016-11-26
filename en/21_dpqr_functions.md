@@ -73,8 +73,8 @@ List of probability distribution functions provided by Rcpp is shown below. Here
 ### Discrete probability distribution
 
 - [Binomial distribution](#binomial-distribution)
-- [Negative binomial distribution (Version with success probability as parameter)](#)
-- [Negative binomial distribution (Version with mean as parameter)](#)
+- [Negative binomial distribution (with success probability as parameter)](#negative-binomial-distribution-with-success-probability-as-parameter))
+- [Negative binomial distribution (with mean as parameter)](#negative-binomial-distribution-with-mean-as-parameter)
 - [Poisson distribution](#poisson-distribution)
 - [Geometric distribution](#geometric-distribution)
 - [Hypergeometric distribution](#Hypergeometric distribution)
