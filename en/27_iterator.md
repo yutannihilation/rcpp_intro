@@ -1,8 +1,8 @@
-# イテレーター
+# Iterator
 
-イテレータ（反復子）とは、ベクトルなどの要素にアクセスするためのオブジェクトです。Rcpp のベクトルに対して標準 C++ のアルゴリズムを適用したい場合にはイテレータを利用します。なぜなら標準 C++ で提供されているアルゴリズムの多くはイテレータを使って処理を適用するデータの位置や範囲を指定するためです。
+Iterator is an class used to access elements of `Vector` `DataFrame` `List`. If you want to use algorithms provided by standard C++, you need to understand iterator. Because many of the algorithms provided by standard C++ use iterators to specify location or range of data to apply the algorithms.
 
-Rcpp のデータ構造には、それぞれ独自のイテレータ型が定義されています。
+Specific iterator type is defined for each data structure of Rcpp.
 
 ```
 NumericVector::iterator
@@ -13,20 +13,20 @@ DataFrame::iterator
 List::iterator
 ```
 
-下の図はイテレータを使ってベクトルの要素にアクセスする方法を模式的に示しています。
+The figure below shows schematically how to access vector elements using an iterator.
 
 ![](iterator.png)
 
-* `i = v.begin()` とするとイテレータ `i` は `v` の先頭要素を指し示します。
-* `++i` は、i を1つ次の要素を指す状態に更新します。
-* `--i` は、i を1つ前の要素を指す状態に更新します。
-* `i+1` は、i の1つ次の要素を指し示すイテレータを表します。
-* `i-1` は、i の1つ前の要素を指し示すイテレータを表します。
-* `*i`  は、i が指し示す要素の値を表します。
-* `v.end()` は `v` の末尾（最後の要素の１つ後）を指し示すイテレータを表します。
-* `*(v.begin()+k)` は v の k 番目の要素の値（`v[k]`）を表します。
+* `i = v.begin()` : The iterator `i` points to the first element of` v`.
+* `++i` : Updates `i` to the state that points to the next element.
+* `--i` : Updates `i` to the state that points to the previous element.
+* `i + 1` : Represents an iterator pointing to the element 1 elements behind of `i`.
+* `i - 1` : Represents an iterator pointing to the element 1 elements ahead of `i`.
+* `*i` : Represents the value of the element pointed by `i`.
+* `v.end()` : Represents an iterator pointing to the end (one after the last element) of `v`.
+* `*(v.begin()+k)` : Represents the value of the `k`-th element of `v` (`v[k]`).
 
-次のコード例は、イテレータを使って `NumericVector`の全ての要素を走査して値の合計値を求める例を示しています。
+The following code example shows an example of traversing all the elements of a `NumericVector` using iterator to calculate sum of the elements.
 
 ```cpp
 // [[Rcpp::export]]

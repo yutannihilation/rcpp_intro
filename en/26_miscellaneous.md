@@ -2,7 +2,7 @@
 
 ### Accepting cancellation from user.
 
-`CheckUserInterrupt()` function checks if the 'ctrl + c' button was pressed, and if it was pressed it will stop the executed function.
+`CheckUserInterrupt()` function checks if the 'ctrl + c' button was pressed, and if it was pressed it will stop the execution of the function.
 
 If you want to execute a calculation that takes a long time, you would be better to run `checkUserInterrupt()` approximately once every few seconds.
 
