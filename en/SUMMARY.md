@@ -29,7 +29,7 @@
 * [Error handling](25_error.md)
 * [Interruption](26_miscellaneous.md)
 * [Iterator](27_iterator.md)
-* [Environment(ja)](28_environment.md)
+* [Environment](28_environment.md)
 
 * [Writing Rcpp in R code]()
 * [Writing R in Rcpp code]()
