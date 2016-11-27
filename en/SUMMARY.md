@@ -31,15 +31,15 @@
 * [Iterator](27_iterator.md)
 * [Environment](28_environment.md)
 
-* [Writing Rcpp in R code]()
-* [Writing R in Rcpp code]()
-* [Creating a package using Rcpp]()
-* [Using standard C++ containers]()
-* [Using standard C++ algorithms]()
-* [Rmath]()
-* [Boost]()
-* [RcppParallel]()
-* [Learning more]()
+* Writing Rcpp in R code
+* Writing R in Rcpp code
+* Creating a package using Rcpp
+* Using standard C++ containers
+* Using standard C++ algorithms
+* Rmath
+* Boost
+* RcppParallel
+* Learning more
 
 <!--
 * [Writing Rcpp in R code(ja)](29_Rcpp_in_R.md)
