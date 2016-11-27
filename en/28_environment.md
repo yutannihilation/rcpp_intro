@@ -4,16 +4,16 @@ By using `Environment` class, you can keep the environment you want to access as
 
 ## Creating Environment object
 
-`Environment ` クラスのオブジェクトを作成する方法を下に示します。
+This section shows you how to create an object of the `Environment` class.
 
 ```
-Environment env();                           //グローバル環境
-Environment env = Environment::global_env(); //グローバル環境
-Environment env("package:stats");            // パッケージ stats 内の環境
-Environment env(1); // オブジェクトのサーチパスの i 番目にある環境（i=1はグローバル環境）
+Environment env();                           // Global environment
+Environment env = Environment::global_env(); // Global environment
+Environment env("package:stats");            // Environment of package "stats"
+Environment env(1); // The i-th environment in onbject search path (i = 1 is global environment)
 ```
 
-オブジェクトサーチパスを確認するには R の `search()` 関数を利用します。
+To check the object search path, use `search()` function in R.
 
 ```
 > search()
@@ -23,121 +23,121 @@ Environment env(1); // オブジェクトのサーチパスの i 番目にある
 [10] "package:base"   
 ```
 
-## 環境にあるオブジェクトにアクセスする
+## Accessing object in a environment
 
-Environment オブジェクトを通して環境中の変数や関数にアクセスするためには `[]` 演算子または `get()` メンバ関数を用います。もしも、その環境に存在しない変数や関数にアクセスした場合には `R_NilValue` (`NULL`) が返ります。
+You can use the `[]` operator or `get()` member function to access variables and functions in an environment through `Environment` class object. If you access variables or functions that do not exist in that environment, `R_NilValue` (` NULL`) will be returned.
+
+
 
 ```
-// グローバル環境を取得します
+// Retrieving the global environment
 Environment env = Environment::global_env();
 
-//グローバル環境にある変数を取得します
+// Retrieving object "x" from the global environment
 NumericVector x = env["x"];
 
-//グローバル環境にある変数 x の値を変更します
+// Changing the value of the variable x in the global environment
 x[0] = 100;
 ```
 
-## 新しい環境を作成する
+## Creating new environment
 
-関数 `new_env()` 関数を用いることで新しい空の環境を作成することができます。
+A new empty environment can be created by using the function `new_env()` function.
 
 #### new_env(size = 29)
 
-新しい環境を返します。size は作成される環境のハッシュテーブルの初期サイズを指定します。
+Returns a new environment. The argument `size` specifies the initial size of the hash table of the environment to be created.
 
 #### new_env(parent, size = 29)
 
-parent を親環境とする新しい環境を返します。size は作成される環境のハッシュテーブルの初期サイズを指定します。
+Returns a new environment whose parent environmnet is the `parent`. The argument `size` specifies the initial size of the hash table of the environment to be created.
 
-
-
-## メンバ関数
+## Member functions
 
 #### get(name)
 
-name で指定された名前のオブジェクトを取得します。見つからない場合は `R_NilValue` を返します。
+Retrieves the object with its name specified by the argument `name`. If it can not be found, it returns `R_NilValue`.
 
 #### ls(all)
 
-この環境にあるオブジェクトの一覧を返します。引数 all が true なら全てのオブジェクトを、false なら名前が `.` から始まるオブジェクトは除外します。
+Returns a list of objects in this environment as a `CharacterVector`. If the argument `all` is true, all objects are displayed, `false` excludes objects whose name begins with `.`.
+
 
 #### find(name)
 
-この環境、あるいは、その親環境から文字列 name で指定した名前のオブジェクトを取得します。見つからない場合は binding_not_found 例外が thow されます。
+Retrieves the object with the name specified by the argument `name` from this environment or its parent environment. If the object is not found, the `binding_not_found` exception is thrown.
 
 #### exists(name)
 
-この環境に文字列 name で指定した名前のオブジェクトが存在する場合には true を返します。
+Returns `true` if there is an object with the name specified by the argument `name` in this environment.
 
 #### assign( name, x )
 
-この環境にある文字列 name で指定した名前のオブジェクトに値 x を代入します。成功した場合には true を返します。
+Assign the value `x` to the object with the name specified by the character string `name` in this environment. Returns `true` if it succeeds.
 
 #### isLocked()
 
-この環境がロックされている場合には true を返します。
+Returns `true` if this environment is locked.
 
 #### remove(name)
 
-この環境から文字列 name で指定した名前のオブジェクトを削除します。成功した場合には true を返します。
+Removes the object with the name specified by the string `name` from this environment. Returns `true` if it succeeds.
 
 #### lock(bindings = false)
 
-この環境をロックします。binding = true の場合は、この環境の binding （Rのオブジェクト名とメモリ上のオブジェクト値の対応関係）もロックします。
+Locks this environment. If binding = `true`, it also locks bindings of this environment. (The "binding" is linking between name of the object and data of the object in R.)
 
 #### lockBinding(name)
 
-この環境にある文字列 name で指定した binding をロックします。
+Lock the binding (i.e. variable) specified by the string `name` in this environment.
 
 #### unlockBinding(name){
 
-この環境にある文字列 name で指定した binding のロックを解除します。
+Unlock the binding (i.e. variable) specified by the string `name` in this environment.
 
 #### bindingIsLocked(name)
 
-この環境にある文字列 name で指定した binding がロックされている場合には true を返します。
+Returns `true` if the binding (i.e. variable) specified by the string `name` in this environment is locked.
 
 #### bindingIsActive(name)
 
-この環境にある文字列 name で指定した binding がアクティブである場合には true を返します。
-
+Returns `true` if the binding (i.e. variable) specified by the string `name` in this environment is active.
 
 #### is_user_database()
 
-この環境がユーザーが定義したデータベース（"UserDefinedDatabase"）を継承している場合には true を返します。
+Returns true if this environment inherits "UserDefinedDatabase".
 
 #### parent()
 
-この環境の親環境を返します。
+Returns the parent environment of this environment.
 
 #### new_child(hashed)
 
-この環境を親とする新しい環境を作成します。hashed = true の場合は、作成した環境はハッシュテーブルを使用します。
+Creates a new environment whose parent is this environment. If hashed == `true`, the created environment uses hash table.
 
 
-## static メンバ関数
+## Static member functions
 
 ####Environment::global_env()
 
-グローバル環境を返します。
+Returns the global environment.
 
 ####Environment::empty_env()
 
-ルート環境である空環境を返します。
+Returns the empty environment.
 
 ####Environment::base_env()
 
-base パッケージの環境を返します。
+Returns the environment of base package.
 
 ####Environment::base_namespace()
 
-baseパッケージの名前空間を返す。
+Returns the namespace of base package.
 
 #### Environment::Rcpp_namespace()
 
-Rcpp パッケージの名前空間を返します。
+Returns the namespace of Rcpp package.
 
 #### Environment::namespace_env(package)
 
-文字列 package で指定した名前のパッケージの名前空間を返します。`Environment::namespace_env()` を使った場合には、R であらかじめ `library()` 関数でパッケージをロードしていなくてもパッケージ内の関数を呼び出すことができますこれは R で `パッケージ名::関数()` という形式で呼び出した場合と同等です。それに加えて、パッケージ内で export されていない関数にもアクセスすることができます。これは Rで `パッケージ名:::関数()` という形式で呼び出した場合と同等です。
+Returns the namespace of the package whose name is specified by argument `package`. If you use `Environment::namespace_env()`, you can call package functions without preloading the package with the `library()` function in R. This is equivalent to calling package function with the form `PACKAGE::FUNCTION()`. In addition, you can also access functions that are not exported in the package. This is equivalent to calling with the form `PACKAGE:::FUNCTION()` in R.
