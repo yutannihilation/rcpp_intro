@@ -1,6 +1,6 @@
 # Using R functions
 
-In order to use R functions from Rcpp, you can use `Function` and `Environment`.
+In order to use R functions in Rcpp, you can use `Function` and `Environment`.
 
 ## Function
 
