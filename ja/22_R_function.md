@@ -1,50 +1,49 @@
-# Using R functions
+# Rの関数を利用する
 
-In order to use R functions from Rcpp, you can use `Function` and `Environment`.
+Rcpp 内で R の関数を利用するには、`Function`、`Environment` を用います。
 
-## Function
 
-Using the `Function` class, you can call R functions from Rcpp. The argument given to the R function is determined based on position and name.
+## Function を用いた方法
 
-Use `Named()` or `_[]` to pass a value to an argument by specifying argument name. `Name()` can be used in two ways: `Named("argument_name", value)` or `Named("argument_name") = value`.
+`Function` クラスを使うと、Rcpp 内から R の関数を呼び出すことができます。R の関数に与えた値がどの引数に渡されるかは、位置と名前に基づいて判断されます。
 
-The code example below shows an example of calling the R function `rnorm (n, mean, sd)`from the function defined in Rcpp. However, when calling a package function using `Function` class, you have to add the package environment to the search path using the `library()` function in R in advance.
+名前を指定して引数に値を渡すには `Named()` 関数または `_[]` を使用します。`Name()` は、`Named("引数名", 値)` か `Named("引数名") = 値` の２つの方法で用いることができます。
+
+下のコード例では、Rcpp で定義した関数の中で R の関数 `rnorm(n, mean, sd)` を呼び出す例を示します。なお、この方法でパッケージの関数を呼び出す場合は、あらかじめ R で library 関数などを用いてパッケージの環境をサーチパスに追加しておく必要があります。
 
 ```cpp
 // [[Rcpp::export]]
 NumericVector my_fun(){
-    // calling rnorm()
+    // rnorm 関数を呼び出す
     Function f("rnorm");   
-
-    // Next code is interpreted as rnorm(n=5, mean=10, sd=2)
+    // 次の例は rnorm(n=5, mean=10, sd=2)と解釈されます
+    // 1番目の引数は位置にもとづき n に渡され
+    // 2, 3番目の引数は名前にもとづきsd,meanに渡されます
     return f(5, Named("sd")=2, _["mean"]=10);
 }
 ```
 
-Execution example
+実行例
 
 ```r
 > my_fun()
 [1]  8.014863 10.459980  7.741581  9.000762 11.465920
 ```
 
-In the above example, the return type of R function called from Rcpp is assumed `NumericVector`. However, as in the example below, the return type of an R function called from Rcpp function is sometimes undefined. In such a case it would be better to assign the return value of the function into `RObject` or `List` element.
+上の例では、Rcpp で呼び出される R の関数の返値の型は `NumericVector` である前提になっています。しかし、下の例のように Rcpp 関数内で呼び出される R の関数の返値の型が決まっていない場合もよくあります。そのような場合には、どんな型でも代入できる `RObject` か `List` に関数の返値を代入するようにすると良いでしょう。
 
-The code below shows an example of defining simplified R function `lapply()` with Rcpp.
+下のコード例では、R の `lapply()` を単純化した関数を Rcpp で定義する例を示します。
 
 ```cpp
 // [[Rcpp::export]]
 List rcpp_lapply(List input, Function f) {
-    // Applies the Function f to each element of the List input and returns the result as List
-
-    // Number of elements in the List input
+    // リスト input の各要素に関数 f を適用した結果をリストとして返します
+    // リストの要素数 n
     R_xlen_t n = input.length();
-
-    // Creating a List for output
+    // 出力用に要素数が n のリストを作成します
     List out(n);
-
-    // Applying f() to each element of "input" and store it to "out".
-    // The type of the return value of f() is unknown, but it can be assigned to the List element.
+    // input の各要素に f() を適用して out に格納します
+    // f() の返値の型は不明ですがリストには代入可能です
     for(R_xlen_t i = 0; i < n; ++i) {
         out[i] = f(input[i]);
     }
@@ -53,34 +52,34 @@ List rcpp_lapply(List input, Function f) {
 ```
 
 
-## Environment
+## Environment を用いた方法
 
-By using `Environment` class, you can retrieve objects (variables and functions) from packages and other environments.
+`Environment` クラスを利用するとパッケージ等の環境からオブジェクト（変数や関数）を取り出すことができます。
 
-The code below shows an example of calling the function `Matrix()` in package `Matrix`. When calling a package function in this way, it is not necessary to add the package environment to the search path using the `library()` function.
+下のコード例では、パッケージ `Matrix` にある関数 `Matrix()` を呼び出す例を示します。なお、この方法でパッケージの関数を呼び出す場合には、library 関数を用いてパッケージの環境をサーチパスに追加する必要はありません。
 
 ```cpp
 // [[Rcpp::export]]
 S4 rcpp_package_function(NumericMatrix m){
-
-    // Obtaining namespace of Matrix package
+    // Matrix パッケージの名前空間を取得します
     Environment pkg = Environment::namespace_env("Matrix");
-
-    // Picking up Matrix() function from Matrix package
+    
+    // Matrix パッケージの Matrix 関数を取得します
     Function f = pkg["Matrix"];
-
-    // Executing Matrix( m, sparse = TRIE )
+    
+    // Matrix( m, sparse = TRIE ) を実行します
     return f( m, Named("sparse", true));
 }
 ```
 
-Execution result
+実行結果
 
 ```
 > m <- matrix(c(1,0,0,2), nrow = 2, ncol = 2)
 > rcpp_package_function(m)
 2 x 2 sparse Matrix of class "dsCMatrix"
-
+        
 [1,] 1 .
 [2,] . 2
 ```
+
