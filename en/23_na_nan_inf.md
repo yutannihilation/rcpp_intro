@@ -1,7 +1,7 @@
 # NA NaN Inf NULL
 
 
-## NA NaN Inf の値
+## Notations of NA NaN Inf
 
 To express the value of `Inf` `-Inf` `NaN` in Rcpp, use the symbol `R_PosInf` `R_NegInf` `R_NaN`.
 
@@ -104,33 +104,32 @@ Here is the list of `SEXPTYPE` of the major Vector class.
 
 ## NULL
 
-Rcpp で `NULL` を扱う場合には `R_NilValue` を利用します。下のコード例では、`NULL` がリストの要素に含まれる場合の判定と、`NULL` を代入して属性の値を消去する例を示します。
-
+You use `R_NilValue` to handle` NULL` in Rcpp. The code example below shows how to check `NULL` in the elements of a `List` object and how to assign `NULL` to clear the value of an attribute.
 
 ```
 // [[Rcpp::export]]
 List rcpp_list()
 {
-    // 要素名がついたリストを作成する
-    // ２つの要素のうち１つは NULL になっています
+    // Create a List object with element names
+    // One of the two elements is NULL
     List L = List::create(Named("x",NumericVector({1,2,3})),
                           Named("y",R_NilValue));
 
-    // NULL の判定
+    // Checking NULL
     for(int i=0; i<L.length(); ++i){
         if(L[i]==R_NilValue) {
             Rprintf("L[%i] is NULL.\n\n", i+1);
         }
     }
 
-    // オブジェクトの属性値（要素名）の値を消去する
+    // Delete the value of the attribute (element name) of the object
     L.attr("names") = R_NilValue;
 
     return(L);
 }
 ```
 
-実行結果
+Execution result
 
 ```
 > rcpp_list()
@@ -146,17 +145,15 @@ NULL
 
 
 
-## Rcpp で NA を扱う際の注意点
+## Points to note when handling NA with Rcpp
 
+Internally `NA_INTEGER` and `NA_LOGICAL` are equivalent to the minimum value of `int` (-2147483648). Although, functions and operators defined in Rcpp handle the minimum value of `int` appropriately as` NA` (that is, make the result of operation on `NA` element as `NA`). Standard C++ functions and operators treat the minimum value of `int` as integer value. So if you add 1 to `NA_INTEGER`, the element is no longer minimum value of `int`, so it is not　treated as `NA`.
 
-内部的には `NA_INTEGER` と `NA_LOGICAL` には `int` の最小値 (-2147483648) がセットされています。Rcpp で定義された関数や演算子は `int` の最小値を `NA` として適切に扱ってくれます（つまり、`NA` の要素に対する演算の結果を `NA` にします）。しかし、標準 C++ の関数や演算子は `int` の最小値を単なる数値としてそのまま扱います。そのため、例えば `IntegerVector` の `NA` に 1 を足すと、結果は `int` の最小値ではなくなるため、もはや `NA` ではなくなってしまいます。
+In addition, if you assign `NA_LOGICAL` to `bool` type, it will always be evaluated as `true`. This is because `bool` evaluates all numbers other than 0 as `true`.
 
-加えて `bool` 型に `NA` を代入した場合には常に `true` になります。これは `bool` は 0 以外の数値をすべて `true` と評価するためです。
+On the other hand, since `nan` and　`inf` are defined in `double`, the result of the operation on　`nan` `inf`  in standard C ++ will be the same result as R.
 
-一方、`double` には `nan` と `inf` が定義されているため、標準 C++ でも `nan` `inf` に対する演算の結果は、R と同様の結果なるため問題はありません。
-
-下の表では、R の `NA` `Inf` `-Inf` `NaN` の値を `Vector` やスカラー型に対して代入したときに、どのような値として評価されるのかまとめています。
-
+The table below summarizes how values are evaluated when assigning the value of `NA` `Inf` `-Inf` `NaN` to `Vector` or scalar type in C++.
 
 |                 |      NA     |     NaN     |    Inf      |    -Inf     |
 |:---------------:|:-----------:|:-----------:|:-----------:|:-----------:|
@@ -169,32 +166,32 @@ NULL
 |      `int`      | -2147483648 | -2147483648 | -2147483648 | -2147483648 |
 |      `bool`     |    `true`   |    `true`   |    `true`   |    `true`   |
 
+The code example below shows the difference in results when computing using the Rcpp operator and the standard C++ operator against `NA_INTEGER`. From this result, the operator of Rcpp evaluates the result of the operation on `NA` as `NA`, but you can see that the standard C++ operator treats `NA_INTEGER` as just a integer value.
 
-下のコード例は、`NA_INTEGER` に対して Rcpp の演算子と標準 C++ の演算子を用いて演算を行った時の結果の違いを示しています。この実行結果から Rcpp の演算子は `NA` に対する演算の結果を NA にしますが、標準 C++ の演算子は整数ベクトルの `NA` を数値として扱っていることがわかります。
 
 ```cpp
 // [[Rcpp::export]]
 List rcpp_na_sum(){
 
-    // NA を含む整数ベクトルを作成します
+    // Creating an integer vector containing NA
     IntegerVector v1  = IntegerVector::create(1,NA_INTEGER,3);
 
-    // Rcpp で定義されたベクトルとスカラーの + 演算子を適用します
+    // Applying the "+" operator between vector and scalar defined in Rcpp
     IntegerVector res1 = v1 + 1;
 
-    // 標準 C++ で定義された int と int の + 演算子を適用します
+    // Applying the "+" operator between int and int defined in standard C++
     IntegerVector res2(3);
     for(int i=0; i<v1.length(); ++i){
         res2[i] = v1[i] + 1;
     }
 
-    // 結果をリストで出力します
+    // Outputing the result as named list
     return List::create(Named("Rcpp plus", res1),
                         Named("C++  plus", res2));
 }
 ```
 
-実行結果
+Execution result
 
 ```
 > rcpp_na_sum()
