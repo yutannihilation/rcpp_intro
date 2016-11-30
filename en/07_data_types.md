@@ -16,7 +16,7 @@ The table below present the correspondence of data types between R/Rcpp/C++.
 
 |Value | R vector|Rcpp vector|Rcpp matrix|Rcpp scalar|C++ scalar|
 |:---:|:---:|:---:|:---:|:---:|:---:|
-|Logical|`logical`  |`NumericVector`| `NumericMatrix`| - |`bool`|
+|Logical|`logical`  |`LogicalVector`| `LogicalMatrix`| - |`bool`|
 |Integer|`integer`  |`IntegerVector`|`IntegerMatrix`|-|`int`|
 |Real|`numeric` |`NumericVector`|`NumericMatrix`|-|`double`|
 |Complex|`complex`  |`ComplexVector`| `ComplexMatrix`|`Rcomplex`|`complex`|
@@ -25,7 +25,7 @@ The table below present the correspondence of data types between R/Rcpp/C++.
 |Datetime  |`POSIXct`  |`DatetimeVector`|-| `Datetime` | `time_t` |
 
 
-## DataFrame, List,  S3/S4 class
+## data.frame, list, S3, S4
 
 Other than vector and matrix, There are several data structure in R such as data.frame, list, S3 class and S4 class. You can handle all of these data structuers in Rcpp.
 
