@@ -32,15 +32,7 @@
 * [Environment](28_environment.md)
 * [Rmath](34_Rmath.md)
 
-* Creating a package using Rcpp
-* Using standard C++ containers
-* Using standard C++ algorithms
-* Boost
-* RcppParallel
-* Learning more
-
 <!--
-
 * [Creating a package using Rcpp(ja)](31_package.md)
 * [Using standard C++ containers(ja)](32_as_wrap.md)
 * [Using standard C++ algorithms(ja)](33_STL.md)
