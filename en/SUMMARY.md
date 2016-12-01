@@ -30,24 +30,20 @@
 * [Interruption](26_miscellaneous.md)
 * [Iterator](27_iterator.md)
 * [Environment](28_environment.md)
+* [Rmath](34_Rmath.md)
 
-* Writing Rcpp in R code
-* Writing R in Rcpp code
 * Creating a package using Rcpp
 * Using standard C++ containers
 * Using standard C++ algorithms
-* Rmath
 * Boost
 * RcppParallel
 * Learning more
 
 <!--
-* [Writing Rcpp in R code(ja)](29_Rcpp_in_R.md)
-* [Writing R in Rcpp code(ja)](30_R_in_Rcpp.md)
+
 * [Creating a package using Rcpp(ja)](31_package.md)
 * [Using standard C++ containers(ja)](32_as_wrap.md)
 * [Using standard C++ algorithms(ja)](33_STL.md)
-* [Rmath(ja)](34_Rmath.md)
 * [Boost(ja)](35_boost.md)
 * [RcppParallel(ja)](36_parallel.md)
 * [Learning more(ja)](37_link.md)

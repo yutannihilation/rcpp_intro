@@ -8,7 +8,8 @@ You can use your Rcpp function in 3 steps.
 
 ## Writing Rcpp source code
 
-The below code define a function `rcpp_sum()` that calculate sum of a vector. Creating a file and save it as "sum.cpp".
+The below code define a function `rcpp_sum()` that calculate sum of a vector. Save this content as a file named "sum.cpp".
+
 
 ```c++
 //sum.cpp

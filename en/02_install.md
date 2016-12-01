@@ -4,11 +4,11 @@ Before using Rcpp, you need to install c/c++ compiler.
 
 ##Install C/C++ compiler
 
-- **Windows** : Install [Rtools](https://cran.r-project.org/bin/windows/Rtools/index.html). Rtools will install gcc into C:\\Rtools.
+- **Windows** : Install [Rtools](https://cran.r-project.org/bin/windows/Rtools/index.html).
 - **Mac** : Install Xcode command line tools. Execute command `xcode-select --install` in Terminal.app
 - **Linux** : Install gcc and related libraries. For example In Ubuntu Linux `sudo apt-get install r-base-dev`
 
-You can modify compilation options by editing following files.
+If you installed the compiler in a location different from the usual, create the following file under the user's home directory. Then set environment variables in the file.
 
 * `.R/Makevars` for Linux, Mac
 * `.R/Makevars.win` fir Windows
