@@ -1,27 +1,112 @@
 # Rcppを用いたパッケージ作成
 
-自作のパッケージでRcppを利用する方法を解説します。
+このセクションでは自作のパッケージで Rcpp を利用する方法を解説します。
 
-このページのほとんど内容は Hadley Wickham 氏の [R packages のサイト](http://r-pkgs.had.co.nz/src.html)の内容を元にしています。
+http://dirk.eddelbuettel.com/code/rcpp/Rcpp-package.pdf
 
-通常のユーザーにはパッケージを作成する必要はないと考えるかもしれないが、Rcppで書いた関数はパッケージとして保存しておくことを薦める。なぜなら、Rcpp関数をパッケージ化しない場合、Rcppで書いた関数を利用するためには毎回 `sourceCppRcpp` でコンパイルしてRにロードする必要があります。それに対して、パッケージ化では、コンパイル済みのRcpp関数を保存しておき、使うときには`library()` でロードするだけで済むようになるので、時間が節約できます。
 
-##手順
+通常のユーザーはパッケージを作成する必要はないと考えるかもしれません。しかし、Rcpp で書いた関数はパッケージとして保存しておくことを薦めます。なぜなら、パッケージ化しないでRcppで作成した関数を利用する場合には、毎回 `sourceCppRcpp` でコンパイルしてRにロードする必要があります。それに対して、パッケージ化すると、コンパイル済みのRcpp関数を保存しておき、使うときには `library()` でロードするだけで済むようになるためです。
 
-パッケージフォルダを作業フォルダとして指定した状態で。`devtools::use_rcpp()`関数を実効します。
+## Rcppを用いたパッケージ作成の手順
+
+### Rcpp.package.skeleton() を利用する
+
+Rcppを用いたパッケージを作成する最も簡単な方法は `Rcpp::Rcpp.package.skeleton()` を用いる方法です。
 
 ```
-> devtools::use_rcpp()
+Rcpp.package.skeleton(
+  # パッケージ名
+  name = "anRpackage",
+  # パッケージに含めたいオブジェクトの名前（文字列ベクトルで指定）
+  list = character(),
+  # 引数 list で指定したオブジェクトを探す環境
+  environment = .GlobalEnv,
+  # 作成するパッケージのフォルダの保存先
+  path = ".",
+  # TRUEなら既存のパッケージのフォルダを上書きする
+  force = FALSE,
+  # パッケージに含めたいコードが書かれたRファイルへのパスを指定する
+  code_files = character(),
+  # パッケージに含めたいコードが書かれたC++ファイルへのパスを指定する
+  cpp_files = character(),
+  # TRUEならRcppを用いたC++コード例をパッケージに追加する
+	example_code = TRUE,
+  # TRUEならパッケージに含めるC++コード例は Rcpp attributes を利用する
+  attributes = TRUE,
+  # TRUEなら作成するパッケージの雛形にModuleの例を含める
+  module = FALSE,
+  # パッケージの著者
+	author = "Your Name"
+  # パッケージのメンテナー
+	maintainer = if(missing( author)) "Your Name" else author,
+  # パッケージのメンテナーのメールアドレス
+	email = "your@email.com",
+  # パッケージのライセンス
+	license = "GPL (>= 2)"
+	)
+```
+
+使用例
+
+```
+Rcpp::Rcpp.package.skeleton("myPackage")
+```
+
+上のコードを実行すると myRcppPackage というパッケージのフォルダが作成されます。
+
+
+### 既存の自作パッケージにRcppの関数を追加する
+
+既存のパッケージにRcppを利用した関数を追加したい場合には、`devtools::use_rcpp()` を利用する方法もあります。
+
+```
+use_rcpp(
+  pkg = "." # パッケージのフォルダへのパス
+  )
+```
+
+次の例では、最初に `package.skeleton()` でパッケージの雛形を作成してから、`devtools::use_rcpp()` でそのパッケージをRcppを利用するために必要な設定を行っています。
+
+```
+> package.skeleton("myPackage")
+Creating directories ...
+Creating DESCRIPTION ...
+Creating NAMESPACE ...
+Creating Read-and-delete-me ...
+Saving functions and data ...
+Making help files ...
+Done.
+Further steps are described in './myPackage/Read-and-delete-me'.
+
+> devtools::use_rcpp("myPackage")
 Adding Rcpp to LinkingTo and Imports
-Creating src/ and src/.gitignore
+* Creating `src/`.
+* Ignoring generated binary files.
 Next, include the following roxygen tags somewhere in your package:
-#' @useDynLib MyPackage
+
+#' @useDynLib testPackage
 #' @importFrom Rcpp sourceCpp
+NULL
+
+Then run document()
 ```
 
-これによりパッケージでRcppを利用するための下の設定を行われる。
+この方法を用いた場合には、パッケージのRコードのどこかに次の記述を追加します。これはパッケージをビルドする際に roxygen2 パッケージにより `NAMESPACE` ファイルをの内容を生成するために使われます。
 
-* `src` フォルダが作成されます。Rcppで書いたソースコードは の中に配置します。
+```
+#' @useDynLib testPackage
+#' @importFrom Rcpp sourceCpp
+NULL
+```
+
+
+
+### 自作パッケージを手動で Rcpp に対応させる
+
+これまでの方法を使わずに手動で設定する方法を以下に示します。
+
+* src/ フォルダを作成する
+
 * `DESCRIPTION`ファイルに以下の記述を追加する
 
 ```
@@ -32,26 +117,32 @@ Imports: Rcpp
 * `NAMESPACE`ファイルに以下の記述を追加する
 
 ```
-useDynLib(mypackage)
+useDynLib(myPackage)
+exportPattern("^[[:alpha:]]+")
 importFrom(Rcpp, sourceCpp)
 ```
 
-* Rcpp関数のコンパイルで生じる一時ファイルをgitが無視するように。`.gitignore` ファイルの内容を設定します。
+`useDynLib(myPackage)`は、このパッケージ `myPackage` 自身に含まれるコンパイルされた関数を、このパッケージから利用可能にする。
 
-`devtools::use_rcpp()`関数を実効した後に
-* パッケージの "Rのソースコード" のどこかに、次の roxygen タグを記述します。
+`exportPattern("^[[:alpha:]]+")` は、どの関数がこのパッケージの名前空間からグローバルに見えるか指定している。ここでは全ての関数を指定している。（これは全ての関数がRから利用できるということを意味しているのではなく、他のRパッケージからこのRパッケージのC/C++の全ての関数が利用できるように指定しているという意味？）
 
-```
-#' @useDynLib your-package-name
-#' @importFrom Rcpp sourceCpp
-NULL
-```
+`importFrom(Rcpp, sourceCpp)` は、RにRcppのシンボルをインポートする方法を教えている。これは、登録された全ての関数のインデントをセットアップする、そして、`DESCRIPTION` ファイルの `Imports:` 文と一緒になってこのパッケージに Rcpp の機能の利用するために何が必要か教えている。
 
 
-Writing a `.onUnload()` function.
+
+* （必須ではない）Rcpp関数のコンパイルで生じる一時ファイルをgitが無視するように。`src/.gitignore` ファイルの内容を設定します。
 
 ```
-.onUnload <- function (libpath) {
-  library.dynam.unload("mypackage", libpath)
-}
+*.o
+*.so
+*.dll
 ```
+
+## RStudio プロジェクトを設定する
+
+パッケージの開発をする際にも RStudio を使用するのが便利です。まずはパッケージのフォルダを RStudio のプロジェクトとして指定しましょう。そのためにはRStudioのメニューから `File > New Project...` を指定して、次に `Existing Directory` に進み、そこで、上で作成されたフォルダ `myPackage` を指定します。
+
+
+## コードを書く
+
+Rcpp を利用した C++ のコードを .cpp や .h ファイルはパッケージ・フォルダの中の `src/` フォルダの中に配置します。
