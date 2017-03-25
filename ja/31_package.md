@@ -7,11 +7,53 @@ http://dirk.eddelbuettel.com/code/rcpp/Rcpp-package.pdf
 
 通常のユーザーはパッケージを作成する必要はないと考えるかもしれません。しかし、Rcpp で書いた関数はパッケージとして保存しておくことを薦めます。なぜなら、パッケージ化しないでRcppで作成した関数を利用する場合には、毎回 `sourceCppRcpp` でコンパイルしてRにロードする必要があります。それに対して、パッケージ化すると、コンパイル済みのRcpp関数を保存しておき、使うときには `library()` でロードするだけで済むようになるためです。
 
-## Rcppを用いたパッケージ作成の手順
+#　Rcppを用いたパッケージ作成の手順
 
-### Rcpp.package.skeleton() を利用する
 
-Rcppを用いたパッケージを作成する最も簡単な方法は `Rcpp::Rcpp.package.skeleton()` を用いる方法です。
+## 手動で自作パッケージを Rcpp に対応させる
+
+自作パッケージを手動で設定する方法を以下に示します。（作成しているパッケージの名前を `myPackage` とします。）
+
+* src/ フォルダを作成する
+
+C/C++ のソース・ファイルはこのフォルダの中に配置します。
+
+* `DESCRIPTION`ファイルに以下の記述を追加する
+
+```
+LinkingTo: Rcpp
+Imports: Rcpp
+```
+
+`LinkingTo:` は、ここで指定したパッケージが提供するC/C++のヘッダファイルを、自作パッケージから利用できるようにします。
+
+`Imports:` は、ここで指定したパッケージが提供するRの関数を、この自作パッケージから利用可能にします。また、この自作パッケージがここで指定したパッケージに依存していることを明示します。
+
+(`Depends:` も、ここで指定したパッケージが提供するRの関数を、この自作パッケージから利用可能にします。Importとの違いは、この自作パッケージをRにlibrary()でロードしたときに、ここで指定したパッケージもlibrary()でロードされるということ。)
+
+
+* `NAMESPACE`ファイルに以下の記述を追加する
+
+```
+useDynLib(myPackage)
+exportPattern("^[[:alpha:]]+")
+importFrom(Rcpp, sourceCpp)
+```
+
+`useDynLib(myPackage)`は、この自作パッケージ自身に含まれるコンパイルされた関数を、この自作パッケージ自身の R 関数から利用可能にします。（このパッケージのコンパイルされた関数のポインタ（アドレス）がこのパッケージのRの関数からアクセスできるようにする？）
+
+`exportPattern("^[[:alpha:]]+")` は、このパッケージで定義された R の関数のうち、どれをパッケージのユーザーから利用できるようにするか指定しています。ここでは正規表現を使って全ての関数を指定しています。（Rcppを使うと `// [[Rcpp::export]]` を付けて定義した C++ の関数と同名の R の関数が自動で作成される。それを `exportPattern("^[[:alpha:]]+")` によって、全てをRから利用可能にしている）。ちなみに `export(foo, bar)` とすると定義されたRの関数 `foo` と `bar` のみがユーザーから利用可能になります。
+
+`importFrom(Rcpp, sourceCpp)` は、このパッケージ内の R の関数から、Rcpp パッケージの `sourceCpp` 関数を `::` なしで呼び出し可能にしています。（このパッケージ内で `sourceCpp` と書くと `Rcpp::sourceCpp` と解釈される ）。ちなみに `import(foo, bar)` と書くと、このパッケージの内部でパッケージ `foo` と `bar` の全ての関数が `::` なしで呼び出し可能になります。これはこのパッケージの中で `library()` を使ったのと同じ効果を持ちます。しかし `import()` を使って他のパッケージの関数を自作パッケージ内から利用可能にすることはできる限り避けた方が良いでしょう。その理由は２つあって、１つは他のパッケージと関数名の衝突が起こる恐れがあること、もう１つは、利用している関数のどれがどのパッケージの物なのかわかりにくくなるためです。
+
+自作パッケージの中で他のパッケージの関数を利用する場合は、 `DESCRIPTION` ファイルの `Imports:` フィールドに他のパッケージを指定し、自作関数内では `パッケージ名::関数名` の形式で利用するのが良いでしょう。どうしても必要なもの（例えば `dplyr::"%>%"` など）だけ `NAMESPACE` ファイルで `importfrom(dplyr, "%>%")` で加えましょう。
+
+
+
+
+## Rcpp.package.skeleton() を利用する
+
+Rcppを用いたパッケージを新規に作成する際に、最も簡単な方法は `Rcpp::Rcpp.package.skeleton()` を用いる方法です。
 
 ```
 Rcpp.package.skeleton(
@@ -55,13 +97,14 @@ Rcpp::Rcpp.package.skeleton("myPackage")
 上のコードを実行すると myRcppPackage というパッケージのフォルダが作成されます。
 
 
-### 既存の自作パッケージにRcppの関数を追加する
+## devtools::use_rcpp() を用いる
 
-既存のパッケージにRcppを利用した関数を追加したい場合には、`devtools::use_rcpp()` を利用する方法もあります。
+既存の自作パッケージに Rcpp を利用した関数を追加したい場合には、`devtools::use_rcpp()` を利用する方法もあります。
 
 ```
 use_rcpp(
-  pkg = "." # パッケージのフォルダへのパス
+  # パッケージのフォルダへのパスを指定する
+  pkg = "." 
   )
 ```
 
@@ -84,73 +127,47 @@ Adding Rcpp to LinkingTo and Imports
 * Ignoring generated binary files.
 Next, include the following roxygen tags somewhere in your package:
 
-#' @useDynLib testPackage
+#' @useDynLib myPackage
 #' @importFrom Rcpp sourceCpp
 NULL
 
 Then run document()
 ```
 
-この方法を用いた場合には、パッケージのRコードのどこかに次の記述を追加します。これはパッケージをビルドする際に roxygen2 パッケージにより `NAMESPACE` ファイルをの内容を生成するために使われます。
+この方法を用いた場合には、`NAMESPACE` には設定が追加されません。そこで、このパッケージのRコードのどこかに次の記述を追加してから `devtools::document()`を実行します。
+詳しくは次のセクションを参照ください。
 
 ```
-#' @useDynLib testPackage
+#' @useDynLib myPackage
 #' @importFrom Rcpp sourceCpp
 NULL
 ```
 
 
+# roxygen2 パッケージを用いてパッケージのパッケージのドキュメントを作成する
 
-### 自作パッケージを手動で Rcpp に対応させる
+RコードやC++コードの中にroxygenタグと呼ばれる特殊な文字列を記述することで、パッケージ関数のヘルプやNAMESPACEファイルの内容を生成させることができます。
+
+roxygenタグからドキュメントのソースファイルを生成するには `devtools::document()` を実行します。
 
-これまでの方法を使わずに手動で設定する方法を以下に示します。（作成しているパッケージの名前を `myPackage` とします。）
-
-* src/ フォルダを作成する
-
-C/C++ のソース・ファイルはこのフォルダの中に配置します。
-
-* `DESCRIPTION`ファイルに以下の記述を追加する
+例えば、下の記述をパッケージ内のRコードのどこかに記述してから `devtools::document()` を実行すると、
 
 ```
-LinkingTo: Rcpp
-Imports: Rcpp
+#' @useDynLib myPackage
+#' @importFrom Rcpp sourceCpp
+NULL
 ```
-
-`LinkingTo:` は、ここで指定したパッケージが提供するC/C++のヘッダファイルを、このパッケージから利用することを可能にします。
-
-`Imports:` は、ここで指定したパッケージがインストールされていることが前提であることを示します。（このパッケージは Rcpp に依存していることを明示する役割）
-
-
-* `NAMESPACE`ファイルに以下の記述を追加する
+`NAMESPACE` ファイルに次の記述が加えられます。
 
 ```
+importFrom(Rcpp,sourceCpp)
 useDynLib(myPackage)
-exportPattern("^[[:alpha:]]+")
-importFrom(Rcpp, sourceCpp)
 ```
 
-`useDynLib(myPackage)`は、このパッケージ自身に含まれるコンパイルされた関数を、このパッケージ自身の R 関数から利用可能にします。（このパッケージのコンパイルされた関数のポインタ（アドレス）に対して、このパッケージのRの関数からアクセスできるようにする？）
-
-`exportPattern("^[[:alpha:]]+")` は、このパッケージで定義された R の関数のうち、どれをパッケージのユーザーから利用できるようにするか指定しています。ここでは正規表現を使って全ての関数を指定しています。（Rcppを使うと `// [[Rcpp::export]]` を付けて定義した C++ の関数と同名の R の関数が自動で作成される。それを `exportPattern("^[[:alpha:]]+")` によって、全てユーザーから利用可能にしている）。ちなみに `export(foo, bar)` とすると 関数 `foo` と `bar` のみがユーザーから利用可能になります。
-
-`importFrom(Rcpp, sourceCpp)` は、このパッケージ内の R の関数から、Rcpp パッケージの `sourceCpp` 関数を `::` なしで呼び出し可能にしています。（このパッケージ内で `sourceCpp` と書くと `Rcpp::sourceCpp` と解釈される ）。ちなみに `import(foo, bar)` と書くと、このパッケージの内部でパッケージ `foo` と `bar` の全ての関数が `::` なしで呼び出し可能になります。
-
-* （必須ではない）Rcpp関数のコンパイルで生じる一時ファイルをgitが無視するように。`src/.gitignore` ファイルの内容を設定します。
-
-```
-*.o
-*.so
-*.dll
-```
-
-## RStudio プロジェクトを設定する
-
-パッケージの開発をする際にも RStudio を使用するのが便利です。まずはパッケージのフォルダを RStudio のプロジェクトとして指定しましょう。そのためにはRStudioのメニューから `File > New Project...` を指定して、次に `Existing Directory` に進み、そこで、上で作成されたフォルダ `myPackage` を指定します。
 
 
-## コードを書く
 
-Rcpp を利用した C++ のコードを .cpp や .h ファイルはパッケージ・フォルダの中の `src/` フォルダの中に配置します。
+
 
 
 
