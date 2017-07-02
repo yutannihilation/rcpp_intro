@@ -1,6 +1,6 @@
 **このサイトはタイトルを変更して別のサイトに移転しました（2017-07-02）。**
 
-[みんなのRcpp](https://teuder.github.io/rcpp4everynone_ja/)
+[みんなのRcpp](https://teuder.github.io/rcpp4everyone_ja/)
 
 # はじめに
 
