@@ -1,6 +1,6 @@
 **This site no longer supported.**
 
-**Go to \[NEW SITE\]\(**[https://teuder.github.io/rcpp4everyone\_en/](https://teuder.github.io/rcpp4everyone_en/\)**\).**
+Go to [NEW SITE](https://teuder.github.io/rcpp4everyone_en/).
 
 # Preface
 
