@@ -1,4 +1,4 @@
-**This site no longer supported.**
+**This site no longer supported \(2017-07-02\).**
 
 Go to [NEW SITE](https://teuder.github.io/rcpp4everyone_en/).
 
